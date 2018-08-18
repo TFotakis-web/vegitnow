@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'Base/GoogleAnalytics.html' %}
+	{% include 'Base/HeadMeta.html' %}
+	{% include 'Base/HeadLinks.html' %}
+</head>
+<body>
+{% include 'Base/NavigationBar.html' %}
+<div style="min-height: 100vh;">
+	{% block body %}{% endblock %}
+</div>
+{% include 'Base/Footer.html' %}
+</body>
+</html>

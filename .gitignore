@@ -1,0 +1,6 @@
+.idea/
+.sass-cache/
+__pycache__/
+venv/
+venvArch/
+venvWindows/

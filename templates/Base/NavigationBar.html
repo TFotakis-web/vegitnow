@@ -1,0 +1,111 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<nav class="navbar navbar-light bg-white fixed-top flex-nowrap d-md-none d-lg-none d-xl-none">
+	<div class="container">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a href="{% url 'general:home' %}" class="navbar-brand d-flex d-md-none w-50 mr-auto">
+			<img src="{% static 'img/logo.png' %}" alt="Vegitnow Logo" height="40">
+		</a>
+		<a href="{% url 'general:home' %}" class="navbar-brand d-none d-md-block" style="position: fixed; top:1.5rem;">
+			<img src="{% static 'img/logo.png' %}" alt="Vegitnow Logo" height="40">
+		</a>
+		<div class="navbar-collapse collapse w-100 justify-content-center flex-basis-fix" id="collapsingNavbar">
+			<ul class="navbar-nav w-100 justify-content-center">
+				<li class="nav-item{% if activeTab == 'recipes' %} active{% endif %}">
+					<a class="nav-link font-weight-bold" href="{% url 'general:recipes' %}">{% trans "Recipes" %}</a>
+				</li>
+				<li class="nav-item{% if activeTab == 'tips' %} active{% endif %}">
+					<a class="nav-link font-weight-bold" href="{% url 'general:tips' %}">{% trans "Tips" %}</a>
+				</li>
+				<li class="nav-item{% if activeTab == 'whoWeAre' %} active{% endif %}">
+					<a class="nav-link font-weight-bold" href="{% url 'general:whoWeAre' %}">{% trans "Who we are" %}</a>
+				</li>
+				<li class="nav-item{% if activeTab == 'communication' %} active{% endif %}">
+					<a class="nav-link font-weight-bold" href="{% url 'general:communication' %}">{% trans "Communication" %}</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<div class="vegShop-btn">
+							<span>VEG SHOP</span>
+						</div>
+					</a>
+				</li>
+				<li class="nav-item">
+					{% if LANGUAGE_CODE == 'en' %}
+						<a href="{% url 'general:setLanguage' 'el' %}" class="nav-link">
+							<div class="locale-btn">
+								<span>EL</span>
+							</div>
+						</a>
+					{% else %}
+						<a href="{% url 'general:setLanguage' 'en' %}" class="nav-link">
+							<div class="locale-btn">
+								<span>EN</span>
+							</div>
+						</a>
+					{% endif %}
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<nav class="navbar navbar-light bg-white fixed-top navbar-expand-md flex-nowrap d-none d-md-flex">
+	<div class="container">
+		<div class="col-1">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a href="{% url 'general:home' %}" class="navbar-brand" style="position: relative; top: 2rem;">
+				<img src="{% static 'img/logo.png' %}" alt="Vegitnow Logo" height="40">
+			</a>
+		</div>
+		<div class="col-10">
+			<div class="navbar-collapse collapse w-100 justify-content-center flex-basis-fix" id="collapsingNavbar">
+				<ul class="navbar-nav w-100 justify-content-center">
+					<li class="nav-item{% if activeTab == 'recipes' %} active{% endif %}">
+						<a class="nav-link font-weight-bold" href="{% url 'general:recipes' %}">{% trans "Recipes" %}</a>
+					</li>
+					<li class="nav-item{% if activeTab == 'tips' %} active{% endif %}">
+						<a class="nav-link font-weight-bold" href="{% url 'general:tips' %}">{% trans "Tips" %}</a>
+					</li>
+					<li class="nav-item{% if activeTab == 'whoWeAre' %} active{% endif %}">
+						<a class="nav-link font-weight-bold" href="{% url 'general:whoWeAre' %}">{% trans "Who we are" %}</a>
+					</li>
+					<li class="nav-item{% if activeTab == 'communication' %} active{% endif %}">
+						<a class="nav-link font-weight-bold" href="{% url 'general:communication' %}">{% trans "Communication" %}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-1">
+			<ul class="navbar-nav justify-content-end" style="position: relative; top: 2rem;">
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<div class="vegShop-btn">
+							<span>VEG SHOP</span>
+						</div>
+					</a>
+				</li>
+				<li class="nav-item">
+					{% if LANGUAGE_CODE == 'en' %}
+						<a href="{% url 'general:setLanguage' 'el' %}" class="nav-link">
+							<div class="locale-btn">
+								<span>EL</span>
+							</div>
+						</a>
+					{% else %}
+						<a href="{% url 'general:setLanguage' 'en' %}" class="nav-link">
+							<div class="locale-btn">
+								<span>EN</span>
+							</div>
+						</a>
+					{% endif %}
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
