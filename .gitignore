@@ -2,5 +2,5 @@
 .sass-cache/
 __pycache__/
 venv/
-venvArch/
-venvWindows/
+.venvArch/
+.venvWindows/

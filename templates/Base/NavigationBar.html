@@ -15,10 +15,10 @@
 		<div class="navbar-collapse collapse w-100 justify-content-center flex-basis-fix" id="collapsingNavbar">
 			<ul class="navbar-nav w-100 justify-content-center">
 				<li class="nav-item{% if activeTab == 'recipes' %} active{% endif %}">
-					<a class="nav-link font-weight-bold" href="{% url 'general:recipes' %}">{% trans "Recipes" %}</a>
+					<a class="nav-link font-weight-bold" href="{% url 'articles:recipesList' %}">{% trans "Recipes" %}</a>
 				</li>
 				<li class="nav-item{% if activeTab == 'tips' %} active{% endif %}">
-					<a class="nav-link font-weight-bold" href="{% url 'general:tips' %}">{% trans "Tips" %}</a>
+					<a class="nav-link font-weight-bold" href="{% url 'articles:tipsList' %}">{% trans "Tips" %}</a>
 				</li>
 				<li class="nav-item{% if activeTab == 'whoWeAre' %} active{% endif %}">
 					<a class="nav-link font-weight-bold" href="{% url 'general:whoWeAre' %}">{% trans "Who we are" %}</a>
@@ -27,7 +27,7 @@
 					<a class="nav-link font-weight-bold" href="{% url 'general:communication' %}">{% trans "Communication" %}</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">
+					<a href="{% url 'shop:home' %}" class="nav-link">
 						<div class="vegShop-btn">
 							<span>VEG SHOP</span>
 						</div>
@@ -67,10 +67,10 @@
 			<div class="navbar-collapse collapse w-100 justify-content-center flex-basis-fix" id="collapsingNavbar">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item{% if activeTab == 'recipes' %} active{% endif %}">
-						<a class="nav-link font-weight-bold" href="{% url 'general:recipes' %}">{% trans "Recipes" %}</a>
+						<a class="nav-link font-weight-bold" href="{% url 'articles:recipesList' %}">{% trans "Recipes" %}</a>
 					</li>
 					<li class="nav-item{% if activeTab == 'tips' %} active{% endif %}">
-						<a class="nav-link font-weight-bold" href="{% url 'general:tips' %}">{% trans "Tips" %}</a>
+						<a class="nav-link font-weight-bold" href="{% url 'articles:tipsList' %}">{% trans "Tips" %}</a>
 					</li>
 					<li class="nav-item{% if activeTab == 'whoWeAre' %} active{% endif %}">
 						<a class="nav-link font-weight-bold" href="{% url 'general:whoWeAre' %}">{% trans "Who we are" %}</a>
@@ -84,7 +84,7 @@
 		<div class="col-1">
 			<ul class="navbar-nav justify-content-end" style="position: relative; top: 2rem;">
 				<li class="nav-item">
-					<a href="#" class="nav-link">
+					<a href="{% url 'shop:home' %}" class="nav-link">
 						<div class="vegShop-btn">
 							<span>VEG SHOP</span>
 						</div>

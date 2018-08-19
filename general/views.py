@@ -5,30 +5,14 @@ from django.utils import translation
 from django.utils.translation import gettext
 
 
-def home(request):
+def homeView(request):
 	context = {
 		'title': 'VegItNow',
 	}
 	return render(request=request, template_name='general/home.html', context=context)
 
 
-def recipes(request):
-	context = {
-		'title': gettext('Recipes') + ' - VegItNow',
-		'activeTab': 'recipes',
-	}
-	return render(request=request, template_name='general/recipes.html', context=context)
-
-
-def tips(request):
-	context = {
-		'title': gettext('Tips') + ' - VegItNow',
-		'activeTab': 'tips',
-	}
-	return render(request=request, template_name='general/tips.html', context=context)
-
-
-def whoWeAre(request):
+def whoWeAreView(request):
 	context = {
 		'title': gettext('Who we are') + ' - VegItNow',
 		'activeTab': 'whoWeAre',
@@ -36,7 +20,7 @@ def whoWeAre(request):
 	return render(request=request, template_name='general/whoWeAre.html', context=context)
 
 
-def communication(request):
+def communicationView(request):
 	context = {
 		'title': gettext('Communication') + ' - VegItNow',
 		'activeTab': 'communication',
@@ -44,14 +28,14 @@ def communication(request):
 	return render(request=request, template_name='general/communication.html', context=context)
 
 
-def custom_404(request, path):
+def custom404View(request, path):
 	context = {
 		'title': 'Oops! Error 404. - VegItNow'
 	}
 	return render(request=request, template_name='Shared/404.html', context=context)
 
 
-def custom_500(request):
+def custom500View(request):
 	context = {
 		'title': 'Oops! Error 500. - VegItNow'
 	}
