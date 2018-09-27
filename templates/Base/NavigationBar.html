@@ -9,9 +9,6 @@
 		<a href="{% url 'general:home' %}" class="navbar-brand d-flex d-md-none w-50 mr-auto">
 			<img src="{% static 'img/logo.png' %}" alt="Vegitnow Logo" height="40">
 		</a>
-		<a href="{% url 'general:home' %}" class="navbar-brand d-none d-md-block" style="position: fixed; top:1.5rem;">
-			<img src="{% static 'img/logo.png' %}" alt="Vegitnow Logo" height="40">
-		</a>
 		<div class="navbar-collapse collapse w-100 justify-content-center flex-basis-fix" id="collapsingNavbar">
 			<ul class="navbar-nav w-100 justify-content-center">
 				<li class="nav-item{% if activeTab == 'recipes' %} active{% endif %}">
@@ -56,10 +53,7 @@
 <nav class="navbar navbar-light bg-white fixed-top navbar-expand-md flex-nowrap d-none d-md-flex">
 	<div class="container">
 		<div class="col-1">
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<a href="{% url 'general:home' %}" class="navbar-brand" style="position: relative; top: 2rem;">
+			<a href="{% url 'general:home' %}" class="navbar-brand">
 				<img src="{% static 'img/logo.png' %}" alt="Vegitnow Logo" height="40">
 			</a>
 		</div>
