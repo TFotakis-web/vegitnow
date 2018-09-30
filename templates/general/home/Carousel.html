@@ -1,0 +1,87 @@
+{% load static %}
+<div id="carousel">
+	<a class="btn btn-circle bgGreen2 text-white" href="#carouselControls" role="button" data-slide="prev" style="
+				   font-size: 1.5rem;
+				   font-family: 'AC-ScriptCondenced_unicode', sans-serif;
+				   position: absolute;
+				   top: 50vh;
+				   left: 2%;
+				   z-index: 10000;
+				   ">
+		<span aria-hidden="true"><</span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="btn btn-circle bgGreen2 text-white" style="
+				   font-size: 1.5rem;
+				   font-family: 'AC-ScriptCondenced_unicode', sans-serif;
+				   position: absolute;
+				   top: 50vh;
+				   right: 2%;
+				   z-index: 10000;
+				   " href="#carouselControls" role="button" data-slide="next">
+		<span aria-hidden="true">></span>
+		<span class="sr-only">Next</span>
+	</a>
+	<div style="height:100vh;clip-path: polygon(5% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%, 2% 0%);">
+		<div id="carouselControls" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="full-screen-carousel-img" style="background-image: url({% static 'img/carouselFava.png' %});">
+						<div class="container-fluid h-100">
+							<div class="row h-100">
+								<div class="col-md-6 h-100 bgGreenTrans0 text-white text-center d-table">
+									<div class="d-table-cell align-middle">
+										<div class="container w-75">
+											<h1 style="font-size: 4rem;letter-spacing: 0.3rem;">Φάβα με ελαιόλαδο και κρεμμύδι</h1>
+										</div>
+										<div class="container w-75">
+											<div class="row">
+												<div class="col-lg-6">
+													<h1>Main Ingredients</h1>
+													<p>Fava, Kapari, Diosmos</p>
+												</div>
+												<div class="col-lg-6">
+													<h1>Ready in</h1>
+													<p>10 Min</p>
+												</div>
+											</div>
+											<div class="btn bgGreen0 text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">Δες την Συνταγή</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="full-screen-carousel-img" style="background-image: url({% static 'img/carouselFava.png' %});">
+						<div class="container-fluid h-100">
+							<div class="row h-100">
+								<div class="col-md-6 h-100 bgGreenTrans0 text-white text-center d-table">
+									<div class="d-table-cell align-middle">
+										<div class="container w-75">
+											<h1 style="font-size: 4rem;">Φάβα με ελαιόλαδο και κρεμμύδι</h1>
+										</div>
+										<div class="container w-75">
+											<div class="row">
+												<div class="col-lg-6">
+													<h1>Main Ingredients</h1>
+													<p>Fava, Kapari, Diosmos</p>
+												</div>
+												<div class="col-lg-6">
+													<h1>Ready in</h1>
+													<p>10 Min</p>
+												</div>
+											</div>
+											<div class="btn bgGreen0 text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">Δες την Συνταγή</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
