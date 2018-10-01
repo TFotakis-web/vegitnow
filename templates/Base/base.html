@@ -1,7 +1,9 @@
 {% load static %}
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	{% progressive_web_app_meta %}
 	{% include 'Base/GoogleAnalytics.html' %}
 	{% include 'Base/HeadMeta.html' %}
 	{% include 'Base/HeadLinks.html' %}

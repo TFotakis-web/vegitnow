@@ -48,3 +48,7 @@ def setLanguage(request, language):
 	response = HttpResponseRedirect(referer)
 	response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
 	return response
+
+
+def base_layout(request):
+	return render(request=request, template_name='Base/base.html')
