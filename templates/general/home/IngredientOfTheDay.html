@@ -1,39 +1,41 @@
 {% load static %}
+{% load i18n %}
 <div id="IngredientOfTheDay" class="bgGreen1 pb-5">
-	<h1 class="text-center fgGreen0" style="position: relative; top: -0.5em;">Το Συστατικό της ημέρας</h1>
+	<h1 class="text-center fgGreen0" style="position: relative; top: -0.5em;">{% trans "Ingredient of the day" %}</h1>
 	<div class="container">
 		<div class="row text-center align-items-center">
-			<div class="col-md-4 mb-3 fgGreen0 order-1 order-md-0">
+			<div class="col-lg-4 mb-3 fgGreen0 order-1 order-lg-0">
 				<h1>Καρότο</h1>
-				<div class="d-flex justify-content-center">
-					<div class="p-3 bg-white">
-						<p class="text-capitalize m-0 sans">Θερμίδες</p>
+				<div class="d-flex justify-content-center" style="font-size: 0.8em;">
+					<div class="p-2 bg-white" style="border-top-left-radius: 2px; border-bottom-left-radius: 2px;">
+						<p class="text-capitalize m-0 sans">{% trans "Energy" %}</p>
 						<strong>137</strong>
 						<p class="sans fgGreen0 m-0">6.7%*</p>
 					</div>
-					<div class="p-3 bgGreen4">
-						<p class="text-capitalize m-0 sans">Σάκχαρα</p>
+					<div class="p-2 bgGreen4">
+						<p class="text-capitalize m-0 sans">{% trans "Carbohydrate" %}</p>
 						<strong>3.8g</strong>
 						<p class="sans fgGreen0 m-0">6.7%*</p>
 					</div>
-					<div class="p-3 bgGreen4">
-						<p class="text-capitalize m-0 sans">Λίπη</p>
+					<div class="p-2 bgGreen4">
+						<p class="text-capitalize m-0 sans">{% trans "Fat" %}</p>
 						<strong>5g</strong>
 						<p class="sans fgGreen0 m-0">6.7%*</p>
 					</div>
-					<div class="p-3 bgGreen4">
-						<p class="text-capitalize m-0 sans">Κορ.Λίπη</p>
+					<div class="p-2 bgGreen4">
+						<p class="text-capitalize m-0 sans">{% trans "Sat. Fat" %}</p>
 						<strong>2.4g</strong>
 						<p class="sans fgGreen0 m-0">6.7%*</p>
 					</div>
-					<div class="p-3 bgGreen4">
-						<p class="text-capitalize m-0 sans">Αλάτι</p>
+					<div class="p-2 bgGreen4" style="border-top-right-radius: 2px; border-bottom-right-radius: 2px;">
+						<p class="text-capitalize m-0 sans">{% trans "Salt" %}</p>
 						<strong>0.4g</strong>
 						<p class="sans fgGreen0 m-0">6.7%*</p>
 					</div>
 				</div>
+				<p class="text-dark" style="font-size: 0.8em;">{% trans "* Reference intake of an average adult (8400kJ/2000kcal)" %}</p>
 			</div>
-			<div class="col-md-4 mx-auto mb-3 order-0 order-md-1">
+			<div class="col-lg-4 mx-auto mb-3 order-0 order-lg-1">
 				<div class="bg-white rounded-circle mx-auto"
 				     style="
 						     height: 190px;
@@ -45,8 +47,8 @@
 				</div>
 				<div class="dashedCircle rotating mx-auto" style="height: 210px; width: 210px; margin-top: -200px;"></div>
 			</div>
-			<div class="col-md-4 mb-3 order-2 order-md-2">
-				<div class="btn bgGreen2 text-white px-4" style="border-radius: 2rem;">Δες Συνταγές</div>
+			<div class="col-lg-4 mb-3 order-2 order-lg-2">
+				<div class="btn bgGreen2 text-white px-4" style="border-radius: 2rem;">{% trans "Recipes" %}</div>
 			</div>
 		</div>
 	</div>

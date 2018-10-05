@@ -2,7 +2,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top d-md-none">
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top d-md-none">
 	<div class="container">
 		<a href="{% url 'general:home' %}" class="navbar-brand">
 			<img src="{% static 'img/logo.png' %}" alt="Vegitnow Logo" height="40">
@@ -53,13 +53,13 @@
 
 <nav class="navbar navbar-light bg-white fixed-top navbar-expand-md flex-nowrap d-none d-md-flex">
 	<div class="container">
-		<div class="col-1">
-			<a href="{% url 'general:home' %}" class="navbar-brand">
-				<img src="{% static 'img/logo.png' %}" alt="Vegitnow Logo" height="40">
-			</a>
-		</div>
-		<div class="col-10">
-			<div class="navbar-collapse collapse w-100 justify-content-center flex-basis-fix" id="collapsingNavbar">
+		<div class="d-flex w-100 align-items-center">
+			<div class="">
+				<a href="{% url 'general:home' %}" class="navbar-brand">
+					<img src="{% static 'img/logo.png' %}" alt="Vegitnow Logo" height="40">
+				</a>
+			</div>
+			<div class="flex-grow-1">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item{% if activeTab == 'recipes' %} active{% endif %}">
 						<a class="nav-link font-weight-bold" href="{% url 'articles:recipesList' %}">{% trans "Recipes" %}</a>
@@ -75,32 +75,32 @@
 					</li>
 				</ul>
 			</div>
-		</div>
-		<div class="col-1">
-			<ul class="navbar-nav justify-content-end" style="position: relative; top: 2rem;">
-				<li class="nav-item">
-					<a href="{% url 'shop:home' %}" class="nav-link">
-						<div class="vegShop-btn">
-							<span>VEG SHOP</span>
-						</div>
-					</a>
-				</li>
-				<li class="nav-item">
-					{% if LANGUAGE_CODE == 'en' %}
-						<a href="{% url 'general:setLanguage' 'el' %}" class="nav-link">
-							<div class="locale-btn">
-								<span>EL</span>
+			<div class="">
+				<ul class="navbar-nav justify-content-end" style="position: relative; top: 2rem;">
+					<li class="nav-item">
+						<a href="{% url 'shop:home' %}" class="nav-link">
+							<div class="vegShop-btn">
+								<span>VEG SHOP</span>
 							</div>
 						</a>
-					{% else %}
-						<a href="{% url 'general:setLanguage' 'en' %}" class="nav-link">
-							<div class="locale-btn">
-								<span>EN</span>
-							</div>
-						</a>
-					{% endif %}
-				</li>
-			</ul>
+					</li>
+					<li class="nav-item">
+						{% if LANGUAGE_CODE == 'en' %}
+							<a href="{% url 'general:setLanguage' 'el' %}" class="nav-link">
+								<div class="locale-btn">
+									<span>EL</span>
+								</div>
+							</a>
+						{% else %}
+							<a href="{% url 'general:setLanguage' 'en' %}" class="nav-link">
+								<div class="locale-btn">
+									<span>EN</span>
+								</div>
+							</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </nav>
