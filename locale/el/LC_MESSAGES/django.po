@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-05 12:24+0000\n"
+"POT-Creation-Date: 2018-10-06 17:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,9 @@ msgstr ""
 
 #: articles/views.py:15 templates/Base/NavigationBar.html:16
 #: templates/Base/NavigationBar.html:65 templates/articles/recipes.html:7
+#: templates/general/home/Articles.html:25
 #: templates/general/home/IngredientOfTheDay.html:51
+#: templates/general/home/Recipes.html:25
 msgid "Recipes"
 msgstr "Συνταγές"
 
@@ -45,17 +47,21 @@ msgstr "Εγγραφή"
 msgid "Shop"
 msgstr "Κατάστημα"
 
-#: templates/general/home/Carousel.html:41
+#: templates/Shared/articleCard.html:17
+msgid "Read more"
+msgstr "Διάβασε περισσότερα"
+
+#: templates/Shared/recipeCard.html:8 templates/general/home/Carousel.html:41
 #: templates/general/home/Carousel.html:69
 msgid "Main Ingredients:"
 msgstr "Κύρια Συστατικά:"
 
-#: templates/general/home/Carousel.html:45
+#: templates/Shared/recipeCard.html:10 templates/general/home/Carousel.html:45
 #: templates/general/home/Carousel.html:73
 msgid "Ready in:"
 msgstr "Έτοιμη σε:"
 
-#: templates/general/home/Carousel.html:49
+#: templates/Shared/recipeCard.html:20 templates/general/home/Carousel.html:49
 #: templates/general/home/Carousel.html:77
 msgid "Go to the Recipe"
 msgstr "Δες την συνταγή"
@@ -89,7 +95,8 @@ msgid "* Reference intake of an average adult (8400kJ/2000kcal)"
 msgstr ""
 "* Προσλαμβανόμενη ποσότητα αναφοράς ενός μέσου ενήλικα (8400kJ/2000kcal)"
 
-#: templates/general/home/JoinOurFamily.html:12
+#: templates/general/home/JoinOurFamily.html:16
+#: templates/general/home/JoinOurFamily.html:34
 msgid "Sign Up"
 msgstr "Εγγραφή"
 
