@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-06 17:39+0000\n"
+"POT-Creation-Date: 2018-10-23 18:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,12 +14,12 @@ msgstr ""
 
 #: articles/views.py:15 templates/Base/NavigationBar.html:16
 #: templates/Base/NavigationBar.html:65 templates/articles/recipes.html:7
-#: templates/general/home/IngredientOfTheDay.html:51
+#: templates/general/home/IngredientOfTheDay.html:58
 #: templates/general/home/Recipes.html:25
 msgid "Recipes"
 msgstr "Συνταγές"
 
-#: articles/views.py:41 templates/Base/NavigationBar.html:19
+#: articles/views.py:42 templates/Base/NavigationBar.html:19
 #: templates/Base/NavigationBar.html:68 templates/articles/tips.html:7
 msgid "Tips"
 msgstr "Συμβουλές"
@@ -50,53 +50,74 @@ msgstr "Κατάστημα"
 msgid "Read more"
 msgstr "Διάβασε περισσότερα"
 
-#: templates/Shared/recipeCard.html:8 templates/general/home/Carousel.html:41
+#: templates/Shared/nutritionStats.html:4
+msgid "Energy"
+msgstr "Ενέργεια"
+
+#: templates/Shared/nutritionStats.html:9
+msgid "Carbohydrate"
+msgstr "Υδατάνθρακες"
+
+#: templates/Shared/nutritionStats.html:14
+msgid "Fat"
+msgstr "Λιπαρά"
+
+#: templates/Shared/nutritionStats.html:19
+msgid "Sat. Fat"
+msgstr "Κορ. Λίπη"
+
+#: templates/Shared/nutritionStats.html:25
+msgid "Salt"
+msgstr "Αλάτι"
+
+#: templates/Shared/nutritionStats.html:30
+msgid "* Reference intake of an average adult (8400kJ/2000kcal)"
+msgstr "* Προσλαμβανόμενη ποσότητα αναφοράς ενός μέσου ενήλικα (8400kJ/2000kcal)"
+
+#: templates/Shared/recipeCard.html:29 templates/articles/recipeView.html:24
+#: templates/general/home/Carousel.html:41
 #: templates/general/home/Carousel.html:69
 msgid "Main Ingredients:"
 msgstr "Κύρια Συστατικά:"
 
-#: templates/Shared/recipeCard.html:10 templates/general/home/Carousel.html:45
+#: templates/Shared/recipeCard.html:31 templates/articles/recipeView.html:20
+#: templates/general/home/Carousel.html:45
 #: templates/general/home/Carousel.html:73
 msgid "Ready in:"
 msgstr "Έτοιμη σε:"
 
-#: templates/Shared/recipeCard.html:20 templates/general/home/Carousel.html:49
+#: templates/Shared/recipeCard.html:41 templates/general/home/Carousel.html:49
 #: templates/general/home/Carousel.html:77
 msgid "Go to the Recipe"
 msgstr "Δες την συνταγή"
+
+#: templates/articles/recipeView.html:28
+msgid "Dishes:"
+msgstr "Μερίδες"
+
+#: templates/articles/recipeView.html:39
+msgid "Ingredients"
+msgstr "Συστατικά:"
+
+#: templates/articles/recipeView.html:47
+msgid "Execution"
+msgstr "Εκτέλεση"
+
+#: templates/articles/recipeView.html:79
+msgid "Execution from us"
+msgstr "Εκτέλεση από εμάς"
+
+#: templates/articles/recipeView.html:89
+msgid "Nutrition facts"
+msgstr "Διατροφικά Στοιχεία"
 
 #: templates/general/home/Articles.html:25
 msgid "Articles"
 msgstr "Άρθρα"
 
-#: templates/general/home/IngredientOfTheDay.html:4
+#: templates/general/home/IngredientOfTheDay.html:5
 msgid "Ingredient of the day"
 msgstr "Το Συστατικό της ημέρας"
-
-#: templates/general/home/IngredientOfTheDay.html:11
-msgid "Energy"
-msgstr "Ενέργεια"
-
-#: templates/general/home/IngredientOfTheDay.html:16
-msgid "Carbohydrate"
-msgstr "Υδατάνθρακες"
-
-#: templates/general/home/IngredientOfTheDay.html:21
-msgid "Fat"
-msgstr "Λιπαρά"
-
-#: templates/general/home/IngredientOfTheDay.html:26
-msgid "Sat. Fat"
-msgstr "Κορ. Λίπη"
-
-#: templates/general/home/IngredientOfTheDay.html:31
-msgid "Salt"
-msgstr "Αλάτι"
-
-#: templates/general/home/IngredientOfTheDay.html:36
-msgid "* Reference intake of an average adult (8400kJ/2000kcal)"
-msgstr ""
-"* Προσλαμβανόμενη ποσότητα αναφοράς ενός μέσου ενήλικα (8400kJ/2000kcal)"
 
 #: templates/general/home/JoinOurFamily.html:16
 #: templates/general/home/JoinOurFamily.html:34

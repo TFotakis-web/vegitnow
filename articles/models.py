@@ -44,6 +44,10 @@ class ArticleContentTranslation(models.Model):
 	def Released(self):
 		return self.DoneEditing and (self.ReleaseDateTime is None or self.ReleaseDateTime.utctimetuple() <= datetime.now().astimezone().utctimetuple())
 
+	@property
+	def Preview(self):
+		return self.Content[:130] + '...' if len(self.Content) > 130 else self.Content
+
 	def __str__(self): return self.Language.Code + ': ' + self.Title
 
 

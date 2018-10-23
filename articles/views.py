@@ -6,27 +6,28 @@ from .models import Article, ArticleTypeAssociation
 
 def recipesListView(request):
 	articleTypeAssociationList = ArticleTypeAssociation.objects.filter(Type__Name='Recipe').all()
-	articleList = []
+	recipesList = []
 	for obj in articleTypeAssociationList:
 		data = obj.Article.LocalData
 		if data and data.Released:
-			articleList.append(data)
+			recipesList.append(data)
 	context = {
 		'title': gettext('Recipes') + ' - VegItNow',
 		'activeTab': 'recipes',
-		'articleList': articleList,
+		'recipesList': recipesList,
 	}
 	return render(request=request, template_name='articles/recipes.html', context=context)
 
 
-def recipeView(request, id, title):
-	article = Article.objects.get(id=id).LocalData
+def recipeView(request, recipeId, title):
+	article = Article.objects.get(id=recipeId).LocalData
 	if article is None or not article.Released:
 		return redirect('articles:recipesList')
 	context = {
 		'title': article.Title + ' - VegItNow',
 		'article': article,
 	}
+	# return render(request=request, template_name='articles/recipes.html', context=context)
 	return render(request=request, template_name='articles/recipeView.html', context=context)
 
 
@@ -45,8 +46,8 @@ def tipsListView(request):
 	return render(request=request, template_name='articles/tips.html', context=context)
 
 
-def tipView(request, id, title):
-	article = Article.objects.get(id=id).LocalData
+def tipView(request, tipId, title):
+	article = Article.objects.get(id=tipId).LocalData
 	if article is None or not article.Released:
 		return redirect('articles:tipsList')
 	context = {
@@ -54,3 +55,10 @@ def tipView(request, id, title):
 		'article': article,
 	}
 	return render(request=request, template_name='articles/tipView.html', context=context)
+
+
+def createArticleView(request):
+	context = {
+		'title': gettext('Create Article') + ' - VegItNow',
+	}
+	return render(request=request, template_name='articles/createArticle.html', context=context)

@@ -4,7 +4,15 @@
 {% block body %}
 	<div class="navbar-placeholder"></div>
 	<div class="container">
-		<h1>{{ article.Title }}</h1>
-		<p>{{ article.Content }}</p>
+		<div class="row">
+			<div class="col-md-4">
+				{#				<div class="full-screen-img" style="background-image: url({{ article.Thumbnail.url }});"></div>#}
+				<img class="img-fluid" src="{{ article.Thumbnail.url }}">
+			</div>
+			<div class="col-md-8">
+				<h1>{{ article.Title }}</h1>
+				<p>{{ article.Content }}</p>
+			</div>
+		</div>
 	</div>
 {% endblock %}

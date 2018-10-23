@@ -30,16 +30,7 @@
 					<div class="container">
 						<div class="row">
 							{% include 'Shared/recipeCard.html' %}
-							{% include 'Shared/recipeCard.html' %}
-							{% include 'Shared/recipeCard.html' %}
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="container">
-						<div class="row">
-							{% include 'Shared/recipeCard.html' %}
-							{% include 'Shared/recipeCard.html' %}
+							{% include 'Shared/recipeCard.html' with isMiddle=True %}
 							{% include 'Shared/recipeCard.html' %}
 						</div>
 					</div>
@@ -48,7 +39,16 @@
 					<div class="container">
 						<div class="row">
 							{% include 'Shared/recipeCard.html' %}
+							{% include 'Shared/recipeCard.html' with isMiddle=True %}
 							{% include 'Shared/recipeCard.html' %}
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="container">
+						<div class="row">
+							{% include 'Shared/recipeCard.html' %}
+							{% include 'Shared/recipeCard.html' with isMiddle=True %}
 							{% include 'Shared/recipeCard.html' %}
 						</div>
 					</div>

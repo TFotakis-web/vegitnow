@@ -1,22 +1,46 @@
 {% load static %}
 {% load i18n %}
-<div class="col-12 col-lg-6 col-xl-4 mb-3">
-	<div class="row">
-		<div class="col-6">
-			<h4>Φάβα με ελαιόλαδο και κρεμμύδι</h4>
-			<hr class="fgGreen1" style="border-top: dashed 2px;">
-			<h5 class="fgGreen1">{% trans "Main Ingredients:" %}</h5>
-			<p style="font-size: 0.8em;">Fava, Kapari, Diosmos</p>
-			<h5 class="fgGreen1">{% trans "Ready in:" %}</h5>
-			<p style="font-size: 0.8em;">10 Min</p>
-		</div>
-		<div class="col-6 d-table">
-			<div class="d-table-cell align-middle">
-				<div class="full-screen-carousel-img" style="background-image: url({% static 'img/carouselFava.png' %}); height: 160px;"></div>
+
+{% if recipe %}
+	<div class="col-12 col-lg-6 col-xl-4 mb-3">
+		<div class="row" style="{% if isMiddle %}border-left: dashed 2px #327317; border-right: dashed 2px #327317;{% endif %}">
+			<div class="col-6">
+				<h4>{{ recipe.Title }}</h4>
+				<hr class="fgGreen1" style="border-top: dashed 2px;">
+				<h5 class="fgGreen1">{% trans "Main Ingredients:" %}</h5>
+				<p style="font-size: 0.8em;">{{ recipe.MainIngredients }}</p>
+				<h5 class="fgGreen1">{% trans "Ready in:" %}</h5>
+				<p style="font-size: 0.8em;">{{ recipe.ReadyIn }}</p>
+			</div>
+			<div class="col-6 d-table">
+				<div class="d-table-cell align-middle">
+					<div class="full-screen-img" style="background-image: url({{ recipe.Thumbnail.url }}); height: 160px;"></div>
+				</div>
 			</div>
 		</div>
+		<div class="row py-4">
+			<a href="{% url 'articles:recipeView' recipe.Article_id recipe.Title %}" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{% trans "Go to the Recipe" %}</a>
+		</div>
 	</div>
-	<div class="row">
-		<a href="#" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{% trans "Go to the Recipe" %}</a>
+{% else %}
+	<div class="col-12 col-lg-6 col-xl-4 mb-3">
+		<div class="row" style="{% if isMiddle %}border-left: dashed 2px #327317; border-right: dashed 2px #327317;{% endif %}">
+			<div class="col-6">
+				<h4>Φάβα με ελαιόλαδο και κρεμμύδι</h4>
+				<hr class="fgGreen1" style="border-top: dashed 2px;">
+				<h5 class="fgGreen1">{% trans "Main Ingredients:" %}</h5>
+				<p style="font-size: 0.8em;">Fava, Kapari, Diosmos</p>
+				<h5 class="fgGreen1">{% trans "Ready in:" %}</h5>
+				<p style="font-size: 0.8em;">10 Min</p>
+			</div>
+			<div class="col-6 d-table">
+				<div class="d-table-cell align-middle">
+					<div class="full-screen-img" style="background-image: url({% static 'img/carouselFava.png' %}); height: 160px;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row py-4">
+			<a href="#" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{% trans "Go to the Recipe" %}</a>
+		</div>
 	</div>
-</div>
+{% endif %}

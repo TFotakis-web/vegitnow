@@ -5,12 +5,10 @@
 	<div class="navbar-placeholder"></div>
 	<div class="container">
 		<h1>{% trans 'Tips' %}</h1>
-		<ul>
+		<div class="row">
 			{% for article in articleList %}
-				<li>
-					<a href="{% url 'articles:tipView' article.Article.id article.Title %}">{{ article.Title }}</a>
-				</li>
+				{% include 'Shared/articleCard.html' with article=article %}
 			{% endfor %}
-		</ul>
+		</div>
 	</div>
 {% endblock %}
