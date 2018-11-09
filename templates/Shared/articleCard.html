@@ -1,7 +1,7 @@
 {% load static %}
 {% load i18n %}
 {% if article %}
-	<div class="col-12 col-lg-6 mb-3">
+	<div class="col-12 col-lg-6 mb-3" style="{% if isLeft %}border-right: dashed 2px #327317;{% endif %}">
 		<div class="row">
 			<div class="col-6">
 				<h4>{{ article.Title }}</h4>
@@ -19,7 +19,7 @@
 		</div>
 	</div>
 {% else %}
-	<div class="col-12 col-lg-6 mb-3">
+	<div class="col-12 col-lg-6 mb-3" style="{% if isLeft %}border-right: dashed 2px #327317;{% endif %}">
 		<div class="row">
 			<div class="col-6">
 				<h4>Φάβα με ελαιόλαδο και κρεμμύδι</h4>

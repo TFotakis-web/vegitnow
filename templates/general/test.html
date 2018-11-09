@@ -1,0 +1,16 @@
+{% extends 'Base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block body %}
+	<div class="d-flex flex-column" style="height: 100vh">
+		<div class="flex-grow-1 d-flex flex-column">
+			<div class="flex-grow-1 bg-info d-flex flex-column justify-content-end">
+				<div class="container">
+					<h1>This is a test</h1>
+				</div>
+			</div>
+			<div class="bg-danger" style="height: 150px"></div>
+		</div>
+		<div class="bg-dark" style="height: 300px"></div>
+	</div>
+{% endblock %}

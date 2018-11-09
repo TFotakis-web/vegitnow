@@ -52,3 +52,7 @@ def setLanguage(request, language):
 
 def base_layout(request):
 	return render(request=request, template_name='Base/base.html')
+
+
+def test(request):
+	return render(request=request, template_name='general/test.html')

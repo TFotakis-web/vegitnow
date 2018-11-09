@@ -9,4 +9,5 @@ urlpatterns = [
 	path('whoWeAre/', views.whoWeAreView, name='whoWeAre'),
 	path('communication/', views.communicationView, name='communication'),
 	path('setLanguage/<str:language>/', views.setLanguage, name='setLanguage'),
+	# path('test/', views.test, name='test'),
 ]
