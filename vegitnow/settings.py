@@ -29,6 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+INTERNAL_IPS = ['127.0.0.1']
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +40,8 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+	'django_summernote',
+	'rest_framework',
 	'pwa',
 	'login',
 	'general',
@@ -140,3 +144,11 @@ LANGUAGES = [
 LOCALE_PATHS = (
 	os.path.join(BASE_DIR, 'locale'),
 )
+
+SUMMERNOTE_THEME = 'lite'
+
+REST_FRAMEWORK = {
+	'DEFAULT_AUTHENTICATION_CLASSES': (
+		'rest_framework.authentication.SessionAuthentication',
+	),
+}

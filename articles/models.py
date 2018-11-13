@@ -93,3 +93,16 @@ class TagAssociation(models.Model):
 	Tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
 
 	def __str__(self): return str(self.Article) + ' - ' + self.Tag.Name
+
+
+def homePageArticles():
+	articles = [article.LocalData for article in Article.objects.all()]
+	return articles
+
+
+def recommendedRecipes():
+	pass
+
+
+def recommendedArticles():
+	pass

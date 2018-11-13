@@ -4,10 +4,15 @@ from django.shortcuts import render
 from django.utils import translation
 from django.utils.translation import gettext
 
+from articles.models import recommendedArticles, recommendedRecipes, homePageArticles
+
 
 def homeView(request):
 	context = {
 		'title': 'VegItNow',
+		'carouselArticles': homePageArticles(),
+		'recommendedRecipes': recommendedRecipes(),
+		'recommendedArticles': recommendedArticles(),
 	}
 	return render(request=request, template_name='general/home.html', context=context)
 

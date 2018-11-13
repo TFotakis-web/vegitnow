@@ -2,15 +2,131 @@
 {% load i18n %}
 {% load static %}
 {% block body %}
-	<div class="d-flex flex-column" style="height: 100vh">
-		<div class="flex-grow-1 d-flex flex-column">
-			<div class="flex-grow-1 bg-info d-flex flex-column justify-content-end">
-				<div class="container">
-					<h1>This is a test</h1>
+	<div class="navbar-placeholder"></div>
+	<div id="starting">
+		<div class="container">
+			<div class="row">
+				<h1 v-if="loading===true">Loading&#8230;</h1>
+			</div>
+			<div class="row" v-if="loading===false">
+				<h1>List of Articles
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addArticleModal">ADD ARTICLE</button>
+				</h1>
+				<table class="table">
+					<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">User</th>
+						<th scope="col">Upload Date Time</th>
+						<th scope="col">Action</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr v-for="article in articles">
+						<th scope="row">${article.id}</th>
+						<td>${article.User}</td>
+						<td>${article.UploadDateTime}</td>
+						<td>
+							<button class="btn btn-info" v-on:click="getArticle(article.id)">Edit</button>
+							<button class="btn btn-danger" v-on:click="deleteArticle(article.id)">Delete</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+		<!-- Add Article Modal -->
+		<div class="modal fade" id="addArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">ADD ARTICLE</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form v-on:submit.prevent="addArticle()">
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="article_heading">Article Heading</label>
+								<input
+										type="text"
+										class="form-control"
+										id="article_user"
+										placeholder="Enter Article user id"
+										v-model="newArticle.User"
+										required="required">
+							</div>
+							<div class="form-group">
+								<label for="article_dateTime">Article dateTime</label>
+								<textarea
+										class="form-control"
+										id="article_dateTime"
+										placeholder="Enter Article dateTime"
+										v-model="newArticle.UploadDateTime"
+										required="required"
+										rows="3"></textarea>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Save changes</button>
+						</div>
+					</form>
 				</div>
 			</div>
-			<div class="bg-danger" style="height: 150px"></div>
+			<div class="loading" v-if="loading===true">Loading&#8230;</div>
 		</div>
-		<div class="bg-dark" style="height: 300px"></div>
+		<!-- End of article modal -->
+
+		<!-- Edit Article Modal -->
+		<div class="modal fade" id="editArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">EDIT ARTICLE</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form v-on:submit.prevent="updateArticle()">
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="article_User">Article User</label>
+								<input
+										type="text"
+										class="form-control"
+										id="article_User"
+										placeholder="Enter Article User"
+										v-model="currentArticle.User"
+										required="required">
+							</div>
+							<div class="form-group">
+								<label for="article_UploadDateTime">Article UploadDateTime</label>
+								<textarea
+										class="form-control"
+										id="article_UploadDateTime"
+										placeholder="Enter Article UploadDateTime"
+										v-model="currentArticle.UploadDateTime"
+										required="required"
+										rows="3"></textarea>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Save changes</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- End of edit article modal -->
 	</div>
+
+{% endblock %}
+
+{% block additionalScripts %}
+	<script src="{% static 'js/vuejs/components/test.js' %}"></script>
 {% endblock %}

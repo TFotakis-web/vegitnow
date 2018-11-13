@@ -26,27 +26,28 @@
 	<div style="height:100vh;clip-path: polygon(2% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%);">
 		<div id="carouselControls" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="full-screen-img" style="background-image: url({% static 'img/carouselFava.png' %});">
+				{% for article in carouselArticles %}
+					<div class="carousel-item{% if forloop.first %} active{% endif %}">
+						<div class="full-screen-img" style="background-image: url({{ article.Thumbnail.url }});">
 						<div class="container-fluid h-100">
 							<div class="row h-100">
 								<div class="col-md-6 h-100 bgGreenTrans0 text-white text-center d-table">
 									<div class="d-table-cell align-middle">
 										<div class="container w-75">
-											<h1 style="font-size: 4rem;letter-spacing: 0.3rem;">Φάβα με ελαιόλαδο και κρεμμύδι</h1>
+											<h1 style="font-size: 4rem;">{{ article.Title }}</h1>
 										</div>
 										<div class="container w-75">
 											<div class="row">
 												<div class="col-lg-6">
 													<h1>{% trans "Main Ingredients:" %}</h1>
-													<p class="font-weight-bold">Fava, Kapari, Diosmos</p>
+													<p class="font-weight-bold">{{ article.MainIngredients }}</p>
 												</div>
 												<div class="col-lg-6">
 													<h1>{% trans "Ready in:" %}</h1>
-													<p class="font-weight-bold">10 Min</p>
+													<p class="font-weight-bold">{{ article.ReadyIn }}</p>
 												</div>
 											</div>
-											<a href="#" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{% trans "Go to the Recipe" %}</a>
+											<a href="{% url 'articles:recipeView' article.Article_id article.Title %}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{% trans "Go to the Recipe" %}</a>
 										</div>
 									</div>
 								</div>
@@ -54,34 +55,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="carousel-item">
-					<div class="full-screen-img" style="background-image: url({% static 'img/carouselFava.png' %});">
-						<div class="container-fluid h-100">
-							<div class="row h-100">
-								<div class="col-md-6 h-100 bgGreenTrans0 text-white text-center d-table">
-									<div class="d-table-cell align-middle">
-										<div class="container w-75">
-											<h1 style="font-size: 4rem;">Φάβα με ελαιόλαδο και κρεμμύδι</h1>
-										</div>
-										<div class="container w-75">
-											<div class="row">
-												<div class="col-lg-6">
-													<h1>{% trans "Main Ingredients:" %}</h1>
-													<p class="font-weight-bold">Fava, Kapari, Diosmos</p>
-												</div>
-												<div class="col-lg-6">
-													<h1>{% trans "Ready in:" %}</h1>
-													<p class="font-weight-bold">10 Min</p>
-												</div>
-											</div>
-											<a href="#" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{% trans "Go to the Recipe" %}</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>
