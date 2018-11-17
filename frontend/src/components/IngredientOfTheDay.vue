@@ -35,14 +35,14 @@
 </template>
 
 <script>
-	import NutritionStats from './NutritionStats'
+	import NutritionStats from './NutritionStats';
 
 	export default {
 		name: 'IngredientOfTheDay',
 		components: {
 			NutritionStats
 		}
-	}
+	};
 </script>
 
 <style scoped>

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-	import NavigationBar from './components/NavigationBar.vue'
-	import Footer from './components/Footer.vue'
+	import NavigationBar from './components/NavigationBar.vue';
+	import Footer from './components/Footer.vue';
 
 	export default {
 		name: 'app',
@@ -18,7 +18,7 @@
 			NavigationBar,
 			Footer
 		}
-	}
+	};
 </script>
 
 <style>

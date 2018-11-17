@@ -25,7 +25,7 @@
 			'article',
 			'isLeft'
 		]
-	}
+	};
 </script>
 
 <style scoped>

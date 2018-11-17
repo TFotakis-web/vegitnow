@@ -70,31 +70,31 @@
 			return {
 				articleList: [],
 				articleContentTranslation: []
-			}
+			};
 		},
 		methods: {
 			getArticles: function () {
 				this.$http.get('/api/article/')
 					.then((response) => {
-						this.articleList = response.data
+						this.articleList = response.data;
 					})
 					.catch((err) => {
-						console.log(err)
-					})
+						console.log(err);
+					});
 			},
 			getArticleContentTranslation: function () {
 				this.$http.get('/api/articleContentTranslation/')
 					.then((response) => {
-						this.articleContentTranslation = response.data
+						this.articleContentTranslation = response.data;
 					})
 					.catch((err) => {
-						console.log(err)
-					})
+						console.log(err);
+					});
 			}
 		},
 		mounted: function () {
 			this.getArticles();
-			this.getArticleContentTranslation()
+			this.getArticleContentTranslation();
 		},
 		computed: {
 			articles: function () {
@@ -103,14 +103,14 @@
 					for (var act in this.articleContentTranslation) {
 						if (this.articleContentTranslation[act].Article === this.articleList[article].id) {
 							arr.push(this.articleContentTranslation[act]);
-							break
+							break;
 						}
 					}
 				}
-				return arr
+				return arr;
 			}
 		}
-	}
+	};
 </script>
 
 <style scoped>

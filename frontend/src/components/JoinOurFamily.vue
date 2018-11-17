@@ -20,7 +20,7 @@
 <script>
 	export default {
 		name: 'JoinOurFamily'
-	}
+	};
 </script>
 
 <style scoped>

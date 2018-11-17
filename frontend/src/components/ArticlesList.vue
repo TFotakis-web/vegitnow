@@ -11,7 +11,7 @@
 </template>
 
 <script>
-	import ArticleCard from './ArticleCard'
+	import ArticleCard from './ArticleCard';
 
 	export default {
 		name: 'ArticlesList',
@@ -23,41 +23,41 @@
 				articleList: [],
 				articleContentTranslation: [],
 				articleTypeAssociation: []
-			}
+			};
 		},
 		methods: {
 			getArticles: function () {
 				this.$http.get('/api/article/')
 					.then((response) => {
-						this.articleList = response.data
+						this.articleList = response.data;
 					})
 					.catch((err) => {
-						console.log(err)
-					})
+						console.log(err);
+					});
 			},
 			getArticleContentTranslation: function () {
 				this.$http.get('/api/articleContentTranslation/')
 					.then((response) => {
-						this.articleContentTranslation = response.data
+						this.articleContentTranslation = response.data;
 					})
 					.catch((err) => {
-						console.log(err)
-					})
+						console.log(err);
+					});
 			},
 			getArticleTypeAssociation: function () {
 				this.$http.get('/api/articleTypeAssociation/')
 					.then((response) => {
-						this.articleTypeAssociation = response.data
+						this.articleTypeAssociation = response.data;
 					})
 					.catch((err) => {
-						console.log(err)
-					})
+						console.log(err);
+					});
 			}
 		},
 		mounted: function () {
 			this.getArticles();
 			this.getArticleContentTranslation();
-			this.getArticleTypeAssociation()
+			this.getArticleTypeAssociation();
 		},
 		computed: {
 			articles: function () {
@@ -67,21 +67,21 @@
 					for (var ata in this.articleTypeAssociation) {
 						if (this.articleTypeAssociation[ata].Article === this.articleList[article].id) {
 							isArticle = this.articleTypeAssociation[ata].Type === 2;
-							break
+							break;
 						}
 					}
 					if (!isArticle) continue;
 					for (var act in this.articleContentTranslation) {
 						if (this.articleContentTranslation[act].Article === this.articleList[article].id) {
 							arr.push(this.articleContentTranslation[act]);
-							break
+							break;
 						}
 					}
 				}
-				return arr
+				return arr;
 			}
 		}
-	}
+	};
 </script>
 
 <style scoped>

@@ -98,8 +98,8 @@
 </template>
 
 <script>
-	import RecommendedRecipes from './RecommendedRecipes'
-	import NutritionStats from './NutritionStats'
+	import RecommendedRecipes from './RecommendedRecipes';
+	import NutritionStats from './NutritionStats';
 
 	export default {
 		name: 'RecipeView',
@@ -107,7 +107,7 @@
 			RecommendedRecipes,
 			NutritionStats
 		}
-	}
+	};
 </script>
 
 <style scoped>

@@ -9,11 +9,11 @@
 </template>
 
 <script>
-	import Carousel from './Carousel'
-	import JoinOurFamily from './JoinOurFamily'
-	import IngredientOfTheDay from './IngredientOfTheDay'
-	import RecommendedRecipes from './RecommendedRecipes'
-	import RecommendedArticles from './RecommendedArticles'
+	import Carousel from './Carousel';
+	import JoinOurFamily from './JoinOurFamily';
+	import IngredientOfTheDay from './IngredientOfTheDay';
+	import RecommendedRecipes from './RecommendedRecipes';
+	import RecommendedArticles from './RecommendedArticles';
 
 	export default {
 		name: 'Home',
@@ -24,7 +24,7 @@
 			RecommendedRecipes,
 			RecommendedArticles
 		}
-	}
+	};
 </script>
 
 <style scoped>

@@ -29,7 +29,7 @@
 			'recipe',
 			'isMiddle'
 		]
-	}
+	};
 </script>
 
 <style scoped>

@@ -126,7 +126,7 @@
 </template>
 
 <script>
-	import RecipeCard from './RecipeCard'
+	import RecipeCard from './RecipeCard';
 
 	export default {
 		name: 'RecommendedRecipes',
@@ -138,41 +138,41 @@
 				articleList: [],
 				articleContentTranslation: [],
 				articleTypeAssociation: []
-			}
+			};
 		},
 		methods: {
 			getArticles: function () {
 				this.$http.get('/api/article/')
 					.then((response) => {
-						this.articleList = response.data
+						this.articleList = response.data;
 					})
 					.catch((err) => {
-						console.log(err)
-					})
+						console.log(err);
+					});
 			},
 			getArticleContentTranslation: function () {
 				this.$http.get('/api/articleContentTranslation/')
 					.then((response) => {
-						this.articleContentTranslation = response.data
+						this.articleContentTranslation = response.data;
 					})
 					.catch((err) => {
-						console.log(err)
-					})
+						console.log(err);
+					});
 			},
 			getArticleTypeAssociation: function () {
 				this.$http.get('/api/articleTypeAssociation/')
 					.then((response) => {
-						this.articleTypeAssociation = response.data
+						this.articleTypeAssociation = response.data;
 					})
 					.catch((err) => {
-						console.log(err)
-					})
+						console.log(err);
+					});
 			}
 		},
 		mounted: function () {
 			this.getArticles();
 			this.getArticleContentTranslation();
-			this.getArticleTypeAssociation()
+			this.getArticleTypeAssociation();
 		},
 		computed: {
 			recipes: function () {
@@ -182,18 +182,18 @@
 					for (var ata in this.articleTypeAssociation) {
 						if (this.articleTypeAssociation[ata].Article === this.articleList[article].id) {
 							isRecipe = this.articleTypeAssociation[ata].Type === 1;
-							break
+							break;
 						}
 					}
 					if (!isRecipe) continue;
 					for (var act in this.articleContentTranslation) {
 						if (this.articleContentTranslation[act].Article === this.articleList[article].id) {
 							arr.push(this.articleContentTranslation[act]);
-							break
+							break;
 						}
 					}
 				}
-				return arr
+				return arr;
 			},
 			tripleRecipes: function () {
 				var arr = [];
@@ -202,9 +202,9 @@
 					tmp.push(this.recipes[index]);
 					if (this.recipes.length > index + 1) tmp.push(this.recipes[index + 1]);
 					if (this.recipes.length > index + 2) tmp.push(this.recipes[index + 2]);
-					arr.push(tmp)
+					arr.push(tmp);
 				}
-				return arr
+				return arr;
 			},
 			dualRecipes: function () {
 				var arr = [];
@@ -212,12 +212,12 @@
 					var tmp = [];
 					tmp.push(this.recipes[index]);
 					if (this.recipes.length > index + 1) tmp.push(this.recipes[index + 1]);
-					arr.push(tmp)
+					arr.push(tmp);
 				}
-				return arr
+				return arr;
 			}
 		}
-	}
+	};
 </script>
 
 <style scoped>

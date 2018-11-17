@@ -35,7 +35,7 @@
 <script>
 	export default {
 		name: 'NutritionStats'
-	}
+	};
 </script>
 
 <style scoped>

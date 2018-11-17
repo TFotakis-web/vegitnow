@@ -112,14 +112,14 @@
 </template>
 
 <script>
-	import RecommendedArticles from './RecommendedArticles'
+	import RecommendedArticles from './RecommendedArticles';
 
 	export default {
 		name: 'ArticleView',
 		components: {
 			RecommendedArticles
 		}
-	}
+	};
 </script>
 
 <style scoped>
