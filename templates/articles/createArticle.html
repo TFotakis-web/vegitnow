@@ -3,7 +3,7 @@
 {% load static %}
 {% block body %}
 	<div class="navbar-placeholder"></div>
-	<div id="createArticle" class="container">
+	<div id="createArticle" class="container mb-5">
 		<h1 class="text-center">{% trans 'Create Article' %}</h1>
 		<div class="input-group mb-3" style="width: fit-content">
 			<div class="input-group-prepend">
@@ -53,7 +53,7 @@
 										<input class="form-check-input ml-3" type="checkbox" v-model="ingredient.isMainIngredient" :id="'isMainIngredientCheckbox' + index">
 										<label class="form-check-label mr-3" :for="'isMainIngredientCheckbox' + index">{% trans 'Main Ingredient' %}</label>
 									</div>
-									<a class="text-dark ml-2" v-on:click="removeSelectedIngredient(index)"><i class="fas fa-trash"></i></a>
+									<a class="text-dark ml-2" @click="removeSelectedIngredient(index)"><i class="fas fa-trash"></i></a>
 								</li>
 							</ul>
 							<div class="input-group mb-3">
@@ -64,7 +64,7 @@
 									<option v-for="ingredient in ingredients" :value="ingredient">[[ ingredient.Name ]]</option>
 								</select>
 							</div>
-							<div class="btn bgGreen0 text-white" v-on:click="selectIngredient()"><i class="fas fa-plus"></i> Add</div>
+							<div class="btn bgGreen0 text-white" @click="selectIngredient()"><i class="fas fa-plus"></i> Add</div>
 						</div>
 					</div>
 				</fieldset>
@@ -113,6 +113,14 @@
 		</div>
 
 		<div id="RecipeForm"></div>
+
+		<ol>
+			<todo-item
+					v-for="item in languages"
+					v-bind:todo="item"
+					v-bind:key="item.id">
+			</todo-item>
+		</ol>
 	</div>
 {% endblock %}
 

@@ -1,0 +1,28 @@
+<template>
+	<div id="JoinOurFamily" class="bgGreen3" style="height:70vh; clip-path: polygon(2% 0%, 98% 0%, 98.5% 20%, 97% 60%, 97% 85%, 98% 100%, 2% 100%, 3% 60%, 1.5% 20%);">
+		<div class="d-table h-100 mx-auto">
+			<div class="d-table-cell align-middle">
+				<div class="dashedCircle rotating"></div>
+				<div class="FamilyCircle d-table">
+					<div class="d-table-cell align-middle">
+						<h1 class="fgGreen0" style="font-size: 6rem">Join</h1>
+						<h1 class="fgGreen0" style="margin-top: -40px;margin-left: -136px;transform: rotate(-20deg);font-size: 3rem;">our</h1>
+						<img src="/static/img/v.png" alt="logo" style="margin-top: -100px;margin-left: 170px;height: 60px;">
+						<h1 class="fgGreen0" style="margin-top: -50px; font-size: 4rem">Family</h1>
+						<div class="btn bgGreen2 text-white px-4" style="border-radius: 2rem;">Sign Up</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		name: 'JoinOurFamily'
+	}
+</script>
+
+<style scoped>
+
+</style>
