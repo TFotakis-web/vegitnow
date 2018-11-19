@@ -7,6 +7,7 @@ import ArticlesList from '@/components/ArticlesList';
 import ArticleView from '@/components/ArticleView';
 import Communication from '@/components/Communication';
 import WhoWeAre from '@/components/WhoWeAre';
+import Shop from '@/components/Shop';
 
 Vue.use(Router);
 
@@ -19,34 +20,39 @@ export default new Router({
 			component: Home
 		},
 		{
-			path: '/recipes/',
+			path: '/recipes',
 			name: 'RecipesList',
 			component: RecipesList
 		},
 		{
-			path: '/articles/',
+			path: '/articles',
 			name: 'ArticlesList',
 			component: ArticlesList
 		},
 		{
-			path: '/recipes/:id/',
+			path: '/recipes/:id',
 			name: 'RecipeView',
 			component: RecipeView
 		},
 		{
-			path: '/articles/:id/',
+			path: '/articles/:id',
 			name: 'ArticleView',
 			component: ArticleView
 		},
 		{
-			path: '/communication/',
+			path: '/communication',
 			name: 'Communication',
 			component: Communication
 		},
 		{
-			path: '/who_we_are/',
+			path: '/who_we_are',
 			name: 'WhoWeAre',
 			component: WhoWeAre
+		},
+		{
+			path: '/shop',
+			name: 'Shop',
+			component: Shop
 		}
 	]
 });

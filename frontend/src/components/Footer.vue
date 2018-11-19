@@ -2,11 +2,11 @@
 	<footer class="text-center"
 	        style="margin-top: -4em;"
 	>
-		<a href="{% url 'general:home' %}" class="d-inline-block"
-		   style="position: relative; top: 15px; z-index: 1049"
+		<router-link :to="{ name: 'Home' }" class="d-inline-block"
+		             style="position: relative; top: 15px; z-index: 1049"
 		>
-			<img src="{% static 'img/logo.png' %}" alt="Vegitnow Logo" height="40">
-		</a>
+			<img src="/static/img/logo.png" alt="Vegitnow Logo" height="40">
+		</router-link>
 		<div id="Footer" class="bg-white text-center p-5"
 		     style="
 	     min-height:25vh;
@@ -56,7 +56,6 @@
 			</div>
 		</div>
 	</footer>
-
 </template>
 
 <script>

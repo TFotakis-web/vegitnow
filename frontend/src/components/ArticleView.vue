@@ -1,8 +1,7 @@
 <template>
 	<div id="articleView">
 		<div id="RecipeImageAndStats" class="d-flex flex-column" style="height: 100vh;clip-path: polygon(2% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%);">
-			<div class="full-box-img flex-grow-1 d-flex flex-column justify-content-end">
-				<!--<div class="full-box-img flex-grow-1 d-flex flex-column justify-content-end" style="background-image: url({{ article.Thumbnail.url }});">-->
+			<div class="full-box-img flex-grow-1 d-flex flex-column justify-content-end" :style="{ 'background-image': 'url(' + article.Thumbnail + ')' }">
 				<div class="container">
 					<h1 class="text-white w-100 text-center text-lg-left mb-4" style="text-shadow: black 0 0 20px;">{{ article.Title }}</h1>
 				</div>
@@ -81,7 +80,7 @@
 		</div>
 		<div id="Instructions" class="mt-4 mb-5 d-flex">
 			<div class="container">
-				<p class="m-0 text-justify">{{ article.Content | safe }}</p>
+				<p class="m-0 text-justify">{{ article.Content }}</p>
 				<p class="m-0 text-justify">Rinse each side of the raspberries with one jar of noodles.
 					Pickles can be mashed up with salty carrots, also try decorateing the ricotta with water.
 					Per guest prepare one cup of ice water with chopped chicken for dessert. Pork butt combines greatly with ground cauliflower.
@@ -106,7 +105,6 @@
 				</p>
 			</div>
 		</div>
-		<!--{% include 'general/home/Articles.html' %}-->
 		<RecommendedArticles></RecommendedArticles>
 	</div>
 </template>
@@ -118,6 +116,29 @@
 		name: 'ArticleView',
 		components: {
 			RecommendedArticles
+		},
+		data: function () {
+			return {
+				id: 0,
+				article: {}
+			};
+		},
+		methods: {
+			getArticleData: function () {
+				this.$http.get('/api/articleContentTranslation/' + this.id + '/')
+					.then((response) => {
+						this.article = response.data;
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			}
+		},
+		created: function () {
+			this.id = this.$route.params.id;
+		},
+		mounted: function () {
+			this.getArticleData();
 		}
 	};
 </script>

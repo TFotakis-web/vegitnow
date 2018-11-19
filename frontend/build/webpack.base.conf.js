@@ -24,7 +24,6 @@ module.exports = {
 		publicPath: process.env.NODE_ENV === 'production'
 			? config.build.assetsPublicPath
 			: config.dev.assetsPublicPath
-		// publicPath: 'http://localhost:8080/'
 	},
 	resolve: {
 		extensions: ['.js', '.vue', '.json'],

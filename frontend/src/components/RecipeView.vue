@@ -2,15 +2,20 @@
 	<div id="recipeView">
 		<div id="RecipeImageAndStats" class="d-flex flex-column" style="height: 100vh;clip-path: polygon(2% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%);">
 			<!--<div class="full-screen-img" style="background-image: url({{ article.Thumbnail.url }});">-->
-			<div class="full-screen-img">
-				<h1 style="
-				position: relative;
-                top: 85%;
-                left: 15%;
-                color: white;
-                text-shadow: black 0 0 20px;
-                width: fit-content;
-			">{{ article.Title }}</h1>
+			<!--<div class="full-screen-img">-->
+			<!--<h1 style="-->
+			<!--position: relative;-->
+			<!--top: 85%;-->
+			<!--left: 15%;-->
+			<!--color: white;-->
+			<!--text-shadow: black 0 0 20px;-->
+			<!--width: fit-content;-->
+			<!--">{{ article.Title }}</h1>-->
+			<!--</div>-->
+			<div class="full-box-img flex-grow-1 d-flex flex-column justify-content-end" :style="{ 'background-image': 'url(' + article.Thumbnail + ')' }">
+				<div class="container">
+					<h1 class="text-white w-100 text-center text-lg-left mb-4" style="text-shadow: black 0 0 20px;">{{ article.Title }}</h1>
+				</div>
 			</div>
 			<div class="bgGreen1" style="">
 				<div class="container">
@@ -44,7 +49,7 @@
 					</div>
 					<div class="col-sm-8" style="border-left: dashed 2px #327317;">
 						<h2 class="fgGreen1 text-center text-sm-left">Execution</h2>
-						<!--<p>{{ article.Content | safe }}</p>-->
+						<p>{{ article.Content }}</p>
 						<p class="m-0 text-justify">Rinse each side of the raspberries with one jar of noodles.
 							Pickles can be mashed up with salty carrots, also try decorateing the ricotta with water.
 							Per guest prepare one cup of ice water with chopped chicken for dessert. Pork butt combines greatly with ground cauliflower.
@@ -106,6 +111,29 @@
 		components: {
 			RecommendedRecipes,
 			NutritionStats
+		},
+		data: function () {
+			return {
+				id: 0,
+				article: {}
+			};
+		},
+		methods: {
+			getArticleData: function () {
+				this.$http.get('/api/articleContentTranslation/' + this.id + '/')
+					.then((response) => {
+						this.article = response.data;
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			}
+		},
+		created: function () {
+			this.id = this.$route.params.id;
+		},
+		mounted: function () {
+			this.getArticleData();
 		}
 	};
 </script>

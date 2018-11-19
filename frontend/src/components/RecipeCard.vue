@@ -11,7 +11,6 @@
 			</div>
 			<div class="col-6 d-table">
 				<div class="d-table-cell align-middle">
-					<div class="full-screen-img" style="height: 160px;"></div>
 					<div class="full-screen-img" style="height: 160px;" :style="{ 'background-image': 'url(' + recipe.Thumbnail + ')' }"></div>
 				</div>
 			</div>

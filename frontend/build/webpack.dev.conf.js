@@ -37,5 +37,10 @@ module.exports = merge(baseWebpackConfig, {
 				'./service-worker-dev.js'), 'utf-8')}</script>`
 		}),
 		new FriendlyErrorsPlugin()
-	]
+	],
+	output: {
+		path: config.build.assetsRoot,
+		filename: utils.assetsPath('js/[name].[hash].js'),
+		chunkFilename: utils.assetsPath('js/[id].[hash].js')
+	},
 });

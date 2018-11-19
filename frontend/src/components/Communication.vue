@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container">
 		<div class="navbar-placeholder"></div>
 		<h1>This is communication page!</h1>
 	</div>
