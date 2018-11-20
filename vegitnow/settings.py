@@ -4,19 +4,19 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Progressive Web App functionality
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
-PWA_APP_NAME = 'VegItNow'
-PWA_APP_DESCRIPTION = 'VegItNow - All about vegans!'
-PWA_APP_START_URL = '/'
-PWA_APP_DISPLAY = 'standalone'
-PWA_APP_BACKGROUND_COLOR = '#fff'
-PWA_APP_THEME_COLOR = '#316e17'
-PWA_APP_ICONS = [
-	{
-		'src': '/static/img/favicon.png',
-		'sizes': '157x157'
-	}
-]
+# PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+# PWA_APP_NAME = 'VegItNow'
+# PWA_APP_DESCRIPTION = 'VegItNow - All about vegans!'
+# PWA_APP_START_URL = '/'
+# PWA_APP_DISPLAY = 'standalone'
+# PWA_APP_BACKGROUND_COLOR = '#fff'
+# PWA_APP_THEME_COLOR = '#316e17'
+# PWA_APP_ICONS = [
+# 	{
+# 		'src': '/static/img/favicon.png',
+# 		'sizes': '157x157'
+# 	}
+# ]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
