@@ -25,7 +25,7 @@ urlpatterns += [
 	path('login/', include(('login.urls', 'login'), namespace='login')),
 	path('articles/', include(('articles.urls', 'articles'), namespace='articles')),
 	path('shop/', include(('shop.urls', 'shop'), namespace='shop')),
-	path('', include('pwa.urls')),
+	# path('', include('pwa.urls')),
 ]
 
 
