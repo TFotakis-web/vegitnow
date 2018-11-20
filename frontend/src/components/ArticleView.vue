@@ -25,7 +25,7 @@
 							</div>
 						</div>
 						<div class="col text-center">
-							<h2 class="fgGreen1 mt-3">Writes:</h2>
+							<h2 class="fgGreen1 mt-3">{{ $t('Writes') }}:</h2>
 							<p class="font-weight-bold m-0">John Papadimitriou</p>
 							<hr>
 							<p class="font-weight-bold m-0">
@@ -40,7 +40,7 @@
 							<div class="row h-100">
 								<div class="col d-table h-100">
 									<div class="d-table-cell align-middle">
-										<h2 class="fgGreen1 text-right m-0">Writes:</h2>
+										<h2 class="fgGreen1 text-right m-0">{{ $t('Writes') }}:</h2>
 									</div>
 								</div>
 								<div class="col d-table h-100">

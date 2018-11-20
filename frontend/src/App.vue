@@ -21,5 +21,5 @@
 	};
 </script>
 
-<style>
-</style>
+<style src="../static/css/colorPalette.css"></style>
+<style src="../static/css/style.css"></style>

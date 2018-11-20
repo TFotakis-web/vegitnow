@@ -2,7 +2,7 @@
 	<div>
 		<div class="navbar-placeholder"></div>
 		<div class="container">
-			<h1>Articles</h1>
+			<h1>{{ $t('Articles') }}</h1>
 			<div class="row">
 				<ArticleCard v-for="article in articles" :key="article.id" :article="article"></ArticleCard>
 			</div>

@@ -1,7 +1,7 @@
 <template>
 	<div id="IngredientOfTheDay">
 		<h1 class="text-center fgGreen0"
-		    style="position: relative;top: -0.5em;margin-bottom: -1.2em;z-index: 1;">Ingredient of the day</h1>
+		    style="position: relative;top: -0.5em;margin-bottom: -1.2em;z-index: 1;">{{ $t('Ingredient of the day') }}</h1>
 		<div class="bgGreen1 py-5"
 		     style="clip-path: polygon(2% 0%, 98% 0%, 97.5% 20%, 96% 45%, 97.5% 60%, 98.5% 80%, 98% 100%, 2% 100%, 1.5% 80%, 1.5% 60%, 2.5% 45%, 1% 20%);">
 			<div class="container">
@@ -25,7 +25,7 @@
 						</div>
 					</div>
 					<div class="col-lg-4 mb-3 order-2 order-lg-2">
-						<div class="btn bgGreen2 text-white px-4" style="border-radius: 2rem;">Recipes</div>
+						<div class="btn bgGreen2 text-white px-4" style="border-radius: 2rem;">{{ $t('Recipes') }}</div>
 					</div>
 				</div>
 			</div>

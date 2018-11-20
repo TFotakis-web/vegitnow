@@ -1,17 +1,6 @@
 <template>
 	<div id="recipeView">
 		<div id="RecipeImageAndStats" class="d-flex flex-column" style="height: 100vh;clip-path: polygon(2% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%);">
-			<!--<div class="full-screen-img" style="background-image: url({{ article.Thumbnail.url }});">-->
-			<!--<div class="full-screen-img">-->
-			<!--<h1 style="-->
-			<!--position: relative;-->
-			<!--top: 85%;-->
-			<!--left: 15%;-->
-			<!--color: white;-->
-			<!--text-shadow: black 0 0 20px;-->
-			<!--width: fit-content;-->
-			<!--">{{ article.Title }}</h1>-->
-			<!--</div>-->
 			<div class="full-box-img flex-grow-1 d-flex flex-column justify-content-end" :style="{ 'background-image': 'url(' + article.Thumbnail + ')' }">
 				<div class="container">
 					<h1 class="text-white w-100 text-center text-lg-left mb-4" style="text-shadow: black 0 0 20px;">{{ article.Title }}</h1>
@@ -21,15 +10,15 @@
 				<div class="container">
 					<div class="row text-center py-4">
 						<div class="col-sm-4">
-							<h2 class="fgGreen1">Ready in:</h2>
-							<p class="font-weight-bold mb-sm-0">10 Min</p>
+							<h2 class="fgGreen1">{{ $t('Ready in') }}:</h2>
+							<p class="font-weight-bold mb-sm-0">10 {{ $t('Min') }}</p>
 						</div>
 						<div class="col-sm-4" style="border-left: dashed 2px #327317; border-right: dashed 2px #327317">
-							<h2 class="fgGreen1">Main Ingredients:</h2>
+							<h2 class="fgGreen1">{{ $t('Main Ingredients') }}:</h2>
 							<p class="font-weight-bold mb-sm-0">Fava, Kapari, Diosmos</p>
 						</div>
 						<div class="col-sm-4">
-							<h2 class="fgGreen1">Dishes:</h2>
+							<h2 class="fgGreen1">{{ $t('Dishes') }}:</h2>
 							<p class="font-weight-bold mb-0">4</p>
 						</div>
 					</div>
@@ -40,7 +29,7 @@
 			<div class="container">
 				<div class="row py-5">
 					<div class="col-sm-4 text-center">
-						<h2 class="fgGreen1">Ingredients</h2>
+						<h2 class="fgGreen1">{{ $t('Ingredients') }}</h2>
 						<p>Λευκό ξύδι (4 κ.σ.)</p>
 						<p>1 κ.γ. πιπέρι</p>
 						<p>1 φύλλο δάφνης</p>
@@ -48,7 +37,7 @@
 						<p>3 - 4 αυγά</p>
 					</div>
 					<div class="col-sm-8" style="border-left: dashed 2px #327317;">
-						<h2 class="fgGreen1 text-center text-sm-left">Execution</h2>
+						<h2 class="fgGreen1 text-center text-sm-left">{{ $t('Execution') }}</h2>
 						<p>{{ article.Content }}</p>
 						<p class="m-0 text-justify">Rinse each side of the raspberries with one jar of noodles.
 							Pickles can be mashed up with salty carrots, also try decorateing the ricotta with water.
@@ -80,7 +69,7 @@
 			<div class="container py-5 text-center">
 				<div class="row">
 					<div class="col-sm-4 text-sm-right">
-						<h2 class="fgGreen1 w-100" style="border-bottom: dashed 2px #327317;">Execution from us</h2>
+						<h2 class="fgGreen1 w-100" style="border-bottom: dashed 2px #327317;">{{ $t('Execution from us') }}</h2>
 					</div>
 					<div class="col-sm-8">
 						<div class="embed-responsive embed-responsive-16by9">
@@ -90,7 +79,7 @@
 				</div>
 				<div class="row mt-3">
 					<div class="col-sm-4 text-sm-right ">
-						<h2 class="fgGreen1 w-100">Nutrition facts</h2>
+						<h2 class="fgGreen1 w-100">{{ $t('Nutrition facts') }}</h2>
 					</div>
 					<div class="col-sm-8 align-left float-left text-left">
 						<NutritionStats></NutritionStats>

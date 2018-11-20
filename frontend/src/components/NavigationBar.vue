@@ -10,21 +10,17 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
-						<li class="nav-item{% if activeTab == 'recipes' %} active{% endif %}">
-							<router-link :to="{ name: 'RecipesList' }" class="nav-link font-weight-bold">Recipes</router-link>
-							<!--<a class="nav-link font-weight-bold" href="{% url 'articles:recipesList' %}">{% trans "Recipes" %}</a>-->
+						<li class="nav-item">
+							<router-link :to="{ name: 'RecipesList' }" class="nav-link font-weight-bold">{{ $t('Recipes') }}</router-link>
 						</li>
-						<li class="nav-item{% if activeTab == 'tips' %} active{% endif %}">
-							<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold">Articles</router-link>
-							<!--<a class="nav-link font-weight-bold" href="{% url 'articles:tipsList' %}">{% trans "Tips" %}</a>-->
+						<li class="nav-item">
+							<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold">{{ $t('Articles') }}</router-link>
 						</li>
-						<li class="nav-item{% if activeTab == 'whoWeAre' %} active{% endif %}">
-							<router-link :to="{ name: 'WhoWeAre' }" class="nav-link font-weight-bold">Who we are</router-link>
-							<!--<a class="nav-link font-weight-bold" href="{% url 'general:whoWeAre' %}">{% trans "Who we are" %}</a>-->
+						<li class="nav-item">
+							<router-link :to="{ name: 'WhoWeAre' }" class="nav-link font-weight-bold">{{ $t('Who we are') }}</router-link>
 						</li>
-						<li class="nav-item{% if activeTab == 'communication' %} active{% endif %}">
-							<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">Communication</router-link>
-							<!--<a class="nav-link font-weight-bold" href="{% url 'general:communication' %}">{% trans "Communication" %}</a>-->
+						<li class="nav-item">
+							<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">{{ $t('Communication') }}</router-link>
 						</li>
 						<li class="nav-item">
 							<router-link :to="{ name: 'Shop' }" class="nav-link">
@@ -32,31 +28,13 @@
 									<span>VEG SHOP</span>
 								</div>
 							</router-link>
-							<!--<a href="{% url 'shop:home' %}" class="nav-link">-->
-							<!--<div class="vegShop-btn">-->
-							<!--<span>VEG SHOP</span>-->
-							<!--</div>-->
-							<!--</a>-->
 						</li>
 						<li class="nav-item">
-							<!--{% if LANGUAGE_CODE == 'en' %}-->
-							<!--<a href="{% url 'general:setLanguage' 'el' %}" class="nav-link">-->
-							<!--<div class="locale-btn">-->
-							<!--<span>EL</span>-->
-							<!--</div>-->
-							<!--</a>-->
-							<!--{% else %}-->
-							<!--<a href="{% url 'general:setLanguage' 'en' %}" class="nav-link ">-->
-							<!--<div class="locale-btn">-->
-							<!--<span>EN</span>-->
-							<!--</div>-->
-							<!--</a>-->
-							<!--{% endif %}-->
-							<router-link :to="{ name: 'Home' }" class="nav-link">
+							<a @click="changeLanguage()" class="nav-link">
 								<div class="locale-btn">
-									<span>EN</span>
+									<span>{{ this.$i18n.locale === 'en' ? 'GR' : 'EN' }}</span>
 								</div>
-							</router-link>
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -73,80 +51,35 @@
 					</div>
 					<div class="flex-grow-1">
 						<ul class="navbar-nav w-100 justify-content-center">
-							<li class="nav-item{% if activeTab == 'recipes' %} active{% endif %}">
-								<router-link :to="{ name: 'RecipesList' }" class="nav-link font-weight-bold">Recipes</router-link>
-								<!--<a class="nav-link font-weight-bold" href="{% url 'articles:recipesList' %}">{% trans "Recipes" %}</a>-->
+							<li class="nav-item">
+								<router-link :to="{ name: 'RecipesList' }" class="nav-link font-weight-bold">{{ $t('Recipes') }}</router-link>
 							</li>
-							<li class="nav-item{% if activeTab == 'tips' %} active{% endif %}">
-								<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold">Articles</router-link>
-								<!--<a class="nav-link font-weight-bold" href="{% url 'articles:tipsList' %}">{% trans "Tips" %}</a>-->
+							<li class="nav-item">
+								<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold">{{ $t('Articles') }}</router-link>
 							</li>
-							<li class="nav-item{% if activeTab == 'whoWeAre' %} active{% endif %}">
-								<router-link :to="{ name: 'WhoWeAre' }" class="nav-link font-weight-bold">Who we are</router-link>
-								<!--<a class="nav-link font-weight-bold" href="{% url 'general:whoWeAre' %}">{% trans "Who we are" %}</a>-->
+							<li class="nav-item">
+								<router-link :to="{ name: 'WhoWeAre' }" class="nav-link font-weight-bold">{{ $t('Who we are') }}</router-link>
 							</li>
-							<li class="nav-item{% if activeTab == 'communication' %} active{% endif %}">
-								<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">Communication</router-link>
-								<!--<a class="nav-link font-weight-bold" href="{% url 'general:communication' %}">{% trans "Communication" %}</a>-->
+							<li class="nav-item">
+								<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">{{ $t('Communication') }}</router-link>
 							</li>
 						</ul>
 					</div>
 					<div class="">
 						<ul class="navbar-nav justify-content-end" style="position: relative; top: 2rem;">
-							<!--<li class="nav-item">-->
-							<!--<a href="{% url 'shop:home' %}" class="nav-link">-->
-							<!--<div class="vegShop-btn">-->
-							<!--<span>VEG SHOP</span>-->
-							<!--</div>-->
-							<!--</a>-->
-							<!--</li>-->
-							<!--<li class="nav-item">-->
-							<!--{% if LANGUAGE_CODE == 'en' %}-->
-							<!--<a href="{% url 'general:setLanguage' 'el' %}" class="nav-link">-->
-							<!--<div class="locale-btn">-->
-							<!--<span>EL</span>-->
-							<!--</div>-->
-							<!--</a>-->
-							<!--{% else %}-->
-							<!--<a href="{% url 'general:setLanguage' 'en' %}" class="nav-link">-->
-							<!--<div class="locale-btn">-->
-							<!--<span>EN</span>-->
-							<!--</div>-->
-							<!--</a>-->
-							<!--{% endif %}-->
-							<!--</li>-->
-
 							<li class="nav-item">
 								<router-link :to="{ name: 'Shop' }" class="nav-link">
 									<div class="vegShop-btn">
 										<span>VEG SHOP</span>
 									</div>
 								</router-link>
-								<!--<a href="{% url 'shop:home' %}" class="nav-link">-->
-								<!--<div class="vegShop-btn">-->
-								<!--<span>VEG SHOP</span>-->
-								<!--</div>-->
-								<!--</a>-->
 							</li>
 							<li class="nav-item">
-								<!--{% if LANGUAGE_CODE == 'en' %}-->
-								<!--<a href="{% url 'general:setLanguage' 'el' %}" class="nav-link">-->
-								<!--<div class="locale-btn">-->
-								<!--<span>EL</span>-->
-								<!--</div>-->
-								<!--</a>-->
-								<!--{% else %}-->
-								<!--<a href="{% url 'general:setLanguage' 'en' %}" class="nav-link ">-->
-								<!--<div class="locale-btn">-->
-								<!--<span>EN</span>-->
-								<!--</div>-->
-								<!--</a>-->
-								<!--{% endif %}-->
-								<router-link :to="{ name: 'Home' }" class="nav-link">
+								<a @click="changeLanguage()" class="nav-link">
 									<div class="locale-btn">
-										<span>EN</span>
+										<span>{{ this.$i18n.locale === 'en' ? 'GR' : 'EN' }}</span>
 									</div>
-								</router-link>
+								</a>
 							</li>
 						</ul>
 					</div>
@@ -158,7 +91,12 @@
 
 <script>
 	export default {
-		name: 'NavigationBar'
+		name: 'NavigationBar',
+		methods: {
+			changeLanguage: function () {
+				this.$i18n.locale = this.$i18n.locale === 'en' ? 'gr' : 'en';
+			}
+		}
 	};
 </script>
 

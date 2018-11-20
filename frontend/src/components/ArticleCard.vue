@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<div class="row py-4">
-			<router-link :to="{ name: 'ArticleView', params: { id: article.id }}" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">Read more</router-link>
+			<router-link :to="{ name: 'ArticleView', params: { id: article.id }}" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Read more') }}</router-link>
 		</div>
 	</div>
 </template>

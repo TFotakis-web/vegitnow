@@ -2,7 +2,7 @@
 	<div>
 		<div class="navbar-placeholder"></div>
 		<div class="container">
-			<h1>Recipes</h1>
+			<h1>{{ $t('Recipes') }}</h1>
 			<div class="row">
 				<RecipeCard v-for="recipe in recipes" :key="recipe.id" :recipe="recipe"></RecipeCard>
 			</div>

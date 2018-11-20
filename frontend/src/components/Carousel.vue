@@ -38,17 +38,15 @@
 												<div class="container w-75">
 													<div class="row">
 														<div class="col-lg-6">
-															<h1>Main Ingredients:</h1>
+															<h1>{{ $t('Main Ingredients') }}:</h1>
 															<p class="font-weight-bold">{{ article.MainIngredients }}</p>
 														</div>
 														<div class="col-lg-6">
-															<h1>Ready in:</h1>
+															<h1>{{ $t('Ready in') }}:</h1>
 															<p class="font-weight-bold">{{ article.ReadyIn }}</p>
 														</div>
 													</div>
-													<!--<router-link :to="'/articles/' + article.id + '/'" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">Go to recipe</router-link>-->
-													<router-link :to="{ name: 'RecipeView', params: { id: article.id }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">Go to recipe</router-link>
-													<!--<a href="{% url 'articles:recipeView' article.Article_id article.Title %}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{% trans "Go to the Recipe" %}</a>-->
+													<router-link :to="{ name: 'RecipeView', params: { id: article.id }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Go to the recipe') }}</router-link>
 												</div>
 											</div>
 										</div>
