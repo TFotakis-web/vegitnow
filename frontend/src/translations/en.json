@@ -34,5 +34,23 @@
 	"Sat. Fat": "Sat. Fat",
 	"Salt": "Salt",
 	"Reference intake of an average adult": "Reference intake of an average adult",
-	"Writes": "Writes"
+	"Writes": "Writes",
+
+	"Create Article": "Create Article",
+	"Create a new": "Create a new",
+	"Select Language": "Select Language",
+	"Title": "Title",
+	"Thumbnail": "Thumbnail",
+	"Choose file": "Choose file",
+	"Main Ingredient": "Main Ingredient",
+	"Select Ingredient": "Select Ingredient",
+	"Content": "Content",
+	"Release Date": "Release Date",
+	"Date": "Date",
+	"Time": "Time",
+	"Add Language": "Add Language",
+	"Save": "Save",
+	"Mark as Done Editing": "Mark as Done Editing",
+	"Quantity": "Quantity",
+	"Delete": "Delete"
 }

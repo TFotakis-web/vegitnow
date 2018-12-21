@@ -38,7 +38,8 @@
 					</div>
 					<div class="col-sm-8" style="border-left: dashed 2px #327317;">
 						<h2 class="fgGreen1 text-center text-sm-left">{{ $t('Execution') }}</h2>
-						<p>{{ article.Content }}</p>
+						<!--<p>{{ article.Content }}</p>-->
+						<div v-html="article.Content"></div>
 						<p class="m-0 text-justify">Rinse each side of the raspberries with one jar of noodles.
 							Pickles can be mashed up with salty carrots, also try decorateing the ricotta with water.
 							Per guest prepare one cup of ice water with chopped chicken for dessert. Pork butt combines greatly with ground cauliflower.

@@ -27,5 +27,9 @@ module.exports = {
 		'indent': 0,
 		'no-tabs': 0,
 		"semi": [2, "always"]
+	},
+	globals: {
+		'$': true,
+        'jQuery': true
 	}
 };

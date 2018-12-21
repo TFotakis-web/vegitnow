@@ -34,5 +34,23 @@
 	"Sat. Fat": "Κορ. Λοίπη",
 	"Salt": "Αλάτι",
 	"Reference intake of an average adult": "Προσλαμβανόμενη ποσότητα αναφοράς ενός μέσου ενήλικα",
-	"Writes": "Γράφει"
+	"Writes": "Γράφει",
+
+	"Create Article": "Δημιουργία νεου Άρθρου",
+	"Create a new": "Δημιουργία",
+	"Select Language": "Επιλογή γλώσσσας",
+	"Title": "Τίτλος",
+	"Thumbnail": "Thumbnail",
+	"Choose file": "Επιλογή Αρχείου",
+	"Main Ingredient": "Βασικό Συστατικό",
+	"Select Ingredient": "Επιλογή Συστατικού",
+	"Content": "Περιεχόμενο",
+	"Release Date": "Ημερομηνία Δημοσίευσης",
+	"Date": "Ημερομηνία",
+	"Time": "Ώρα",
+	"Add Language": "Πρόσθεση Γλώσσας",
+	"Save": "Αποθήκευση",
+	"Mark as Done Editing": "Χαρακτηρισμός ως ολοκληρωμένο",
+	"Quantity": "Ποσότητα",
+	"Delete": "Διαγραφή"
 }

@@ -36,7 +36,8 @@ class ArticleContentTranslation(models.Model):
 	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
 	Title = models.CharField(default='', blank=True, null=True, max_length=1024)
 	Content = models.TextField(blank=True)
-	Thumbnail = models.ImageField(default='Shared/defaultArticleThumbnail.png', upload_to='ArticleThumbnails/', blank=True)
+	Thumbnail = models.TextField(blank=True)
+	# Thumbnail = models.ImageField(default='Shared/defaultArticleThumbnail.png', upload_to='ArticleThumbnails/', blank=True)
 	ReleaseDateTime = models.DateTimeField(default=None, blank=True, null=True)
 	DoneEditing = models.BooleanField(default=False)
 
@@ -93,6 +94,51 @@ class TagAssociation(models.Model):
 	Tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
 
 	def __str__(self): return str(self.Article) + ' - ' + self.Tag.Name
+
+
+class Ingredient(models.Model):
+	Name = models.CharField(default='', max_length=1024)
+	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+
+	def __str__(self): return self.Name + ' - ' + str(self.Language)
+
+
+class IngredientNameTranslation(models.Model):
+	Ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+	Name = models.CharField(default='', max_length=1024)
+	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+
+	def __str__(self): return self.Ingredient.Name + ' -> ' + self.Language.Code + ': ' + self.Name
+
+
+class IngredientAssociation(models.Model):
+	Article = models.ForeignKey(Article, on_delete=models.CASCADE)
+	Ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+	Quantity = models.FloatField(default=0)
+
+	def __str__(self): return str(self.Article) + ' - ' + self.Ingredient.Name
+
+
+class Unit(models.Model):
+	Name = models.CharField(default='', max_length=1024)
+	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+
+	def __str__(self): return self.Name + ' - ' + str(self.Language)
+
+
+class UnitNameTranslation(models.Model):
+	Unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+	Name = models.CharField(default='', max_length=1024)
+	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+
+	def __str__(self): return self.Unit.Name + ' -> ' + self.Language.Code + ': ' + self.Name
+
+
+class UnitAssociation(models.Model):
+	Ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+	Unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+
+	def __str__(self): return str(self.Ingredient) + ' - ' + self.Unit.Name
 
 
 def homePageArticles():

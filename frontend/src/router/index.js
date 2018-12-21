@@ -8,6 +8,7 @@ import ArticleView from '@/components/ArticleView';
 import Communication from '@/components/Communication';
 import WhoWeAre from '@/components/WhoWeAre';
 import Shop from '@/components/Shop';
+import CreateArticle from '@/components/CreateArticle';
 
 Vue.use(Router);
 
@@ -53,6 +54,11 @@ export default new Router({
 			path: '/shop',
 			name: 'Shop',
 			component: Shop
+		},
+		{
+			path: '/createArticle',
+			name: 'CreateArticle',
+			component: CreateArticle
 		}
 	]
 });
