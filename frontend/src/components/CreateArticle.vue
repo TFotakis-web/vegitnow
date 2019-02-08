@@ -201,13 +201,20 @@
 					});
 			},
 			getIngredients: function () {
-				this.ingredients = [
-					{id: 1, Name: 'Fava', Unit: 'gr'},
-					{id: 2, Name: 'Fakies', Unit: 'gr'},
-					{id: 3, Name: 'Ntomata', Unit: 'pcs'},
-					{id: 4, Name: 'Aggouri', Unit: 'pcs'}
-				];
-				this.selectedIngredient = this.ingredients[0];
+				this.$http.get('/api/ingredient/')
+					.then((response) => {
+						this.ingredients = response.data;
+						this.selectedIngredient = this.ingredients[0];
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+				// this.ingredients = [
+				// 	{id: 1, Name: 'Fava', Unit: 'gr'},
+				// 	{id: 2, Name: 'Fakies', Unit: 'gr'},
+				// 	{id: 3, Name: 'Ntomata', Unit: 'pcs'},
+				// 	{id: 4, Name: 'Aggouri', Unit: 'pcs'}
+				// ];
 			},
 			onFileChange: function (e, article) {
 				var files = e.target.files || e.dataTransfer.files;

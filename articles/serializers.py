@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Article, ArticleContentTranslation, ArticleType, ArticleTypeNameTranslation, ArticleTypeAssociation, Tag, TagNameTranslation, TagAssociation, Ingredient, IngredientNameTranslation, IngredientAssociation, Unit, UnitNameTranslation, UnitAssociation
+from .models import Article, ArticleContentTranslation, ArticleType, ArticleTypeNameTranslation, ArticleTypeAssociation, Tag, TagNameTranslation, TagAssociation, Ingredient, IngredientNameTranslation, IngredientAssociation, Unit, UnitNameTranslation#, UnitAssociation
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -81,7 +81,7 @@ class UnitNameTranslationSerializer(serializers.ModelSerializer):
 		fields = '__all__'
 
 
-class UnitAssociationSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = UnitAssociation
-		fields = '__all__'
+# class UnitAssociationSerializer(serializers.ModelSerializer):
+# 	class Meta:
+# 		model = UnitAssociation
+# 		fields = '__all__'

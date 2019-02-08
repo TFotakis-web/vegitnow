@@ -96,9 +96,32 @@ class TagAssociation(models.Model):
 	def __str__(self): return str(self.Article) + ' - ' + self.Tag.Name
 
 
+class Unit(models.Model):
+	Name = models.CharField(default='', max_length=1024)
+	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+
+	def __str__(self): return self.Name + ' - ' + str(self.Language)
+
+
+class UnitNameTranslation(models.Model):
+	Unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+	Name = models.CharField(default='', max_length=1024)
+	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+
+	def __str__(self): return self.Unit.Name + ' -> ' + self.Language.Code + ': ' + self.Name
+
+
+# class UnitAssociation(models.Model):
+# 	Ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+# 	Unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+#
+# 	def __str__(self): return str(self.Ingredient) + ' - ' + self.Unit.Name
+
+
 class Ingredient(models.Model):
 	Name = models.CharField(default='', max_length=1024)
 	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+	Unit = models.ForeignKey(Unit, on_delete=models.DO_NOTHING)
 
 	def __str__(self): return self.Name + ' - ' + str(self.Language)
 
@@ -115,30 +138,9 @@ class IngredientAssociation(models.Model):
 	Article = models.ForeignKey(Article, on_delete=models.CASCADE)
 	Ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
 	Quantity = models.FloatField(default=0)
+	IsMainIngredient = models.BooleanField(default=False)
 
 	def __str__(self): return str(self.Article) + ' - ' + self.Ingredient.Name
-
-
-class Unit(models.Model):
-	Name = models.CharField(default='', max_length=1024)
-	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
-
-	def __str__(self): return self.Name + ' - ' + str(self.Language)
-
-
-class UnitNameTranslation(models.Model):
-	Unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-	Name = models.CharField(default='', max_length=1024)
-	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
-
-	def __str__(self): return self.Unit.Name + ' -> ' + self.Language.Code + ': ' + self.Name
-
-
-class UnitAssociation(models.Model):
-	Ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-	Unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-
-	def __str__(self): return str(self.Ingredient) + ' - ' + self.Unit.Name
 
 
 def homePageArticles():

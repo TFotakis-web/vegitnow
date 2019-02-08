@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 
-from .models import Article, ArticleContentTranslation, ArticleType, ArticleTypeNameTranslation, ArticleTypeAssociation, Tag, TagNameTranslation, TagAssociation, Ingredient, IngredientNameTranslation, IngredientAssociation, Unit, UnitNameTranslation, UnitAssociation
+from .models import Article, ArticleContentTranslation, ArticleType, ArticleTypeNameTranslation, ArticleTypeAssociation, Tag, TagNameTranslation, TagAssociation, Ingredient, IngredientNameTranslation, IngredientAssociation, Unit, UnitNameTranslation#, UnitAssociation
 
 
 # Apply summernote to all TextField in model.
@@ -24,4 +24,4 @@ admin.site.register(IngredientNameTranslation, SummernoteAdmin)
 admin.site.register(IngredientAssociation, SummernoteAdmin)
 admin.site.register(Unit, SummernoteAdmin)
 admin.site.register(UnitNameTranslation, SummernoteAdmin)
-admin.site.register(UnitAssociation, SummernoteAdmin)
+# admin.site.register(UnitAssociation, SummernoteAdmin)

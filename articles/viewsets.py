@@ -5,8 +5,8 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
 
-from .models import Article, ArticleContentTranslation, ArticleType, ArticleTypeNameTranslation, ArticleTypeAssociation, Tag, TagNameTranslation, TagAssociation, Ingredient, IngredientNameTranslation, IngredientAssociation, Unit, UnitNameTranslation, UnitAssociation
-from .serializers import ArticleSerializer, ArticleContentTranslationSerializer, ArticleTypeSerializer, ArticleTypeNameTranslationSerializer, ArticleTypeAssociationSerializer, TagSerializer, TagNameTranslationSerializer, TagAssociationSerializer, IngredientSerializer, IngredientNameTranslationSerializer, IngredientAssociationSerializer, UnitSerializer, UnitNameTranslationSerializer, UnitAssociationSerializer
+from .models import Article, ArticleContentTranslation, ArticleType, ArticleTypeNameTranslation, ArticleTypeAssociation, Tag, TagNameTranslation, TagAssociation, Ingredient, IngredientNameTranslation, IngredientAssociation, Unit, UnitNameTranslation#, UnitAssociation
+from .serializers import ArticleSerializer, ArticleContentTranslationSerializer, ArticleTypeSerializer, ArticleTypeNameTranslationSerializer, ArticleTypeAssociationSerializer, TagSerializer, TagNameTranslationSerializer, TagAssociationSerializer, IngredientSerializer, IngredientNameTranslationSerializer, IngredientAssociationSerializer, UnitSerializer, UnitNameTranslationSerializer#, UnitAssociationSerializer
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
@@ -87,10 +87,10 @@ class UnitNameTranslationViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
-class UnitAssociationViewSet(viewsets.ModelViewSet):
-	queryset = UnitAssociation.objects.all()
-	serializer_class = UnitAssociationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
+# class UnitAssociationViewSet(viewsets.ModelViewSet):
+# 	queryset = UnitAssociation.objects.all()
+# 	serializer_class = UnitAssociationSerializer
+# 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class NewArticleViewSet(viewsets.ViewSet):
@@ -121,6 +121,11 @@ class NewArticleViewSet(viewsets.ViewSet):
 			ac.ReleaseDateTime = datetime.strptime(dateStr, '%d/%m/%Y-%H:%M-%Z')
 			ac.DoneEditing = translation['doneEditing']
 			ac.save()
+		if at == 1:
+			ingredients = request.data['ingredients']
+			for ingredient in ingredients:
+				ia = IngredientAssociation(Article=a, Ingredient_id=ingredient['ingredient']['id'], Quantity=ingredient['quantity'], IsMainIngredient=ingredient['isMainIngredient'])
+				ia.save()
 
 		return Response()
 
