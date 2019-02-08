@@ -52,5 +52,8 @@
 	"Save": "Save",
 	"Mark as Done Editing": "Mark as Done Editing",
 	"Quantity": "Quantity",
-	"Delete": "Delete"
+	"Delete": "Delete",
+
+	"Ingredient": "Ingredient",
+	"Unit": "Unit"
 }
