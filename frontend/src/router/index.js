@@ -21,42 +21,42 @@ export default new Router({
 			component: Home
 		},
 		{
-			path: '/recipes',
+			path: '/recipes/',
 			name: 'RecipesList',
 			component: RecipesList
 		},
 		{
-			path: '/articles',
+			path: '/articles/',
 			name: 'ArticlesList',
 			component: ArticlesList
 		},
 		{
-			path: '/recipes/:id',
+			path: '/recipes/:id/',
 			name: 'RecipeView',
 			component: RecipeView
 		},
 		{
-			path: '/articles/:id',
+			path: '/articles/:id/',
 			name: 'ArticleView',
 			component: ArticleView
 		},
 		{
-			path: '/communication',
+			path: '/communication/',
 			name: 'Communication',
 			component: Communication
 		},
 		{
-			path: '/who_we_are',
+			path: '/who_we_are/',
 			name: 'WhoWeAre',
 			component: WhoWeAre
 		},
 		{
-			path: '/shop',
+			path: '/shop/',
 			name: 'Shop',
 			component: Shop
 		},
 		{
-			path: '/createArticle',
+			path: '/createArticle/',
 			name: 'CreateArticle',
 			component: CreateArticle
 		}

@@ -53,10 +53,10 @@
 					<div class="col-sm-10">
 						<div class="row">
 							<div class="col">
-								<input type="text" class="form-control mb-3" id="ArticleReleaseDate" :placeholder="$t('Date')" v-model="article.releaseDateTime.date">
+								<input type="text" class="form-control mb-3" id="ArticleReleaseDate" :placeholder="$t('Date') + ' (dd/mm/yyyy)'" v-model="article.releaseDateTime.date">
 							</div>
 							<div class="col">
-								<input type="text" class="form-control" id="ArticleReleaseTime" :placeholder="$t('Time')" v-model="article.releaseDateTime.time">
+								<input type="text" class="form-control" id="ArticleReleaseTime" :placeholder="$t('Time') + ' (HH:MM)'" v-model="article.releaseDateTime.time">
 							</div>
 						</div>
 					</div>
@@ -78,13 +78,13 @@
 
 			<div class="form-group row">
 				<div class="col">
-					<button type="button" class="btn bgGreen0 text-white" @click="addLanguage()"><i class="fas fa-plus"></i> {{ $t('Add Language') }}</button>
+					<button type="button" class="btn bgGreen0 text-white" @click="addInitializedTranslation()"><i class="fas fa-plus"></i> {{ $t('Add Language') }}</button>
 				</div>
 			</div>
 
 			<hr class="my-5" v-if="data.articleType === 1">
 
-			<div class="form-group row">
+			<div class="form-group row" v-if="data.articleType === 1">
 				<label for="YoutubeLink" class="col-sm-2 col-form-label">Youtube Link:</label>
 				<div class="col-sm-10">
 					<div class="row">
@@ -187,26 +187,27 @@
 			};
 		},
 		mounted: function () {
+			this.addTranslation();
 			this.getArticleTypes();
 			this.getLanguages();
-			this.addLanguage();
 			this.getIngredients();
 		},
 		methods: {
-			getArticleTypes: function () {
-				this.$http.get('/api/articleType/')
+			getLanguages: function () {
+				this.$http.get('/api/language/')
 					.then((response) => {
-						this.articleTypes = response.data;
-						this.data.articleType = this.articleTypes[0].id;
+						this.languages = response.data;
+						this.initTranslationLanguage(this.data.translations[0]);
 					})
 					.catch((err) => {
 						console.log(err);
 					});
 			},
-			getLanguages: function () {
-				this.$http.get('/api/language/')
+			getArticleTypes: function () {
+				this.$http.get('/api/articleType/')
 					.then((response) => {
-						this.languages = response.data;
+						this.articleTypes = response.data;
+						this.data.articleType = this.articleTypes[0].id;
 					})
 					.catch((err) => {
 						console.log(err);
@@ -227,6 +228,38 @@
 				// 	{id: 3, Name: 'Ntomata', Unit: 'pcs'},
 				// 	{id: 4, Name: 'Aggouri', Unit: 'pcs'}
 				// ];
+			},
+			addTranslation: function () {
+				this.data.translations.push({
+					language: null,
+					title: null,
+					content: '',
+					thumbnail: null,
+					releaseDateTime: {
+						date: null,
+						time: null
+					},
+					doneEditing: false
+				});
+
+				$('#ArticleContent').summernote({
+					placeholder: 'Article content...',
+					tabsize: 2,
+					height: 300
+				});
+			},
+			addInitializedTranslation: function () {
+				this.addTranslation();
+				this.initTranslation(this.data.translations[this.data.translations.length - 1]);
+			},
+			initTranslation: function (translation) {
+				this.initTranslationLanguage(translation);
+			},
+			initTranslationLanguage: function (translation) {
+				translation.language = this.languages[0].id;
+			},
+			deleteLanguage: function (index) {
+				this.data.translations.splice(index, 1);
 			},
 			onFileChange: function (e, article) {
 				var files = e.target.files || e.dataTransfer.files;
@@ -249,28 +282,6 @@
 			},
 			removeSelectedIngredient: function (index) {
 				this.data.ingredients.splice(index, 1);
-			},
-			addLanguage: function () {
-				this.data.translations.push({
-					language: null,
-					title: null,
-					content: '',
-					thumbnail: null,
-					releaseDateTime: {
-						date: null,
-						time: null
-					},
-					doneEditing: false
-				});
-
-				$('#ArticleContent').summernote({
-					placeholder: 'Article content...',
-					tabsize: 2,
-					height: 300
-				});
-			},
-			deleteLanguage: function (index) {
-				this.data.translations.splice(index, 1);
 			},
 			saveArticle: function () {
 				if (this.data.articleType === 1) {
