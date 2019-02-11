@@ -73,7 +73,7 @@
 
 <script>
 	import RecommendedRecipes from './RecommendedRecipes';
-	import NutritionStats from './NutritionStats';
+	import NutritionStats from '../Various/NutritionStats';
 
 	export default {
 		name: 'RecipeView',

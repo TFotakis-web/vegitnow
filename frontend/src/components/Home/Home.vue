@@ -12,8 +12,8 @@
 	import Carousel from './Carousel';
 	import JoinOurFamily from './JoinOurFamily';
 	import IngredientOfTheDay from './IngredientOfTheDay';
-	import RecommendedRecipes from './RecommendedRecipes';
-	import RecommendedArticles from './RecommendedArticles';
+	import RecommendedRecipes from '../Recipes/RecommendedRecipes';
+	import RecommendedArticles from '../Articles/RecommendedArticles';
 
 	export default {
 		name: 'Home',

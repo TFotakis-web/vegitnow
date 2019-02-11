@@ -2,7 +2,7 @@
 	<div id="CreateArticleComponent" class="mb-5 h-100">
 		<div class="navbar-placeholder"></div>
 		<div id="createArticle" class="container mb-5">
-			<h1 class="text-center">{{ $t('Create Article') }}</h1>
+			<!--<h1 class="text-center">{{ $t('Create Article') }}</h1>-->
 			<div class="input-group mb-3" style="width: fit-content">
 				<div class="input-group-prepend">
 					<label class="input-group-text" for="selectArticleType">{{ $t('Create a new') }}</label>
@@ -162,7 +162,7 @@
 </template>
 
 <script>
-	import Summernote from './Summernote';
+	import Summernote from '../Various/Summernote';
 
 	export default {
 		name: 'CreateArticle',

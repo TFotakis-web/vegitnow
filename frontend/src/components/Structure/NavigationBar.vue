@@ -22,13 +22,13 @@
 						<li class="nav-item">
 							<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">{{ $t('Communication') }}</router-link>
 						</li>
-						<li class="nav-item">
-							<router-link :to="{ name: 'Shop' }" class="nav-link">
-								<div class="vegShop-btn">
-									<span>VEG SHOP</span>
-								</div>
-							</router-link>
-						</li>
+						<!--<li class="nav-item">-->
+							<!--<router-link :to="{ name: 'Shop' }" class="nav-link">-->
+								<!--<div class="vegShop-btn">-->
+									<!--<span>VEG SHOP</span>-->
+								<!--</div>-->
+							<!--</router-link>-->
+						<!--</li>-->
 						<li class="nav-item">
 							<a @click="changeLanguage()" class="nav-link">
 								<div class="locale-btn">
@@ -67,13 +67,13 @@
 					</div>
 					<div class="">
 						<ul class="navbar-nav justify-content-end" style="position: relative; top: 2rem;">
-							<li class="nav-item">
-								<router-link :to="{ name: 'Shop' }" class="nav-link">
-									<div class="vegShop-btn">
-										<span>VEG SHOP</span>
-									</div>
-								</router-link>
-							</li>
+							<!--<li class="nav-item">-->
+								<!--<router-link :to="{ name: 'Shop' }" class="nav-link">-->
+									<!--<div class="vegShop-btn">-->
+										<!--<span>VEG SHOP</span>-->
+									<!--</div>-->
+								<!--</router-link>-->
+							<!--</li>-->
 							<li class="nav-item">
 								<a @click="changeLanguage()" class="nav-link">
 									<div class="locale-btn">
