@@ -44,10 +44,9 @@ INSTALLED_APPS = [
 	'rest_framework',
 	# 'pwa',
 	# 'webpack_loader',
-	'login',
+	# 'login',
 	'general',
 	'articles',
-	'shop',
 ]
 
 MIDDLEWARE = [
