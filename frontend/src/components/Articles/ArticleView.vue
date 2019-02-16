@@ -45,7 +45,7 @@
 								</div>
 								<div class="col d-table h-100">
 									<div class="d-table-cell align-middle">
-										<p class="font-weight-bold m-0">John Papadimitriou</p>
+										<p class="font-weight-bold m-0">{{ article['AuthorName'] }}</p>
 									</div>
 								</div>
 							</div>
@@ -53,9 +53,10 @@
 						<div class="col-sm-3 d-table h-100">
 							<div class="d-table-cell align-middle">
 								<p class="font-weight-bold m-0">
-									Special Dietologist
-									<br>
-									Dr. University of Life
+									{{ article['AuthorProfession'] }}
+									<!--Special Dietologist-->
+									<!--<br>-->
+									<!--Dr. University of Life-->
 								</p>
 							</div>
 						</div>
@@ -81,29 +82,29 @@
 		<div id="Instructions" class="mt-4 mb-5 d-flex">
 			<div class="container">
 				<!--<p class="m-0 text-justify">{{ article.Content }}</p>-->
-				<div v-html="article.Content"></div>
-				<p class="m-0 text-justify">Rinse each side of the raspberries with one jar of noodles.
-					Pickles can be mashed up with salty carrots, also try decorateing the ricotta with water.
-					Per guest prepare one cup of ice water with chopped chicken for dessert. Pork butt combines greatly with ground cauliflower.
-					Chickpeas can be seasoned with al dente shrimps, also try mixing the pie with remoulade.
-					Puréed rhubarb can be made dark by flavoring with joghurt.
-					Try mixing the milk pork shoulders with sour cream and fish sauce, refrigerated.
-					Per guest prepare twenty oz of salsa verde with mashed tofu for dessert.
-					Raspberries stew has to have a minced, juicy broccoli component.
-					Celery can be rubed with tangy spinach, also try seasoning the fritters with red wine.
-					Flavor half a kilo of mackerel in two peaces of ice water. Chocolate combines greatly with cold chicken breasts.
-					Peanut butter can be rinseed with sweet meatballs, also try whisking the smoothie with remoulade.
-					Carrots cheesecake has to have a bitter, shredded sausages component.
-					Per guest prepare one jar of water with roasted pumpkin seeds for dessert.
-					To the aged butter add quinoa, caviar, vinegar and shredded leek.
-					Large mackerel can be made fluffy by varnishing with hollandaise sauce.
-					Okra can be varnished with aged apple, also try flavoring the punch with cocktail sauce.
-					What’s the secret to roasted and muddy squid? Always use aromatic thyme. Chili combines greatly with sticky quinoa.
-					Nachos can be enameled with warm strudel, also try covering the salad with honey.
-					Mash up each side of the chicken lard with one cup of pickles.
-					To the soaked cabbage add meatloaf, rhubarb, triple sec and bitter leek.
-					To the thin peanut butter add meatballs, escargot, champaign and heated cauliflower.
-				</p>
+				<div v-html="article['Content']"></div>
+				<!--<p class="m-0 text-justify">Rinse each side of the raspberries with one jar of noodles.-->
+					<!--Pickles can be mashed up with salty carrots, also try decorateing the ricotta with water.-->
+					<!--Per guest prepare one cup of ice water with chopped chicken for dessert. Pork butt combines greatly with ground cauliflower.-->
+					<!--Chickpeas can be seasoned with al dente shrimps, also try mixing the pie with remoulade.-->
+					<!--Puréed rhubarb can be made dark by flavoring with joghurt.-->
+					<!--Try mixing the milk pork shoulders with sour cream and fish sauce, refrigerated.-->
+					<!--Per guest prepare twenty oz of salsa verde with mashed tofu for dessert.-->
+					<!--Raspberries stew has to have a minced, juicy broccoli component.-->
+					<!--Celery can be rubed with tangy spinach, also try seasoning the fritters with red wine.-->
+					<!--Flavor half a kilo of mackerel in two peaces of ice water. Chocolate combines greatly with cold chicken breasts.-->
+					<!--Peanut butter can be rinseed with sweet meatballs, also try whisking the smoothie with remoulade.-->
+					<!--Carrots cheesecake has to have a bitter, shredded sausages component.-->
+					<!--Per guest prepare one jar of water with roasted pumpkin seeds for dessert.-->
+					<!--To the aged butter add quinoa, caviar, vinegar and shredded leek.-->
+					<!--Large mackerel can be made fluffy by varnishing with hollandaise sauce.-->
+					<!--Okra can be varnished with aged apple, also try flavoring the punch with cocktail sauce.-->
+					<!--What’s the secret to roasted and muddy squid? Always use aromatic thyme. Chili combines greatly with sticky quinoa.-->
+					<!--Nachos can be enameled with warm strudel, also try covering the salad with honey.-->
+					<!--Mash up each side of the chicken lard with one cup of pickles.-->
+					<!--To the soaked cabbage add meatloaf, rhubarb, triple sec and bitter leek.-->
+					<!--To the thin peanut butter add meatballs, escargot, champaign and heated cauliflower.-->
+				<!--</p>-->
 			</div>
 		</div>
 		<RecommendedArticles></RecommendedArticles>
