@@ -40,6 +40,11 @@ class ArticleContentTranslation(models.Model):
 	# Thumbnail = models.ImageField(default='Shared/defaultArticleThumbnail.png', upload_to='ArticleThumbnails/', blank=True)
 	ReleaseDateTime = models.DateTimeField(default=None, blank=True, null=True)
 	DoneEditing = models.BooleanField(default=False)
+	Dishes = models.IntegerField(default=0)
+	ReadyIn = models.IntegerField(default=0)
+	YoutubeLink = models.CharField(default='', blank=True, null=True, max_length=1024)
+	AuthorName = models.CharField(default='', blank=True, null=True, max_length=1024)
+	AuthorProfession = models.CharField(default='', blank=True, null=True, max_length=1024)
 
 	@property
 	def Released(self):
