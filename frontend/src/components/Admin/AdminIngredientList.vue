@@ -1,8 +1,8 @@
 <template>
 	<div id="AdminIngredientList" class="mb-5 h-100">
-		<div class="navbar-placeholder"></div>
+		<!--<div class="navbar-placeholder"></div>-->
 		<div class="container">
-			<h1 class="text-center">Admin Ingredient List</h1>
+			<!--<h1 class="text-center">Admin Ingredient List</h1>-->
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">{{ $t('Import Ingredients') }}:</label>
 				<div class="col-sm-3 mb-2">
@@ -154,7 +154,7 @@
 				importErrors: 0,
 				done: -1,
 				ingredients: [],
-				ingredientNameTranslations: [],
+				ingredientNameTranslations: {},
 				createNew: false,
 				editIngredient: false,
 				ingredientData: {},
@@ -163,7 +163,6 @@
 		},
 		mounted: function () {
 			this.getIngredients();
-			this.getIngredientNameTranslations();
 		},
 		methods: {
 			onFileChange: function (e) {
@@ -230,13 +229,17 @@
 						.then((response) => {
 							this.importCount++;
 							this.done--;
-							if (!this.done) this.getIngredients();
+							if (!this.done) {
+								this.getIngredients();
+							}
 							// console.log(response);
 						})
 						.catch((err) => {
 							this.importErrors++;
 							this.done--;
-							if (!this.done) this.getIngredients();
+							if (!this.done) {
+								this.getIngredients();
+							}
 							console.log(err);
 						});
 				}
@@ -287,18 +290,19 @@
 				this.createNew = false;
 			},
 			getIngredients: function () {
-				this.$http.get('/api/ingredient/')
-					.then((response) => {
-						this.ingredients = response.data;
-					})
-					.catch((err) => {
-						console.log(err);
-					});
-			},
-			getIngredientNameTranslations: function () {
 				this.$http.get('/api/ingredientNameTranslation/')
 					.then((response) => {
 						this.ingredientNameTranslations = response.data;
+						this.$http.get('/api/ingredient/')
+							.then((response) => {
+								this.ingredients = response.data;
+								for (var i = 0; i < this.ingredients.length; i++) {
+									this.ingredients[i]['Greek'] = this.ingredientNameTranslations['2'][this.ingredients[i]['id']];
+								}
+							})
+							.catch((err) => {
+								console.log(err);
+							});
 					})
 					.catch((err) => {
 						console.log(err);
@@ -373,9 +377,11 @@
 	input[type="number"] {
 		-moz-appearance: textfield;
 	}
+
 	input[type="text"] {
 		min-width: 10rem;
 	}
+
 	th {
 		min-width: 5rem;
 	}
