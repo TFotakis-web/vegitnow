@@ -7,9 +7,9 @@
 		>
 			<img src="/static/img/logo.png" alt="Vegitnow Logo" height="40">
 		</router-link>
-		<div id="Footer" class="bg-white text-center p-5"
+		<div id="Footer" class="bg-white text-center pt-5"
 		     style="
-	     min-height:25vh;
+	     /*min-height:25vh;*/
          clip-path: polygon(0% 10%, 2% 5%, 17% 2%, 30% 3%, 47% 0%, 78% 1%, 97% 5%, 100% 11%, 100% 100%, 0% 100%, 0% 10%);
 		"
 		>
@@ -31,16 +31,16 @@
 						<div class="container-fluid">
 							<div class="row" style="font-size: 0.7rem">
 								<div class="col-md-6">
-									<a href="#" class="text-dark d-block">{{ $t('About') }}</a>
-									<a href="#" class="text-dark d-block">{{ $t('Donate') }}</a>
-									<a href="#" class="text-dark d-block">{{ $t('Jobs') }}</a>
-									<a href="#" class="text-dark d-block">{{ $t('Sponsors') }}</a>
-									<a href="#" class="text-dark d-block">{{ $t('Products') }}</a>
+									<!--<a href="#" class="text-dark d-block">{{ $t('About') }}</a>-->
+									<!--<a href="#" class="text-dark d-block">{{ $t('Donate') }}</a>-->
+									<!--<a href="#" class="text-dark d-block">{{ $t('Jobs') }}</a>-->
+									<!--<a href="#" class="text-dark d-block">{{ $t('Sponsors') }}</a>-->
+									<!--<a href="#" class="text-dark d-block">{{ $t('Products') }}</a>-->
 								</div>
 								<div class="col-md-6">
-									<a href="#" class="text-dark d-block">{{ $t('Press Enquiries') }}</a>
-									<a href="#" class="text-dark d-block">{{ $t('Contact Us') }}</a>
-									<a href="#" class="text-dark d-block">{{ $t('Affiliate Policy') }}</a>
+									<!--<a href="#" class="text-dark d-block">{{ $t('Press Enquiries') }}</a>-->
+									<!--<a href="#" class="text-dark d-block">{{ $t('Contact Us') }}</a>-->
+									<!--<a href="#" class="text-dark d-block">{{ $t('Affiliate Policy') }}</a>-->
 								</div>
 							</div>
 						</div>
