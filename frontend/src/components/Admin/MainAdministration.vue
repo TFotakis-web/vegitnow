@@ -1,9 +1,14 @@
 <template>
-	<div id="Administration" class="container mb-5 h-100">
+	<div id="Administration" class="mb-5 h-100">
 		<div class="navbar-placeholder"></div>
-		<h1 class="text-center">Main Administration</h1>
-		<router-link :to="{ name: 'Administration' }" class="nav-link font-weight-bold">{{ $t('Administration') }}</router-link>
-		<router-link :to="{ name: 'DatabaseAdministration' }" class="nav-link font-weight-bold">{{ $t('Database') }}</router-link>
+		<div class="container">
+			<div class="row">
+				<!--<h1 class="text-center">Main Administration</h1>-->
+				<router-link :to="{ name: 'Administration' }" class="col text-right">{{ $t('Administration') }}</router-link>
+				<router-link :to="{ name: 'DatabaseAdministration' }" class="col">{{ $t('Database') }}</router-link>
+			</div>
+		</div>
+		<hr>
 		<router-view></router-view>
 	</div>
 </template>

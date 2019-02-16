@@ -1,7 +1,7 @@
 <template>
 	<div id="AdminArticleList" class="container mb-5 h-100">
-		<div class="navbar-placeholder"></div>
-		<h1 class="text-center">Admin Article List</h1>
+		<!--<div class="navbar-placeholder"></div>-->
+		<!--<h1 class="text-center">Admin Article List</h1>-->
 		<div class="row">
 			<ArticleCard v-for="article in articles" :key="article.id" :article="article"></ArticleCard>
 		</div>

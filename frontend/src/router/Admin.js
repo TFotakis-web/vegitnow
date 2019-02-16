@@ -11,37 +11,41 @@ export default [
 	{
 		path: basePath,
 		name: 'MainAdministration',
-		component: MainAdministration
-	},
-	{
-		path: basePath + 'database/',
-		name: 'DatabaseAdministration',
-		pathToRegexpOptions: {strict: true}
-		// component: MainAdministration
-	},
-	{
-		path: basePath + 'admin/',
-		name: 'Administration',
-		component: Administration
-	},
-	{
-		path: basePath + 'admin/createArticle/',
-		name: 'CreateArticle',
-		component: CreateArticle
-	},
-	{
-		path: basePath + 'admin/articles/',
-		name: 'AdminArticleList',
-		component: AdminArticleList
-	},
-	{
-		path: basePath + 'admin/recipes/',
-		name: 'AdminRecipeList',
-		component: AdminRecipeList
-	},
-	{
-		path: basePath + 'admin/ingredients/',
-		name: 'AdminIngredientList',
-		component: AdminIngredientList
+		component: MainAdministration,
+		children: [
+			{
+				path: basePath + 'database/',
+				name: 'DatabaseAdministration',
+				pathToRegexpOptions: {strict: true}
+				// component: MainAdministration
+			},
+			{
+				path: basePath + 'admin/',
+				name: 'Administration',
+				component: Administration,
+				children: [
+					{
+						path: basePath + 'admin/createArticle/',
+						name: 'CreateArticle',
+						component: CreateArticle
+					},
+					{
+						path: basePath + 'admin/articles/',
+						name: 'AdminArticleList',
+						component: AdminArticleList
+					},
+					{
+						path: basePath + 'admin/recipes/',
+						name: 'AdminRecipeList',
+						component: AdminRecipeList
+					},
+					{
+						path: basePath + 'admin/ingredients/',
+						name: 'AdminIngredientList',
+						component: AdminIngredientList
+					}
+				]
+			}
+		]
 	}
 ];

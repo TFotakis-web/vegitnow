@@ -1,7 +1,7 @@
 <template>
 	<div id="AdminRecipeList" class="container mb-5 h-100">
-		<div class="navbar-placeholder"></div>
-		<h1 class="text-center">Admin Recipe List</h1>
+		<!--<div class="navbar-placeholder"></div>-->
+		<!--<h1 class="text-center">Admin Recipe List</h1>-->
 		<div class="row">
 			<RecipeCard v-for="recipe in recipes" :key="recipe.id" :recipe="recipe"></RecipeCard>
 		</div>
