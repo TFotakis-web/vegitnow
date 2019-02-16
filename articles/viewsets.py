@@ -5,8 +5,9 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
 
-from .models import Article, ArticleContentTranslation, ArticleType, ArticleTypeNameTranslation, ArticleTypeAssociation, Tag, TagNameTranslation, TagAssociation, Ingredient, IngredientNameTranslation, IngredientAssociation, Unit, UnitNameTranslation#, UnitAssociation
-from .serializers import ArticleSerializer, ArticleContentTranslationSerializer, ArticleTypeSerializer, ArticleTypeNameTranslationSerializer, ArticleTypeAssociationSerializer, TagSerializer, TagNameTranslationSerializer, TagAssociationSerializer, IngredientSerializer, IngredientNameTranslationSerializer, IngredientAssociationSerializer, UnitSerializer, UnitNameTranslationSerializer#, UnitAssociationSerializer
+from general.models import Language
+from .models import Article, ArticleContentTranslation, ArticleType, ArticleTypeNameTranslation, ArticleTypeAssociation, Tag, TagNameTranslation, TagAssociation, Ingredient, IngredientNameTranslation, IngredientAssociation, Unit, UnitNameTranslation  # , UnitAssociation
+from .serializers import ArticleSerializer, ArticleContentTranslationSerializer, ArticleTypeSerializer, ArticleTypeNameTranslationSerializer, ArticleTypeAssociationSerializer, TagSerializer, TagNameTranslationSerializer, TagAssociationSerializer, IngredientSerializer, IngredientNameTranslationSerializer, IngredientAssociationSerializer, UnitSerializer, UnitNameTranslationSerializer  # , UnitAssociationSerializer
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
@@ -144,3 +145,100 @@ class NewArticleViewSet(viewsets.ViewSet):
 	def destroy(self, request, pk=None):
 		print('Delete')
 		return Response()
+
+
+class NewIngredientViewSet(viewsets.ViewSet):
+	permission_classes = (IsAdminUser,)
+	SAFE_ACTIONS = ['list', 'retrieve', 'create']
+
+	def list(self, request):
+		print('List')
+		return Response()
+
+	def create(self, request):
+		print('Create')
+		ingredient = Ingredient(
+			Name=request.data['English'],
+			Language=Language.objects.get(Code='en'),
+			# Unit=Unit.objects.get(Name='gr', Language=Language.objects.get(Code='en')),
+			Calories=request.data['Calories'],
+			Protein=request.data['Protein'],
+			CarbonHydrates=request.data['CarbonHydrates'],
+			Fats=request.data['Fats'],
+			VitaminA=request.data['VitaminA'],
+			CarotinB=request.data['CarotinB'],
+			VitaminC=request.data['VitaminC'],
+			VitaminD=request.data['VitaminD'],
+			VitaminE=request.data['VitaminE'],
+			VitaminK=request.data['VitaminK'],
+			VitaminB3=request.data['VitaminB3'],
+			VitaminB6=request.data['VitaminB6'],
+			VitaminB12=request.data['VitaminB12'],
+			VitaminB9=request.data['VitaminB9'],
+			Choline=request.data['Choline'],
+			Calcium=request.data['Calcium'],
+			Iron=request.data['Iron'],
+			Magnesium=request.data['Magnesium'],
+			Phosphorus=request.data['Phosphorus'],
+			Potassium=request.data['Potassium'],
+			Sodium=request.data['Sodium'],
+			Zinc=request.data['Zinc'],
+			Selenium=request.data['Selenium'],
+			Manganese=request.data['Manganese'],
+			Water=request.data['Water'],
+		)
+		ingredient.save()
+		ingredientTranslation = IngredientNameTranslation(
+			Ingredient=ingredient,
+			Name=request.data['Greek'],
+			Language=Language.objects.get(Code='el')
+		)
+		ingredientTranslation.save()
+		return Response()
+
+	def retrieve(self, request, pk=None):
+		print('Retrieve')
+		return Response()
+
+	def update(self, request, pk=None):
+		print('Update')
+		return Response()
+
+	def partial_update(self, request, pk=None):
+		print('Patch')
+		ingredient = Ingredient.objects.filter(pk=pk).update(
+			Name=request.data['English'],
+			Calories=request.data['Calories'],
+			Protein=request.data['Protein'],
+			CarbonHydrates=request.data['CarbonHydrates'],
+			Fats=request.data['Fats'],
+			VitaminA=request.data['VitaminA'],
+			CarotinB=request.data['CarotinB'],
+			VitaminC=request.data['VitaminC'],
+			VitaminD=request.data['VitaminD'],
+			VitaminE=request.data['VitaminE'],
+			VitaminK=request.data['VitaminK'],
+			VitaminB3=request.data['VitaminB3'],
+			VitaminB6=request.data['VitaminB6'],
+			VitaminB12=request.data['VitaminB12'],
+			VitaminB9=request.data['VitaminB9'],
+			Choline=request.data['Choline'],
+			Calcium=request.data['Calcium'],
+			Iron=request.data['Iron'],
+			Magnesium=request.data['Magnesium'],
+			Phosphorus=request.data['Phosphorus'],
+			Potassium=request.data['Potassium'],
+			Sodium=request.data['Sodium'],
+			Zinc=request.data['Zinc'],
+			Selenium=request.data['Selenium'],
+			Manganese=request.data['Manganese'],
+			Water=request.data['Water'],
+		)
+		ingredientTranslation = IngredientNameTranslation.objects.filter(Ingredient_id=pk)
+		ingredientTranslation.update(Name=request.data['Greek'])
+		return Response()
+
+
+def destroy(self, request, pk=None):
+	print('Delete')
+	return Response()
