@@ -82,74 +82,86 @@
 				</div>
 			</div>
 
-			<hr class="my-5" v-if="data.articleType === 1">
+			<div v-if="data.articleType === 1">
+				<hr class="my-5">
 
-			<div class="form-group row" v-if="data.articleType === 1">
-				<label for="YoutubeLink" class="col-sm-2 col-form-label">Youtube Link:</label>
-				<div class="col-sm-10">
-					<div class="row">
-						<div class="col">
-							<input type="text" class="form-control mb-3" id="YoutubeLink" placeholder="YouTube Link" v-model="youtubeLink">
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="form-group row" v-if="data.articleType === 1">
-				<label for="Dishes" class="col-sm-2 col-form-label">{{ $t('Dishes') }}:</label>
-				<div class="col-sm-10">
-					<div class="row">
-						<div class="col">
-							<input type="number" class="form-control mb-3" id="Dishes" :placeholder="$t('Dishes')" v-model="dishes">
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<fieldset class="form-group" v-if="data.articleType === 1">
-				<div class="row">
-					<label class="col-form-label col-sm-2 pt-0">{{ $t('Ingredients') }}:</label>
+				<div class="form-group row">
+					<label for="YoutubeLink" class="col-sm-2 col-form-label">Youtube Link:</label>
 					<div class="col-sm-10">
-						<table class="table text-center" v-if="ingredients.length!==0">
-							<thead>
-							<tr>
-								<th scope="col">{{ $t('Ingredient') }}</th>
-								<th scope="col">{{ $t('Quantity') }}</th>
-								<th scope="col">{{ $t('Unit') }}</th>
-								<th scope="col">{{ $t('Main Ingredient') }}</th>
-								<th scope="col">{{ $t('Delete') }}</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr v-for="(ingredient, index) in data.ingredients">
-								<td>{{ ingredient.ingredient.Name }}</td>
-								<td>{{ ingredient.quantity }}</td>
-								<td>{{ ingredient.ingredient.Unit }}</td>
-								<td>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" v-model="ingredient.isMainIngredient" :id="'isMainIngredientCheckbox' + index">
-									</div>
-								</td>
-								<td>
-									<a class="text-dark ml-2" @click="removeSelectedIngredient(index)"><i class="fas fa-trash"></i></a>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-						<div class="input-group mb-3">
-							<select class="custom-select" id="IngredientSelect" v-model="selectedIngredient">
-								<option v-for="ingredient in ingredients" :value="ingredient">{{ ingredient.Name }}</option>
-							</select>
-							<input type="number" class="form-control" id="IngredientQuantity" :placeholder="$t('Quantity')" v-model="selectedQuantity">
-							<div class="input-group-append">
-								<label class="input-group-text" for="selectArticleType" style="width: 10em">{{ selectedIngredient.Unit }}</label>
+						<div class="row">
+							<div class="col">
+								<input type="text" class="form-control mb-3" id="YoutubeLink" placeholder="YouTube Link" v-model="youtubeLink">
 							</div>
-							<div class="btn bgGreen0 text-white ml-2" @click="selectIngredient()"><i class="fas fa-plus"></i> Add</div>
 						</div>
 					</div>
 				</div>
-			</fieldset>
 
+				<div class="form-group row">
+					<label for="Dishes" class="col-sm-2 col-form-label">{{ $t('Dishes') }}:</label>
+					<div class="col-sm-10">
+						<div class="row">
+							<div class="col">
+								<input type="number" class="form-control mb-3" id="Dishes" :placeholder="$t('Dishes')" v-model="dishes">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="ReadyIn" class="col-sm-2 col-form-label">{{ $t('Ready in') }} (minutes):</label>
+					<div class="col-sm-10">
+						<div class="row">
+							<div class="col">
+								<input type="number" class="form-control mb-3" id="ReadyIn" :placeholder="$t('Ready in')" v-model="readyIn">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<fieldset class="form-group">
+					<div class="row">
+						<label class="col-form-label col-sm-2 pt-0">{{ $t('Ingredients') }}:</label>
+						<div class="col-sm-10">
+							<table class="table text-center" v-if="ingredients.length!==0">
+								<thead>
+								<tr>
+									<th scope="col">{{ $t('Ingredient') }}</th>
+									<th scope="col">{{ $t('Quantity') }}</th>
+									<th scope="col">{{ $t('Unit') }}</th>
+									<th scope="col">{{ $t('Main Ingredient') }}</th>
+									<th scope="col">{{ $t('Delete') }}</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr v-for="(ingredient, index) in data.ingredients">
+									<td>{{ ingredient.ingredient.Name }}</td>
+									<td>{{ ingredient.quantity }}</td>
+									<td>{{ ingredient.ingredient.Unit }}</td>
+									<td>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" v-model="ingredient.isMainIngredient" :id="'isMainIngredientCheckbox' + index">
+										</div>
+									</td>
+									<td>
+										<a class="text-dark ml-2" @click="removeSelectedIngredient(index)"><i class="fas fa-trash"></i></a>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+							<div class="input-group mb-3">
+								<select class="custom-select" id="IngredientSelect" v-model="selectedIngredient">
+									<option v-for="ingredient in ingredients" :value="ingredient">{{ ingredient.Name }}</option>
+								</select>
+								<input type="number" class="form-control" id="IngredientQuantity" :placeholder="$t('Quantity')" v-model="selectedQuantity">
+								<div class="input-group-append">
+									<label class="input-group-text" for="selectArticleType" style="width: 10em">{{ selectedIngredient.Unit }}</label>
+								</div>
+								<div class="btn bgGreen0 text-white ml-2" @click="selectIngredient()"><i class="fas fa-plus"></i> Add</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</div>
 			<hr class="my-5">
 
 			<div class="form-group row">
@@ -183,6 +195,7 @@
 				image: null,
 				selectedIngredients: [],
 				dishes: 0,
+				readyIn: 0,
 				youtubeLink: ''
 			};
 		},
@@ -284,11 +297,14 @@
 				this.data.ingredients.splice(index, 1);
 			},
 			saveArticle: function () {
+				var data = Object.assign({}, this.data);
 				if (this.data.articleType === 1) {
-					this.data.ingredients = this.selectedIngredients;
-					this.data.dishes = this.dishes;
-					if (this.youtubeLink !== '') this.data.youtubeLink = this.youtubeLink;
+					data.ingredients = this.selectedIngredients;
+					data.dishes = this.dishes;
+					data.readyIn = this.readyIn;
+					data.youtubeLink = this.youtubeLink;
 				}
+				// console.log(data);
 				this.$http.post('/api/newArticle/', this.data)
 					.then((response) => {
 						console.log(response);
