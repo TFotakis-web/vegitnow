@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<div class="row py-4">
-			<router-link :to="{ name: 'RecipeView', params: { id: recipe.id }}" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Read More') }}</router-link>
+			<router-link :to="{ name: 'RecipeView', params: { id: recipe.id }}" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Read more') }}</router-link>
 			<router-link :to="{ name: 'RecipeView', params: { id: recipe.id }}" class="btn px-4 bg-info text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Edit') }}</router-link>
 			<router-link :to="{ name: 'RecipeView', params: { id: recipe.id }}" class="btn px-4 bg-danger text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Delete') }}</router-link>
 		</div>
