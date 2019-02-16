@@ -1,6 +1,6 @@
 <template>
 	<div id="CreateArticleComponent" class="mb-5 h-100">
-		<div class="navbar-placeholder"></div>
+		<!--<div class="navbar-placeholder"></div>-->
 		<div id="createArticle" class="container mb-5">
 			<!--<h1 class="text-center">{{ $t('Create Article') }}</h1>-->
 			<div class="input-group mb-3" style="width: fit-content">
@@ -74,6 +74,29 @@
 						<button type="button" class="btn bgGreen0 text-white" @click="deleteLanguage(index)"><i class="fas fa-trash"></i> {{ $t('Delete') }}</button>
 					</div>
 				</div>
+
+				<div v-if="data.articleType === 2">
+					<div class="form-group row">
+						<label for="AuthorName" class="col-sm-2 col-form-label">Youtube Link:</label>
+						<div class="col-sm-10">
+							<div class="row">
+								<div class="col">
+									<input type="text" class="form-control mb-3" id="AuthorName" placeholder="AuthorName" v-model="article.authorName">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="AuthorProfession" class="col-sm-2 col-form-label">Author Profession:</label>
+						<div class="col-sm-10">
+							<div class="row">
+								<div class="col">
+									<input type="text" class="form-control mb-3" id="AuthorProfession" placeholder="Author Profession" v-model="article.authorProfession">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</form>
 
 			<div class="form-group row">
@@ -127,16 +150,16 @@
 								<tr>
 									<th scope="col">{{ $t('Ingredient') }}</th>
 									<th scope="col">{{ $t('Quantity') }}</th>
-									<th scope="col">{{ $t('Unit') }}</th>
+									<!--<th scope="col">{{ $t('Unit') }}</th>-->
 									<th scope="col">{{ $t('Main Ingredient') }}</th>
 									<th scope="col">{{ $t('Delete') }}</th>
 								</tr>
 								</thead>
 								<tbody>
-								<tr v-for="(ingredient, index) in data.ingredients">
+								<tr v-for="(ingredient, index) in selectedIngredients">
 									<td>{{ ingredient.ingredient.Name }}</td>
 									<td>{{ ingredient.quantity }}</td>
-									<td>{{ ingredient.ingredient.Unit }}</td>
+									<!--<td>{{ ingredient.ingredient.Unit }}</td>-->
 									<td>
 										<div class="form-check form-check-inline">
 											<input class="form-check-input" type="checkbox" v-model="ingredient.isMainIngredient" :id="'isMainIngredientCheckbox' + index">
@@ -153,9 +176,9 @@
 									<option v-for="ingredient in ingredients" :value="ingredient">{{ ingredient.Name }}</option>
 								</select>
 								<input type="number" class="form-control" id="IngredientQuantity" :placeholder="$t('Quantity')" v-model="selectedQuantity">
-								<div class="input-group-append">
-									<label class="input-group-text" for="selectArticleType" style="width: 10em">{{ selectedIngredient.Unit }}</label>
-								</div>
+								<!--<div class="input-group-append">-->
+								<!--<label class="input-group-text" for="selectArticleType" style="width: 10em">{{ selectedIngredient.Unit }}</label>-->
+								<!--</div>-->
 								<div class="btn bgGreen0 text-white ml-2" @click="selectIngredient()"><i class="fas fa-plus"></i> Add</div>
 							</div>
 						</div>
@@ -196,7 +219,9 @@
 				selectedIngredients: [],
 				dishes: 0,
 				readyIn: 0,
-				youtubeLink: ''
+				youtubeLink: '',
+				authorName: '',
+				authorProfession: ''
 			};
 		},
 		mounted: function () {
@@ -235,12 +260,6 @@
 					.catch((err) => {
 						console.log(err);
 					});
-				// this.ingredients = [
-				// 	{id: 1, Name: 'Fava', Unit: 'gr'},
-				// 	{id: 2, Name: 'Fakies', Unit: 'gr'},
-				// 	{id: 3, Name: 'Ntomata', Unit: 'pcs'},
-				// 	{id: 4, Name: 'Aggouri', Unit: 'pcs'}
-				// ];
 			},
 			addTranslation: function () {
 				this.data.translations.push({
@@ -252,9 +271,10 @@
 						date: null,
 						time: null
 					},
-					doneEditing: false
+					doneEditing: false,
+					authorName: '',
+					authorProfession: ''
 				});
-
 				$('#ArticleContent').summernote({
 					placeholder: 'Article content...',
 					tabsize: 2,
@@ -294,18 +314,26 @@
 				});
 			},
 			removeSelectedIngredient: function (index) {
-				this.data.ingredients.splice(index, 1);
+				this.selectedIngredients.splice(index, 1);
 			},
 			saveArticle: function () {
 				var data = Object.assign({}, this.data);
 				if (this.data.articleType === 1) {
-					data.ingredients = this.selectedIngredients;
+					data.ingredients = [];
+					this.selectedIngredients.forEach(function (ingredient) {
+						data.ingredients.push({
+							ingredientId: ingredient.ingredient.id,
+							isMainIngredient: ingredient.isMainIngredient,
+							quantity: ingredient.quantity
+						});
+					});
+					// data.ingredients = this.selectedIngredients;
 					data.dishes = this.dishes;
 					data.readyIn = this.readyIn;
 					data.youtubeLink = this.youtubeLink;
 				}
 				// console.log(data);
-				this.$http.post('/api/newArticle/', this.data)
+				this.$http.post('/api/newArticle/', data)
 					.then((response) => {
 						console.log(response);
 					})
