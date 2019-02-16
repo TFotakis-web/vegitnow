@@ -15,7 +15,9 @@
 						</div>
 						<div class="col-sm-4" style="border-left: dashed 2px #327317; border-right: dashed 2px #327317">
 							<h2 class="fgGreen1">{{ $t('Main Ingredients') }}:</h2>
-							<p class="font-weight-bold mb-sm-0">{{ article.MainIngredients }}</p>
+							<p class="font-weight-bold mb-sm-0">
+								<span v-for="(ingredient, index) in articleMainIngredients">{{ ingredient.data.Name }}<span v-if="index !== articleMainIngredients.length - 1"> - </span></span>
+							</p>
 						</div>
 						<div class="col-sm-4">
 							<h2 class="fgGreen1">{{ $t('Dishes') }}:</h2>
@@ -30,13 +32,7 @@
 				<div class="row py-5">
 					<div class="col-sm-4 text-center">
 						<h2 class="fgGreen1">{{ $t('Ingredients') }}</h2>
-						<p v-for="ingredient in article.ingredients">{{ ingredient }}</p>
-
-						<!--<p>Λευκό ξύδι (4 κ.σ.)</p>-->
-						<!--<p>1 κ.γ. πιπέρι</p>-->
-						<!--<p>1 φύλλο δάφνης</p>-->
-						<!--<p>1 κ.σ. αλάτι</p>-->
-						<!--<p>3 - 4 αυγά</p>-->
+						<p v-for="ingredient in articleIngredients">{{ ingredient.Quantity }}gr {{ ingredient.data.Name }}</p>
 					</div>
 					<div class="col-sm-8" style="border-left: dashed 2px #327317;">
 						<h2 class="fgGreen1 text-center text-sm-left">{{ $t('Execution') }}</h2>
@@ -45,7 +41,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="VideoAndNutrition" class="bgGreen1" style="clip-path: polygon(2% 0%, 98% 0%, 98.5% 20%, 97% 60%, 97% 85%, 98% 100%, 2% 100%, 3% 60%, 1.5% 20%);">
+		<div id="VideoAndNutrition" v-if="article.YoutubeLink !== ''" class="bgGreen1" style="clip-path: polygon(2% 0%, 98% 0%, 98.5% 20%, 97% 60%, 97% 85%, 98% 100%, 2% 100%, 3% 60%, 1.5% 20%);">
 			<div class="container py-5 text-center">
 				<div class="row">
 					<div class="col-sm-4 text-sm-right">
@@ -53,7 +49,7 @@
 					</div>
 					<div class="col-sm-8">
 						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/LRYdGgH9YQk" allowfullscreen></iframe>
+							<iframe class="embed-responsive-item" :src="article.YoutubeLink" allowfullscreen></iframe>
 						</div>
 					</div>
 				</div>
@@ -84,14 +80,50 @@
 		data: function () {
 			return {
 				id: 0,
-				article: {}
+				article: {},
+				articleIngredients: [],
+				ingredients: []
 			};
+		},
+		computed: {
+			articleMainIngredients: function () {
+				return this.articleIngredients.filter(function (ingredient) {
+					return ingredient.IsMainIngredient;
+				});
+			}
 		},
 		methods: {
 			getArticleData: function () {
 				this.$http.get('/api/articleContentTranslation/' + this.id + '/')
 					.then((response) => {
 						this.article = response.data;
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+				this.$http.get('/api/ingredientAssociation/' + this.id + '/')
+					.then((response) => {
+						var articleIngredients = response.data;
+						this.$http.get('/api/ingredient/')
+							.then((response) => {
+								this.ingredients = response.data;
+								for (var i = 0; i < articleIngredients.length; i++) {
+									articleIngredients[i].data = this.ingredients[articleIngredients[i].Ingredient];
+								}
+								this.articleIngredients = articleIngredients;
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			},
+			getIngredients: function () {
+				this.$http.get('/api/ingredient/')
+					.then((response) => {
+						this.ingredients = response.data;
 					})
 					.catch((err) => {
 						console.log(err);
@@ -103,6 +135,7 @@
 		},
 		mounted: function () {
 			this.getArticleData();
+			// this.getIngredients();
 		}
 	};
 </script>
