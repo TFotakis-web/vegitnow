@@ -97,20 +97,20 @@
 				this.$http.get('/api/articleContentTranslation/' + this.id + '/')
 					.then((response) => {
 						this.article = response.data;
-					})
-					.catch((err) => {
-						console.log(err);
-					});
-				this.$http.get('/api/ingredientAssociation/' + this.id + '/')
-					.then((response) => {
-						var articleIngredients = response.data;
-						this.$http.get('/api/ingredient/')
+						this.$http.get('/api/ingredientAssociation/' + this.article.Article + '/')
 							.then((response) => {
-								this.ingredients = response.data;
-								for (var i = 0; i < articleIngredients.length; i++) {
-									articleIngredients[i].data = this.ingredients[articleIngredients[i].Ingredient];
-								}
-								this.articleIngredients = articleIngredients;
+								var articleIngredients = response.data;
+								this.$http.get('/api/ingredient/')
+									.then((response) => {
+										this.ingredients = response.data;
+										for (var i = 0; i < articleIngredients.length; i++) {
+											articleIngredients[i].data = this.ingredients[articleIngredients[i].Ingredient];
+										}
+										this.articleIngredients = articleIngredients;
+									})
+									.catch((err) => {
+										console.log(err);
+									});
 							})
 							.catch((err) => {
 								console.log(err);
