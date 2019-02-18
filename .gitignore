@@ -4,3 +4,5 @@ __pycache__/
 venv/
 .venvArch/
 .venvWindows/
+frontend/dist/
+frontend/webpack-stats.json
