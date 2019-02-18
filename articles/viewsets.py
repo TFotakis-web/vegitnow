@@ -146,8 +146,8 @@ class NewArticleViewSet(viewsets.ViewSet):
 				act.ReadyIn = request.data['readyIn']
 				act.YoutubeLink = request.data['youtubeLink']
 			elif at == 2:
-				act.AuthorName = request.data['authorName']
-				act.AuthorProfession = request.data['authorProfession']
+				act.AuthorName = translation['authorName']
+				act.AuthorProfession = translation['authorProfession']
 			act.save()
 		if at == 1:
 			ingredients = request.data['ingredients']
