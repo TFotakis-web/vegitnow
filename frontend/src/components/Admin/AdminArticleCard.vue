@@ -4,7 +4,7 @@
 			<div class="col-6">
 				<h4>{{ article.Title }}</h4>
 				<hr class="fgGreen1" style="border-top: dashed 2px;">
-				<p style="font-size: 0.8em;">{{ article.Content }}</p>
+				<p style="font-size: 0.8em;">{{ article.Preview }}</p>
 			</div>
 			<div class="col-6 d-table">
 				<div class="d-table-cell align-middle">
