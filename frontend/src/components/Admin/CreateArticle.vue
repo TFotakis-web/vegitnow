@@ -77,11 +77,11 @@
 
 				<div v-if="data.articleType === 2">
 					<div class="form-group row">
-						<label for="AuthorName" class="col-sm-2 col-form-label">Youtube Link:</label>
+						<label for="AuthorName" class="col-sm-2 col-form-label">Author Name:</label>
 						<div class="col-sm-10">
 							<div class="row">
 								<div class="col">
-									<input type="text" class="form-control mb-3" id="AuthorName" placeholder="AuthorName" v-model="article.authorName">
+									<input type="text" class="form-control mb-3" id="AuthorName" placeholder="Author Name" v-model="article.authorName">
 								</div>
 							</div>
 						</div>
