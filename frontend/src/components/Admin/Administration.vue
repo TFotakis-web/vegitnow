@@ -8,6 +8,7 @@
 			<router-link :to="{ name: 'AdminArticleList' }" class="col">{{ $t('Articles') }}</router-link>
 			<router-link :to="{ name: 'AdminRecipeList' }" class="col">{{ $t('Recipes') }}</router-link>
 			<router-link :to="{ name: 'AdminIngredientList' }" class="col">{{ $t('Ingredients') }}</router-link>
+			<router-link :to="{ name: 'AdminStaticPages' }" class="col">{{ $t('Static Pages') }}</router-link>
 		</div>
 		</div>
 		<hr>
