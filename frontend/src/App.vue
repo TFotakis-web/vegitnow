@@ -2,7 +2,10 @@
 	<div id="app" class="d-flex flex-column" style="min-height: 100vh;">
 		<div class="flex-grow-1">
 			<NavigationBar></NavigationBar>
-			<router-view></router-view>
+			<transition name="fade">
+				<!--<router-view/>-->
+				<router-view :key="$route.fullPath"/>
+			</transition>
 		</div>
 		<Footer></Footer>
 	</div>
@@ -29,3 +32,32 @@
 <style src="../static/css/fontello.css"></style>
 <style src="../static/css/colorPalette.css"></style>
 <style src="../static/css/style.css"></style>
+
+<style>
+	.fade-enter-active {
+	animation: fadeIn 1s ease-out;
+	}
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+
+	.fade-leave-active {
+		animation: fadeOut 1s ease-in;
+	}
+
+	@keyframes fadeOut {
+		0% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+</style>
