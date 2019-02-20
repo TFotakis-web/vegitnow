@@ -4,6 +4,7 @@ import AdminArticleList from '../components/Admin/AdminArticleList';
 import AdminRecipeList from '../components/Admin/AdminRecipeList';
 import AdminIngredientList from '../components/Admin/AdminIngredientList';
 import MainAdministration from '../components/Admin/MainAdministration';
+import AdminStaticPages from '../components/Admin/AdminStaticPages';
 
 const basePath = '/s6AptmegHaGM3Ry5vdlr/';
 
@@ -43,6 +44,11 @@ export default [
 						path: basePath + 'admin/ingredients/',
 						name: 'AdminIngredientList',
 						component: AdminIngredientList
+					},
+					{
+						path: basePath + 'admin/staticPages/',
+						name: 'AdminStaticPages',
+						component: AdminStaticPages
 					}
 				]
 			}
