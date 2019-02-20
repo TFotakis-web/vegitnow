@@ -9,6 +9,7 @@ import Shop from '../components/Various/Shop';
 import AdminUrls from './Admin';
 import ArticleUrls from './Articles';
 import RecipeUrls from './Recipes';
+import StaticPage from '../components/Various/StaticPage';
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ var routes = [
 		path: '/who_we_are/',
 		name: 'WhoWeAre',
 		component: WhoWeAre
+	},
+	{
+		path: '/staticPage/:id/',
+		name: 'StaticPage',
+		component: StaticPage
 	},
 	{
 		path: '/shop/',
