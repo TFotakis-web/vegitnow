@@ -41,5 +41,11 @@ routes = routes.concat(RecipeUrls);
 
 export default new Router({
 	mode: 'history',
-	routes: routes
+	routes: routes,
+	scrollBehavior: function (to, from, savedPosition) {
+		if (savedPosition) {
+			return savedPosition;
+		}
+		return {x: 0, y: 0};
+	}
 });
