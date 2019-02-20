@@ -49,7 +49,7 @@
 
 
 	.fade-leave-active {
-		animation: fadeOut 1s ease-in;
+		animation: fadeOut 0.3s ease-in;
 	}
 
 	@keyframes fadeOut {
