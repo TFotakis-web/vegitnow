@@ -79,7 +79,7 @@
 		},
 		data: function () {
 			return {
-				id: 0,
+				id: this.$route.params['id'],
 				article: {},
 				articleIngredients: [],
 				ingredients: []
@@ -119,23 +119,10 @@
 					.catch((err) => {
 						console.log(err);
 					});
-			},
-			getIngredients: function () {
-				this.$http.get('/api/ingredient/')
-					.then((response) => {
-						this.ingredients = response.data;
-					})
-					.catch((err) => {
-						console.log(err);
-					});
 			}
-		},
-		created: function () {
-			this.id = this.$route.params.id;
 		},
 		mounted: function () {
 			this.getArticleData();
-			// this.getIngredients();
 		}
 	};
 </script>

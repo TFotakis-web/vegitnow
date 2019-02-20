@@ -121,7 +121,7 @@
 		},
 		data: function () {
 			return {
-				id: 0,
+				id: this.$route.params['id'],
 				article: {}
 			};
 		},
@@ -135,9 +135,6 @@
 						console.log(err);
 					});
 			}
-		},
-		created: function () {
-			this.id = this.$route.params.id;
 		},
 		mounted: function () {
 			this.getArticleData();
