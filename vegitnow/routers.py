@@ -1,7 +1,7 @@
 from rest_framework import routers
 
 from articles.viewsets import ArticleViewSet, ArticleContentTranslationViewSet, ArticleTypeViewSet, ArticleTypeNameTranslationViewSet, ArticleTypeAssociationViewSet, TagViewSet, TagNameTranslationViewSet, TagAssociationViewSet, NewArticleViewSet, IngredientViewSet, IngredientNameTranslationViewSet, IngredientAssociationViewSet, UnitViewSet, UnitNameTranslationViewSet, NewIngredientViewSet
-from general.viewsets import LanguageViewSet
+from general.viewsets import LanguageViewSet, StaticPageViewSet, StaticPageTranslationViewSet
 
 router = routers.DefaultRouter()
 
@@ -23,3 +23,5 @@ router.register(r'unitNameTranslation', UnitNameTranslationViewSet)
 # router.register(r'unitAssociation', UnitAssociationViewSet)
 router.register(r'newArticle', NewArticleViewSet, basename='newArticle')
 router.register(r'newIngredient', NewIngredientViewSet, basename='newIngredient')
+router.register(r'staticPage', StaticPageViewSet, basename='staticPage')
+router.register(r'staticPageTranslation', StaticPageTranslationViewSet, basename='staticPageTranslation')
