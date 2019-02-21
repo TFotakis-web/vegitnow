@@ -19,16 +19,16 @@ var routes = [
 		name: 'Home',
 		component: Home
 	},
-	{
-		path: '/communication/',
-		name: 'Communication',
-		component: Communication
-	},
-	{
-		path: '/who_we_are/',
-		name: 'WhoWeAre',
-		component: WhoWeAre
-	},
+	// {
+	// 	path: '/communication/',
+	// 	name: 'Communication',
+	// 	component: Communication
+	// },
+	// {
+	// 	path: '/who_we_are/',
+	// 	name: 'WhoWeAre',
+	// 	component: WhoWeAre
+	// },
 	{
 		path: '/staticPage/:id/',
 		name: 'StaticPage',
