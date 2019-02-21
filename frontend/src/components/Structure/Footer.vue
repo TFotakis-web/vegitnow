@@ -31,6 +31,7 @@
 						<div class="container-fluid">
 							<div class="row" style="font-size: 0.7rem">
 								<div class="col-md-6">
+									<router-link class="text-dark d-block" :to="{ name: 'StaticPage', params: { id: key }}" :key="key" v-for="(page, key) in currentLanguageStaticPages">{{ page['Name'] }}</router-link>
 									<!--<a href="#" class="text-dark d-block">{{ $t('About') }}</a>-->
 									<!--<a href="#" class="text-dark d-block">{{ $t('Donate') }}</a>-->
 									<!--<a href="#" class="text-dark d-block">{{ $t('Jobs') }}</a>-->
@@ -60,7 +61,31 @@
 
 <script>
 	export default {
-		name: 'Footer'
+		name: 'Footer',
+		data: function () {
+			return {
+				staticPages: {}
+			};
+		},
+		mounted: function () {
+			this.getStaticPages();
+		},
+		methods: {
+			getStaticPages: function () {
+				this.$http.get('/api/staticPage/')
+					.then((response) => {
+						this.staticPages = response.data;
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			}
+		},
+		computed: {
+			currentLanguageStaticPages: function () {
+				return this.staticPages['1'];
+			}
+		}
 	};
 </script>
 
