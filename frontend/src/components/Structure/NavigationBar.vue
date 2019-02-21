@@ -16,12 +16,12 @@
 						<li class="nav-item">
 							<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold">{{ $t('Articles') }}</router-link>
 						</li>
-						<li class="nav-item">
-							<router-link :to="{ name: 'WhoWeAre' }" class="nav-link font-weight-bold">{{ $t('Who we are') }}</router-link>
-						</li>
-						<li class="nav-item">
-							<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">{{ $t('Communication') }}</router-link>
-						</li>
+						<!--<li class="nav-item">-->
+							<!--<router-link :to="{ name: 'WhoWeAre' }" class="nav-link font-weight-bold">{{ $t('Who we are') }}</router-link>-->
+						<!--</li>-->
+						<!--<li class="nav-item">-->
+							<!--<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">{{ $t('Communication') }}</router-link>-->
+						<!--</li>-->
 						<!--<li class="nav-item">-->
 							<!--<router-link :to="{ name: 'Shop' }" class="nav-link">-->
 								<!--<div class="vegShop-btn">-->
@@ -57,12 +57,12 @@
 							<li class="nav-item">
 								<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold">{{ $t('Articles') }}</router-link>
 							</li>
-							<li class="nav-item">
-								<router-link :to="{ name: 'WhoWeAre' }" class="nav-link font-weight-bold">{{ $t('Who we are') }}</router-link>
-							</li>
-							<li class="nav-item">
-								<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">{{ $t('Communication') }}</router-link>
-							</li>
+							<!--<li class="nav-item">-->
+								<!--<router-link :to="{ name: 'WhoWeAre' }" class="nav-link font-weight-bold">{{ $t('Who we are') }}</router-link>-->
+							<!--</li>-->
+							<!--<li class="nav-item">-->
+								<!--<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">{{ $t('Communication') }}</router-link>-->
+							<!--</li>-->
 						</ul>
 					</div>
 					<div class="">
