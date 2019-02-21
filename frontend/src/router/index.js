@@ -2,8 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../components/Home/Home';
 
-import Communication from '../components/Various/Communication';
-import WhoWeAre from '../components/Various/WhoWeAre';
+// import Communication from '../components/Various/Communication';
+// import WhoWeAre from '../components/Various/WhoWeAre';
 import Shop from '../components/Various/Shop';
 
 import AdminUrls from './Admin';
