@@ -1,10 +1,10 @@
 <template>
-	<div>
-		<Carousel></Carousel>
-		<JoinOurFamily></JoinOurFamily>
-		<IngredientOfTheDay></IngredientOfTheDay>
-		<RecommendedRecipes></RecommendedRecipes>
-		<RecommendedArticles></RecommendedArticles>
+	<div class="flex-grow-1">
+		<Carousel/>
+		<JoinOurFamily/>
+		<IngredientOfTheDay/>
+		<RecommendedRecipes/>
+		<RecommendedArticles/>
 	</div>
 </template>
 
