@@ -1,6 +1,7 @@
 <template>
 	<div id="app" class="d-flex flex-column" style="min-height: 100vh;">
-		<div class="flex-grow-1">
+		<!--<div class="flex-grow-1">-->
+		<div class="d-flex flex-grow-1">
 			<NavigationBar></NavigationBar>
 			<transition name="fade">
 				<!--<router-view/>-->
