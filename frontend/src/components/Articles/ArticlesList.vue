@@ -1,10 +1,13 @@
 <template>
-	<div>
-		<div class="navbar-placeholder"></div>
-		<div class="container">
-			<h1>{{ $t('Articles') }}</h1>
-			<div class="row">
-				<ArticleCard v-for="article in articles" :key="article.id" :article="article"></ArticleCard>
+	<div class="d-flex flex-grow-1">
+		<Loader v-if="requestsUnsatisfied"/>
+		<div v-if="!requestsUnsatisfied" class="flex-grow-1">
+			<div class="navbar-placeholder"></div>
+			<div class="container">
+				<h1>{{ $t('Articles') }}</h1>
+				<div class="row">
+					<ArticleCard v-for="article in articles" :key="article.id" :article="article"></ArticleCard>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -12,42 +15,51 @@
 
 <script>
 	import ArticleCard from './ArticleCard';
+	import Loader from '../Structure/Loader';
 
 	export default {
 		name: 'ArticlesList',
 		components: {
-			ArticleCard
+			ArticleCard,
+			Loader
 		},
 		data: function () {
 			return {
 				articleList: [],
 				articleContentTranslation: [],
-				articleTypeAssociation: []
+				articleTypeAssociation: [],
+				requestsUnsatisfied: 0
 			};
 		},
 		methods: {
 			getArticles: function () {
+				this.requestsUnsatisfied++;
 				this.$http.get('/api/article/')
 					.then((response) => {
 						this.articleList = response.data;
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
 					});
 			},
 			getArticleContentTranslation: function () {
+				this.requestsUnsatisfied++;
 				this.$http.get('/api/articleContentTranslation/')
 					.then((response) => {
 						this.articleContentTranslation = response.data;
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
 					});
 			},
 			getArticleTypeAssociation: function () {
+				this.requestsUnsatisfied++;
 				this.$http.get('/api/articleTypeAssociation/')
 					.then((response) => {
 						this.articleTypeAssociation = response.data;
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
