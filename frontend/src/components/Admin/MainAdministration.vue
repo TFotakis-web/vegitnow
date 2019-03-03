@@ -1,5 +1,5 @@
 <template>
-	<div id="Administration" class="mb-5 h-100">
+	<div id="MainAdministration" class="d-flex flex-column flex-grow-1">
 		<div class="navbar-placeholder"></div>
 		<div class="container">
 			<div class="row">
