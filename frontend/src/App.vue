@@ -3,10 +3,10 @@
 		<!--<div class="flex-grow-1">-->
 		<div class="d-flex flex-grow-1">
 			<NavigationBar></NavigationBar>
-			<transition name="fade">
+			<!--<transition name="fade">-->
 				<!--<router-view/>-->
 				<router-view :key="$route.fullPath"/>
-			</transition>
+			<!--</transition>-->
 		</div>
 		<Footer></Footer>
 	</div>
