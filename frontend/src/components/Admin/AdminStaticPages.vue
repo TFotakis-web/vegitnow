@@ -1,5 +1,5 @@
 <template>
-	<div id="AdminStaticPages" class="mb-5 h-100" v-if="!requestsUnsatisfied">
+	<div id="AdminStaticPages" class="mb-5 h-100 w-100" v-if="!requestsUnsatisfied">
 		<div id="accordion" class="container">
 			<div class="card" v-for="(page, key) in staticPages">
 				<div class="card-header" :id="'heading' + key">
