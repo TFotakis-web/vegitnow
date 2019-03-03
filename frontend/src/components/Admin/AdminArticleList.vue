@@ -1,51 +1,63 @@
 <template>
-	<div id="AdminArticleList" class="container mb-5 h-100">
-		<!--<div class="navbar-placeholder"></div>-->
-		<!--<h1 class="text-center">Admin Article List</h1>-->
-		<div class="row">
-			<ArticleCard v-for="article in articles" :key="article.id" :article="article"></ArticleCard>
+	<div class="d-flex flex-grow-1">
+		<Loader v-if="requestsUnsatisfied"/>
+		<div id="AdminArticleList" v-if="!requestsUnsatisfied" class="flex-grow-1 container">
+			<!--<div class="navbar-placeholder"></div>-->
+			<!--<h1 class="text-center">Admin Article List</h1>-->
+			<div class="row">
+				<ArticleCard v-for="article in articles" :key="article.id" :article="article"></ArticleCard>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 	import ArticleCard from './AdminArticleCard';
+	import Loader from '../Structure/Loader';
 
 	export default {
 		name: 'AdminArticleList',
 		components: {
-			ArticleCard
+			ArticleCard,
+			Loader
 		},
 		data: function () {
 			return {
 				articleList: [],
 				articleContentTranslation: [],
-				articleTypeAssociation: []
+				articleTypeAssociation: [],
+				requestsUnsatisfied: 0
 			};
 		},
 		methods: {
 			getArticles: function () {
+				this.requestsUnsatisfied++;
 				this.$http.get('/api/article/')
 					.then((response) => {
 						this.articleList = response.data;
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
 					});
 			},
 			getArticleContentTranslation: function () {
+				this.requestsUnsatisfied++;
 				this.$http.get('/api/articleContentTranslation/')
 					.then((response) => {
 						this.articleContentTranslation = response.data;
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
 					});
 			},
 			getArticleTypeAssociation: function () {
+				this.requestsUnsatisfied++;
 				this.$http.get('/api/articleTypeAssociation/')
 					.then((response) => {
 						this.articleTypeAssociation = response.data;
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
