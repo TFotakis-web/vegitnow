@@ -1,9 +1,9 @@
 <template>
-	<div id="CreateArticleComponent" class="mb-5 h-100">
+	<div id="CreateArticleComponent" class="mb-5 h-100 w-100">
 		<!--<div class="navbar-placeholder"></div>-->
 		<div id="createArticle" class="container mb-5">
 			<!--<h1 class="text-center">{{ $t('Create Article') }}</h1>-->
-			<div class="input-group mb-3" style="width: fit-content">
+			<div id="ArticleTypeInput" class="input-group mb-3" style="width: fit-content">
 				<div class="input-group-prepend">
 					<label class="input-group-text" for="selectArticleType">{{ $t('Create a new') }}</label>
 				</div>
@@ -12,8 +12,8 @@
 				</select>
 			</div>
 
-			<form class="pb-3" v-for="(article, index) in data.translations">
-				<div class="form-group row">
+			<form id="ArticleTranslations" class="pb-3" v-for="(article, index) in data.translations">
+				<div :id="'ArticleLanguageInput' + index" class="form-group row">
 					<label for="ArticleLanguage" class="col-sm-2 col-form-label">{{ $t('Select Language') }}:</label>
 					<div class="col-sm-10">
 						<select class="custom-select" id="ArticleLanguage" v-model="article.language">
@@ -22,14 +22,14 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div :id="'ArticleTitleInput' + index" class="form-group row">
 					<label for="ArticleTitle" class="col-sm-2 col-form-label">{{ $t('Title') }}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="ArticleTitle" :placeholder="$t('Title')" v-model="article.title">
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div :id="'ArticleThumbnailInput' + index" class="form-group row">
 					<label class="col-sm-2 col-form-label">{{ $t('Thumbnail') }}:</label>
 					<div class="col-sm-10">
 						<div class="custom-file">
@@ -39,7 +39,7 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div :id="'ArticleContentInput' + index" class="form-group row">
 					<div class="col-sm-2">
 						<label>{{ $t('Content') }}:</label>
 					</div>
@@ -48,7 +48,14 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div :id="'ArticlePreviewInput' + index" v-if="data.articleType === 0" class="form-group row">
+					<label for="ArticlePreview" class="col-sm-2 col-form-label">Preview</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="ArticlePreview" :placeholder="Preview" v-model="article.preview">
+					</div>
+				</div>
+
+				<div :id="'ArticleReleaseDateTimeInput' + index" class="form-group row">
 					<label for="ArticleReleaseDate" class="col-sm-2 col-form-label">{{ $t('Release Date') }}:</label>
 					<div class="col-sm-10">
 						<div class="row">
@@ -62,21 +69,21 @@
 					</div>
 				</div>
 
-				<div class="form-check row">
+				<div :id="'ArticleMarkDoneEditing' + index" class="form-check row">
 					<div class="col">
 						<input type="checkbox" :id="'ArticleMarkDoneEditing' + index" class="form-check-input" v-model="article.doneEditing">
 						<label class="form-check-label" :for="'ArticleMarkDoneEditing' + index">{{ $t('Mark as Done Editing') }}</label>
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div :id="'ArticleDeleteTranslationInput' + index" class="form-group row">
 					<div class="col">
 						<button type="button" class="btn bgGreen0 text-white" @click="deleteLanguage(index)"><i class="fas fa-trash"></i> {{ $t('Delete') }}</button>
 					</div>
 				</div>
 
 				<div v-if="data.articleType === 2">
-					<div class="form-group row">
+					<div :id="'ArticleAuthorNameInput' + index" class="form-group row">
 						<label for="AuthorName" class="col-sm-2 col-form-label">Author Name:</label>
 						<div class="col-sm-10">
 							<div class="row">
@@ -86,7 +93,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group row">
+
+					<div :id="'ArticleAuthorProfessionInput' + index" class="form-group row">
 						<label for="AuthorProfession" class="col-sm-2 col-form-label">Author Profession:</label>
 						<div class="col-sm-10">
 							<div class="row">
@@ -99,7 +107,7 @@
 				</div>
 			</form>
 
-			<div class="form-group row">
+			<div id="AddLanguageInput" class="form-group row">
 				<div class="col">
 					<button type="button" class="btn bgGreen0 text-white" @click="addInitializedTranslation()"><i class="fas fa-plus"></i> {{ $t('Add Language') }}</button>
 				</div>
@@ -108,7 +116,7 @@
 			<div v-if="data.articleType === 1">
 				<hr class="my-5">
 
-				<div class="form-group row">
+				<div id="YoutubeLinkInput" class="form-group row">
 					<label for="YoutubeLink" class="col-sm-2 col-form-label">Youtube Link:</label>
 					<div class="col-sm-10">
 						<div class="row">
@@ -119,7 +127,7 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div id="DishesInput" class="form-group row">
 					<label for="Dishes" class="col-sm-2 col-form-label">{{ $t('Dishes') }}:</label>
 					<div class="col-sm-10">
 						<div class="row">
@@ -130,7 +138,7 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div id="ReadyInInput" class="form-group row">
 					<label for="ReadyIn" class="col-sm-2 col-form-label">{{ $t('Ready in') }} (minutes):</label>
 					<div class="col-sm-10">
 						<div class="row">
@@ -141,7 +149,7 @@
 					</div>
 				</div>
 
-				<fieldset class="form-group">
+				<fieldset id="IngredientsInput" class="form-group">
 					<div class="row">
 						<label class="col-form-label col-sm-2 pt-0">{{ $t('Ingredients') }}:</label>
 						<div class="col-sm-10">
@@ -187,7 +195,7 @@
 			</div>
 			<hr class="my-5">
 
-			<div class="form-group row">
+			<div id="SaveInput" class="form-group row">
 				<div class="col text-right">
 					<button type="button" class="btn bgGreen0 text-white" @click="saveArticle()"><i class="fas fa-save"></i> {{ $t('Save') }}</button>
 				</div>
@@ -265,6 +273,7 @@
 				this.data.translations.push({
 					language: null,
 					title: null,
+					preview: null,
 					content: '',
 					thumbnail: null,
 					releaseDateTime: {
@@ -341,80 +350,6 @@
 						console.log(err);
 					});
 			}
-			// ,
-			// 	getArticles: function () {
-			// 		this.loading = true;
-			// 		this.$http.get('/api/article/')
-			// 			.then((response) => {
-			// 				this.articles = response.data;
-			// 				this.loading = false;
-			// 			})
-			// 			.catch((err) => {
-			// 				this.loading = false;
-			// 				console.log(err);
-			// 			});
-			// 	},
-			// 	getArticle: function (id) {
-			// 		this.loading = true;
-			// 		this.$http.get('/api/article/' + id + '/', id)
-			// 			.then((response) => {
-			// 				this.currentArticle = {
-			// 					'id': response.data.id,
-			// 					'User': response.data.User,
-			// 					'UploadDateTime': response.data.UploadDateTime
-			// 				};
-			//
-			// 				// $("#editArticleModal").modal('show');
-			// 				this.loading = false;
-			// 			})
-			// 			.catch((err) => {
-			// 				this.loading = false;
-			// 				console.log(err);
-			// 			});
-			// 	},
-			// 	addArticle: function () {
-			// 		this.loading = true;
-			// 		this.$http.post('/api/article/', this.newArticle)
-			// 			.then((response) => {
-			// 				this.loading = false;
-			// 				this.getArticles();
-			// 			})
-			// 			.catch((err) => {
-			// 				this.loading = false;
-			// 				console.log(err);
-			// 			});
-			// 	},
-			// 	updateArticle: function () {
-			// 		this.loading = true;
-			// 		var updatedArticle = {
-			// 			'id': this.currentArticle.id,
-			// 			'User': this.currentArticle.User,
-			// 			'UploadDateTime': this.currentArticle.UploadDateTime
-			// 		};
-			// 		console.log(updatedArticle);
-			// 		this.$http.put('/api/article/' + this.currentArticle.id + '/', updatedArticle)
-			// 			.then((response) => {
-			// 				this.loading = false;
-			// 				this.currentArticle = response.data;
-			// 				this.getArticles();
-			// 			})
-			// 			.catch((err) => {
-			// 				this.loading = false;
-			// 				console.log(err);
-			// 			});
-			// 	},
-			// 	deleteArticle: function (id) {
-			// 		this.loading = true;
-			// 		this.$http.delete('/api/article/' + id + '/')
-			// 			.then((response) => {
-			// 				this.loading = false;
-			// 				this.getArticles();
-			// 			})
-			// 			.catch((err) => {
-			// 				this.loading = false;
-			// 				console.log(err);
-			// 			});
-			// 	}
 		}
 	};
 </script>
