@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from datetime import datetime
 
 from django.contrib.auth.models import User
@@ -119,18 +120,13 @@ class NewArticleViewSet(viewsets.ViewSet):
 	SAFE_ACTIONS = ['list', 'retrieve', 'create']
 
 	def list(self, request):
-		print('List')
 		return Response()
 
 	def create(self, request):
-		print('Create')
 		a = Article(User=User.objects.filter(is_superuser=True).first())
 		a.save()
 		at = request.data['articleType']
 		translations = request.data['translations']
-
-		print(at)
-		print(translations)
 		ata = ArticleTypeAssociation(Article=a, Type_id=at)
 		ata.save()
 		for translation in translations:
@@ -141,6 +137,9 @@ class NewArticleViewSet(viewsets.ViewSet):
 			dateStr = translation['releaseDateTime']['date'] + '-' + translation['releaseDateTime']['time'] + '-' + 'UTC'
 			act.ReleaseDateTime = datetime.strptime(dateStr, '%d/%m/%Y-%H:%M-%Z')
 			act.DoneEditing = translation['doneEditing']
+			soup = BeautifulSoup(translation['content'], features='html.parser')
+			rawText = soup.get_text()
+			act.Preview = (rawText[:100] if len(rawText) > 100 else rawText) + '...'
 			if at == 1:
 				act.Dishes = request.data['dishes']
 				act.ReadyIn = request.data['readyIn']
@@ -157,19 +156,15 @@ class NewArticleViewSet(viewsets.ViewSet):
 		return Response()
 
 	def retrieve(self, request, pk=None):
-		print('Retrieve')
 		return Response()
 
 	def update(self, request, pk=None):
-		print('Update')
 		return Response()
 
 	def partial_update(self, request, pk=None):
-		print('Patch')
 		return Response()
 
 	def destroy(self, request, pk=None):
-		print('Delete')
 		return Response()
 
 
@@ -178,11 +173,9 @@ class NewIngredientViewSet(viewsets.ViewSet):
 	SAFE_ACTIONS = ['list', 'retrieve', 'create']
 
 	def list(self, request):
-		print('List')
 		return Response()
 
 	def create(self, request):
-		print('Create')
 		ingredient = Ingredient(
 			Name=request.data['English'],
 			Language=Language.objects.get(Code='en'),
@@ -223,15 +216,12 @@ class NewIngredientViewSet(viewsets.ViewSet):
 		return Response()
 
 	def retrieve(self, request, pk=None):
-		print('Retrieve')
 		return Response()
 
 	def update(self, request, pk=None):
-		print('Update')
 		return Response()
 
 	def partial_update(self, request, pk=None):
-		print('Patch')
 		Ingredient.objects.filter(pk=pk).update(
 			Name=request.data['English'],
 			Calories=request.data['Calories'],
@@ -264,5 +254,4 @@ class NewIngredientViewSet(viewsets.ViewSet):
 		return Response()
 
 	def destroy(self, request, pk=None):
-		print('Delete')
 		return Response()
