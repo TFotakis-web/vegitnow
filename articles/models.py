@@ -35,6 +35,7 @@ class ArticleContentTranslation(models.Model):
 	Article = models.ForeignKey(Article, on_delete=models.CASCADE)
 	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
 	Title = models.CharField(default='', blank=True, null=True, max_length=1024)
+	Preview = models.CharField(default='', blank=True, null=True, max_length=150)
 	Content = models.TextField(blank=True)
 	Thumbnail = models.TextField(blank=True)
 	# Thumbnail = models.ImageField(default='Shared/defaultArticleThumbnail.png', upload_to='ArticleThumbnails/', blank=True)
@@ -49,10 +50,6 @@ class ArticleContentTranslation(models.Model):
 	@property
 	def Released(self):
 		return self.DoneEditing and (self.ReleaseDateTime is None or self.ReleaseDateTime.utctimetuple() <= datetime.now().astimezone().utctimetuple())
-
-	@property
-	def Preview(self):
-		return self.Content[:130] + '...' if len(self.Content) > 130 else self.Content
 
 	def __str__(self): return self.Language.Code + ': ' + self.Title
 
