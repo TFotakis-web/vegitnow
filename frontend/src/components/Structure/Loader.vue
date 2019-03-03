@@ -1,8 +1,8 @@
 <template>
-	<div class="d-flex flex-grow-1">
-		<div class="d-flex flex-grow-1 text-center">
+	<div class="d-flex flex-grow-1 text-center">
+		<!--<div class="d-flex flex-grow-1 ">-->
 			<img src="/static/img/v.png" alt="loader" height="40" class="loaderAnimation" style="margin: auto">
-		</div>
+		<!--</div>-->
 	</div>
 </template>
 
