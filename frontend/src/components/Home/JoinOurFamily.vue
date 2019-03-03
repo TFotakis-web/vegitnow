@@ -12,7 +12,7 @@
 							<h1 class="fgGreen0" style="margin-top: -50px; font-size: 4rem">Family</h1>
 						</div>
 						<div v-else>
-							<h1 class="fgGreen0" style="font-size: 6rem">Μπές</h1>
+							<h1 class="fgGreen0" style="font-size: 6rem">Μπες</h1>
 							<h1 class="fgGreen0" style="margin-top: -0.7em;margin-left: -3em;transform: rotate(-15deg);font-size: 3rem;">στην</h1>
 							<h1 class="fgGreen0" style="margin-top: -0.5em;font-size: 2.5rem;">ΟΙΚΟΓΕΝΕΙΑ</h1>
 							<img src="/static/img/v.png" alt="logo" style="margin-top: -175px;margin-right: -205px;height: 60px;">
