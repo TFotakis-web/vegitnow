@@ -1,7 +1,7 @@
 <template>
-	<div id="Administration" class="mb-5 h-100">
+	<div id="Administration" class="d-flex flex-column flex-grow-1">
 		<!--<div class="navbar-placeholder"></div>-->
-		<div class="container">
+		<div class="container h-100">
 			<div class="row text-center">
 				<!--<h1 class="text-center">Administration</h1>-->
 				<router-link :to="{ name: 'CreateArticle' }" class="col">{{ $t('Create New') }}</router-link>
@@ -10,11 +10,15 @@
 				<router-link :to="{ name: 'AdminIngredientList' }" class="col">{{ $t('Ingredients') }}</router-link>
 				<router-link :to="{ name: 'AdminStaticPages' }" class="col">{{ $t('Static Pages') }}</router-link>
 			</div>
+			<div class="row">
+				<hr>
+			</div>
+			<div class="row h-100">
+				<!--<transition name="fade">-->
+				<router-view/>
+				<!--</transition>-->
+			</div>
 		</div>
-		<hr>
-		<transition name="fade">
-			<router-view/>
-		</transition>
 	</div>
 </template>
 
