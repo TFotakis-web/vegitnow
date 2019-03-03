@@ -29,6 +29,29 @@
 					</div>
 				</div>
 
+				<!--<div :id="'ArticlePreviewInput' + index" v-if="data.articleType === 2" class="form-group row">-->
+					<!--<label for="ArticlePreview" class="col-sm-2 col-form-label">Preview</label>-->
+					<!--<div class="col-sm-10">-->
+						<!--<input type="text" class="form-control" id="ArticlePreview" placeholder="Preview" v-model="article.preview">-->
+					<!--</div>-->
+				<!--</div>-->
+
+				<div v-if="data.articleType === 2">
+					<div :id="'ArticleAuthorNameInput' + index" class="form-group row">
+						<label for="AuthorName" class="col-sm-2 col-form-label">Author Name:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="AuthorName" placeholder="Author Name" v-model="article.authorName">
+						</div>
+					</div>
+
+					<div :id="'ArticleAuthorProfessionInput' + index" class="form-group row">
+						<label for="AuthorProfession" class="col-sm-2 col-form-label">Author Profession:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="AuthorProfession" placeholder="Author Profession" v-model="article.authorProfession">
+						</div>
+					</div>
+				</div>
+
 				<div :id="'ArticleThumbnailInput' + index" class="form-group row">
 					<label class="col-sm-2 col-form-label">{{ $t('Thumbnail') }}:</label>
 					<div class="col-sm-10">
@@ -45,13 +68,6 @@
 					</div>
 					<div class="col-sm-10">
 						<Summernote height="400" :model="article.content" v-on:change="value => { article.content = value }"></Summernote>
-					</div>
-				</div>
-
-				<div :id="'ArticlePreviewInput' + index" v-if="data.articleType === 0" class="form-group row">
-					<label for="ArticlePreview" class="col-sm-2 col-form-label">Preview</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="ArticlePreview" :placeholder="Preview" v-model="article.preview">
 					</div>
 				</div>
 
@@ -79,30 +95,6 @@
 				<div :id="'ArticleDeleteTranslationInput' + index" class="form-group row">
 					<div class="col">
 						<button type="button" class="btn bgGreen0 text-white" @click="deleteLanguage(index)"><i class="fas fa-trash"></i> {{ $t('Delete') }}</button>
-					</div>
-				</div>
-
-				<div v-if="data.articleType === 2">
-					<div :id="'ArticleAuthorNameInput' + index" class="form-group row">
-						<label for="AuthorName" class="col-sm-2 col-form-label">Author Name:</label>
-						<div class="col-sm-10">
-							<div class="row">
-								<div class="col">
-									<input type="text" class="form-control mb-3" id="AuthorName" placeholder="Author Name" v-model="article.authorName">
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div :id="'ArticleAuthorProfessionInput' + index" class="form-group row">
-						<label for="AuthorProfession" class="col-sm-2 col-form-label">Author Profession:</label>
-						<div class="col-sm-10">
-							<div class="row">
-								<div class="col">
-									<input type="text" class="form-control mb-3" id="AuthorProfession" placeholder="Author Profession" v-model="article.authorProfession">
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</form>
@@ -273,7 +265,7 @@
 				this.data.translations.push({
 					language: null,
 					title: null,
-					preview: null,
+					// preview: null,
 					content: '',
 					thumbnail: null,
 					releaseDateTime: {
