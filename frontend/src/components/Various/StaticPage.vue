@@ -23,7 +23,6 @@
 				id: this.$route.params.id,
 				page: {},
 				requestsUnsatisfied: 0
-
 			};
 		},
 		mounted: function () {
@@ -32,7 +31,7 @@
 		methods: {
 			getStaticPageContent: function () {
 				this.requestsUnsatisfied++;
-				this.$http.get('/api/staticPage/' + this.id + '/')
+				this.$http.get('/api/staticPageTranslation/' + this.id + '/')
 					.then((response) => {
 						this.page = response.data;
 						this.requestsUnsatisfied--;
