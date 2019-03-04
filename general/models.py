@@ -9,17 +9,17 @@ class Language(models.Model):
 
 
 class StaticPage(models.Model):
-	Name = models.CharField(default='', max_length=1024)
-	Language = models.ForeignKey(Language, on_delete=models.DO_NOTHING)
-	Content = models.TextField(blank=True)
+	Main = models.ForeignKey('StaticPageTranslation', default=0, on_delete=models.CASCADE)
 
-	def __str__(self): return self.Name
+	def __str__(self): return self.Main.Name
 
 
 class StaticPageTranslation(models.Model):
-	StaticPage = models.ForeignKey(StaticPage, on_delete=models.CASCADE)
+	StaticPage = models.ForeignKey(StaticPage, default=0, on_delete=models.CASCADE)
 	Language = models.ForeignKey(Language, on_delete=models.DO_NOTHING)
 	Name = models.CharField(default='', max_length=1024)
 	Content = models.TextField(blank=True)
+	Listed = models.BooleanField(default=False)
+	Private = models.BooleanField(default=True)
 
-	def __str__(self): return self.StaticPage.Name + ' -> ' + self.Name
+	def __str__(self): return self.Name
