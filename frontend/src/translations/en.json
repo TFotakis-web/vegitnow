@@ -87,5 +87,8 @@
 	"Administration": "Administration",
 	"Database": "Database",
 	"Edit": "Edit",
-	"Static Pages": "Static Pages"
+	"Static Pages": "Static Pages",
+	"Static Page Name": "Static Page Name",
+	"Add Static Page": "Add Static Page",
+	"New Static Page": "New Static Page"
 }

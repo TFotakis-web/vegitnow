@@ -22,7 +22,7 @@
 	"Contact Us": "Επικοινωνήστε μαζί μας",
 	"Affiliate Policy": "Affiliate Policy",
 	"Follow us": "Ακολουθήστε μας",
-	"Insert your email": "Εισάγεται το email σας",
+	"Insert your email": "Εισάγετε το email σας",
 	"Dishes": "Μερίδες",
 	"Ingredients": "Συστατικά",
 	"Execution": "Εκτέλεση",
@@ -87,5 +87,8 @@
 	"Administration": "Διαχείρηση",
 	"Database": "Βάση Δεδομένων",
 	"Edit": "Επεξεργασία",
-	"Static Pages": "Στατικές Σελίδες"
+	"Static Pages": "Στατικές Σελίδες",
+	"Static Page Name": "Όνομα Στατικής Σελίδας",
+	"Add Static Page": "Προσθέστε μία Στατική Σελίδα",
+	"New Static Page": "Νέα Στατική Σελίδα"
 }
