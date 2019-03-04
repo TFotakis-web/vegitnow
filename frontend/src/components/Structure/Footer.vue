@@ -1,10 +1,6 @@
 <template>
-	<footer class="text-center"
-	        style="margin-top: -4em;"
-	>
-		<router-link :to="{ name: 'Home' }" class="d-inline-block"
-		             style="position: relative; top: 15px; z-index: 1049"
-		>
+	<footer class="text-center" style="margin-top: -4em;">
+		<router-link :to="{ name: 'Home' }" class="d-inline-block" style="position: relative; top: 15px; z-index: 1049">
 			<img src="/static/img/logo.png" alt="Vegitnow Logo" height="40">
 		</router-link>
 		<div id="Footer" class="bg-white text-center pt-5"
@@ -30,18 +26,8 @@
 					<div class="col-md-3 mb-4">
 						<div class="container-fluid">
 							<div class="row" style="font-size: 0.7rem">
-								<div class="col-md-6">
-									<router-link class="text-dark d-block" :to="{ name: 'StaticPage', params: { id: key }}" :key="key" v-for="(page, key) in currentLanguageStaticPages">{{ page['Name'] }}</router-link>
-									<!--<a href="#" class="text-dark d-block">{{ $t('About') }}</a>-->
-									<!--<a href="#" class="text-dark d-block">{{ $t('Donate') }}</a>-->
-									<!--<a href="#" class="text-dark d-block">{{ $t('Jobs') }}</a>-->
-									<!--<a href="#" class="text-dark d-block">{{ $t('Sponsors') }}</a>-->
-									<!--<a href="#" class="text-dark d-block">{{ $t('Products') }}</a>-->
-								</div>
-								<div class="col-md-6">
-									<!--<a href="#" class="text-dark d-block">{{ $t('Press Enquiries') }}</a>-->
-									<!--<a href="#" class="text-dark d-block">{{ $t('Contact Us') }}</a>-->
-									<!--<a href="#" class="text-dark d-block">{{ $t('Affiliate Policy') }}</a>-->
+								<div v-for="(column, index) in columnedStaticPages" :key="index" class="col-md-6">
+									<router-link class="text-dark d-block" :to="{ name: 'StaticPage', params: { id: page.id }}" :key="page.id" v-for="page in column">{{ page['Name'] }}</router-link>
 								</div>
 							</div>
 						</div>
@@ -72,6 +58,7 @@
 		},
 		methods: {
 			getStaticPages: function () {
+				// Todo: Fetch current language's static pages
 				this.$http.get('/api/staticPage/')
 					.then((response) => {
 						this.staticPages = response.data;
@@ -84,6 +71,22 @@
 		computed: {
 			currentLanguageStaticPages: function () {
 				return this.staticPages['1'];
+			},
+			columnedStaticPages: function () {
+				let data = [];
+				let column = [];
+				let count = 0;
+
+				for (const staticPage of Object.values(this.staticPages)) {
+					if (count % 5 === 0) {
+						if (count) data.push(column);
+						column = [];
+					}
+					column.push(staticPage);
+					count++;
+				}
+				if (column.length) data.push(column);
+				return data;
 			}
 		}
 	};
