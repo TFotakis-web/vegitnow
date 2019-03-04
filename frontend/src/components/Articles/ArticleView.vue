@@ -142,6 +142,10 @@
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			}
 		},
