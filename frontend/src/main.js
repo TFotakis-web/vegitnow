@@ -5,8 +5,10 @@ import App from './App';
 import router from './router';
 import VueResource from 'vue-resource';
 import {i18n} from './plugins/i18n';
+import Notifications from 'vue-notification';
 
 Vue.use(VueResource);
+Vue.use(Notifications);
 
 Vue.config.productionTip = false;
 
