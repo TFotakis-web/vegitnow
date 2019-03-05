@@ -30,6 +30,9 @@
 				}
 			};
 			$(this.$el).summernote(config);
+		},
+		beforeDestroy: function () {
+			$(this.$el).summernote('destroy');
 		}
 	};
 </script>
