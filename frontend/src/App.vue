@@ -4,7 +4,7 @@
 		<div class="d-flex flex-grow-1">
 			<NavigationBar></NavigationBar>
 			<router-view :key="$route.fullPath"/>
-			<notifications position="bottom left"/>
+			<notifications class="m-1" position="top center"/>
 		</div>
 		<Footer></Footer>
 	</div>
