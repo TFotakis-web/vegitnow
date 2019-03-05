@@ -59,6 +59,10 @@
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			},
 			getLanguages: function () {
@@ -70,6 +74,10 @@
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			},
 			fetchData: function (pageId) {
@@ -85,9 +93,17 @@
 				this.$http.patch('/api/staticPage/' + key + '/', this.staticPages[key])
 					.then((response) => {
 						console.log(response);
+						this.$notify({
+							text: this.$t('Saved successfully!'),
+							type: 'success'
+						});
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			}
 		}
