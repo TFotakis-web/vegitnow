@@ -239,6 +239,10 @@
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			},
 			getArticleTypes: function () {
@@ -249,6 +253,10 @@
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			},
 			getIngredients: function () {
@@ -259,6 +267,10 @@
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			},
 			addTranslation: function () {
@@ -337,9 +349,17 @@
 				this.$http.post('/api/newArticle/', data)
 					.then((response) => {
 						console.log(response);
+						this.$notify({
+							text: this.$t('Saved successfully!'),
+							type: 'success'
+						});
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			}
 		}
