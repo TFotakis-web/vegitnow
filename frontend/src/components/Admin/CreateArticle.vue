@@ -1,8 +1,7 @@
 <template>
-	<div id="CreateArticleComponent" class="mb-5 h-100 w-100">
-		<!--<div class="navbar-placeholder"></div>-->
-		<div id="createArticle" class="container mb-5">
-			<!--<h1 class="text-center">{{ $t('Create Article') }}</h1>-->
+	<div id="CreateArticleComponent" class="d-flex flex-grow-1">
+		<Loader v-if="requestsUnsatisfied"/>
+		<div id="createArticle" v-if="!requestsUnsatisfied" class="container mb-5">
 			<div id="ArticleTypeInput" class="input-group mb-3" style="width: fit-content">
 				<div class="input-group-prepend">
 					<label class="input-group-text" for="selectArticleType">{{ $t('Create a new') }}</label>
@@ -28,13 +27,6 @@
 						<input type="text" class="form-control" id="ArticleTitle" :placeholder="$t('Title')" v-model="article.title">
 					</div>
 				</div>
-
-				<!--<div :id="'ArticlePreviewInput' + index" v-if="data.articleType === 2" class="form-group row">-->
-					<!--<label for="ArticlePreview" class="col-sm-2 col-form-label">Preview</label>-->
-					<!--<div class="col-sm-10">-->
-						<!--<input type="text" class="form-control" id="ArticlePreview" placeholder="Preview" v-model="article.preview">-->
-					<!--</div>-->
-				<!--</div>-->
 
 				<div v-if="data.articleType === 2">
 					<div :id="'ArticleAuthorNameInput' + index" class="form-group row">
@@ -150,7 +142,6 @@
 								<tr>
 									<th scope="col">{{ $t('Ingredient') }}</th>
 									<th scope="col">{{ $t('Quantity') }}</th>
-									<!--<th scope="col">{{ $t('Unit') }}</th>-->
 									<th scope="col">{{ $t('Main Ingredient') }}</th>
 									<th scope="col">{{ $t('Delete') }}</th>
 								</tr>
@@ -159,7 +150,6 @@
 								<tr v-for="(ingredient, index) in selectedIngredients">
 									<td>{{ ingredient.ingredient.Name }}</td>
 									<td>{{ ingredient.quantity }}</td>
-									<!--<td>{{ ingredient.ingredient.Unit }}</td>-->
 									<td>
 										<div class="form-check form-check-inline">
 											<input class="form-check-input" type="checkbox" v-model="ingredient.isMainIngredient" :id="'isMainIngredientCheckbox' + index">
@@ -176,9 +166,6 @@
 									<option v-for="ingredient in ingredients" :value="ingredient">{{ ingredient.Name }}</option>
 								</select>
 								<input type="number" class="form-control" id="IngredientQuantity" :placeholder="$t('Quantity')" v-model="selectedQuantity">
-								<!--<div class="input-group-append">-->
-								<!--<label class="input-group-text" for="selectArticleType" style="width: 10em">{{ selectedIngredient.Unit }}</label>-->
-								<!--</div>-->
 								<div class="btn bgGreen0 text-white ml-2" @click="selectIngredient()"><i class="fas fa-plus"></i> Add</div>
 							</div>
 						</div>
@@ -198,11 +185,13 @@
 
 <script>
 	import Summernote from '../Various/Summernote';
+	import Loader from '../Structure/Loader';
 
 	export default {
 		name: 'CreateArticle',
 		components: {
-			Summernote
+			Summernote,
+			Loader
 		},
 		data: function () {
 			return {
@@ -221,7 +210,8 @@
 				readyIn: 0,
 				youtubeLink: '',
 				authorName: '',
-				authorProfession: ''
+				authorProfession: '',
+				requestsUnsatisfied: 0
 			};
 		},
 		mounted: function () {
@@ -232,10 +222,12 @@
 		},
 		methods: {
 			getLanguages: function () {
+				this.requestsUnsatisfied++;
 				this.$http.get('/api/language/')
 					.then((response) => {
 						this.languages = response.data;
 						this.initTranslationLanguage(this.data.translations[0]);
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
@@ -246,10 +238,12 @@
 					});
 			},
 			getArticleTypes: function () {
+				this.requestsUnsatisfied++;
 				this.$http.get('/api/articleType/')
 					.then((response) => {
 						this.articleTypes = response.data;
 						this.data.articleType = this.articleTypes[0].id;
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
@@ -260,10 +254,12 @@
 					});
 			},
 			getIngredients: function () {
+				this.requestsUnsatisfied++;
 				this.$http.get('/api/ingredient/')
 					.then((response) => {
 						this.ingredients = response.data;
 						this.selectedIngredient = this.ingredients[0];
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
@@ -277,7 +273,6 @@
 				this.data.translations.push({
 					language: null,
 					title: null,
-					// preview: null,
 					content: '',
 					thumbnail: null,
 					releaseDateTime: {
@@ -287,11 +282,6 @@
 					doneEditing: false,
 					authorName: '',
 					authorProfession: ''
-				});
-				$('#ArticleContent').summernote({
-					placeholder: 'Article content...',
-					tabsize: 2,
-					height: 300
 				});
 			},
 			addInitializedTranslation: function () {
@@ -303,6 +293,24 @@
 			},
 			initTranslationLanguage: function (translation) {
 				translation.language = Object.keys(this.languages)[0];
+			},
+			initArticleFields: function () {
+				this.selectedIngredient = {};
+				this.selectedQuantity = 0;
+				this.$set(this.data, 'articleType', 0);
+				this.$set(this.data, 'translations', []);
+				this.image = null;
+				this.selectedIngredients = [];
+				this.dishes = 0;
+				this.readyIn = 0;
+				this.youtubeLink = '';
+				this.authorName = '';
+				this.authorProfession = '';
+
+				this.addTranslation();
+				this.data.articleType = this.articleTypes[0].id;
+				this.initTranslationLanguage(this.data.translations[0]);
+				this.selectedIngredient = this.ingredients[0];
 			},
 			deleteLanguage: function (index) {
 				this.data.translations.splice(index, 1);
@@ -330,7 +338,7 @@
 				this.selectedIngredients.splice(index, 1);
 			},
 			saveArticle: function () {
-				var data = Object.assign({}, this.data);
+				const data = Object.assign({}, this.data);
 				if (this.data.articleType === 1) {
 					data.ingredients = [];
 					this.selectedIngredients.forEach(function (ingredient) {
@@ -340,12 +348,12 @@
 							quantity: ingredient.quantity
 						});
 					});
-					// data.ingredients = this.selectedIngredients;
 					data.dishes = this.dishes;
 					data.readyIn = this.readyIn;
 					data.youtubeLink = this.youtubeLink;
 				}
-				// console.log(data);
+
+				this.requestsUnsatisfied++;
 				this.$http.post('/api/newArticle/', data)
 					.then((response) => {
 						console.log(response);
@@ -353,6 +361,9 @@
 							text: this.$t('Saved successfully!'),
 							type: 'success'
 						});
+						// this.initArticleFields();
+						this.$router.push({name: this.data.articleType === 1 ? 'AdminRecipeList' : 'AdminArticleList'});
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
