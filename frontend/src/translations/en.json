@@ -90,5 +90,8 @@
 	"Static Pages": "Static Pages",
 	"Static Page Name": "Static Page Name",
 	"Add Static Page": "Add Static Page",
-	"New Static Page": "New Static Page"
+	"New Static Page": "New Static Page",
+	"Saved successfully!": "Saved successfully!",
+	"Deleted successfully!": "Deleted successfully!",
+	"Something went wrong... Please check your connection.": "Something went wrong... Please check your connection."
 }

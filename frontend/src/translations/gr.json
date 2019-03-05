@@ -90,5 +90,8 @@
 	"Static Pages": "Στατικές Σελίδες",
 	"Static Page Name": "Όνομα Στατικής Σελίδας",
 	"Add Static Page": "Προσθέστε μία Στατική Σελίδα",
-	"New Static Page": "Νέα Στατική Σελίδα"
+	"New Static Page": "Νέα Στατική Σελίδα",
+	"Saved successfully!": "Αποθηκεύτηκε επιτυχώς!",
+	"Deleted successfully!": "Διαγράφθηκε επιτυχώς!",
+	"Something went wrong... Please check your connection.": "Κάτι πήγε στραβά... Παρακαλούμε ελέγξτε την σύνδεσή σας."
 }
