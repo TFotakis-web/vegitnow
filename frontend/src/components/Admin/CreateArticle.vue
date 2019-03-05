@@ -302,7 +302,7 @@
 				this.initTranslationLanguage(translation);
 			},
 			initTranslationLanguage: function (translation) {
-				translation.language = this.languages[0].id;
+				translation.language = Object.keys(this.languages)[0];
 			},
 			deleteLanguage: function (index) {
 				this.data.translations.splice(index, 1);
