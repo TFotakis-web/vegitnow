@@ -167,6 +167,21 @@
 							type: 'error'
 						});
 					});
+			},
+			addStaticPage: function () {
+				this.$set(this.staticPages, 'new', {
+					Name: this.$t('New Static Page'),
+					data: [{
+						Content: '',
+						Language: Object.keys(this.languages)[0],
+						Listed: false,
+						Private: true,
+						StaticPage: -1,
+						id: -1
+					}],
+					fetched: true,
+					id: -1
+				});
 			}
 		}
 	};
