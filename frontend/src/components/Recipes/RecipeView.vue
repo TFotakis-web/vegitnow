@@ -122,10 +122,18 @@
 							})
 							.catch((err) => {
 								console.log(err);
+								this.$notify({
+									text: this.$t('Something went wrong... Please check your connection.'),
+									type: 'error'
+								});
 							});
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 
 				this.requestsUnsatisfied++;
@@ -136,6 +144,10 @@
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			}
 		},
