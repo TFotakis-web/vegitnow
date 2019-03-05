@@ -246,6 +246,10 @@
 								this.getIngredients();
 							}
 							// console.log(response);
+							this.$notify({
+								text: this.$t('Saved successfully!'),
+								type: 'success'
+							});
 						})
 						.catch((err) => {
 							this.importErrors++;
@@ -254,6 +258,10 @@
 								this.getIngredients();
 							}
 							console.log(err);
+							this.$notify({
+								text: this.$t('Something went wrong... Please check your connection.'),
+								type: 'error'
+							});
 						});
 				}
 			},
@@ -294,9 +302,17 @@
 					.then((response) => {
 						this.createNew = false;
 						this.getIngredients();
+						this.$notify({
+							text: this.$t('Saved successfully!'),
+							type: 'success'
+						});
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			},
 			cancelNewIngredient: function () {
@@ -317,19 +333,35 @@
 							})
 							.catch((err) => {
 								console.log(err);
+								this.$notify({
+									text: this.$t('Something went wrong... Please check your connection.'),
+									type: 'error'
+								});
 							});
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			},
 			removeIngredient: function (id, index) {
 				this.$http.delete('/api/ingredient/' + id + '/')
 					.then((response) => {
 						this.ingredients.splice(index, 1);
+						this.$notify({
+							text: this.$t('Deleted successfully!'),
+							type: 'success'
+						});
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			},
 			selectIngredientForPatch: function (ingredient) {
@@ -371,9 +403,17 @@
 						// this.ingredients.splice(index, 1);
 						this.editIngredient = false;
 						this.getIngredients();
+						this.$notify({
+							text: this.$t('Saved successfully!'),
+							type: 'success'
+						});
 					})
 					.catch((err) => {
 						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
 					});
 			},
 			cancelPatchIngredient: function () {
