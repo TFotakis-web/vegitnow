@@ -94,7 +94,7 @@
 		},
 		data: function () {
 			return {
-				staticPages: [],
+				staticPages: {},
 				languages: {},
 				requestsUnsatisfied: 0
 			};
@@ -135,13 +135,21 @@
 					});
 			},
 			fetchData: function (pageId) {
-				this.$http.get('/api/staticPage/' + pageId + '/')
-					.then((response) => {
-						this.staticPages[pageId] = response.data;
-					})
-					.catch((err) => {
-						console.log(err);
-					});
+				if (this.staticPages[pageId]['fetched']) return;
+				for (const translationId of Object.values(this.staticPages[pageId]['translations'])) {
+					this.$http.get('/api/staticPageTranslation/' + translationId + '/')
+						.then((response) => {
+							this.staticPages[pageId]['data'].push(response.data);
+							this.staticPages[pageId]['fetched'] = true;
+						})
+						.catch((err) => {
+							console.log(err);
+							this.$notify({
+								text: this.$t('Something went wrong... Please check your connection.'),
+								type: 'error'
+							});
+						});
+				}
 			},
 			saveStaticPage: function (key) {
 				this.$http.patch('/api/staticPage/' + key + '/', this.staticPages[key])
