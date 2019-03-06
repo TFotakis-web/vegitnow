@@ -1,6 +1,7 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, BasePermission
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
+from rest_framework.status import *
 
 from .models import Language, StaticPage, StaticPageTranslation
 from .serializers import LanguageSerializer, StaticPageSerializer, StaticPageTranslationSerializer
@@ -10,6 +11,14 @@ class LanguageViewSet(viewsets.ModelViewSet):
 	queryset = Language.objects.all()
 	serializer_class = LanguageSerializer
 	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+	def list(self, request, *args, **kwargs):
+		queryset = Language.objects.all()
+		serializer = self.get_serializer(queryset, many=True)
+		languages = {}
+		for obj in serializer.data:
+			languages[obj['id']] = obj
+		return Response(languages)
 
 
 class StaticPageViewSet(viewsets.ModelViewSet):
