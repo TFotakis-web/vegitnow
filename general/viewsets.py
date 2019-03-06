@@ -125,7 +125,7 @@ class StaticPageTranslationViewSet(viewsets.ModelViewSet):
 			sp.save()
 		return Response(status=HTTP_201_CREATED)
 
-	def partial_update(self, request, *args, **kwargs):
+	def update(self, request, *args, **kwargs):
 		spt = StaticPageTranslation.objects.filter(id=request.data['id'])
 		if not spt:
 			return Response(status=HTTP_404_NOT_FOUND)
