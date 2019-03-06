@@ -38,6 +38,19 @@ class StaticPageViewSet(viewsets.ModelViewSet):
 
 	def list(self, request, *args, **kwargs):
 		staticPages = StaticPage.objects.all()
+
+		if 'locale' in request.query_params:
+			locale = int(request.query_params['locale'])
+			res = []
+			for staticPage in staticPages:
+				translation = staticPage.staticpagetranslation_set.filter(Language_id=locale).first() if request.user.is_superuser else staticPage.staticpagetranslation_set.filter(Language_id=locale, Listed=True, Private=False).first()
+				if translation:
+					res.append({
+						'id': staticPage.id,
+						'Name': translation.Name
+					})
+			return Response(res)
+
 		res = {}
 		for staticPage in staticPages:
 			spts = staticPage.staticpagetranslation_set.all() if request.user.is_superuser else staticPage.staticpagetranslation_set.filter(Listed=True, Private=False).all()
