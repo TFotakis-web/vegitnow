@@ -58,8 +58,7 @@
 		},
 		methods: {
 			getStaticPages: function () {
-				// Todo: Fetch current language's static pages
-				this.$http.get('/api/staticPage/')
+				this.$http.get('/api/staticPage/?locale=' + this.$cookie.get('locale'))
 					.then((response) => {
 						this.staticPages = response.data;
 					})
