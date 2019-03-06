@@ -27,30 +27,18 @@ class StaticPageViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 	def list(self, request, *args, **kwargs):
-		queryset = StaticPage.objects.all()
-		serializer = self.get_serializer(queryset, many=True)
-		staticPages = serializer.data
-
-		queryset = StaticPageTranslation.objects.all()
-		serializer = self.get_serializer(queryset, many=True)
-		staticPagesTranslations = serializer.data
-
-		data = {}
-		for lang in Language.objects.all():
-			data[lang.id] = {}
-			for obj in staticPages:
-				if obj['Language'] == lang.id:
-					data[lang.id][obj['id']] = {
-						'Name': obj['Name'],
-						'IsNonTranslated': True
-					}
-			for obj in staticPagesTranslations:
-				if obj['Language'] == lang.id:
-					data[lang.id][obj['id']] = {
-						'Name': obj['Name'],
-						'IsNonTranslated': False
-					}
-		return Response(data)
+		staticPages = StaticPage.objects.all()
+		res = {}
+		for staticPage in staticPages:
+			translations = {translation.Language_id: translation.id for translation in staticPage.staticpagetranslation_set.all()}
+			res[staticPage.id] = {
+				'id': staticPage.id,
+				'Name': staticPage.Main.Name,
+				'data': [],
+				'fetched': False,
+				'translations': translations
+			}
+		return Response(res)
 
 
 class StaticPageTranslationViewSet(viewsets.ModelViewSet):
