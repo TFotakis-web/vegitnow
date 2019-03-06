@@ -26,6 +26,16 @@ class StaticPageViewSet(viewsets.ModelViewSet):
 	serializer_class = StaticPageSerializer
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
+	def retrieve(self, request, *args, **kwargs):
+		if 'locale' not in request.query_params:
+			return super().retrieve(request, *args, **kwargs)
+		locale = int(request.query_params['locale'])
+		staticPage = StaticPage.objects.get(id=kwargs['pk'])
+		translation = staticPage.staticpagetranslation_set.filter(Language_id=locale).first() if request.user.is_superuser else staticPage.staticpagetranslation_set.filter(Language_id=locale, Listed=True, Private=False).first()
+		if translation:
+			return Response(StaticPageTranslationSerializer(translation).data)
+		return Response(status=HTTP_404_NOT_FOUND)
+
 	def list(self, request, *args, **kwargs):
 		staticPages = StaticPage.objects.all()
 		res = {}
