@@ -19,6 +19,7 @@ class StaticPageTranslation(models.Model):
 	Language = models.ForeignKey(Language, on_delete=models.DO_NOTHING)
 	Name = models.CharField(default='', max_length=1024)
 	Content = models.TextField(blank=True)
+	# Todo: Make single field (Listed/Unlisted/Private)
 	Listed = models.BooleanField(default=False)
 	Private = models.BooleanField(default=True)
 
