@@ -27,23 +27,31 @@ class StaticPageViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 	def retrieve(self, request, *args, **kwargs):
-		if 'locale' not in request.query_params:
-			return super().retrieve(request, *args, **kwargs)
-		locale = int(request.query_params['locale'])
 		staticPage = StaticPage.objects.get(id=kwargs['pk'])
-		translation = staticPage.staticpagetranslation_set.filter(Language_id=locale).first() if request.user.is_superuser else staticPage.staticpagetranslation_set.filter(Language_id=locale, Listed=True, Private=False).first()
+		f = {}
+		if 'locale' in request.query_params:
+			f['Language_id'] = int(request.query_params['locale'])
+		if not request.user.is_superuser:
+			f['Listed'] = True
+			f['Private'] = False
+		translation = staticPage.staticpagetranslation_set.filter(**f).first()
 		if translation:
 			return Response(StaticPageTranslationSerializer(translation).data)
 		return Response(status=HTTP_404_NOT_FOUND)
 
 	def list(self, request, *args, **kwargs):
 		staticPages = StaticPage.objects.all()
+		f = {}
+		if not request.user.is_superuser:
+			f['Listed'] = True
+			f['Private'] = False
 
 		if 'locale' in request.query_params:
-			locale = int(request.query_params['locale'])
+			f['Language_id'] = int(request.query_params['locale'])
+
 			res = []
 			for staticPage in staticPages:
-				translation = staticPage.staticpagetranslation_set.filter(Language_id=locale).first() if request.user.is_superuser else staticPage.staticpagetranslation_set.filter(Language_id=locale, Listed=True, Private=False).first()
+				translation = staticPage.staticpagetranslation_set.filter(**f).first()
 				if translation:
 					res.append({
 						'id': staticPage.id,
@@ -53,7 +61,7 @@ class StaticPageViewSet(viewsets.ModelViewSet):
 
 		res = {}
 		for staticPage in staticPages:
-			spts = staticPage.staticpagetranslation_set.all() if request.user.is_superuser else staticPage.staticpagetranslation_set.filter(Listed=True, Private=False).all()
+			spts = staticPage.staticpagetranslation_set.filter(**f).all()
 			translations = {translation.Language_id: translation.id for translation in spts}
 			if translations:
 				res[staticPage.id] = {
@@ -72,14 +80,20 @@ class StaticPageTranslationViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 	def retrieve(self, request, *args, **kwargs):
-		queryset = StaticPageTranslation.objects.filter(id=kwargs['pk']).first() if request.user.is_superuser else StaticPageTranslation.objects.filter(id=kwargs['pk'], Private=False).first()
+		f = {'id': kwargs['pk']}
+		if not request.user.is_superuser:
+			f['Private'] = False
+		queryset = StaticPageTranslation.objects.filter(**f).first()
 		if queryset:
 			serializer = self.get_serializer(queryset)
 			return Response(serializer.data)
 		return Response(status=HTTP_401_UNAUTHORIZED)
 
 	def list(self, request, *args, **kwargs):
-		queryset = StaticPageTranslation.objects.all() if request.user.is_superuser else StaticPageTranslation.objects.filter(Private=False).all()
+		f = {}
+		if not request.user.is_superuser:
+			f['Private'] = False
+		queryset = StaticPageTranslation.objects.filter(**f).all()
 		if queryset:
 			serializer = self.get_serializer(queryset, many=True)
 			return Response(serializer.data)
