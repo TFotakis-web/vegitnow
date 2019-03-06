@@ -45,3 +45,59 @@ class StaticPageTranslationViewSet(viewsets.ModelViewSet):
 	queryset = StaticPageTranslation.objects.all()
 	serializer_class = StaticPageTranslationSerializer
 	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+	def create(self, request, *args, **kwargs):
+		if request.data['id'] != -1:
+			return Response(status=HTTP_406_NOT_ACCEPTABLE)
+
+		staticPageId = request.data['StaticPage']
+		sp = None
+		if staticPageId == -1:
+			sp = StaticPage()
+			sp.save()
+			staticPageId = sp.id
+
+		spt = StaticPageTranslation(
+			StaticPage_id=staticPageId,
+			Language_id=request.data['Language'],
+			Name=request.data['Name'],
+			Content=request.data['Content'],
+			Listed=request.data['Listed'],
+			Private=request.data['Private']
+		)
+		spt.save()
+
+		if sp:
+			sp.Main = spt
+			sp.save()
+		return Response(status=HTTP_201_CREATED)
+
+	def partial_update(self, request, *args, **kwargs):
+		spt = StaticPageTranslation.objects.filter(id=request.data['id'])
+		if not spt:
+			return Response(status=HTTP_404_NOT_FOUND)
+		spt.update(
+			Language_id=request.data['Language'],
+			Name=request.data['Name'],
+			Content=request.data['Content'],
+			Listed=request.data['Listed'],
+			Private=request.data['Private']
+		)
+		return Response(status=HTTP_206_PARTIAL_CONTENT)
+
+	def destroy(self, request, *args, **kwargs):
+		spt = StaticPageTranslation.objects.get(id=kwargs['pk'])
+		if not spt:
+			return Response(status=HTTP_404_NOT_FOUND)
+		sp = StaticPage.objects.get(id=spt.StaticPage_id)
+		sp.Main = None
+		sp.save()
+
+		spt.delete()
+		spts = sp.staticpagetranslation_set.first()
+		if spts:
+			sp.Main = spts
+			sp.save()
+		else:
+			sp.delete()
+		return Response(status=HTTP_200_OK)
