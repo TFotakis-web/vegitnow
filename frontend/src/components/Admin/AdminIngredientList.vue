@@ -391,7 +391,7 @@
 				this.editIngredient = true;
 			},
 			patchIngredient: function () {
-				this.$http.patch('/api/newIngredient/' + this.selectedIngredient.id + '/', this.ingredientData)
+				this.$http.put('/api/newIngredient/' + this.selectedIngredient.id + '/', this.ingredientData)
 					.then((response) => {
 						// this.ingredients.splice(index, 1);
 						this.editIngredient = false;

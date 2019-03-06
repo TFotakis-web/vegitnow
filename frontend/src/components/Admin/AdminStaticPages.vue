@@ -182,7 +182,7 @@
 					method = 'post';
 					path = '/api/staticPageTranslation/';
 				} else {
-					method = 'patch';
+					method = 'put';
 					path = '/api/staticPageTranslation/' + page.data[index].id + '/';
 				}
 				this.$http[method](path, page.data[index])
