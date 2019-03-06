@@ -6,9 +6,12 @@ import router from './router';
 import VueResource from 'vue-resource';
 import {i18n} from './plugins/i18n';
 import Notifications from 'vue-notification';
+import VueCookie from 'vue-cookie';
+// var VueCookie = Vue.require('vue-cookie');
 
 Vue.use(VueResource);
 Vue.use(Notifications);
+Vue.use(VueCookie);
 
 Vue.config.productionTip = false;
 
@@ -38,3 +41,4 @@ function getCookie (name) {
 }
 
 Vue.http.headers.common['X-CSRFToken'] = getCookie('csrftoken');
+Vue.http.headers.common['locale'] = getCookie('locale');
