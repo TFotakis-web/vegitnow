@@ -9,13 +9,13 @@ class Language(models.Model):
 
 
 class StaticPage(models.Model):
-	Main = models.ForeignKey('StaticPageTranslation', default=0, on_delete=models.CASCADE)
+	Main = models.ForeignKey('StaticPageTranslation', blank=True, null=True, on_delete=models.DO_NOTHING)
 
 	def __str__(self): return self.Main.Name
 
 
 class StaticPageTranslation(models.Model):
-	StaticPage = models.ForeignKey(StaticPage, default=0, on_delete=models.CASCADE)
+	StaticPage = models.ForeignKey(StaticPage, blank=True, null=True, on_delete=models.CASCADE)
 	Language = models.ForeignKey(Language, on_delete=models.DO_NOTHING)
 	Name = models.CharField(default='', max_length=1024)
 	Content = models.TextField(blank=True)
