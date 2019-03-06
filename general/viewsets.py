@@ -48,6 +48,20 @@ class StaticPageTranslationViewSet(viewsets.ModelViewSet):
 	serializer_class = StaticPageTranslationSerializer
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
+	def retrieve(self, request, *args, **kwargs):
+		queryset = StaticPageTranslation.objects.filter(id=kwargs['pk']).first() if request.user.is_superuser else StaticPageTranslation.objects.filter(id=kwargs['pk'], Private=False).first()
+		if queryset:
+			serializer = self.get_serializer(queryset)
+			return Response(serializer.data)
+		return Response(status=HTTP_401_UNAUTHORIZED)
+
+	def list(self, request, *args, **kwargs):
+		queryset = StaticPageTranslation.objects.all() if request.user.is_superuser else StaticPageTranslation.objects.filter(Private=False).all()
+		if queryset:
+			serializer = self.get_serializer(queryset, many=True)
+			return Response(serializer.data)
+		return Response(status=HTTP_401_UNAUTHORIZED)
+
 	def create(self, request, *args, **kwargs):
 		if request.data['id'] != -1:
 			return Response(status=HTTP_406_NOT_ACCEPTABLE)
