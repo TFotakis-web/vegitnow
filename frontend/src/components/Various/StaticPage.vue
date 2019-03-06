@@ -31,7 +31,7 @@
 		methods: {
 			getStaticPageContent: function () {
 				this.requestsUnsatisfied++;
-				this.$http.get('/api/staticPageTranslation/' + this.id + '/')
+				this.$http.get('/api/staticPage/' + this.id + '/?locale=' + this.$cookie.get('locale'))
 					.then((response) => {
 						this.page = response.data;
 						this.requestsUnsatisfied--;
@@ -42,6 +42,7 @@
 							text: this.$t('Something went wrong... Please check your connection.'),
 							type: 'error'
 						});
+						this.$router.push({name: 'Home'});
 					});
 			}
 		}
