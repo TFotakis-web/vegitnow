@@ -2,151 +2,144 @@
 	<div id="AdminIngredientList" class="d-flex flex-grow-1">
 		<Loader v-if="requestsUnsatisfied"/>
 		<div v-if="!requestsUnsatisfied" class="container">
-			<!--<div class="navbar-placeholder"></div>-->
-			<!--<div class="container">-->
-				<!--<h1 class="text-center">Admin Ingredient List</h1>-->
-				<div class="form-group row">
-					<label class="col-sm-2 col-form-label">{{ $t('Import Ingredients') }}:</label>
-					<div class="col-sm-3 mb-2">
-						<div class="custom-file">
-							<label class="custom-file-label" for="csvFile">{{ $t('Choose file') }}</label>
-							<input type="file" class="custom-file-input" id="csvFile" @change="onFileChange($event)">
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<button type="button" class="btn bgGreen0 text-white" @click="importIngredients()"><i class="fas fa-save"></i> {{ $t('Import') }}</button>
-					</div>
-					<div class="col-sm-4">
-						<span v-if="importCount > 0">Succesfully Imported: {{ importCount }}</span>
-						<span v-if="importCount > 0 && importErrors > 0"> | </span>
-						<span v-if="importErrors > 0">Import Errors: {{ importErrors }}</span>
-						<span v-if="!done"> | Done</span>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">{{ $t('Import Ingredients') }}:</label>
+				<div class="col-sm-3 mb-2">
+					<div class="custom-file">
+						<label class="custom-file-label" for="csvFile">{{ $t('Choose file') }}</label>
+						<input type="file" class="custom-file-input" id="csvFile" @change="onFileChange($event)">
 					</div>
 				</div>
-				<div class="form-group row">
-					<div class="col">
-						<button type="button" class="btn bgGreen0 text-white" @click="createIngredient()"><i class="fas fa-plus"></i> {{ $t('Create New') }}</button>
-					</div>
+				<div class="col-sm-3">
+					<button type="button" class="btn bgGreen0 text-white" @click="importIngredients()"><i class="fas fa-save"></i> {{ $t('Import') }}</button>
 				</div>
-			<!--</div>-->
-			<!--<div class="container">-->
-				<div class="row">
-					<div class="table-responsive">
-					<!--<div class="m-0" style="max-width: 100vw; overflow-x: auto">-->
-						<table class="table text-center" v-if="ingredients.length!==0">
-							<thead>
-							<tr>
-								<th scope="col">Actions</th>
-								<th scope="col">#</th>
-								<th scope="col">{{ $t('English') }}</th>
-								<th scope="col">{{ $t('Greek') }}</th>
-								<th scope="col">{{ $t('Calories') }} (kcal)</th>
-								<th scope="col">{{ $t('Protein') }} (gr)</th>
-								<th scope="col">{{ $t('Carbon Hydrates') }} (gr)</th>
-								<th scope="col">{{ $t('Fats') }} (gr)</th>
-								<th scope="col">{{ $t('Vitamin A') }} (IU)</th>
-								<th scope="col">{{ $t('Carotin B') }} (mcg)</th>
-								<th scope="col">{{ $t('Vitamin C') }} (mg)</th>
-								<th scope="col">{{ $t('Vitamin D') }} (mg)</th>
-								<th scope="col">{{ $t('Vitamin E') }} (mg)</th>
-								<th scope="col">{{ $t('Vitamin K') }} (mcg)</th>
-								<th scope="col">{{ $t('Vitamin B3') }} (mg)</th>
-								<th scope="col">{{ $t('Vitamin B6') }} (mg)</th>
-								<th scope="col">{{ $t('Vitamin B12') }} (mg)</th>
-								<th scope="col">{{ $t('Vitamin B9') }} (mcg)</th>
-								<th scope="col">{{ $t('Choline') }} (mg)</th>
-								<th scope="col">{{ $t('Calcium') }} (mg)</th>
-								<th scope="col">{{ $t('Iron') }} (mg)</th>
-								<th scope="col">{{ $t('Magnesium') }} (mg)</th>
-								<th scope="col">{{ $t('Phosphorus') }} (mg)</th>
-								<th scope="col">{{ $t('Potassium') }} (mg)</th>
-								<th scope="col">{{ $t('Sodium') }} (mg)</th>
-								<th scope="col">{{ $t('Zinc') }} (mg)</th>
-								<th scope="col">{{ $t('Selenium') }} (mcg)</th>
-								<th scope="col">{{ $t('Manganese') }} (mg)</th>
-								<th scope="col">{{ $t('Water') }} (gr)</th>
-							</tr>
-							</thead>
-							<tbody>
+				<div class="col-sm-4">
+					<span v-if="importCount > 0">Succesfully Imported: {{ importCount }}</span>
+					<span v-if="importCount > 0 && importErrors > 0"> | </span>
+					<span v-if="importErrors > 0">Import Errors: {{ importErrors }}</span>
+					<span v-if="!done"> | Done</span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col">
+					<button type="button" class="btn bgGreen0 text-white" @click="createIngredient()"><i class="fas fa-plus"></i> {{ $t('Create New') }}</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="table-responsive">
+					<table class="table text-center" v-if="ingredients.length!==0">
+						<thead>
+						<tr>
+							<th scope="col">Actions</th>
+							<th scope="col">#</th>
+							<th scope="col">{{ $t('English') }}</th>
+							<th scope="col">{{ $t('Greek') }}</th>
+							<th scope="col">{{ $t('Calories') }} (kcal)</th>
+							<th scope="col">{{ $t('Protein') }} (gr)</th>
+							<th scope="col">{{ $t('Carbon Hydrates') }} (gr)</th>
+							<th scope="col">{{ $t('Fats') }} (gr)</th>
+							<th scope="col">{{ $t('Vitamin A') }} (IU)</th>
+							<th scope="col">{{ $t('Carotin B') }} (mcg)</th>
+							<th scope="col">{{ $t('Vitamin C') }} (mg)</th>
+							<th scope="col">{{ $t('Vitamin D') }} (mg)</th>
+							<th scope="col">{{ $t('Vitamin E') }} (mg)</th>
+							<th scope="col">{{ $t('Vitamin K') }} (mcg)</th>
+							<th scope="col">{{ $t('Vitamin B3') }} (mg)</th>
+							<th scope="col">{{ $t('Vitamin B6') }} (mg)</th>
+							<th scope="col">{{ $t('Vitamin B12') }} (mg)</th>
+							<th scope="col">{{ $t('Vitamin B9') }} (mcg)</th>
+							<th scope="col">{{ $t('Choline') }} (mg)</th>
+							<th scope="col">{{ $t('Calcium') }} (mg)</th>
+							<th scope="col">{{ $t('Iron') }} (mg)</th>
+							<th scope="col">{{ $t('Magnesium') }} (mg)</th>
+							<th scope="col">{{ $t('Phosphorus') }} (mg)</th>
+							<th scope="col">{{ $t('Potassium') }} (mg)</th>
+							<th scope="col">{{ $t('Sodium') }} (mg)</th>
+							<th scope="col">{{ $t('Zinc') }} (mg)</th>
+							<th scope="col">{{ $t('Selenium') }} (mcg)</th>
+							<th scope="col">{{ $t('Manganese') }} (mg)</th>
+							<th scope="col">{{ $t('Water') }} (gr)</th>
+						</tr>
+						</thead>
+						<tbody>
 
-							<tr v-if="createNew || editIngredient">
-								<td v-if="createNew && !editIngredient">
-									<a class="text-dark" @click="saveNewIngredient()"><i class="fas fa-save"></i></a>
-									<a class="text-dark" @click="cancelNewIngredient()"><i class="fas fa-trash"></i></a>
-								</td>
-								<td v-if="!createNew && editIngredient">
-									<a class="text-dark" @click="patchIngredient()"><i class="fas fa-save"></i></a>
-									<a class="text-dark" @click="cancelPatchIngredient()"><i class="fas fa-trash"></i></a>
-								</td>
-								<td></td>
-								<td><input type="text" class="form-control mb-3" id="ingredientDataEnglish" v-model="ingredientData.English"></td>
-								<td><input type="text" class="form-control mb-3" id="ingredientDataGreek" v-model="ingredientData.Greek"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataCalories" v-model="ingredientData.Calories"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataProtein" v-model="ingredientData.Protein"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataCarbonHydrates" v-model="ingredientData.CarbonHydrates"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataFats" v-model="ingredientData.Fats"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminA" v-model="ingredientData.VitaminA"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataCarotinB" v-model="ingredientData.CarotinB"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminC" v-model="ingredientData.VitaminC"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminD" v-model="ingredientData.VitaminD"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminE" v-model="ingredientData.VitaminE"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminK" v-model="ingredientData.VitaminK"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminB3" v-model="ingredientData.VitaminB3"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminB6" v-model="ingredientData.VitaminB6"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminB12" v-model="ingredientData.VitaminB12"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminB9" v-model="ingredientData.VitaminB9"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataCholine" v-model="ingredientData.Choline"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataCalcium" v-model="ingredientData.Calcium"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataIron" v-model="ingredientData.Iron"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataMagnesium" v-model="ingredientData.Magnesium"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataPhosphorus" v-model="ingredientData.Phosphorus"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataPotassium" v-model="ingredientData.Potassium"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataSodium" v-model="ingredientData.Sodium"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataZinc" v-model="ingredientData.Zinc"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataSelenium" v-model="ingredientData.Selenium"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataManganese" v-model="ingredientData.Manganese"></td>
-								<td><input type="number" class="form-control mb-3" id="ingredientDataWater" v-model="ingredientData.Water"></td>
-							</tr>
+						<tr v-if="createNew || editIngredient">
+							<td v-if="createNew && !editIngredient">
+								<a class="text-dark" @click="saveNewIngredient()"><i class="fas fa-save"></i></a>
+								<a class="text-dark" @click="cancelNewIngredient()"><i class="fas fa-trash"></i></a>
+							</td>
+							<td v-if="!createNew && editIngredient">
+								<a class="text-dark" @click="patchIngredient()"><i class="fas fa-save"></i></a>
+								<a class="text-dark" @click="cancelPatchIngredient()"><i class="fas fa-trash"></i></a>
+							</td>
+							<td></td>
+							<td><input type="text" class="form-control mb-3" id="ingredientDataEnglish" v-model="ingredientData.English"></td>
+							<td><input type="text" class="form-control mb-3" id="ingredientDataGreek" v-model="ingredientData.Greek"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataCalories" v-model="ingredientData.Calories"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataProtein" v-model="ingredientData.Protein"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataCarbonHydrates" v-model="ingredientData.CarbonHydrates"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataFats" v-model="ingredientData.Fats"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminA" v-model="ingredientData.VitaminA"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataCarotinB" v-model="ingredientData.CarotinB"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminC" v-model="ingredientData.VitaminC"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminD" v-model="ingredientData.VitaminD"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminE" v-model="ingredientData.VitaminE"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminK" v-model="ingredientData.VitaminK"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminB3" v-model="ingredientData.VitaminB3"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminB6" v-model="ingredientData.VitaminB6"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminB12" v-model="ingredientData.VitaminB12"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminB9" v-model="ingredientData.VitaminB9"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataCholine" v-model="ingredientData.Choline"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataCalcium" v-model="ingredientData.Calcium"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataIron" v-model="ingredientData.Iron"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataMagnesium" v-model="ingredientData.Magnesium"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataPhosphorus" v-model="ingredientData.Phosphorus"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataPotassium" v-model="ingredientData.Potassium"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataSodium" v-model="ingredientData.Sodium"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataZinc" v-model="ingredientData.Zinc"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataSelenium" v-model="ingredientData.Selenium"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataManganese" v-model="ingredientData.Manganese"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataWater" v-model="ingredientData.Water"></td>
+						</tr>
 
-							<tr v-for="(ingredient, index) in ingredients">
-								<td>
-									<a class="text-dark" @click="selectIngredientForPatch(ingredient)"><i class="fas fa-pen"></i></a>
-									<a class="text-dark" @click="removeIngredient(ingredient.id, index)"><i class="fas fa-trash"></i></a>
-								</td>
-								<td>{{ (index + 1) }}</td>
-								<td>{{ ingredient.Name }}</td>
-								<td>{{ ingredient.Greek }}</td>
-								<td>{{ ingredient.Calories }}</td>
-								<td>{{ ingredient.Protein }}</td>
-								<td>{{ ingredient.CarbonHydrates }}</td>
-								<td>{{ ingredient.Fats }}</td>
-								<td>{{ ingredient.VitaminA }}</td>
-								<td>{{ ingredient.CarotinB }}</td>
-								<td>{{ ingredient.VitaminC }}</td>
-								<td>{{ ingredient.VitaminD }}</td>
-								<td>{{ ingredient.VitaminE }}</td>
-								<td>{{ ingredient.VitaminK }}</td>
-								<td>{{ ingredient.VitaminB3 }}</td>
-								<td>{{ ingredient.VitaminB6 }}</td>
-								<td>{{ ingredient.VitaminB12 }}</td>
-								<td>{{ ingredient.VitaminB9 }}</td>
-								<td>{{ ingredient.Choline }}</td>
-								<td>{{ ingredient.Calcium }}</td>
-								<td>{{ ingredient.Iron }}</td>
-								<td>{{ ingredient.Magnesium }}</td>
-								<td>{{ ingredient.Phosphorus }}</td>
-								<td>{{ ingredient.Potassium }}</td>
-								<td>{{ ingredient.Sodium }}</td>
-								<td>{{ ingredient.Zinc }}</td>
-								<td>{{ ingredient.Selenium }}</td>
-								<td>{{ ingredient.Manganese }}</td>
-								<td>{{ ingredient.Water }}</td>
-							</tr>
-							</tbody>
-						</table>
-					</div>
+						<tr v-for="(ingredient, index) in ingredients">
+							<td>
+								<a class="text-dark" @click="selectIngredientForPatch(ingredient)"><i class="fas fa-pen"></i></a>
+								<a class="text-dark" @click="removeIngredient(ingredient.id, index)"><i class="fas fa-trash"></i></a>
+							</td>
+							<td>{{ (index + 1) }}</td>
+							<td>{{ ingredient.Name }}</td>
+							<td>{{ ingredient.Greek }}</td>
+							<td>{{ ingredient.Calories }}</td>
+							<td>{{ ingredient.Protein }}</td>
+							<td>{{ ingredient.CarbonHydrates }}</td>
+							<td>{{ ingredient.Fats }}</td>
+							<td>{{ ingredient.VitaminA }}</td>
+							<td>{{ ingredient.CarotinB }}</td>
+							<td>{{ ingredient.VitaminC }}</td>
+							<td>{{ ingredient.VitaminD }}</td>
+							<td>{{ ingredient.VitaminE }}</td>
+							<td>{{ ingredient.VitaminK }}</td>
+							<td>{{ ingredient.VitaminB3 }}</td>
+							<td>{{ ingredient.VitaminB6 }}</td>
+							<td>{{ ingredient.VitaminB12 }}</td>
+							<td>{{ ingredient.VitaminB9 }}</td>
+							<td>{{ ingredient.Choline }}</td>
+							<td>{{ ingredient.Calcium }}</td>
+							<td>{{ ingredient.Iron }}</td>
+							<td>{{ ingredient.Magnesium }}</td>
+							<td>{{ ingredient.Phosphorus }}</td>
+							<td>{{ ingredient.Potassium }}</td>
+							<td>{{ ingredient.Sodium }}</td>
+							<td>{{ ingredient.Zinc }}</td>
+							<td>{{ ingredient.Selenium }}</td>
+							<td>{{ ingredient.Manganese }}</td>
+							<td>{{ ingredient.Water }}</td>
+						</tr>
+						</tbody>
+					</table>
 				</div>
-			<!--</div>-->
+			</div>
 		</div>
 	</div>
 </template>
