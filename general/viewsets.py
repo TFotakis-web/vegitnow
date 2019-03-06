@@ -30,14 +30,16 @@ class StaticPageViewSet(viewsets.ModelViewSet):
 		staticPages = StaticPage.objects.all()
 		res = {}
 		for staticPage in staticPages:
-			translations = {translation.Language_id: translation.id for translation in staticPage.staticpagetranslation_set.all()}
-			res[staticPage.id] = {
-				'id': staticPage.id,
-				'Name': staticPage.Main.Name,
-				'data': [],
-				'fetched': False,
-				'translations': translations
-			}
+			spts = staticPage.staticpagetranslation_set.all() if request.user.is_superuser else staticPage.staticpagetranslation_set.filter(Listed=True, Private=False).all()
+			translations = {translation.Language_id: translation.id for translation in spts}
+			if translations:
+				res[staticPage.id] = {
+					'id': staticPage.id,
+					'Name': staticPage.Main.Name,
+					'data': [],
+					'fetched': False,
+					'translations': translations
+				}
 		return Response(res)
 
 
