@@ -1,10 +1,11 @@
-from bs4 import BeautifulSoup
 from datetime import datetime
 
+from bs4 import BeautifulSoup
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
+from rest_framework.status import *
 
 from general.models import Language
 from .models import Article, ArticleContentTranslation, ArticleType, ArticleTypeNameTranslation, ArticleTypeAssociation, Tag, TagNameTranslation, TagAssociation, Ingredient, IngredientNameTranslation, IngredientAssociation, Unit, UnitNameTranslation  # , UnitAssociation
@@ -153,7 +154,7 @@ class NewArticleViewSet(viewsets.ViewSet):
 			for ingredient in ingredients:
 				ia = IngredientAssociation(Article=a, Ingredient_id=ingredient['ingredientId'], Quantity=ingredient['quantity'], IsMainIngredient=ingredient['isMainIngredient'])
 				ia.save()
-		return Response()
+		return Response(status=HTTP_201_CREATED)
 
 	def retrieve(self, request, pk=None):
 		return Response()
@@ -179,7 +180,6 @@ class NewIngredientViewSet(viewsets.ViewSet):
 		ingredient = Ingredient(
 			Name=request.data['English'],
 			Language=Language.objects.get(Code='en'),
-			# Unit=Unit.objects.get(Name='gr', Language=Language.objects.get(Code='en')),
 			Calories=request.data['Calories'],
 			Protein=request.data['Protein'],
 			CarbonHydrates=request.data['CarbonHydrates'],
@@ -213,7 +213,7 @@ class NewIngredientViewSet(viewsets.ViewSet):
 			Language=Language.objects.get(Code='el')
 		)
 		ingredientTranslation.save()
-		return Response()
+		return Response(status=HTTP_201_CREATED)
 
 	def retrieve(self, request, pk=None):
 		return Response()
@@ -251,7 +251,7 @@ class NewIngredientViewSet(viewsets.ViewSet):
 			Water=request.data['Water'],
 		)
 		IngredientNameTranslation.objects.filter(Ingredient_id=pk).update(Name=request.data['Greek'])
-		return Response()
+		return Response(status=HTTP_206_PARTIAL_CONTENT)
 
 	def destroy(self, request, pk=None):
 		return Response()
