@@ -116,14 +116,12 @@ class UnitNameTranslationViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
-class NewArticleViewSet(viewsets.ViewSet):
+class NewArticleViewSet(viewsets.ModelViewSet):
+	queryset = Ingredient.objects.all()
+	serializer_class = IngredientSerializer
 	permission_classes = (IsAdminUser,)
-	SAFE_ACTIONS = ['list', 'retrieve', 'create']
 
-	def list(self, request):
-		return Response()
-
-	def create(self, request):
+	def create(self, request, *args, **kwargs):
 		a = Article(User=User.objects.filter(is_superuser=True).first())
 		a.save()
 		at = request.data['articleType']
@@ -156,27 +154,13 @@ class NewArticleViewSet(viewsets.ViewSet):
 				ia.save()
 		return Response(status=HTTP_201_CREATED)
 
-	def retrieve(self, request, pk=None):
-		return Response()
 
-	def update(self, request, pk=None):
-		return Response()
-
-	def partial_update(self, request, pk=None):
-		return Response()
-
-	def destroy(self, request, pk=None):
-		return Response()
-
-
-class NewIngredientViewSet(viewsets.ViewSet):
+class NewIngredientViewSet(viewsets.ModelViewSet):
+	queryset = Ingredient.objects.all()
+	serializer_class = IngredientSerializer
 	permission_classes = (IsAdminUser,)
-	SAFE_ACTIONS = ['list', 'retrieve', 'create']
 
-	def list(self, request):
-		return Response()
-
-	def create(self, request):
+	def create(self, request, **kwargs):
 		ingredient = Ingredient(
 			Name=request.data['English'],
 			Language=Language.objects.get(Code='en'),
@@ -215,14 +199,8 @@ class NewIngredientViewSet(viewsets.ViewSet):
 		ingredientTranslation.save()
 		return Response(status=HTTP_201_CREATED)
 
-	def retrieve(self, request, pk=None):
-		return Response()
-
-	def update(self, request, pk=None):
-		return Response()
-
-	def partial_update(self, request, pk=None):
-		Ingredient.objects.filter(pk=pk).update(
+	def update(self, request, *args, **kwargs):
+		Ingredient.objects.filter(id=kwargs['pk']).update(
 			Name=request.data['English'],
 			Calories=request.data['Calories'],
 			Protein=request.data['Protein'],
@@ -250,8 +228,5 @@ class NewIngredientViewSet(viewsets.ViewSet):
 			Manganese=request.data['Manganese'],
 			Water=request.data['Water'],
 		)
-		IngredientNameTranslation.objects.filter(Ingredient_id=pk).update(Name=request.data['Greek'])
+		IngredientNameTranslation.objects.filter(Ingredient_id=kwargs['pk']).update(Name=request.data['Greek'])
 		return Response(status=HTTP_206_PARTIAL_CONTENT)
-
-	def destroy(self, request, pk=None):
-		return Response()
