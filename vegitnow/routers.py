@@ -6,7 +6,6 @@ from general.viewsets import LanguageViewSet, StaticPageViewSet, StaticPageTrans
 router = routers.DefaultRouter()
 
 router.register(r'language', LanguageViewSet)
-
 router.register(r'article', ArticleViewSet)
 router.register(r'articleContentTranslation', ArticleContentTranslationViewSet)
 router.register(r'articleType', ArticleTypeViewSet)

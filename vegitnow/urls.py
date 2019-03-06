@@ -20,13 +20,13 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [re_path(r'(?P<path>.*)', TemplateView.as_view(template_name='index.html'))]
 
-urlpatterns += [
-	# path('', include(('general.urls', 'general'), namespace='general')),
-	# path('login/', include(('login.urls', 'login'), namespace='login')),
-	# path('articles/', include(('articles.urls', 'articles'), namespace='articles')),
-	# path('shop/', include(('shop.urls', 'shop'), namespace='shop')),
-	# path('', include('pwa.urls')),
-]
+# urlpatterns += [
+# path('', include(('general.urls', 'general'), namespace='general')),
+# path('login/', include(('login.urls', 'login'), namespace='login')),
+# path('articles/', include(('articles.urls', 'articles'), namespace='articles')),
+# path('shop/', include(('shop.urls', 'shop'), namespace='shop')),
+# path('', include('pwa.urls')),
+# ]
 
 
 urlpatterns += [
