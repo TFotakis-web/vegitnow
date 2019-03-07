@@ -53,6 +53,7 @@ class ArticleContentTranslation(models.Model):
 	YoutubeLink = models.CharField(default='', blank=True, null=True, max_length=1024)
 	AuthorName = models.CharField(default='', blank=True, null=True, max_length=1024)
 	AuthorProfession = models.CharField(default='', blank=True, null=True, max_length=1024)
+	OnCarousel = models.BooleanField(default=False)
 
 	@property
 	def Released(self):
