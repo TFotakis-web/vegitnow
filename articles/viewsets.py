@@ -206,9 +206,9 @@ class NewArticleViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAdminUser,)
 
 	def create(self, request, *args, **kwargs):
-		a = Article(User=User.objects.filter(is_superuser=True).first())
-		a.save()
 		at = request.data['articleType']
+		a = Article(User=User.objects.filter(is_superuser=True).first(), ArticleType_id=at)
+		a.save()
 		translations = request.data['translations']
 		ata = ArticleTypeAssociation(Article=a, Type_id=at)
 		ata.save()
