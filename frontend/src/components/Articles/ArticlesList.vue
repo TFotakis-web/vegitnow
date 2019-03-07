@@ -4,9 +4,8 @@
 		<div v-if="!requestsUnsatisfied" class="flex-grow-1">
 			<div class="navbar-placeholder"></div>
 			<div class="container">
-				<h1>{{ $t('Articles') }}</h1>
 				<div class="row">
-					<ArticleCard v-for="article in articles" :key="article.id" :article="article"></ArticleCard>
+					<ArticleCard v-for="article in articleList" :key="article.id" :article="article"></ArticleCard>
 				</div>
 			</div>
 		</div>
@@ -26,15 +25,16 @@
 		data: function () {
 			return {
 				articleList: [],
-				articleContentTranslation: [],
-				articleTypeAssociation: [],
 				requestsUnsatisfied: 0
 			};
+		},
+		mounted: function () {
+			this.getArticles();
 		},
 		methods: {
 			getArticles: function () {
 				this.requestsUnsatisfied++;
-				this.$http.get('/api/article/')
+				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=2')
 					.then((response) => {
 						this.articleList = response.data;
 						this.requestsUnsatisfied--;
@@ -46,63 +46,6 @@
 							type: 'error'
 						});
 					});
-			},
-			getArticleContentTranslation: function () {
-				this.requestsUnsatisfied++;
-				this.$http.get('/api/articleContentTranslation/')
-					.then((response) => {
-						this.articleContentTranslation = response.data;
-						this.requestsUnsatisfied--;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-			},
-			getArticleTypeAssociation: function () {
-				this.requestsUnsatisfied++;
-				this.$http.get('/api/articleTypeAssociation/')
-					.then((response) => {
-						this.articleTypeAssociation = response.data;
-						this.requestsUnsatisfied--;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-			}
-		},
-		mounted: function () {
-			this.getArticles();
-			this.getArticleContentTranslation();
-			this.getArticleTypeAssociation();
-		},
-		computed: {
-			articles: function () {
-				var arr = [];
-				for (var article in this.articleList) {
-					var isArticle = false;
-					for (var ata in this.articleTypeAssociation) {
-						if (this.articleTypeAssociation[ata].Article === this.articleList[article].id) {
-							isArticle = this.articleTypeAssociation[ata].Type === 2;
-							break;
-						}
-					}
-					if (!isArticle) continue;
-					for (var act in this.articleContentTranslation) {
-						if (this.articleContentTranslation[act].Article === this.articleList[article].id) {
-							arr.push(this.articleContentTranslation[act]);
-							break;
-						}
-					}
-				}
-				return arr;
 			}
 		}
 	};
