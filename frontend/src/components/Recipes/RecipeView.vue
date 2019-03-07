@@ -65,7 +65,7 @@
 					</div>
 				</div>
 			</div>
-			<RecommendedRecipes></RecommendedRecipes>
+			<RecommendedRecipes :current-recipe-id="id"/>
 		</div>
 	</div>
 </template>
