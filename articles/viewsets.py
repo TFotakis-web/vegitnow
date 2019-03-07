@@ -61,10 +61,13 @@ class ArticleViewSet(viewsets.ModelViewSet):
 			fArticles['ArticleType_id'] = int(request.query_params['type'])
 
 		fTranslations = {}
+		fIngredients = {}
 		if 'locale' in request.query_params:
 			fTranslations['Language_id'] = int(request.query_params['locale'])
-		if not request.user.is_superuser:
-			fTranslations['DoneEditing'] = True
+			fIngredients['Language_id'] = int(request.query_params['locale'])
+		carousel = 'carousel' in request.query_params
+		if carousel:
+			fTranslations['OnCarousel'] = True
 
 		articles = Article.objects.filter(**fArticles).all()
 
@@ -72,14 +75,30 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		for article in articles:
 			translations = article.articlecontenttranslation_set.filter(**fTranslations).order_by('-ReleaseDateTime').all()
 			for translation in translations:
-				data.append({
+				if not translation.Released:
+					continue
+				translationData = {
 					'id': article.id,
+					'ArticleTypeId': article.ArticleType_id,
 					'Title': translation.Title,
 					'Preview': translation.Preview,
 					'Thumbnail': translation.Thumbnail,
 					'Dishes': translation.Dishes,
 					'ReadyIn': translation.ReadyIn
-				})
+				}
+
+				if carousel and article.ArticleType_id == 1:
+					ingredientList = IngredientAssociation.objects.filter(Article_id=article.id, IsMainIngredient=True).all()
+					ingredients = []
+					for ingredient in ingredientList:
+						ingredientName = ingredient.Ingredient.Name
+						if 'locale' in request.query_params:
+							if ingredient.Ingredient.Language_id != int(request.query_params['locale']):
+								ingredientName = ingredient.Ingredient.ingredientnametranslation_set.filter(**fIngredients).first().Name
+						ingredients.append(ingredientName)
+					translationData['MainIngredients'] = ', '.join(ingredients)
+
+				data.append(translationData)
 		return Response(data)
 
 
