@@ -4,9 +4,8 @@
 		<div v-if="!requestsUnsatisfied" class="flex-grow-1">
 			<div class="navbar-placeholder"></div>
 			<div class="container">
-				<h1>{{ $t('Recipes') }}</h1>
 				<div class="row">
-					<RecipeCard v-for="recipe in recipes" :key="recipe.id" :recipe="recipe"></RecipeCard>
+					<RecipeCard v-for="recipe in recipeList" :key="recipe.id" :recipe="recipe"></RecipeCard>
 				</div>
 			</div>
 		</div>
@@ -25,84 +24,28 @@
 		},
 		data: function () {
 			return {
-				articleList: [],
-				articleContentTranslation: [],
-				articleTypeAssociation: [],
+				recipeList: [],
 				requestsUnsatisfied: 0
 			};
 		},
-		methods: {
-			getArticles: function () {
-				this.requestsUnsatisfied++;
-				this.$http.get('/api/article/')
-					.then((response) => {
-						this.articleList = response.data;
-						this.requestsUnsatisfied--;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-			},
-			getArticleContentTranslation: function () {
-				this.requestsUnsatisfied++;
-				this.$http.get('/api/articleContentTranslation/')
-					.then((response) => {
-						this.articleContentTranslation = response.data;
-						this.requestsUnsatisfied--;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-			},
-			getArticleTypeAssociation: function () {
-				this.requestsUnsatisfied++;
-				this.$http.get('/api/articleTypeAssociation/')
-					.then((response) => {
-						this.articleTypeAssociation = response.data;
-						this.requestsUnsatisfied--;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-			}
-		},
 		mounted: function () {
-			this.getArticles();
-			this.getArticleContentTranslation();
-			this.getArticleTypeAssociation();
+			this.getRecipes();
 		},
-		computed: {
-			recipes: function () {
-				var arr = [];
-				for (var article in this.articleList) {
-					var isRecipe = false;
-					for (var ata in this.articleTypeAssociation) {
-						if (this.articleTypeAssociation[ata].Article === this.articleList[article].id) {
-							isRecipe = this.articleTypeAssociation[ata].Type === 1;
-							break;
-						}
-					}
-					if (!isRecipe) continue;
-					for (var act in this.articleContentTranslation) {
-						if (this.articleContentTranslation[act].Article === this.articleList[article].id) {
-							arr.push(this.articleContentTranslation[act]);
-							break;
-						}
-					}
-				}
-				return arr;
+		methods: {
+			getRecipes: function () {
+				this.requestsUnsatisfied++;
+				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=1')
+					.then((response) => {
+						this.recipeList = response.data;
+						this.requestsUnsatisfied--;
+					})
+					.catch((err) => {
+						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
+					});
 			}
 		}
 	};
