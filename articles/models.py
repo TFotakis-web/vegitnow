@@ -7,9 +7,17 @@ from django.utils.translation import get_language
 from general.models import Language
 
 
+class ArticleType(models.Model):
+	Name = models.CharField(default='', max_length=1024)
+	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+
+	def __str__(self): return self.Name + ' - ' + str(self.Language)
+
+
 class Article(models.Model):
 	User = models.ForeignKey(User, on_delete=models.CASCADE)
 	UploadDateTime = models.DateTimeField(auto_now_add=True, null=True)
+	ArticleType = models.ForeignKey(ArticleType, on_delete=models.CASCADE)
 
 	@property
 	def LocalData(self):
@@ -38,7 +46,6 @@ class ArticleContentTranslation(models.Model):
 	Preview = models.CharField(default='', blank=True, null=True, max_length=150)
 	Content = models.TextField(blank=True)
 	Thumbnail = models.TextField(blank=True)
-	# Thumbnail = models.ImageField(default='Shared/defaultArticleThumbnail.png', upload_to='ArticleThumbnails/', blank=True)
 	ReleaseDateTime = models.DateTimeField(default=None, blank=True, null=True)
 	DoneEditing = models.BooleanField(default=False)
 	Dishes = models.IntegerField(default=0)
@@ -52,13 +59,6 @@ class ArticleContentTranslation(models.Model):
 		return self.DoneEditing and (self.ReleaseDateTime is None or self.ReleaseDateTime.utctimetuple() <= datetime.now().astimezone().utctimetuple())
 
 	def __str__(self): return self.Language.Code + ': ' + self.Title
-
-
-class ArticleType(models.Model):
-	Name = models.CharField(default='', max_length=1024)
-	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
-
-	def __str__(self): return self.Name + ' - ' + str(self.Language)
 
 
 class ArticleTypeNameTranslation(models.Model):
