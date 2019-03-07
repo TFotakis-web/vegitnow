@@ -75,7 +75,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		for article in articles:
 			translations = article.articlecontenttranslation_set.filter(**fTranslations).order_by('-ReleaseDateTime').all()
 			for translation in translations:
-				if not translation.Released:
+				if not request.user.is_superuser and not translation.Released:
 					continue
 				translationData = {
 					'id': article.id,
