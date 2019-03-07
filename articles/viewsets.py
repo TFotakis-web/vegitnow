@@ -17,6 +17,71 @@ class ArticleViewSet(viewsets.ModelViewSet):
 	serializer_class = ArticleSerializer
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
+	def retrieve(self, request, *args, **kwargs):
+		article = Article.objects.get(id=kwargs['pk'])
+		fTranslations = {}
+		if 'locale' in request.query_params:
+			fTranslations['Language_id'] = int(request.query_params['locale'])
+
+		translation = article.articlecontenttranslation_set.filter(**fTranslations).first()
+		if not translation:
+			return Response(status=HTTP_404_NOT_FOUND)
+
+		data = {
+			'Title': translation.Title,
+			'Preview': translation.Preview,
+			'Content': translation.Content,
+			'Thumbnail': translation.Thumbnail,
+			'ReleaseDateTime': translation.ReleaseDateTime,
+			'Dishes': translation.Dishes,
+			'ReadyIn': translation.ReadyIn,
+			'YoutubeLink': translation.YoutubeLink,
+			'AuthorName': translation.AuthorName,
+			'AuthorProfession': translation.AuthorProfession
+		}
+		if article.ArticleType_id == 1:
+			ingredientList = IngredientAssociation.objects.filter(Article_id=kwargs['pk']).all()
+			ingredients = []
+			for ingredient in ingredientList:
+				ingredientData = {
+					'Name': ingredient.Ingredient.Name,
+					'Quantity': ingredient.Quantity,
+					'IsMainIngredient': ingredient.IsMainIngredient
+				}
+				if 'locale' in request.query_params:
+					if ingredient.Ingredient.Language_id != int(request.query_params['locale']):
+						ingredientData['Name'] = ingredient.Ingredient.ingredientnametranslation_set.filter(**fTranslations).first().Name
+				ingredients.append(ingredientData)
+			data['Ingredients'] = ingredients
+		return Response(data)
+
+	def list(self, request, *args, **kwargs):
+		fArticles = {}
+		if 'type' in request.query_params:
+			fArticles['ArticleType_id'] = int(request.query_params['type'])
+
+		fTranslations = {}
+		if 'locale' in request.query_params:
+			fTranslations['Language_id'] = int(request.query_params['locale'])
+		if not request.user.is_superuser:
+			fTranslations['DoneEditing'] = True
+
+		articles = Article.objects.filter(**fArticles).all()
+
+		data = []
+		for article in articles:
+			translations = article.articlecontenttranslation_set.filter(**fTranslations).order_by('-ReleaseDateTime').all()
+			for translation in translations:
+				data.append({
+					'id': article.id,
+					'Title': translation.Title,
+					'Preview': translation.Preview,
+					'Thumbnail': translation.Thumbnail,
+					'Dishes': translation.Dishes,
+					'ReadyIn': translation.ReadyIn
+				})
+		return Response(data)
+
 
 class ArticleContentTranslationViewSet(viewsets.ModelViewSet):
 	queryset = ArticleContentTranslation.objects.all()
