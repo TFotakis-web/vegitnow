@@ -25,7 +25,7 @@
 		<div style="height:100vh;clip-path: polygon(2% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%);">
 			<div id="carouselControls" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
-					<div v-for="(article, index) in articles" :key="article.id" class="carousel-item" :class="{ 'active' : index === 0 }">
+					<div v-for="(article, index) in articleList" :key="article.id" class="carousel-item" :class="{ 'active' : index === 0 }">
 						<div class="full-screen-img">
 							<div class="full-screen-img" :style="{'background-image': 'url(' + article.Thumbnail + ')'}">
 								<div class="container-fluid h-100">
@@ -35,7 +35,7 @@
 												<div class="container w-75">
 													<h1 style="font-size: 4rem;">{{ article.Title }}</h1>
 												</div>
-												<div class="container w-75">
+												<div v-if="article.ArticleTypeId === 1" class="container w-75">
 													<div class="row">
 														<div class="col-lg-6">
 															<h1>{{ $t('Main Ingredients') }}:</h1>
@@ -47,6 +47,10 @@
 														</div>
 													</div>
 													<router-link :to="{ name: 'RecipeView', params: { id: article.id }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Go to the recipe') }}</router-link>
+												</div>
+												<div v-if="article.ArticleTypeId === 2" class="container w-75">
+													<p>{{ article.Preview }}</p>
+													<router-link :to="{ name: 'ArticleView', params: { id: article.id }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Read More') }}</router-link>
 												</div>
 											</div>
 										</div>
@@ -66,13 +70,15 @@
 		name: 'Carousel',
 		data: function () {
 			return {
-				articleList: [],
-				articleContentTranslation: []
+				articleList: []
 			};
+		},
+		mounted: function () {
+			this.getArticles();
 		},
 		methods: {
 			getArticles: function () {
-				this.$http.get('/api/article/')
+				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&carousel')
 					.then((response) => {
 						this.articleList = response.data;
 					})
@@ -83,37 +89,6 @@
 							type: 'error'
 						});
 					});
-			},
-			getArticleContentTranslation: function () {
-				this.$http.get('/api/articleContentTranslation/')
-					.then((response) => {
-						this.articleContentTranslation = response.data;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-			}
-		},
-		mounted: function () {
-			this.getArticles();
-			this.getArticleContentTranslation();
-		},
-		computed: {
-			articles: function () {
-				var arr = [];
-				for (var article in this.articleList) {
-					for (var act in this.articleContentTranslation) {
-						if (this.articleContentTranslation[act].Article === this.articleList[article].id) {
-							arr.push(this.articleContentTranslation[act]);
-							break;
-						}
-					}
-				}
-				return arr;
 			}
 		}
 	};
