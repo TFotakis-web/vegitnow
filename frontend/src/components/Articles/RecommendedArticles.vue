@@ -91,16 +91,20 @@
 		components: {
 			ArticleCard
 		},
+		props: [
+			'currentArticleId'
+		],
 		data: function () {
 			return {
-				articleList: [],
-				articleContentTranslation: [],
-				articleTypeAssociation: []
+				articleList: []
 			};
+		},
+		mounted: function () {
+			this.getArticles();
 		},
 		methods: {
 			getArticles: function () {
-				this.$http.get('/api/article/')
+				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=2')
 					.then((response) => {
 						this.articleList = response.data;
 					})
@@ -111,59 +115,15 @@
 							type: 'error'
 						});
 					});
-			},
-			getArticleContentTranslation: function () {
-				this.$http.get('/api/articleContentTranslation/')
-					.then((response) => {
-						this.articleContentTranslation = response.data;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-			},
-			getArticleTypeAssociation: function () {
-				this.$http.get('/api/articleTypeAssociation/')
-					.then((response) => {
-						this.articleTypeAssociation = response.data;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
 			}
-		},
-		mounted: function () {
-			this.getArticles();
-			this.getArticleContentTranslation();
-			this.getArticleTypeAssociation();
 		},
 		computed: {
 			articles: function () {
-				var arr = [];
-				for (var article in this.articleList) {
-					var isArticle = false;
-					for (var ata in this.articleTypeAssociation) {
-						if (this.articleTypeAssociation[ata].Article === this.articleList[article].id) {
-							isArticle = this.articleTypeAssociation[ata].Type === 2;
-							break;
-						}
-					}
-					if (!isArticle) continue;
-					for (var act in this.articleContentTranslation) {
-						if (this.articleContentTranslation[act].Article === this.articleList[article].id) {
-							arr.push(this.articleContentTranslation[act]);
-							break;
-						}
-					}
-				}
-				return arr;
+				if (!this.currentArticleId) return this.articleList;
+				let id = parseInt(this.currentArticleId);
+				return this.articleList.filter(function (obj) {
+					return obj.id !== id;
+				});
 			},
 			dualArticles: function () {
 				var arr = [];
