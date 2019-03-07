@@ -1,6 +1,5 @@
 <template>
 	<div id="articleView" class="d-flex flex-grow-1">
-	<!--<div id="articleView">-->
 		<Loader v-if="requestsUnsatisfied"/>
 		<div v-if="!requestsUnsatisfied" class="flex-grow-1">
 			<div id="RecipeImageAndStats" class="d-flex flex-column" style="height: 100vh;clip-path: polygon(2% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%);">
@@ -135,7 +134,7 @@
 		methods: {
 			getArticleData: function () {
 				this.requestsUnsatisfied++;
-				this.$http.get('/api/articleContentTranslation/' + this.id + '/')
+				this.$http.get('/api/article/' + this.id + '/?locale=' + this.$cookie.get('locale'))
 					.then((response) => {
 						this.article = response.data;
 						this.requestsUnsatisfied--;
@@ -146,6 +145,7 @@
 							text: this.$t('Something went wrong... Please check your connection.'),
 							type: 'error'
 						});
+						this.$router.push({name: 'ArticlesList'});
 					});
 			}
 		},
