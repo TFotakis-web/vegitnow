@@ -86,7 +86,7 @@
 					<div v-html="article['Content']"></div>
 				</div>
 			</div>
-			<RecommendedArticles></RecommendedArticles>
+			<RecommendedArticles :current-article-id="id"/>
 		</div>
 	</div>
 </template>
