@@ -2,7 +2,6 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.db import models
-from django.utils.translation import get_language
 
 from general.models import Language
 
@@ -19,24 +18,24 @@ class Article(models.Model):
 	UploadDateTime = models.DateTimeField(auto_now_add=True, null=True)
 	ArticleType = models.ForeignKey(ArticleType, on_delete=models.CASCADE)
 
-	@property
-	def LocalData(self):
-		return ArticleContentTranslation.objects.filter(Article=self, Language__Code=get_language()).first()
-
-	@property
-	def LocalDataOrDefault(self):
-		local = self.LocalData
-		if local is None:
-			return ArticleContentTranslation.objects.filter(Article=self).first()
-		else:
-			return local
-
-	@property
-	def Released(self):
-		return self.LocalDataOrDefault.DoneEditing and (self.LocalDataOrDefault.ReleaseDateTime is None or self.LocalDataOrDefault.ReleaseDateTime.utctimetuple() <= datetime.now().astimezone().utctimetuple())
+	# @property
+	# def LocalData(self):
+	# 	return ArticleContentTranslation.objects.filter(Article=self, Language__Code=get_language()).first()
+	#
+	# @property
+	# def LocalDataOrDefault(self):
+	# 	local = self.LocalData
+	# 	if local is None:
+	# 		return ArticleContentTranslation.objects.filter(Article=self).first()
+	# 	else:
+	# 		return local
+	# @property
+	# def Released(self):
+	# 	return self.LocalDataOrDefault.DoneEditing and (self.LocalDataOrDefault.ReleaseDateTime is None or self.LocalDataOrDefault.ReleaseDateTime.utctimetuple() <= datetime.now().astimezone().utctimetuple())
 
 	def __str__(self):
-		return self.LocalDataOrDefault.Title
+		translation = self.articlecontenttranslation_set.first()
+		return translation.Title if translation else 'Default Title'
 
 
 class ArticleContentTranslation(models.Model):
