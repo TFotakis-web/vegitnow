@@ -18,7 +18,7 @@
 							<div class="col-sm-4" style="border-left: dashed 2px #327317; border-right: dashed 2px #327317">
 								<h2 class="fgGreen1">{{ $t('Main Ingredients') }}:</h2>
 								<p class="font-weight-bold mb-sm-0">
-									<span v-for="(ingredient, index) in articleMainIngredients">{{ ingredient.data.Name }}<span v-if="index !== articleMainIngredients.length - 1"> - </span></span>
+									<span v-for="(ingredient, index) in articleMainIngredients">{{ ingredient.Name }}<span v-if="index !== articleMainIngredients.length - 1"> - </span></span>
 								</p>
 							</div>
 							<div class="col-sm-4">
@@ -34,7 +34,7 @@
 					<div class="row py-5">
 						<div class="col-sm-4 text-center">
 							<h2 class="fgGreen1">{{ $t('Ingredients') }}</h2>
-							<p v-for="ingredient in articleIngredients">{{ ingredient.Quantity }}gr {{ ingredient.data.Name }}</p>
+							<p v-for="ingredient in article.Ingredients">{{ ingredient.Quantity }}gr {{ ingredient.Name }}</p>
 						</div>
 						<div class="col-sm-8" style="border-left: dashed 2px #327317;">
 							<h2 class="fgGreen1 text-center text-sm-left">{{ $t('Execution') }}</h2>
@@ -86,61 +86,19 @@
 			return {
 				id: this.$route.params['id'],
 				article: {},
-				articleIngredientsRaw: [],
-				ingredients: [],
 				requestsUnsatisfied: 0
 			};
 		},
-		computed: {
-			articleMainIngredients: function () {
-				return this.articleIngredients.filter(function (ingredient) {
-					return ingredient.IsMainIngredient;
-				});
-			},
-			articleIngredients: function () {
-				var arr = [];
-				for (var i = 0; i < this.articleIngredientsRaw.length; i++) {
-					arr.push(this.articleIngredientsRaw[i]);
-					arr[i].data = this.ingredients[this.articleIngredientsRaw[i].Ingredient];
-				}
-				return arr;
-			}
+		mounted: function () {
+			this.getRecipeData();
 		},
 		methods: {
-			getArticleData: function () {
+			getRecipeData: function () {
 				this.requestsUnsatisfied++;
-				this.$http.get('/api/articleContentTranslation/' + this.id + '/')
+				this.$http.get('/api/article/' + this.id + '/?locale=' + this.$cookie.get('locale'))
 					.then((response) => {
 						this.article = response.data;
 						this.requestsUnsatisfied--;
-
-						this.requestsUnsatisfied++;
-						this.$http.get('/api/ingredientAssociation/' + this.article.Article + '/')
-							.then((response) => {
-								this.articleIngredientsRaw = response.data;
-								this.requestsUnsatisfied--;
-							})
-							.catch((err) => {
-								console.log(err);
-								this.$notify({
-									text: this.$t('Something went wrong... Please check your connection.'),
-									type: 'error'
-								});
-							});
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-
-				this.requestsUnsatisfied++;
-				this.$http.get('/api/ingredient/')
-					.then((response) => {
-						this.ingredients = response.data;
-						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
@@ -151,8 +109,13 @@
 					});
 			}
 		},
-		mounted: function () {
-			this.getArticleData();
+		computed: {
+			articleMainIngredients: function () {
+				if (!this.article.hasOwnProperty('Ingredients')) return [];
+				return this.article.Ingredients.filter(function (ingredient) {
+					return ingredient.IsMainIngredient;
+				});
+			}
 		}
 	};
 </script>
