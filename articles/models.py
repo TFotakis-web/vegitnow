@@ -18,21 +18,6 @@ class Article(models.Model):
 	UploadDateTime = models.DateTimeField(auto_now_add=True, null=True)
 	ArticleType = models.ForeignKey(ArticleType, on_delete=models.CASCADE)
 
-	# @property
-	# def LocalData(self):
-	# 	return ArticleContentTranslation.objects.filter(Article=self, Language__Code=get_language()).first()
-	#
-	# @property
-	# def LocalDataOrDefault(self):
-	# 	local = self.LocalData
-	# 	if local is None:
-	# 		return ArticleContentTranslation.objects.filter(Article=self).first()
-	# 	else:
-	# 		return local
-	# @property
-	# def Released(self):
-	# 	return self.LocalDataOrDefault.DoneEditing and (self.LocalDataOrDefault.ReleaseDateTime is None or self.LocalDataOrDefault.ReleaseDateTime.utctimetuple() <= datetime.now().astimezone().utctimetuple())
-
 	def __str__(self):
 		translation = self.articlecontenttranslation_set.first()
 		return translation.Title if translation else 'Default Title'
@@ -73,7 +58,7 @@ class ArticleTypeAssociation(models.Model):
 	Article = models.ForeignKey(Article, on_delete=models.CASCADE)
 	Type = models.ForeignKey(ArticleType, on_delete=models.CASCADE)
 
-	def __str__(self): return self.Type.Name + ': ' + self.Article.LocalDataOrDefault.Title
+	def __str__(self): return self.Type.Name + ': ' + str(self.Article)
 
 
 class Tag(models.Model):
