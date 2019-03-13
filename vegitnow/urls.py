@@ -3,7 +3,7 @@ from django.urls import path, re_path, include
 from django.views.decorators.cache import cache_control
 from django.views.generic import TemplateView
 
-from general.views import custom404View
+# from general.views import custom404View
 from .routers import router
 
 urlpatterns = [
@@ -27,6 +27,6 @@ urlpatterns += [re_path(r'(?P<path>.*)', TemplateView.as_view(template_name='ind
 # ]
 
 
-urlpatterns += [
-	re_path(r'(?P<path>.*)', custom404View, name='custom404')
-]
+# urlpatterns += [
+# 	re_path(r'(?P<path>.*)', custom404View, name='custom404')
+# ]
