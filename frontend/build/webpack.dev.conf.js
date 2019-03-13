@@ -39,7 +39,7 @@ module.exports = merge(baseWebpackConfig, {
 		new FriendlyErrorsPlugin()
 	],
 	output: {
-		path: config.build.assetsRoot,
+		path: config.dev.assetsRoot,
 		filename: utils.assetsPath('js/[name].[hash].js'),
 		chunkFilename: utils.assetsPath('js/[id].[hash].js')
 	},
