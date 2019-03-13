@@ -6,8 +6,8 @@ const path = require('path');
 module.exports = {
 	build: {
 		env: require('./prod.env'),
-		index: path.resolve(__dirname, '../dist/index.html'),
-		assetsRoot: path.resolve(__dirname, '../dist'),
+		index: path.resolve(__dirname, '../dist/prod/index.html'),
+		assetsRoot: path.resolve(__dirname, '../dist/prod'),
 		assetsSubDirectory: 'static',
 		assetsPublicPath: '/',
 		productionSourceMap: true,
@@ -36,8 +36,8 @@ module.exports = {
 		// In our experience, they generally work as expected,
 		// just be aware of this issue when enabling this option.
 		cssSourceMap: false,
-		index: path.resolve(__dirname, '../dist/index.html'),
-		assetsRoot: path.resolve(__dirname, '../dist'),
+		index: path.resolve(__dirname, '../dist/dev/index.html'),
+		assetsRoot: path.resolve(__dirname, '../dist/dev'),
 		productionSourceMap: true,
 
 	}
