@@ -7,3 +7,4 @@ venv/
 frontend/dist/dev/
 frontend/webpack-stats.json
 *.sqlite3
+migrations/
