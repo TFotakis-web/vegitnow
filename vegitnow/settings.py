@@ -15,8 +15,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# INTERNAL_IPS = ['127.0.0.1']
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -36,7 +34,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
-	# 'django.middleware.locale.LocaleMiddleware',
 	'django.middleware.common.CommonMiddleware',
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -50,7 +47,6 @@ TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
 		'DIRS': [
-			os.path.join(BASE_DIR, 'templates'),
 			os.path.join(BASE_DIR, 'frontend/dist/dev'),
 			os.path.join(BASE_DIR, 'frontend/dist/prod'),
 		]
@@ -120,20 +116,6 @@ STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, 'frontend/dist/dev/static'),
 	os.path.join(BASE_DIR, 'frontend/dist/prod/static'),
 ]
-
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# from django.utils.translation import gettext_lazy as _
-
-# LANGUAGES = [
-# 	('el', _('Greek')),
-# 	('en', _('English')),
-# ]
-#
-# LOCALE_PATHS = (
-# 	os.path.join(BASE_DIR, 'locale'),
-# )
 
 SUMMERNOTE_THEME = 'lite'
 
