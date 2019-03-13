@@ -49,7 +49,11 @@ ROOT_URLCONF = 'vegitnow.urls'
 TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
-		'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'frontend/dist')]
+		'DIRS': [
+			os.path.join(BASE_DIR, 'templates'),
+			os.path.join(BASE_DIR, 'frontend/dist/dev'),
+			os.path.join(BASE_DIR, 'frontend/dist/prod'),
+		]
 		,
 		'APP_DIRS': True,
 		'OPTIONS': {
@@ -113,7 +117,8 @@ STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, 'static'),
-	os.path.join(BASE_DIR, 'frontend/dist/static'),
+	os.path.join(BASE_DIR, 'frontend/dist/dev/static'),
+	os.path.join(BASE_DIR, 'frontend/dist/prod/static'),
 ]
 
 # MEDIA_URL = '/media/'
