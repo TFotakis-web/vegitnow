@@ -1,9 +1,8 @@
-from datetime import datetime
-
 from bs4 import BeautifulSoup
+from datetime import datetime
 from django.contrib.auth.models import User
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.status import *
 
@@ -101,110 +100,6 @@ class ArticleViewSet(viewsets.ModelViewSet):
 				data.append(translationData)
 		return Response(data)
 
-
-class ArticleContentTranslationViewSet(viewsets.ModelViewSet):
-	queryset = ArticleContentTranslation.objects.all()
-	serializer_class = ArticleContentTranslationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class ArticleTypeViewSet(viewsets.ModelViewSet):
-	queryset = ArticleType.objects.all()
-	serializer_class = ArticleTypeSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class ArticleTypeNameTranslationViewSet(viewsets.ModelViewSet):
-	queryset = ArticleTypeNameTranslation.objects.all()
-	serializer_class = ArticleTypeNameTranslationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class ArticleTypeAssociationViewSet(viewsets.ModelViewSet):
-	queryset = ArticleTypeAssociation.objects.all()
-	serializer_class = ArticleTypeAssociationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class TagViewSet(viewsets.ModelViewSet):
-	queryset = Tag.objects.all()
-	serializer_class = TagSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class TagNameTranslationViewSet(viewsets.ModelViewSet):
-	queryset = TagNameTranslation.objects.all()
-	serializer_class = TagNameTranslationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class TagAssociationViewSet(viewsets.ModelViewSet):
-	queryset = TagAssociation.objects.all()
-	serializer_class = TagAssociationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class IngredientViewSet(viewsets.ModelViewSet):
-	queryset = Ingredient.objects.all()
-	serializer_class = IngredientSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-	def list(self, request, *args, **kwargs):
-		queryset = Ingredient.objects.all()
-		serializer = self.get_serializer(queryset, many=True)
-		data = {}
-		for obj in serializer.data:
-			data[obj['id']] = obj
-		return Response(data)
-
-
-class IngredientNameTranslationViewSet(viewsets.ModelViewSet):
-	queryset = IngredientNameTranslation.objects.all()
-	serializer_class = IngredientNameTranslationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-	def list(self, request, *args, **kwargs):
-		queryset = self.filter_queryset(self.get_queryset())
-		serializer = self.get_serializer(queryset, many=True)
-		sd = serializer.data
-		data = {}
-		for lang in Language.objects.all():
-			data[lang.id] = {}
-			for obj in sd:
-				if obj['Language'] == lang.id:
-					data[lang.id][obj['Ingredient']] = obj['Name']
-		return Response(data)
-
-
-class IngredientAssociationViewSet(viewsets.ModelViewSet):
-	queryset = IngredientAssociation.objects.all()
-	serializer_class = IngredientAssociationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-	def retrieve(self, request, *args, **kwargs):
-		queryset = IngredientAssociation.objects.filter(Article_id=kwargs['pk']).order_by('-IsMainIngredient')
-		serializer = self.get_serializer(queryset, many=True)
-		data = serializer.data
-		return Response(data)
-
-
-class UnitViewSet(viewsets.ModelViewSet):
-	queryset = Unit.objects.all()
-	serializer_class = UnitSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class UnitNameTranslationViewSet(viewsets.ModelViewSet):
-	queryset = UnitNameTranslation.objects.all()
-	serializer_class = UnitNameTranslationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class NewArticleViewSet(viewsets.ModelViewSet):
-	queryset = Ingredient.objects.all()
-	serializer_class = IngredientSerializer
-	permission_classes = (IsAdminUser,)
-
 	def create(self, request, *args, **kwargs):
 		at = request.data['articleType']
 		a = Article(User=User.objects.filter(is_superuser=True).first(), ArticleType_id=at)
@@ -239,10 +134,42 @@ class NewArticleViewSet(viewsets.ModelViewSet):
 		return Response(status=HTTP_201_CREATED)
 
 
-class NewIngredientViewSet(viewsets.ModelViewSet):
+class ArticleTypeViewSet(viewsets.ModelViewSet):
+	queryset = ArticleType.objects.all()
+	serializer_class = ArticleTypeSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class IngredientViewSet(viewsets.ModelViewSet):
 	queryset = Ingredient.objects.all()
 	serializer_class = IngredientSerializer
-	permission_classes = (IsAdminUser,)
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+	def list(self, request, *args, **kwargs):
+		queryset = Ingredient.objects.all()
+		serializer = self.get_serializer(queryset, many=True)
+
+		data = []
+		if 'locale' in request.query_params:
+			locale = int(request.query_params['locale'])
+			for obj in serializer.data:
+				objData = obj
+				if obj['Language'] != locale:
+					translation = IngredientNameTranslation.objects.filter(Ingredient_id=obj['id'], Language_id=locale).first()
+					if not translation:
+						continue
+					objData['Name'] = translation.Name
+				data.append(objData)
+			return Response(data)
+
+		for obj in serializer.data:
+			objData = obj
+			objData['translations'] = {2: ''}
+			translations = IngredientNameTranslation.objects.filter(Ingredient_id=obj['id']).all()
+			for translation in translations:
+				objData['translations'][translation.Language.id] = translation.Name
+			data.append(objData)
+		return Response(data)
 
 	def create(self, request, **kwargs):
 		ingredient = Ingredient(
@@ -314,3 +241,81 @@ class NewIngredientViewSet(viewsets.ModelViewSet):
 		)
 		IngredientNameTranslation.objects.filter(Ingredient_id=kwargs['pk']).update(Name=request.data['Greek'])
 		return Response(status=HTTP_206_PARTIAL_CONTENT)
+
+
+class IngredientNameTranslationViewSet(viewsets.ModelViewSet):
+	queryset = IngredientNameTranslation.objects.all()
+	serializer_class = IngredientNameTranslationSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+	def list(self, request, *args, **kwargs):
+		queryset = self.filter_queryset(self.get_queryset())
+		serializer = self.get_serializer(queryset, many=True)
+		sd = serializer.data
+		data = {}
+		for lang in Language.objects.all():
+			data[lang.id] = {}
+			for obj in sd:
+				if obj['Language'] == lang.id:
+					data[lang.id][obj['Ingredient']] = obj['Name']
+		return Response(data)
+
+
+class IngredientAssociationViewSet(viewsets.ModelViewSet):
+	queryset = IngredientAssociation.objects.all()
+	serializer_class = IngredientAssociationSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+	def retrieve(self, request, *args, **kwargs):
+		queryset = IngredientAssociation.objects.filter(Article_id=kwargs['pk']).order_by('-IsMainIngredient')
+		serializer = self.get_serializer(queryset, many=True)
+		data = serializer.data
+		return Response(data)
+
+
+class ArticleContentTranslationViewSet(viewsets.ModelViewSet):
+	queryset = ArticleContentTranslation.objects.all()
+	serializer_class = ArticleContentTranslationSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class ArticleTypeNameTranslationViewSet(viewsets.ModelViewSet):
+	queryset = ArticleTypeNameTranslation.objects.all()
+	serializer_class = ArticleTypeNameTranslationSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class ArticleTypeAssociationViewSet(viewsets.ModelViewSet):
+	queryset = ArticleTypeAssociation.objects.all()
+	serializer_class = ArticleTypeAssociationSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class TagViewSet(viewsets.ModelViewSet):
+	queryset = Tag.objects.all()
+	serializer_class = TagSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class TagNameTranslationViewSet(viewsets.ModelViewSet):
+	queryset = TagNameTranslation.objects.all()
+	serializer_class = TagNameTranslationSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class TagAssociationViewSet(viewsets.ModelViewSet):
+	queryset = TagAssociation.objects.all()
+	serializer_class = TagAssociationSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class UnitViewSet(viewsets.ModelViewSet):
+	queryset = Unit.objects.all()
+	serializer_class = UnitSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class UnitNameTranslationViewSet(viewsets.ModelViewSet):
+	queryset = UnitNameTranslation.objects.all()
+	serializer_class = UnitNameTranslationSerializer
+	permission_classes = (IsAuthenticatedOrReadOnly,)
