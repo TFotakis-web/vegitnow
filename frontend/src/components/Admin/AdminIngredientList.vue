@@ -109,7 +109,7 @@
 							</td>
 							<td>{{ (index + 1) }}</td>
 							<td>{{ ingredient.Name }}</td>
-							<td>{{ ingredient.Greek }}</td>
+							<td>{{ ingredient.translations[2] }}</td>
 							<td>{{ ingredient.Calories }}</td>
 							<td>{{ ingredient.Protein }}</td>
 							<td>{{ ingredient.CarbonHydrates }}</td>
@@ -346,7 +346,7 @@
 				this.selectedIngredient = ingredient;
 				this.ingredientData = {
 					English: ingredient.Name || '',
-					Greek: ingredient.Greek || '',
+					Greek: ingredient.translations[2] || '',
 					Calories: ingredient.Calories,
 					Protein: ingredient.Protein,
 					CarbonHydrates: ingredient.CarbonHydrates,
