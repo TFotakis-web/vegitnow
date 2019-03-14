@@ -159,7 +159,6 @@
 				importErrors: 0,
 				done: -1,
 				ingredients: [],
-				ingredientNameTranslations: {},
 				createNew: false,
 				editIngredient: false,
 				ingredientData: {},
@@ -172,10 +171,10 @@
 		},
 		methods: {
 			onFileChange: function (e) {
-				var files = e.target.files || e.dataTransfer.files;
+				let files = e.target.files || e.dataTransfer.files;
 				if (!files.length) return;
-				var file = files[0];
-				var reader = new FileReader();
+				let file = files[0];
+				let reader = new FileReader();
 				reader.onload = (e) => {
 					this.csvFile = e.target.result;
 					// console.log(this.csvFile);
@@ -231,7 +230,7 @@
 						Water: csvLine[26]
 					};
 					// console.log(csvLine);
-					this.$http.post('/api/newIngredient/', data)
+					this.$http.post('/api/ingredient/', data)
 						.then((response) => {
 							this.importCount++;
 							this.done--;
@@ -291,7 +290,7 @@
 				this.createNew = true;
 			},
 			saveNewIngredient: function () {
-				this.$http.post('/api/newIngredient/', this.ingredientData)
+				this.$http.post('/api/ingredient/', this.ingredientData)
 					.then((response) => {
 						this.createNew = false;
 						this.getIngredients();
@@ -313,24 +312,10 @@
 			},
 			getIngredients: function () {
 				this.requestsUnsatisfied++;
-				this.$http.get('/api/ingredientNameTranslation/')
+				this.$http.get('/api/ingredient/')
 					.then((response) => {
-						this.ingredientNameTranslations = response.data;
-						this.$http.get('/api/ingredient/')
-							.then((response) => {
-								this.ingredients = response.data;
-								for (var i = 0; i < this.ingredients.length; i++) {
-									this.ingredients[i]['Greek'] = this.ingredientNameTranslations['2'][this.ingredients[i]['id']];
-								}
-								this.requestsUnsatisfied--;
-							})
-							.catch((err) => {
-								console.log(err);
-								this.$notify({
-									text: this.$t('Something went wrong... Please check your connection.'),
-									type: 'error'
-								});
-							});
+						this.ingredients = response.data;
+						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
 						console.log(err);
@@ -391,7 +376,7 @@
 				this.editIngredient = true;
 			},
 			patchIngredient: function () {
-				this.$http.put('/api/newIngredient/' + this.selectedIngredient.id + '/', this.ingredientData)
+				this.$http.put('/api/ingredient/' + this.selectedIngredient.id + '/', this.ingredientData)
 					.then((response) => {
 						// this.ingredients.splice(index, 1);
 						this.editIngredient = false;
