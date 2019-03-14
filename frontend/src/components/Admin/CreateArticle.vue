@@ -354,7 +354,7 @@
 				}
 
 				this.requestsUnsatisfied++;
-				this.$http.post('/api/newArticle/', data)
+				this.$http.post('/api/article/', data)
 					.then((response) => {
 						console.log(response);
 						this.$notify({
