@@ -9,6 +9,7 @@ const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.base.conf');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -36,7 +37,15 @@ module.exports = merge(baseWebpackConfig, {
 			serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
 				'./service-worker-dev.js'), 'utf-8')}</script>`
 		}),
-		new FriendlyErrorsPlugin()
+		new FriendlyErrorsPlugin(),
+		// copy custom static assets
+		new CopyWebpackPlugin([
+			{
+				from: path.resolve(__dirname, '../src/static'),
+				to: config.dev.assetsSubDirectory,
+				ignore: ['.*']
+			}
+		]),
 	],
 	output: {
 		path: config.dev.assetsRoot,
