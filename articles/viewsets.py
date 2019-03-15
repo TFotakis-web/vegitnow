@@ -125,6 +125,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 			elif at == 2:
 				act.AuthorName = translation['authorName']
 				act.AuthorProfession = translation['authorProfession']
+			act.OnCarousel = translation['onCarousel']
 			act.save()
 		if at == 1:
 			ingredients = request.data['ingredients']
