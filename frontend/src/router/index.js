@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import VueAnalytics from 'vue-analytics';
 import Home from '../components/Home/Home';
-import VueAnalytics from 'vue-analytics'
 
 // import Communication from '../components/Various/Communication';
 // import WhoWeAre from '../components/Various/WhoWeAre';
-import Shop from '../components/Various/Shop';
+// import Shop from '../components/Various/Shop';
 
 import AdminUrls from './Admin';
 import ArticleUrls from './Articles';
