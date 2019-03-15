@@ -77,6 +77,13 @@
 					</div>
 				</div>
 
+				<div :id="'ArticleOnCarousel' + index" class="form-check row">
+					<div class="col">
+						<input type="checkbox" :id="'ArticleOnCarousel' + index" class="form-check-input" v-model="article.onCarousel">
+						<label class="form-check-label" :for="'ArticleOnCarousel' + index">{{ $t('Available on carousel') }}</label>
+					</div>
+				</div>
+
 				<div :id="'ArticleMarkDoneEditing' + index" class="form-check row">
 					<div class="col">
 						<input type="checkbox" :id="'ArticleMarkDoneEditing' + index" class="form-check-input" v-model="article.doneEditing">
@@ -279,6 +286,7 @@
 						date: null,
 						time: null
 					},
+					onCarousel: false,
 					doneEditing: false,
 					authorName: '',
 					authorProfession: ''
@@ -316,11 +324,10 @@
 				this.data.translations.splice(index, 1);
 			},
 			onFileChange: function (e, article) {
-				var files = e.target.files || e.dataTransfer.files;
+				let files = e.target.files || e.dataTransfer.files;
 				if (!files.length) return;
-				// this.createImage(files[0], article);
-				var file = files[0];
-				var reader = new FileReader();
+				let file = files[0];
+				let reader = new FileReader();
 
 				reader.onload = (e) => {
 					article.thumbnail = e.target.result;
