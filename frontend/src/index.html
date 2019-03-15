@@ -1,42 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Meta Tags -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<!--<title>Page Title. Maximum length 60-70 characters</title>-->
+	<!--<meta name="description" content="Page description. No longer than 155 characters."/>-->
 	<title>VegItNow</title>
+	<meta name="description" content="All about vegan foods, drinks and lifestyle.">
+	<meta name="keywords" content="Vegan, food, drink, lifestyle, nutrition">
 
-	<!--
-	<link rel="icon" type="image/ico" sizes="48x48" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon.ico">
-	<link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-16x16.png">
-	-->
-	<link rel="icon" type="image/ico" sizes="48x48" href="static/img/icons/favicon.ico">
-	<link rel="icon" type="image/png" sizes="32x32" href="static/img/icons/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="static/img/icons/favicon-16x16.png">
-
-	<!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
-
-	<!-- Add to home screen for Android and modern mobile browsers -->
-	<link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>static/manifest.json">
+	<!-- Android  -->
 	<meta name="theme-color" content="#3DA313">
+	<meta name="mobile-web-app-capable" content="yes">
 
-	<!-- Add to home screen for Safari on iOS -->
+	<!-- iOS -->
+	<meta name="apple-mobile-web-app-title" content="VegItNow">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-title" content="vegitnow">
-	<link rel="apple-touch-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/apple-touch-icon-152x152.png">
-	<link rel="mask-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/safari-pinned-tab.svg" color="#3DA313">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-	<!-- Add to home screen for Windows -->
-	<meta name="msapplication-TileImage" content="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/msapplication-icon-144x144.png">
-	<meta name="msapplication-TileColor" content="#000000">
+	<!-- Windows  -->
+	<meta name="msapplication-navbutton-color" content="#2d89ef">
+	<meta name="msapplication-TileColor" content="#2d89ef">
+	<meta name="msapplication-config" content="/static/img/browserconfig.xml">
+
+
+	<!-- Pinned Sites  -->
+	<meta name="application-name" content="VegItNow">
+	<meta name="msapplication-tooltip" content="VegItNow">
+	<meta name="msapplication-starturl" content="/">
+
+	<!-- Tap highlighting  -->
+	<meta name="msapplication-tap-highlight" content="no">
+
+	<!-- UC Mobile Browser  -->
+	<meta name="full-screen" content="yes">
+	<meta name="browsermode" content="application">
+
+	<!-- Disable night mode for this page  -->
+	<meta name="nightmode" content="disable">
+	<!--<meta name="nightmode" content="enable">-->
+
+	<!-- Fitscreen  -->
+	<!--<meta name="viewport" content="uc-fitscreen=yes"/>-->
+
+	<!-- Layout mode -->
+	<meta name="layoutmode" content="fitscreen">
+	<!--<meta name="layoutmode" content="standard">-->
+
+	<!-- imagemode - show image even in text only mode  -->
+	<meta name="imagemode" content="force">
+
+	<!-- Orientation  -->
+	<meta name="screen-orientation" content="portrait">
+
+
+	<!-- Social Media -->
+	<meta property="og:title" content="VegItNow">
+	<meta property="og:description" content="All about vegan foods, drinks and lifestyle.">
+	<meta property="og:image" content="https://vegitnow.com/static/img/VegItNowLogoSocial.png">
+	<meta property="og:url" content="https://vegitnow.com">
+	<meta name="twitter:card" content="VegItNow">
+
+
+	<!-- Schema.org markup for Google+ -->
+	<meta itemprop="name" content="VegItNow">
+	<meta itemprop="description" content="All about vegan foods, drinks and lifestyle.">
+	<meta itemprop="image" content="https://vegitnow.com/static/img/VegItNowLogoSocial.png">
+
+	<!-- Twitter Card data -->
+	<meta name="twitter:card" content="VegItNow">
+	<meta name="twitter:site" content="@VegItNow">
+	<meta name="twitter:title" content="VegItNow">
+	<meta name="twitter:description" content="All about vegan foods, drinks and lifestyle.">
+	<meta name="twitter:creator" content="@VegItNow">
+	<!-- Twitter summary card with large image must be at least 280x150px -->
+	<meta name="twitter:image:src" content="https://vegitnow.com/static/img/VegItNowLogoSocial.png">
+
+	<!-- Open Graph data -->
+	<meta property="og:title" content="VegItNow"/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:url" content="https://vegitnow.com"/>
+	<meta property="og:image" content="https://vegitnow.com/static/img/VegItNowLogoSocial.png"/>
+	<meta property="og:description" content="All about vegan foods, drinks and lifestyle."/>
+	<meta property="og:site_name" content="VegItNow"/>
+	<!--<meta property="article:published_time" content="2013-09-17T05:59:00+01:00"/>-->
+	<!--<meta property="article:modified_time" content="2013-09-16T19:08:47+01:00"/>-->
+	<!--<meta property="article:section" content="Article Section"/>-->
+	<!--<meta property="article:tag" content="Article Tag"/>-->
+	<!--<meta property="fb:admins" content="Facebook numberic ID"/>-->
+
+
+
+	<!-- Link Tags -->
+	<!-- Main Link Tags  -->
+	<link href="/static/img/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+	<link href="/static/img/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+	<link href="/static/img/favicon.ico" rel="icon" type="image/ico" sizes="48x48">
+	<link href="/static/img/VegItNowLogoLeafSticker.svg" rel="icon" type="image/svg+xml" sizes="any">
+
+	<!-- iOS  -->
+	<link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+	<!--<link href="touch-icon-iphone.png" rel="apple-touch-icon">-->
+	<!--<link href="touch-icon-ipad.png" rel="apple-touch-icon" sizes="76x76">-->
+	<!--<link href="touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="120x120">-->
+	<!--<link href="touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="152x152">-->
+	<!--<link href="touch-icon-start-up-320x480.png" rel="apple-touch-startup-image">-->
+	<!--<link href="images/icon-52x52.png" rel="apple-touch-icon-precomposed" sizes="57x57">-->
+	<!--<link href="images/icon-72x72.png" rel="apple-touch-icon" sizes="72x72">-->
+
+	<!-- Pinned Tab  -->
+	<link href="/static/img/safari-pinned-tab.svg" rel="mask-icon" color="#3da313">
+
+	<!-- Android  -->
+	<link href="/static/img/android-chrome-192x192.png" rel="icon" sizes="192x192">
+	<link href="/static/img/android-chrome-512x512.png" rel="icon" sizes="512x512">
+
+	<!-- Others -->
+	<link href="/static/img/favicon.ico" rel="shortcut icon" type="image/ico">
+
+	<!-- Manifest.json  -->
+	<!-- Add to home screen for Android and modern mobile browsers -->
+	<!--<link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>static/manifest.json">-->
+	<link href="/static/manifest.json" rel="manifest">
+
+
 
 	<% for (var chunk of webpack.chunks) {
-	for (var file of chunk.files) {
-	if (file.match(/\.(js|css)$/)) { %>
-	<link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
+		for (var file of chunk.files) {
+			if (file.match(/\.(js|css)$/)) { %>
+				<link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
 	<% }}} %>
 
 	<script src="/static/js/jquery/jquery-3.3.1.js"></script>
