@@ -50,7 +50,7 @@
 												</div>
 												<div v-if="article.ArticleTypeId === 2" class="container w-75">
 													<p>{{ article.Preview }}</p>
-													<router-link :to="{ name: 'ArticleView', params: { id: article.id }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Read More') }}</router-link>
+													<router-link :to="{ name: 'ArticleView', params: { id: article.id }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Read more') }}</router-link>
 												</div>
 											</div>
 										</div>
