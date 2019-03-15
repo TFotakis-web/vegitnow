@@ -1,6 +1,5 @@
 <template>
 	<div id="app" class="d-flex flex-column" style="min-height: 100vh;">
-		<!--<div class="flex-grow-1">-->
 		<div class="d-flex flex-grow-1">
 			<NavigationBar></NavigationBar>
 			<router-view :key="$route.fullPath"/>
@@ -23,14 +22,14 @@
 	};
 </script>
 
-<style src="../static/css/bootstrap.min.css"></style>
-<style src="../static/css/summernote-bs4.css"></style>
-<style src="../static/fonts/fontawesome-free-5.5.0-web/css/all.css"></style>
-<style src="../static/css/AlegreyaSans.css"></style>
-<style src="../static/css/animate.css"></style>
-<style src="../static/css/fontello.css"></style>
-<style src="../static/css/colorPalette.css"></style>
-<style src="../static/css/style.css"></style>
+<!--<style src="static/css/bootstrap.min.css"></style>-->
+<!--<style src="static/css/summernote-bs4.css"></style>-->
+<!--<style src="static/fonts/fontawesome-free-5.5.0-web/css/all.css"></style>-->
+<!--<style src="static/css/AlegreyaSans.css"></style>-->
+<!--<style src="static/css/animate.css"></style>-->
+<!--<style src="static/css/fontello.css"></style>-->
+<!--<style src="static/css/colorPalette.css"></style>-->
+<!--<style src="static/css/style.css"></style>-->
 
 <style>
 	.fade-enter-active {
