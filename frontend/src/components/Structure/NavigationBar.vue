@@ -3,7 +3,7 @@
 		<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top d-md-none">
 			<div class="container">
 				<router-link :to="{ name: 'Home' }">
-					<img src="/static/img/logo.png" alt="Vegitnow Logo" height="40">
+					<img src="/static/img/VegItNowLogo.svg" alt="Vegitnow Logo" height="40">
 				</router-link>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -16,19 +16,6 @@
 						<li class="nav-item">
 							<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold">{{ $t('Articles') }}</router-link>
 						</li>
-						<!--<li class="nav-item">-->
-							<!--<router-link :to="{ name: 'WhoWeAre' }" class="nav-link font-weight-bold">{{ $t('Who we are') }}</router-link>-->
-						<!--</li>-->
-						<!--<li class="nav-item">-->
-							<!--<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">{{ $t('Communication') }}</router-link>-->
-						<!--</li>-->
-						<!--<li class="nav-item">-->
-							<!--<router-link :to="{ name: 'Shop' }" class="nav-link">-->
-								<!--<div class="vegShop-btn">-->
-									<!--<span>VEG SHOP</span>-->
-								<!--</div>-->
-							<!--</router-link>-->
-						<!--</li>-->
 						<li class="nav-item">
 							<a @click="changeLanguage()" class="nav-link">
 								<div class="locale-btn">
@@ -46,7 +33,7 @@
 				<div class="d-flex w-100 align-items-center">
 					<div class="">
 						<router-link :to="{ name: 'Home' }" class="navbar-brand">
-							<img src="/static/img/logo.png" alt="Vegitnow Logo" height="40">
+							<img src="/static/img/VegItNowLogo.svg" alt="Vegitnow Logo" height="40">
 						</router-link>
 					</div>
 					<div class="flex-grow-1">
@@ -57,23 +44,10 @@
 							<li class="nav-item">
 								<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold">{{ $t('Articles') }}</router-link>
 							</li>
-							<!--<li class="nav-item">-->
-								<!--<router-link :to="{ name: 'WhoWeAre' }" class="nav-link font-weight-bold">{{ $t('Who we are') }}</router-link>-->
-							<!--</li>-->
-							<!--<li class="nav-item">-->
-								<!--<router-link :to="{ name: 'Communication' }" class="nav-link font-weight-bold">{{ $t('Communication') }}</router-link>-->
-							<!--</li>-->
 						</ul>
 					</div>
 					<div class="">
 						<ul class="navbar-nav justify-content-end" style="position: relative; top: 2rem;">
-							<!--<li class="nav-item">-->
-								<!--<router-link :to="{ name: 'Shop' }" class="nav-link">-->
-									<!--<div class="vegShop-btn">-->
-										<!--<span>VEG SHOP</span>-->
-									<!--</div>-->
-								<!--</router-link>-->
-							<!--</li>-->
 							<li class="nav-item">
 								<a @click="changeLanguage()" class="nav-link">
 									<div class="locale-btn">
