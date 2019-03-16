@@ -14,7 +14,8 @@ import StaticPage from '../components/Various/StaticPage';
 
 Vue.use(Router);
 
-var routes = [
+// Todo: Add page dependent title, meta and property tags functionality
+let routes = [
 	{
 		path: '/',
 		name: 'Home',
