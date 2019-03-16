@@ -15,9 +15,10 @@ from articles.viewsets import IngredientViewSet
 # from articles.viewsets import UnitNameTranslationViewSet
 # from articles.viewsets import NewIngredientViewSet
 # from articles.viewsets import NewArticleViewSet
-from general.viewsets import LanguageViewSet
+from general.viewsets import LanguageViewSet, CreateNewsletterUserViewSet
 from general.viewsets import StaticPageViewSet
 from general.viewsets import StaticPageTranslationViewSet
+from general.viewsets import NewsletterUserViewSet
 
 router = routers.DefaultRouter()
 
@@ -27,6 +28,8 @@ router.register(r'ingredient', IngredientViewSet)
 router.register(r'language', LanguageViewSet)
 router.register(r'staticPage', StaticPageViewSet)
 router.register(r'staticPageTranslation', StaticPageTranslationViewSet)
+router.register(r'newsletterUser', NewsletterUserViewSet)
+router.register(r'createNewsletterUser', CreateNewsletterUserViewSet, basename='createNewsletterUser')
 # router.register(r'articleContentTranslation', ArticleContentTranslationViewSet)
 # router.register(r'articleTypeNameTranslation', ArticleTypeNameTranslationViewSet)
 # router.register(r'articleTypeAssociation', ArticleTypeAssociationViewSet)
