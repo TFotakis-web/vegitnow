@@ -42,6 +42,16 @@
 							<input type="text" class="form-control" id="AuthorProfession" placeholder="Author Profession" v-model="article.authorProfession">
 						</div>
 					</div>
+
+					<div :id="'AuthorProfilePictureInput' + index" class="form-group row">
+						<label class="col-sm-2 col-form-label">{{ $t('Author Profile Picture') }}:</label>
+						<div class="col-sm-10">
+							<div class="custom-file">
+								<label class="custom-file-label" :for="'AuthorProfilePicture' + index">{{ $t('Choose file') }}</label>
+								<input type="file" class="custom-file-input" :id="'AuthorProfilePicture' + index" @change="onFileChange($event, article, 'authorProfilePicture')">
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<div :id="'ArticleThumbnailInput' + index" class="form-group row">
@@ -49,7 +59,7 @@
 					<div class="col-sm-10">
 						<div class="custom-file">
 							<label class="custom-file-label" :for="'ArticleThumbnail' + index">{{ $t('Choose file') }}</label>
-							<input type="file" class="custom-file-input" :id="'ArticleThumbnail' + index" @change="onFileChange($event, article)">
+							<input type="file" class="custom-file-input" :id="'ArticleThumbnail' + index" @change="onFileChange($event, article, 'thumbnail')">
 						</div>
 					</div>
 				</div>
@@ -282,6 +292,7 @@
 					title: null,
 					content: '',
 					thumbnail: null,
+					authorProfilePicture: null,
 					releaseDateTime: {
 						date: null,
 						time: null
@@ -323,14 +334,14 @@
 			deleteLanguage: function (index) {
 				this.data.translations.splice(index, 1);
 			},
-			onFileChange: function (e, article) {
+			onFileChange: function (e, storeDict, key) {
 				let files = e.target.files || e.dataTransfer.files;
 				if (!files.length) return;
 				let file = files[0];
 				let reader = new FileReader();
 
 				reader.onload = (e) => {
-					article.thumbnail = e.target.result;
+					this.$set(storeDict, key, e.target.result);
 				};
 				reader.readAsDataURL(file);
 			},
