@@ -1,10 +1,11 @@
-from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework import viewsets, mixins
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.status import *
+from rest_framework.viewsets import GenericViewSet
 
-from .models import Language, StaticPage, StaticPageTranslation
-from .serializers import LanguageSerializer, StaticPageSerializer, StaticPageTranslationSerializer
+from .models import Language, StaticPage, StaticPageTranslation, NewsletterUser
+from .serializers import LanguageSerializer, StaticPageSerializer, StaticPageTranslationSerializer, NewsletterUserSerializer
 
 
 class LanguageViewSet(viewsets.ModelViewSet):
@@ -154,3 +155,15 @@ class StaticPageTranslationViewSet(viewsets.ModelViewSet):
 		else:
 			sp.delete()
 		return Response(status=HTTP_200_OK)
+
+
+class NewsletterUserViewSet(viewsets.ModelViewSet):
+	queryset = NewsletterUser.objects.all()
+	serializer_class = NewsletterUserSerializer
+	permission_classes = (IsAdminUser,)
+
+
+class CreateNewsletterUserViewSet(mixins.CreateModelMixin, GenericViewSet):
+	# queryset = NewsletterUser.objects.all()
+	serializer_class = NewsletterUserSerializer
+	# permission_classes = (IsAdminUser,)
