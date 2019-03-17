@@ -21,7 +21,7 @@
 								<div id="mc_embed_signup_scroll">
 									<div class="mc-field-group">
 										<!--<label for="mce-EMAIL">Email Address </label>-->
-										<input v-model="newsletterEmail" type="email" value="" name="EMAIL" class="form-control mb-1 required email" id="mce-EMAIL" style="border-bottom: solid #2d6c13 2px;border-top: 0; border-left: 0; border-right: 0;" :placeholder="$t('Insert your email') + '...'">
+										<input v-model="newsletterEmail" type="email" value="" name="EMAIL" class="form-control mb-1 required email" id="mce-EMAIL" style="border-bottom: solid #2d6c13 2px;border-top: 0; border-left: 0; border-right: 0;" :placeholder="$t('Insert your email') + '...'" aria-label="Newsletter Email">
 									</div>
 									<div id="mce-responses" class="clear">
 										<div class="response" id="mce-error-response" style="display:none"></div>
@@ -29,10 +29,10 @@
 									</div>
 									<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
 									<div style="position: absolute; left: -5000px;" aria-hidden="true">
-										<input type="text" name="b_cf57f59f1fada010f4b6dc6ba_a6721a14ec" tabindex="-1" value="">
+										<input type="text" name="b_cf57f59f1fada010f4b6dc6ba_a6721a14ec" tabindex="-1" value="" aria-label="Do not Edit">
 									</div>
 									<div class="clear">
-										<button class="btn bgGreen0 text-white form-control" type="submit" name="subscribe" id="mc-embedded-subscribe">
+										<button class="btn bgGreen0 text-white form-control" type="submit" name="subscribe" id="mc-embedded-subscribe" aria-label="Subscribe">
 											<i class="icon-mail"></i> {{ $t('Subscribe') }}
 										</button>
 									</div>
@@ -63,9 +63,9 @@
 					<div class="col-md-3 mb-4">
 						<h1 class="fgGreen0">{{ $t('Follow us') }}</h1>
 						<h1>
-							<a class="fgGreen0" href="https://www.facebook.com/vegitnow/" target="_blank"><span class="icon-facebook"></span></a>
-							<a class="fgGreen0" href="https://www.instagram.com/vegitnow/" target="_blank"><span class="icon-instagram"></span></a>
-							<a class="fgGreen0" href="https://www.youtube.com/channel/UC_V2b4B_sK7c4fB28KK-4pw" target="_blank"><span class="icon-youtube-play"></span></a>
+							<a class="fgGreen0" href="https://www.facebook.com/vegitnow/" aria-label="Facebook" target="_blank" rel="noopener"><span class="icon-facebook"></span></a>
+							<a class="fgGreen0" href="https://www.instagram.com/vegitnow/" aria-label="Instagram" target="_blank" rel="noopener"><span class="icon-instagram"></span></a>
+							<a class="fgGreen0" href="https://www.youtube.com/channel/UC_V2b4B_sK7c4fB28KK-4pw" aria-label="YouTube" target="_blank" rel="noopener"><span class="icon-youtube-play"></span></a>
 						</h1>
 					</div>
 				</div>
