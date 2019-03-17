@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="articles.length">
 		<div id="ArticlesDualCard" class="d-none d-lg-block" style="position: relative;">
 			<a class="btn btn-circle bgGreen2 text-white" href="#articleCarouselDualCard" role="button" data-slide="prev" style="
 				   font-size: 1.5rem;
