@@ -1,5 +1,5 @@
 <template>
-	<div id="carousel" style="position: relative">
+	<div id="carousel" v-if="articleList.length" style="position: relative">
 		<a class="btn btn-circle bgGreen2 text-white" href="#carouselControls" role="button" data-slide="prev" style="
 				   font-size: 1.5rem;
 				   font-family: 'AC-ScriptCondenced_unicode', sans-serif;
