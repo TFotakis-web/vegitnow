@@ -45,7 +45,7 @@
 			</div>
 			<div id="VideoAndNutrition" v-if="article.YoutubeLink !== ''" class="bgGreen1" style="clip-path: polygon(2% 0%, 98% 0%, 98.5% 20%, 97% 60%, 97% 85%, 98% 100%, 2% 100%, 3% 60%, 1.5% 20%);">
 				<div class="container py-5 text-center">
-					<div class="row">
+					<div class="row" v-if="article.YoutubeLink !== ''">
 						<div class="col-sm-4 text-sm-right">
 							<h2 class="fgGreen1 w-100" style="border-bottom: dashed 2px #327317;">{{ $t('Execution from us') }}</h2>
 						</div>
@@ -55,14 +55,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="row mt-3">
-						<div class="col-sm-4 text-sm-right ">
-							<h2 class="fgGreen1 w-100">{{ $t('Nutrition facts') }}</h2>
-						</div>
-						<div class="col-sm-8 align-left float-left text-left">
-							<NutritionStats></NutritionStats>
-						</div>
-					</div>
+					<!--<div class="row mt-3">-->
+						<!--<div class="col-sm-4 text-sm-right ">-->
+							<!--<h2 class="fgGreen1 w-100">{{ $t('Nutrition facts') }}</h2>-->
+						<!--</div>-->
+						<!--<div class="col-sm-8 align-left float-left text-left">-->
+							<!--<NutritionStats></NutritionStats>-->
+						<!--</div>-->
+					<!--</div>-->
 				</div>
 			</div>
 			<RecommendedRecipes :current-recipe-id="id"/>
