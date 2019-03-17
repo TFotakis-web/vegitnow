@@ -1,5 +1,5 @@
 <template>
-	<div id="IngredientOfTheDay">
+	<div id="IngredientOfTheDay" v-if="Object.keys(ingredient).length">
 		<h1 class="text-center fgGreen0"
 		    style="position: relative;top: -0.5em;margin-bottom: -1.2em;z-index: 1;">{{ $t('Ingredient of the day') }}</h1>
 		<div class="bgGreen1 py-5"
@@ -31,7 +31,6 @@
 			</div>
 		</div>
 	</div>
-
 </template>
 
 <script>
@@ -41,6 +40,11 @@
 		name: 'IngredientOfTheDay',
 		components: {
 			NutritionStats
+		},
+		data: function () {
+			return {
+				ingredient: {}
+			};
 		}
 	};
 </script>
