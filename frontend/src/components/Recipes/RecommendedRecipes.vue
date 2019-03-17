@@ -1,5 +1,5 @@
 <template>
-	<div id="recommendedRecipes">
+	<div id="recommendedRecipes" v-if="recipes.length">
 		<div id="RecipesTripleCard" class="d-none d-xl-block" style="position: relative;">
 			<a class="btn btn-circle bgGreen2 text-white" href="#recipeCarouselTripleCard" role="button" data-slide="prev" style="
 				   font-size: 1.5rem;
