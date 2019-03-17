@@ -146,7 +146,7 @@
 		},
 		methods: {
 			getArticles: function () {
-				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=1')
+				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=1&carousel')
 					.then((response) => {
 						this.recipeList = response.data;
 					})
