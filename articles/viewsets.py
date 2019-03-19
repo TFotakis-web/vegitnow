@@ -78,6 +78,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 					continue
 				translationData = {
 					'id': article.id,
+					'ArticleContentTranslationId': translation.id,
 					'ArticleTypeId': article.ArticleType_id,
 					'Title': translation.Title,
 					'Preview': translation.Preview,
@@ -134,6 +135,14 @@ class ArticleViewSet(viewsets.ModelViewSet):
 				ia = IngredientAssociation(Article=a, Ingredient_id=ingredient['ingredientId'], Quantity=ingredient['quantity'], IsMainIngredient=ingredient['isMainIngredient'])
 				ia.save()
 		return Response(status=HTTP_201_CREATED)
+
+	def destroy(self, request, *args, **kwargs):
+		articleTranslation = ArticleContentTranslation.objects.get(id=kwargs['pk'])
+		article = Article.objects.get(id=articleTranslation.Article_id)
+		articleTranslation.delete()
+		if not article.articlecontenttranslation_set.count():
+			article.delete()
+		return Response(status=HTTP_200_OK)
 
 
 class ArticleTypeViewSet(viewsets.ModelViewSet):
