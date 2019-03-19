@@ -31,7 +31,7 @@
 		methods: {
 			getArticles: function () {
 				this.requestsUnsatisfied++;
-				this.$http.get('/api/article/?type=2&carousel')
+				this.$http.get('/api/article/?type=2')
 					.then((response) => {
 						this.articleList = response.data;
 						this.requestsUnsatisfied--;
