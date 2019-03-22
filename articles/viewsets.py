@@ -78,7 +78,6 @@ class ArticleViewSet(viewsets.ModelViewSet):
 					continue
 				translationData = {
 					'id': article.id,
-					'ArticleContentTranslationId': translation.id,
 					'ArticleTypeId': article.ArticleType_id,
 					'Title': translation.Title,
 					'Preview': translation.Preview,
@@ -99,6 +98,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 					translationData['MainIngredients'] = ', '.join(ingredients)
 
 				data.append(translationData)
+				break
 		return Response(data)
 
 	def create(self, request, *args, **kwargs):
