@@ -12,15 +12,7 @@
 					<div class="container">
 						<div class="d-lg-none py-4">
 							<div class="col">
-								<div class="bg-white rounded-circle mx-auto"
-								     style="
-								     height: 190px;
-								     width: 190px;
-								     background-size: cover;
-								     background-repeat: inherit;
-								     background-position: center center;
-								     background-image: url(/static/img/karota.png);">
-									<!--background-image: url({% static 'img/karota.png' %});">-->
+								<div class="bg-white rounded-circle mx-auto authorProfilePicture" :style="{ 'background-image': 'url(' + article.AuthorProfilePicture + ')' }">
 								</div>
 								<div class="dashedCircle rotating mx-auto"
 								     style="height: 210px; width: 210px; margin-top: -200px; margin-left: -10px;">
@@ -28,12 +20,13 @@
 							</div>
 							<div class="col text-center">
 								<h2 class="fgGreen1 mt-3">{{ $t('Writes') }}:</h2>
-								<p class="font-weight-bold m-0">John Papadimitriou</p>
+								<p class="font-weight-bold m-0">{{ article['AuthorName'] }}</p>
 								<hr>
 								<p class="font-weight-bold m-0">
-									Special Dietologist
-									<br>
-									Dr. University of Life
+									{{ article['AuthorProfession'] }}
+									<!--Special Dietologist-->
+									<!--<br>-->
+									<!--Dr. University of Life-->
 								</p>
 							</div>
 						</div>
@@ -67,19 +60,8 @@
 				</div>
 			</div>
 			<div class="container d-none d-lg-block" style="position: relative; margin-top: -95px;">
-				<div class="bg-white rounded-circle"
-				     style="
-				     height: 190px;
-				     width: 190px;
-				     background-size: cover;
-				     background-repeat: inherit;
-				     background-position: center center;
-				     background-image: url(/static/img/karota.png);">
-					<!--background-image: url({% static 'img/karota.png' %});">-->
-				</div>
-				<div class="dashedCircle rotating"
-				     style="height: 210px; width: 210px; margin-top: -200px; margin-left: -10px;">
-				</div>
+				<div class="bg-white rounded-circle authorProfilePicture" :style="{ 'background-image': 'url(' + article.AuthorProfilePicture + ')' }"></div>
+				<div class="dashedCircle rotating" style="height: 210px; width: 210px; margin-top: -200px; margin-left: -10px;"></div>
 			</div>
 			<div id="Instructions" class="mt-4 mb-5 d-flex">
 				<div class="container">
@@ -133,5 +115,11 @@
 </script>
 
 <style scoped>
-
+	.authorProfilePicture{
+		height: 190px;
+		width: 190px;
+		background-size: cover;
+		background-repeat: inherit;
+		background-position: center center;
+	}
 </style>
