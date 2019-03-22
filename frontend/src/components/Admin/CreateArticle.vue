@@ -16,7 +16,7 @@
 					<label for="ArticleLanguage" class="col-sm-2 col-form-label">{{ $t('Select Language') }}:</label>
 					<div class="col-sm-10">
 						<select class="custom-select" id="ArticleLanguage" v-model="article.language">
-							<option v-for="language in languages" :value="language.id">{{ language.Name }}</option>
+							<option v-for="language in $root.languages" :value="language.id">{{ language.Name }}</option>
 						</select>
 					</div>
 				</div>
@@ -87,14 +87,14 @@
 					</div>
 				</div>
 
-				<div :id="'ArticleOnCarousel' + index" class="form-check row">
+				<div :id="'ArticleOnCarouselInput' + index" class="form-check row">
 					<div class="col">
 						<input type="checkbox" :id="'ArticleOnCarousel' + index" class="form-check-input" v-model="article.onCarousel">
 						<label class="form-check-label" :for="'ArticleOnCarousel' + index">{{ $t('Available on carousel') }}</label>
 					</div>
 				</div>
 
-				<div :id="'ArticleMarkDoneEditing' + index" class="form-check row">
+				<div :id="'ArticleMarkDoneEditingInput' + index" class="form-check row">
 					<div class="col">
 						<input type="checkbox" :id="'ArticleMarkDoneEditing' + index" class="form-check-input" v-model="article.doneEditing">
 						<label class="form-check-label" :for="'ArticleMarkDoneEditing' + index">{{ $t('Mark as Done Editing') }}</label>
@@ -212,7 +212,6 @@
 		},
 		data: function () {
 			return {
-				languages: [],
 				articleTypes: [],
 				ingredients: [],
 				selectedIngredient: {},
@@ -232,28 +231,11 @@
 			};
 		},
 		mounted: function () {
-			this.addTranslation();
+			this.addInitializedTranslation();
 			this.getArticleTypes();
-			this.getLanguages();
 			this.getIngredients();
 		},
 		methods: {
-			getLanguages: function () {
-				this.requestsUnsatisfied++;
-				this.$http.get('/api/language/')
-					.then((response) => {
-						this.languages = response.data;
-						this.initTranslationLanguage(this.data.translations[0]);
-						this.requestsUnsatisfied--;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-			},
 			getArticleTypes: function () {
 				this.requestsUnsatisfied++;
 				this.$http.get('/api/articleType/')
@@ -311,7 +293,8 @@
 				this.initTranslationLanguage(translation);
 			},
 			initTranslationLanguage: function (translation) {
-				translation.language = Object.keys(this.languages)[0];
+				// translation.language = Object.keys(this.$root.languages)[0];
+				translation.language = '1';
 			},
 			initArticleFields: function () {
 				this.selectedIngredient = {};
