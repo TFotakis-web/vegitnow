@@ -22,37 +22,48 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		if 'locale' in request.query_params:
 			fTranslations['Language_id'] = int(request.query_params['locale'])
 
-		translation = article.articlecontenttranslation_set.filter(**fTranslations).first()
-		if not translation:
+		translations = article.articlecontenttranslation_set.filter(**fTranslations).all()
+		if not translations:
 			return Response(status=HTTP_404_NOT_FOUND)
 
-		data = {
-			'Title': translation.Title,
-			'Preview': translation.Preview,
-			'Content': translation.Content,
-			'Thumbnail': translation.Thumbnail,
-			'ReleaseDateTime': translation.ReleaseDateTime,
-			'Dishes': translation.Dishes,
-			'ReadyIn': translation.ReadyIn,
-			'YoutubeLink': translation.YoutubeLink,
-			'AuthorName': translation.AuthorName,
-			'AuthorProfession': translation.AuthorProfession
-		}
-		if article.ArticleType_id == 1:
-			ingredientList = IngredientAssociation.objects.filter(Article_id=kwargs['pk']).all()
-			ingredients = []
-			for ingredient in ingredientList:
-				ingredientData = {
-					'Name': ingredient.Ingredient.Name,
-					'Quantity': ingredient.Quantity,
-					'IsMainIngredient': ingredient.IsMainIngredient
-				}
-				if 'locale' in request.query_params:
-					if ingredient.Ingredient.Language_id != int(request.query_params['locale']):
-						ingredientData['Name'] = ingredient.Ingredient.ingredientnametranslation_set.filter(**fTranslations).first().Name
-				ingredients.append(ingredientData)
-			data['Ingredients'] = ingredients
-		return Response(data)
+		res = []
+		for translation in translations:
+			data = {
+				'id': translation.id,
+				'Title': translation.Title,
+				'Preview': translation.Preview,
+				'Content': translation.Content,
+				'Thumbnail': translation.Thumbnail,
+				'ReleaseDateTime': {
+					'date': translation.ReleaseDateTime.strftime('%d/%m/%Y'),
+					'time': translation.ReleaseDateTime.strftime('%H:%M')
+				},
+				'Dishes': translation.Dishes,
+				'ReadyIn': translation.ReadyIn,
+				'YoutubeLink': translation.YoutubeLink,
+				'AuthorName': translation.AuthorName,
+				'AuthorProfession': translation.AuthorProfession,
+				'AuthorProfilePicture': translation.AuthorProfilePicture,
+				'Language': translation.Language_id,
+				'OnCarousel': translation.OnCarousel,
+				'DoneEditing': translation.DoneEditing
+			}
+			if article.ArticleType_id == 1:
+				ingredientList = IngredientAssociation.objects.filter(Article_id=kwargs['pk']).all()
+				ingredients = []
+				for ingredient in ingredientList:
+					ingredientData = {
+						'Name': ingredient.Ingredient.Name,
+						'Quantity': ingredient.Quantity,
+						'IsMainIngredient': ingredient.IsMainIngredient
+					}
+					if 'locale' in request.query_params:
+						if ingredient.Ingredient.Language_id != int(request.query_params['locale']):
+							ingredientData['Name'] = ingredient.Ingredient.ingredientnametranslation_set.filter(**fTranslations).first().Name
+					ingredients.append(ingredientData)
+				data['Ingredients'] = ingredients
+			res.append(data)
+		return Response(res if len(res) > 1 else res[0])
 
 	def list(self, request, *args, **kwargs):
 		fArticles = {}
