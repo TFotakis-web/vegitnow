@@ -14,8 +14,9 @@
 		</div>
 		<div class="row py-4">
 			<router-link :to="{ name: 'ArticleView', params: { id: article.id }}" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Read more') }}</router-link>
-			<router-link :to="{ name: 'ArticleView', params: { id: article.id }}" class="btn px-4 bg-info text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Edit') }}</router-link>
-			<button @click="deleteArticle()" class="btn px-4 bg-danger text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Delete') }}</button>
+			<button @click="$parent.editArticleId = article.id" type="button" class="btn px-4 bg-info text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;" data-toggle="modal" data-target="#articleEditModal">
+				{{ $t('Edit') }}
+			</button>
 		</div>
 	</div>
 </template>
@@ -26,22 +27,7 @@
 		props: [
 			'article',
 			'isLeft'
-		],
-		methods: {
-			deleteArticle: function () {
-				this.$http.delete('/api/article/' + this.article['ArticleContentTranslationId'] + '/')
-					.then((response) => {
-						this.$parent.getArticles();
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-			}
-		}
+		]
 	};
 </script>
 
