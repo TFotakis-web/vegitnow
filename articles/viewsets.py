@@ -147,6 +147,35 @@ class ArticleViewSet(viewsets.ModelViewSet):
 				ia.save()
 		return Response(status=HTTP_201_CREATED)
 
+	def update(self, request, *args, **kwargs):
+		for translation in request.data:
+			act = ArticleContentTranslation.objects.get(id=translation['id'])
+			act.Language_id = translation['Language']
+			act.Title = translation['Title']
+			soup = BeautifulSoup(translation['Content'], features='html.parser')
+			rawText = soup.get_text()
+			act.Preview = (rawText[:100] if len(rawText) > 100 else rawText) + '...'
+			act.Content = translation['Content']
+			act.Thumbnail = translation['Thumbnail']
+
+			dateStr = translation['ReleaseDateTime']['date'] + '-' + translation['ReleaseDateTime']['time'] + '-' + 'UTC'
+			act.ReleaseDateTime = datetime.strptime(dateStr, '%d/%m/%Y-%H:%M-%Z')
+			act.DoneEditing = translation['DoneEditing']
+			act.OnCarousel = translation['OnCarousel']
+
+			if act.Article.ArticleType_id == 1:
+				act.Dishes = translation['Dishes']
+				act.ReadyIn = translation['ReadyIn']
+				act.YoutubeLink = translation['YoutubeLink']
+				# Todo: Update ingredients
+			if act.Article.ArticleType_id == 2:
+				act.AuthorName = translation['AuthorName']
+				act.AuthorProfession = translation['AuthorProfession']
+				act.AuthorProfilePicture = translation['AuthorProfilePicture']
+			act.save()
+
+		return Response(status=HTTP_200_OK)
+
 	def destroy(self, request, *args, **kwargs):
 		if 'locale' not in request.query_params:
 			return super().destroy(request, *args, **kwargs)
