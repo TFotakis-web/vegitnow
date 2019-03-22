@@ -137,9 +137,11 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		return Response(status=HTTP_201_CREATED)
 
 	def destroy(self, request, *args, **kwargs):
-		articleTranslation = ArticleContentTranslation.objects.get(id=kwargs['pk'])
-		article = Article.objects.get(id=articleTranslation.Article_id)
+		if 'locale' not in request.query_params:
+			return super().destroy(request, *args, **kwargs)
+		articleTranslation = ArticleContentTranslation.objects.get(Article_id=kwargs['pk'], Language_id=request.query_params['locale'])
 		articleTranslation.delete()
+		article = Article.objects.get(id=kwargs['pk'])
 		if not article.articlecontenttranslation_set.count():
 			article.delete()
 		return Response(status=HTTP_200_OK)
