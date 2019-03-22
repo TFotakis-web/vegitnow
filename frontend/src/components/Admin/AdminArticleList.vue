@@ -3,26 +3,30 @@
 		<Loader v-if="requestsUnsatisfied"/>
 		<div id="AdminArticleList" v-if="!requestsUnsatisfied" class="flex-grow-1 container">
 			<div class="row">
-				<ArticleCard v-for="(article, index) in articleList" :key="index" :article="article"></ArticleCard>
+				<ArticleCard v-for="(article, index) in articleList" :key="index" :article="article"/>
 			</div>
 		</div>
+		<AdminArticleModal :articleId="editArticleId"/>
 	</div>
 </template>
 
 <script>
 	import ArticleCard from './AdminArticleCard';
 	import Loader from '../Structure/Loader';
+	import AdminArticleModal from './AdminArticleModal';
 
 	export default {
 		name: 'AdminArticleList',
 		components: {
 			ArticleCard,
-			Loader
+			Loader,
+			AdminArticleModal
 		},
 		data: function () {
 			return {
 				articleList: [],
-				requestsUnsatisfied: 0
+				requestsUnsatisfied: 0,
+				editArticleId: null
 			};
 		},
 		mounted: function () {
@@ -43,6 +47,13 @@
 							type: 'error'
 						});
 					});
+			},
+
+			removeTranslation: function () {
+
+			},
+			saveTranslation: function () {
+
 			}
 		}
 	};
