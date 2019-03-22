@@ -17,7 +17,7 @@
 								<div class="card-header" :id="'translationHeading' + index">
 									<h5 class="mb-0">
 										<button class="btn btn-link" data-toggle="collapse" :data-target="'#translationCollapse' + key + '-' + index" aria-expanded="false" :aria-controls="'translationCollapse' + key + '-' + index">
-											{{ languages[translation.Language].Name }}
+											{{ $root.languages[translation.Language].Name }}
 										</button>
 										<button type="button" class="align-middle float-right btn btn-sm bg-danger text-white" @click="removeTranslation(page, index)">
 											<i class="fas fa-trash"></i>
@@ -36,7 +36,7 @@
 											<label :for="'TranslationLanguage' + key + '-' + index" class="col-sm-2 col-form-label">{{ $t('Select Language') }}:</label>
 											<div class="col-sm-10">
 												<select class="custom-select" :id="'TranslationLanguage' + key + '-' + index" v-model="translation.Language">
-													<option v-for="language in languages" :value="language.id">{{ language.Name }}</option>
+													<option v-for="language in $root.languages" :value="language.id">{{ language.Name }}</option>
 												</select>
 											</div>
 										</div>
@@ -95,13 +95,11 @@
 		data: function () {
 			return {
 				staticPages: {},
-				languages: {},
 				requestsUnsatisfied: 0
 			};
 		},
 		mounted: function () {
 			this.getStaticPages();
-			this.getLanguages();
 		},
 		methods: {
 			getStaticPages: function () {
@@ -109,21 +107,6 @@
 				this.$http.get('/api/staticPage/')
 					.then((response) => {
 						this.staticPages = response.data;
-						this.requestsUnsatisfied--;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
-			},
-			getLanguages: function () {
-				this.requestsUnsatisfied++;
-				this.$http.get('/api/language/')
-					.then((response) => {
-						this.languages = response.data;
 						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
@@ -155,7 +138,7 @@
 				return {
 					id: -1,
 					StaticPage: staticPageId,
-					Language: Object.keys(this.languages)[0],
+					Language: Object.keys(this.$root.languages)[0],
 					Name: '',
 					Content: '',
 					Listed: false,
