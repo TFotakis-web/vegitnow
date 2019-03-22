@@ -23,7 +23,33 @@ new Vue({
 	router,
 	i18n,
 	template: '<App/>',
-	components: {App}
+	components: {App},
+	data: function () {
+		return {
+			languages: {},
+			requestsUnsatisfied: 0
+		};
+	},
+	mounted: function () {
+		this.getLanguages();
+	},
+	methods: {
+		getLanguages: function () {
+			this.requestsUnsatisfied++;
+			this.$http.get('/api/language/')
+				.then((response) => {
+					this.languages = response.data;
+					this.requestsUnsatisfied--;
+				})
+				.catch((err) => {
+					console.log(err);
+					this.$notify({
+						text: this.$t('Something went wrong... Please check your connection.'),
+						type: 'error'
+					});
+				});
+		}
+	}
 });
 
 function getCookie (name) {
