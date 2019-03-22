@@ -1,10 +1,10 @@
 import CreateArticle from '../components/Admin/CreateArticle';
 import Administration from '../components/Admin/Administration';
-import AdminArticleList from '../components/Admin/AdminArticleList';
-import AdminRecipeList from '../components/Admin/AdminRecipeList';
-import AdminIngredientList from '../components/Admin/AdminIngredientList';
+import ArticleList from '../components/Admin/ArticleList';
+import RecipeList from '../components/Admin/RecipeList';
+import IngredientList from '../components/Admin/IngredientList';
 import MainAdministration from '../components/Admin/MainAdministration';
-import AdminStaticPages from '../components/Admin/AdminStaticPages';
+import StaticPages from '../components/Admin/StaticPages';
 
 const basePath = '/s6AptmegHaGM3Ry5vdlr/';
 
@@ -32,23 +32,23 @@ export default [
 					},
 					{
 						path: basePath + 'admin/articles/',
-						name: 'AdminArticleList',
-						component: AdminArticleList
+						name: 'ArticleList',
+						component: ArticleList
 					},
 					{
 						path: basePath + 'admin/recipes/',
-						name: 'AdminRecipeList',
-						component: AdminRecipeList
+						name: 'RecipeList',
+						component: RecipeList
 					},
 					{
 						path: basePath + 'admin/ingredients/',
-						name: 'AdminIngredientList',
-						component: AdminIngredientList
+						name: 'IngredientList',
+						component: IngredientList
 					},
 					{
 						path: basePath + 'admin/staticPages/',
-						name: 'AdminStaticPages',
-						component: AdminStaticPages
+						name: 'StaticPages',
+						component: StaticPages
 					}
 				]
 			}

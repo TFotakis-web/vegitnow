@@ -19,7 +19,7 @@
 
 			<div :id="'collapse' + index" class="collapse" :aria-labelledby="'heading' + index" data-parent="#AdminArticleEditAccordion">
 				<div class="card-body">
-					<AdminArticleForm :article="article"/>
+					<ArticleForm :article="article"/>
 				</div>
 			</div>
 		</div>
@@ -28,12 +28,12 @@
 </template>
 
 <script>
-	import AdminArticleForm from '../Admin/AdminArticleForm';
+	import ArticleForm from './ArticleForm';
 
 	export default {
 		name: 'AdminArticleAccordion',
 		components: {
-			AdminArticleForm
+			ArticleForm
 		},
 		props: ['articleTranslations']
 	};

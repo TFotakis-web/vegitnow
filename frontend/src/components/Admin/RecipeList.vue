@@ -10,7 +10,7 @@
 </template>
 
 <script>
-	import RecipeCard from './AdminRecipeCard';
+	import RecipeCard from './RecipeCard';
 	import Loader from '../Structure/Loader';
 
 	export default {

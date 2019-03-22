@@ -9,7 +9,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<AdminArticleAccordion v-if="articleTranslations" :articleTranslations="articleTranslations"/>
+					<ArticleAccordion v-if="articleTranslations" :articleTranslations="articleTranslations"/>
 				</div>
 				<div class="modal-footer">
 					<button @click="deleteArticle(articleId)" type="button" class="btn btn-danger text-white" data-dismiss="modal"><i class="fas fa-trash"></i> {{ $t('Delete') }}</button>
@@ -22,12 +22,12 @@
 </template>
 
 <script>
-	import AdminArticleAccordion from './AdminArticleAccordion';
+	import ArticleAccordion from './ArticleAccordion';
 
 	export default {
 		name: 'AdminArticleModal',
 		components: {
-			AdminArticleAccordion
+			ArticleAccordion
 		},
 		props: [
 			'articleId'

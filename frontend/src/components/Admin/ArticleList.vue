@@ -6,21 +6,21 @@
 				<ArticleCard v-for="(article, index) in articleList" :key="index" :article="article"/>
 			</div>
 		</div>
-		<AdminArticleModal :articleId="editArticleId"/>
+		<ArticleModal :articleId="editArticleId"/>
 	</div>
 </template>
 
 <script>
-	import ArticleCard from './AdminArticleCard';
+	import ArticleCard from './ArticleCard';
 	import Loader from '../Structure/Loader';
-	import AdminArticleModal from './AdminArticleModal';
+	import ArticleModal from './ArticleModal';
 
 	export default {
 		name: 'AdminArticleList',
 		components: {
 			ArticleCard,
 			Loader,
-			AdminArticleModal
+			ArticleModal
 		},
 		data: function () {
 			return {
