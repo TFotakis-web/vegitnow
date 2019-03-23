@@ -26,7 +26,7 @@
 			<label class="label">{{ $t('Author Profile Picture') }}:</label>
 			<div class="custom-file">
 				<label class="custom-file-label" :for="'AuthorProfilePicture' + article.id">{{ $t('Choose file') }}</label>
-				<input type="file" class="custom-file-input" :id="'AuthorProfilePicture' + article.id" @change="onFileChange($event, article, 'authorProfilePicture')">
+				<input type="file" class="custom-file-input" :id="'AuthorProfilePicture' + article.id" @change="onFileChange($event, article, 'AuthorProfilePicture')">
 			</div>
 		</div>
 
@@ -34,7 +34,7 @@
 			<label class="label">{{ $t('Thumbnail') }}:</label>
 			<div class="custom-file">
 				<label class="custom-file-label" :for="'ArticleThumbnail' + article.id">{{ $t('Choose file') }}</label>
-				<input type="file" class="custom-file-input" :id="'ArticleThumbnail' + article.id" @change="onFileChange($event, article, 'thumbnail')">
+				<input type="file" class="custom-file-input" :id="'ArticleThumbnail' + article.id" @change="onFileChange($event, article, 'Thumbnail')">
 			</div>
 		</div>
 
@@ -77,7 +77,20 @@
 		},
 		props: [
 			'article'
-		]
+		],
+		methods: {
+			onFileChange: function (e, storeDict, key) {
+				let files = e.target.files || e.dataTransfer.files;
+				if (!files.length) return;
+				let file = files[0];
+				let reader = new FileReader();
+
+				reader.onload = (e) => {
+					this.$set(storeDict, key, e.target.result);
+				};
+				reader.readAsDataURL(file);
+			}
+		}
 	};
 </script>
 
