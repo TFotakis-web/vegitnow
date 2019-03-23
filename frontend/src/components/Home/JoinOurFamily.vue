@@ -18,7 +18,7 @@
 							<img src="/static/img/VegItNowLogoLeaf.svg" alt="logo" style="margin-top: -175px;margin-right: -205px;height: 60px;">
 							<h1 class="fgGreen0" style="margin-top: -1.3em;margin-right: -4em;transform: rotate(-15deg);font-size: 3rem;">μας</h1>
 						</div>
-						<button v-scroll-to="{ el: '#mce-EMAIL' }" class="btn bgGreen2 text-white px-4" style="border-radius: 2rem;">{{ $t('Sign up') }}</button>
+						<button @click="onclick()" v-scroll-to="{ el: '#mce-EMAIL' }" class="btn bgGreen2 text-white px-4" style="border-radius: 2rem;">{{ $t('Sign up') }}</button>
 					</div>
 				</div>
 			</div>
@@ -28,7 +28,12 @@
 
 <script>
 	export default {
-		name: 'JoinOurFamily'
+		name: 'JoinOurFamily',
+		methods: {
+			onclick: function () {
+				$('#mce-EMAIL').focus();
+			}
+		}
 	};
 </script>
 
