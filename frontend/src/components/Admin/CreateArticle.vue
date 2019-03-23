@@ -363,7 +363,7 @@
 							type: 'success'
 						});
 						// this.initArticleFields();
-						this.$router.push({name: this.data.articleType === 1 ? 'AdminRecipeList' : 'AdminArticleList'});
+						this.$router.push({name: this.data.articleType === 1 ? 'RecipeList' : 'ArticleList'});
 						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
