@@ -5,10 +5,10 @@
 			<div class="row text-center">
 				<!--<h1 class="text-center">Administration</h1>-->
 				<router-link :to="{ name: 'CreateArticle' }" class="col">{{ $t('Create New') }}</router-link>
-				<router-link :to="{ name: 'AdminArticleList' }" class="col">{{ $t('Articles') }}</router-link>
-				<router-link :to="{ name: 'AdminRecipeList' }" class="col">{{ $t('Recipes') }}</router-link>
-				<router-link :to="{ name: 'AdminIngredientList' }" class="col">{{ $t('Ingredients') }}</router-link>
-				<router-link :to="{ name: 'AdminStaticPages' }" class="col">{{ $t('Static Pages') }}</router-link>
+				<router-link :to="{ name: 'ArticleList' }" class="col">{{ $t('Articles') }}</router-link>
+				<router-link :to="{ name: 'RecipeList' }" class="col">{{ $t('Recipes') }}</router-link>
+				<router-link :to="{ name: 'IngredientList' }" class="col">{{ $t('Ingredients') }}</router-link>
+				<router-link :to="{ name: 'StaticPages' }" class="col">{{ $t('Static Pages') }}</router-link>
 			</div>
 			<div class="row">
 				<hr>
