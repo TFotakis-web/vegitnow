@@ -4,7 +4,7 @@ __pycache__/
 venv/
 .venvArch/
 .venvWindows/
-frontend/dist/dev/
+frontend/dist/
 frontend/webpack-stats.json
 *.sqlite3
 migrations/
