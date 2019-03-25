@@ -1,69 +1,66 @@
 <template>
-	<form v-if="article" :id="'ArticleTranslationForm' + article.id">
-		<div :id="'ArticleLanguageInput' + article.id" class="form-group">
-			<label for="ArticleLanguage" class="label">{{ $t('Select Language') }}:</label>
+	<form v-if="article" :id="'ArticleTranslationForm' + article.id" class="row">
+		<label :id="'ArticleLanguageInput' + article.id" class="label col-sm-6">{{ $t('Select Language') }}:
 			<select class="custom-select" id="ArticleLanguage" v-model="article.Language">
 				<option v-for="language in $root.languages" :value="language.id">{{ language.Name }}</option>
 			</select>
-		</div>
+		</label>
 
-		<div :id="'ArticleTitleInput' + article.id" class="form-group">
-			<label for="ArticleTitle" class="label">{{ $t('Title') }}:</label>
+		<label :id="'ArticleTitleInput' + article.id" class="label col-12">{{ $t('Title') }}:
 			<input type="text" class="form-control" id="ArticleTitle" :placeholder="$t('Title')" v-model="article.Title">
-		</div>
+		</label>
 
-		<div :id="'ArticleAuthorNameInput' + article.id" class="form-group">
-			<label for="AuthorName" class="label">Author Name:</label>
-			<input type="text" class="form-control" id="AuthorName" placeholder="Author Name" v-model="article.AuthorName">
-		</div>
+		<div :id="'ArticleAuthorInput' + article.id" v-if="article['ArticleTypeId'] === 2" class="col-12">
+			<div class="row">
+				<label :id="'AuthorNameInput' + article.id" class="label col-6">Author Name:
+					<input type="text" class="form-control" id="AuthorName" placeholder="Author Name" v-model="article.AuthorName">
+				</label>
 
-		<div :id="'ArticleAuthorProfessionInput' + article.id" class="form-group">
-			<label for="AuthorProfession" class="label">Author Profession:</label>
-			<input type="text" class="form-control" id="AuthorProfession" placeholder="Author Profession" v-model="article.AuthorProfession">
-		</div>
+				<label :id="'AuthorProfessionInput' + article.id" class="label col-6">Author Profession:
+					<input type="text" class="form-control" id="AuthorProfession" placeholder="Author Profession" v-model="article.AuthorProfession">
+				</label>
 
-		<div :id="'AuthorProfilePictureInput' + article.id" class="form-group">
-			<label class="label">{{ $t('Author Profile Picture') }}:</label>
-			<div class="custom-file">
-				<label class="custom-file-label" :for="'AuthorProfilePicture' + article.id">{{ $t('Choose file') }}</label>
-				<input type="file" class="custom-file-input" :id="'AuthorProfilePicture' + article.id" @change="onFileChange($event, article, 'AuthorProfilePicture')">
+				<label :id="'AuthorProfilePictureInput' + article.id" class="label col-12">{{ $t('Author Profile Picture') }}:
+					<span class="custom-file">
+						<label class="custom-file-label" :for="'AuthorProfilePicture' + article.id">{{ $t('Choose file') }}</label>
+						<input type="file" class="custom-file-input" :id="'AuthorProfilePicture' + article.id" @change="onFileChange($event, article, 'AuthorProfilePicture')">
+					</span>
+				</label>
 			</div>
 		</div>
 
-		<div :id="'ArticleThumbnailInput' + article.id" class="form-group">
-			<label class="label">{{ $t('Thumbnail') }}:</label>
-			<div class="custom-file">
+
+		<label :id="'ArticleThumbnailInput' + article.id" class="label col-12">{{ $t('Thumbnail') }}:
+			<span class="custom-file">
 				<label class="custom-file-label" :for="'ArticleThumbnail' + article.id">{{ $t('Choose file') }}</label>
 				<input type="file" class="custom-file-input" :id="'ArticleThumbnail' + article.id" @change="onFileChange($event, article, 'Thumbnail')">
-			</div>
-		</div>
+			</span>
+		</label>
 
-		<div :id="'ArticleContentInput' + article.id" class="form-group">
-			<label>{{ $t('Content') }}:</label>
+		<label :id="'ArticleContentInput' + article.id" class="col-12">{{ $t('Content') }}:
 			<Summernote height="400" :model="article.Content" v-on:change="value => { article['Content'] = value }"/>
-		</div>
+		</label>
 
-		<div :id="'ArticleReleaseDateTimeInput' + article.id" class="form-group">
-			<label for="ArticleReleaseDate" class="label">{{ $t('Release Date') }}:</label>
+		<div :id="'ArticleReleaseDateTimeInput' + article.id" class="col-12">
 			<div class="row">
-				<div class="col">
-					<input type="text" class="form-control mb-3" id="ArticleReleaseDate" :placeholder="$t('Date') + ' (dd/mm/yyyy)'" v-model="article.ReleaseDateTime.date">
-				</div>
-				<div class="col">
+				<label for="ArticleReleaseDate" class="label col-6">{{ $t('Release Date') }}:
+					<input type="text" class="form-control" id="ArticleReleaseDate" :placeholder="$t('Date') + ' (dd/mm/yyyy)'" v-model="article.ReleaseDateTime.date">
+				</label>
+				<label for="ArticleReleaseTime" class="label col-6">{{ $t('Release Time') }}:
 					<input type="text" class="form-control" id="ArticleReleaseTime" :placeholder="$t('Time') + ' (HH:MM)'" v-model="article.ReleaseDateTime.time">
-				</div>
+				</label>
 			</div>
 		</div>
 
-		<div :id="'ArticleOnCarouselInput' + article.id" class="form-check">
-			<input type="checkbox" :id="'ArticleOnCarousel' + article.id" class="form-check-input" v-model="article.OnCarousel">
-			<label class="form-check-label" :for="'ArticleOnCarousel' + article.id">{{ $t('Available on carousel') }}</label>
-		</div>
+		<label :id="'ArticleOnCarouselInput' + article.id" class="col-12">
+			<input type="checkbox" :id="'ArticleOnCarousel' + article.id" v-model="article.OnCarousel">
+			{{ $t('Available on carousel') }}
+		</label>
 
-		<div :id="'ArticleMarkDoneEditingInput' + article.id" class="form-check">
-			<input type="checkbox" :id="'ArticleMarkDoneEditing' + article.id" class="form-check-input" v-model="article.DoneEditing">
-			<label class="form-check-label" :for="'ArticleMarkDoneEditing' + article.id">{{ $t('Mark as Done Editing') }}</label>
-		</div>
+		<label :id="'ArticleMarkDoneEditingInput' + article.id" class="col-12">
+			<input type="checkbox" :id="'ArticleMarkDoneEditing' + article.id" v-model="article.DoneEditing">
+			{{ $t('Mark as Done Editing') }}
+		</label>
 	</form>
 </template>
 
