@@ -6,23 +6,27 @@
 				<RecipeCard v-for="(recipe, index) in recipeList" :key="index" :recipe="recipe"></RecipeCard>
 			</div>
 		</div>
+		<ArticleModal :articleId="editArticleId"/>
 	</div>
 </template>
 
 <script>
 	import RecipeCard from './RecipeCard';
 	import Loader from '../Structure/Loader';
+	import ArticleModal from './ArticleModal';
 
 	export default {
 		name: 'AdminRecipeList',
 		components: {
 			RecipeCard,
-			Loader
+			Loader,
+			ArticleModal
 		},
 		data: function () {
 			return {
 				recipeList: [],
-				requestsUnsatisfied: 0
+				requestsUnsatisfied: 0,
+				editArticleId: null
 			};
 		},
 		mounted: function () {
