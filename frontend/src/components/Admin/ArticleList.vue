@@ -47,13 +47,6 @@
 							type: 'error'
 						});
 					});
-			},
-
-			removeTranslation: function () {
-
-			},
-			saveTranslation: function () {
-
 			}
 		}
 	};
