@@ -9,7 +9,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<ArticleAccordion v-if="articleTranslations" :articleTranslations="articleTranslations"/>
+					<ArticleAccordion v-if="article" :articleData="article"/>
 				</div>
 				<div class="modal-footer">
 					<button @click="deleteArticle(articleId)" type="button" class="btn btn-danger text-white" data-dismiss="modal"><i class="fas fa-trash"></i> {{ $t('Delete') }}</button>
@@ -34,14 +34,14 @@
 		],
 		data: function () {
 			return {
-				articleTranslations: []
+				article: {}
 			};
 		},
 		methods: {
 			getArticleData: function (id) {
-				this.$http.get('/api/article/' + id + '/')
+				this.$http.get('/api/article/' + id + '/?edit')
 					.then((response) => {
-						this.articleTranslations = [].concat(response.data);
+						this.article = response.data;
 					})
 					.catch((err) => {
 						console.log(err);
@@ -65,7 +65,7 @@
 					});
 			},
 			saveArticle: function () {
-				this.$http.put('/api/article/' + this.articleId + '/', this.articleTranslations)
+				this.$http.put('/api/article/' + this.articleId + '/', this.article)
 					.then((response) => {
 						this.$notify({
 							text: this.$t('Saved successfully!'),
