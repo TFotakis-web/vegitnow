@@ -187,7 +187,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		return Response(status=HTTP_201_CREATED)
 
 	def update(self, request, *args, **kwargs):
-		for translation in request.data:
+		at = request.data['ArticleTypeId']
+		translations = request.data['Translations']
+		for translation in translations:
 			act = ArticleContentTranslation.objects.get(id=translation['id'])
 			act.Language_id = translation['Language']
 			act.Title = translation['Title']
@@ -202,12 +204,11 @@ class ArticleViewSet(viewsets.ModelViewSet):
 			act.DoneEditing = translation['DoneEditing']
 			act.OnCarousel = translation['OnCarousel']
 
-			if act.Article.ArticleType_id == 1:
-				act.Dishes = translation['Dishes']
-				act.ReadyIn = translation['ReadyIn']
-				act.YoutubeLink = translation['YoutubeLink']
-				# Todo: Update ingredients
-			if act.Article.ArticleType_id == 2:
+			if at == 1:
+				act.Dishes = request.data['Dishes']
+				act.ReadyIn = request.data['ReadyIn']
+				act.YoutubeLink = request.data['YoutubeLink']
+			if at == 2:
 				act.AuthorName = translation['AuthorName']
 				act.AuthorProfession = translation['AuthorProfession']
 				act.AuthorProfilePicture = translation['AuthorProfilePicture']
