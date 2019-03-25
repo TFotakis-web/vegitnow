@@ -242,7 +242,7 @@ class IngredientViewSet(viewsets.ModelViewSet):
 		queryset = Ingredient.objects.all()
 		serializer = self.get_serializer(queryset, many=True)
 
-		data = []
+		data = {}
 		if 'locale' in request.query_params:
 			locale = int(request.query_params['locale'])
 			for obj in serializer.data:
@@ -252,7 +252,7 @@ class IngredientViewSet(viewsets.ModelViewSet):
 					if not translation:
 						continue
 					objData['Name'] = translation.Name
-				data.append(objData)
+				data[objData['id']] = objData
 			return Response(data)
 
 		for obj in serializer.data:
@@ -261,7 +261,7 @@ class IngredientViewSet(viewsets.ModelViewSet):
 			translations = IngredientNameTranslation.objects.filter(Ingredient_id=obj['id']).all()
 			for translation in translations:
 				objData['translations'][translation.Language.id] = translation.Name
-			data.append(objData)
+			data[objData['id']] = objData
 		return Response(data)
 
 	def create(self, request, **kwargs):
