@@ -139,43 +139,45 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		fTranslations = {}
 		fIngredients = {}
 		if 'locale' in request.query_params:
-			fTranslations['Language_id'] = int(request.query_params['locale'])
-			fIngredients['Language_id'] = int(request.query_params['locale'])
-		carousel = 'carousel' in request.query_params
-		if carousel:
+			if not request.user.is_superuser:
+				fTranslations['Language_id'] = int(request.query_params['locale'])
+				fIngredients['Language_id'] = int(request.query_params['locale'])
+
+		if 'carousel' in request.query_params:
 			fTranslations['OnCarousel'] = True
 
 		articles = Article.objects.filter(**fArticles).all()
 
 		data = []
 		for article in articles:
-			translations = article.articlecontenttranslation_set.filter(**fTranslations).order_by('-ReleaseDateTime').all()
-			for translation in translations:
-				if not request.user.is_superuser and not translation.Released:
-					continue
-				translationData = {
-					'id': article.id,
-					'ArticleTypeId': article.ArticleType_id,
-					'Title': translation.Title,
-					'Preview': translation.Preview,
-					'Thumbnail': translation.Thumbnail,
-					'Dishes': translation.Dishes,
-					'ReadyIn': translation.ReadyIn
-				}
+			translation = article.articlecontenttranslation_set.filter(**fTranslations).first()
+			if not translation:
+				continue
+			if not request.user.is_superuser and not translation.Released:
+				continue
+			translationData = {
+				'id': article.id,
+				'ArticleTypeId': article.ArticleType_id,
+				'Title': translation.Title,
+				'Preview': translation.Preview,
+				'Thumbnail': translation.Thumbnail,
+				'Dishes': translation.Dishes,
+				'ReadyIn': translation.ReadyIn,
+				'ReleaseDateTime': translation.ReleaseDateTime
+			}
 
-				if carousel and article.ArticleType_id == 1:
-					ingredientList = IngredientAssociation.objects.filter(Article_id=article.id, IsMainIngredient=True).all()
-					ingredients = []
-					for ingredient in ingredientList:
-						ingredientName = ingredient.Ingredient.Name
-						if 'locale' in request.query_params:
-							if ingredient.Ingredient.Language_id != int(request.query_params['locale']):
-								ingredientName = ingredient.Ingredient.ingredientnametranslation_set.filter(**fIngredients).first().Name
-						ingredients.append(ingredientName)
-					translationData['MainIngredients'] = ', '.join(ingredients)
-
-				data.append(translationData)
-				break
+			if article.ArticleType_id == 1:
+				ingredientList = IngredientAssociation.objects.filter(Article_id=article.id, IsMainIngredient=True).all()
+				ingredients = []
+				for ingredient in ingredientList:
+					ingredientName = ingredient.Ingredient.Name
+					if 'locale' in request.query_params:
+						if ingredient.Ingredient.Language_id != int(request.query_params['locale']):
+							ingredientName = ingredient.Ingredient.ingredientnametranslation_set.filter(**fIngredients).first().Name
+					ingredients.append(ingredientName)
+				translationData['MainIngredients'] = ', '.join(ingredients)
+			data.append(translationData)
+		data = sorted(data, key=lambda k: k['ReleaseDateTime'], reverse=True)
 		return Response(data)
 
 	def create(self, request, *args, **kwargs):
