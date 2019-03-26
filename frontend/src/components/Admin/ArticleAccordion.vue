@@ -6,13 +6,13 @@
 					<button class="btn btn-link" data-toggle="collapse" :data-target="'#collapse' + index" aria-expanded="false" :aria-controls="'collapse' + index">
 						{{ $root.languages[article.Language].Name }}
 					</button>
-					<!--<button type="button" class="align-middle float-right btn btn-sm bg-danger text-white" @click="removeTranslation()">-->
-						<!--<i class="fas fa-trash"></i>-->
-						<!--{{ $t('Delete') }}-->
-					<!--</button>-->
+					<button type="button" class="align-middle float-right btn btn-sm bg-danger text-white" @click="removeTranslation(index)">
+						<i class="fas fa-trash"></i>
+						{{ $t('Delete') }}
+					</button>
 					<!--<button type="button" class="align-middle float-right btn btn-sm bgGreen0 text-white mr-1" @click="saveTranslation()">-->
-						<!--<i class="fas fa-save"></i>-->
-						<!--{{ $t('Save') }}-->
+					<!--<i class="fas fa-save"></i>-->
+					<!--{{ $t('Save') }}-->
 					<!--</button>-->
 				</h5>
 			</div>
@@ -187,8 +187,24 @@
 							type: 'error'
 						});
 					});
+			},
+			removeTranslation: function (index) {
+				this.$http.delete('/api/articleContentTranslation/' + this.articleData['Translations'][index]['id'] + '/')
+					.then((response) => {
+						this.articleData['Translations'].splice(index, 1);
+						this.$notify({
+							text: this.$t('Deleted successfully!'),
+							type: 'success'
+						});
+					})
+					.catch((err) => {
+						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
+					});
 			}
-
 		},
 		computed: {
 			ingredientsSorted: function () {
