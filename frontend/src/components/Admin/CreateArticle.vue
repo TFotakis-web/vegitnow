@@ -180,7 +180,7 @@
 							</table>
 							<div class="input-group mb-3">
 								<select class="custom-select" id="IngredientSelect" v-model="selectedIngredient">
-									<option v-for="ingredient in ingredients" :value="ingredient">{{ ingredient.Name }}</option>
+									<option v-for="ingredient in ingredientsSorted" :value="ingredient">{{ ingredient.Name }}</option>
 								</select>
 								<input type="number" class="form-control" id="IngredientQuantity" :placeholder="$t('Quantity')" v-model="selectedQuantity">
 								<div class="btn bgGreen0 text-white ml-2" @click="selectIngredient()"><i class="fas fa-plus"></i> Add</div>
@@ -254,10 +254,10 @@
 			},
 			getIngredients: function () {
 				this.requestsUnsatisfied++;
-				this.$http.get('/api/ingredient/')
+				this.$http.get('/api/ingredient/?locale=' + this.$cookie.get('locale'))
 					.then((response) => {
 						this.ingredients = response.data;
-						this.selectedIngredient = Object.values(this.ingredients)[0];
+						this.selectedIngredient = this.ingredientsSorted[0];
 						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
@@ -373,6 +373,11 @@
 							type: 'error'
 						});
 					});
+			}
+		},
+		computed: {
+			ingredientsSorted: function () {
+				return Object.values(this.ingredients).sort((a, b) => (a.Name > b.Name) ? 1 : ((b.Name > a.Name) ? -1 : 0));
 			}
 		}
 	};
