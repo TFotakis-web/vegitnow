@@ -73,7 +73,7 @@
 						<div class="row">
 							<label class="label col-md-4 col-lg-4">
 								<select class="custom-select" id="IngredientSelect" v-model="selectedIngredient">
-									<option v-for="ingredient in ingredients" :value="ingredient">{{ ingredient.Name }}</option>
+									<option v-for="ingredient in ingredientsSorted" :value="ingredient">{{ ingredient.Name }}</option>
 								</select>
 							</label>
 							<label class="label col-md-3 col-lg-3">
@@ -121,7 +121,7 @@
 				this.$http.get('/api/ingredient/?locale=' + this.$cookie.get('locale'))
 					.then((response) => {
 						this.ingredients = response.data;
-						this.selectedIngredient = Object.values(this.ingredients)[0];
+						this.selectedIngredient = this.ingredientsSorted[0];
 						// this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
@@ -189,6 +189,11 @@
 					});
 			}
 
+		},
+		computed: {
+			ingredientsSorted: function () {
+				return Object.values(this.ingredients).sort((a, b) => (a.Name > b.Name) ? 1 : ((b.Name > a.Name) ? -1 : 0));
+			}
 		}
 	};
 </script>
