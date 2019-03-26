@@ -314,7 +314,7 @@
 				this.requestsUnsatisfied++;
 				this.$http.get('/api/ingredient/')
 					.then((response) => {
-						this.ingredients = response.data;
+						this.ingredients = Object.values(response.data).sort((a, b) => (a.Name > b.Name) ? 1 : ((b.Name > a.Name) ? -1 : 0));
 						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
