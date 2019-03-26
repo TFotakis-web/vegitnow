@@ -61,7 +61,7 @@
 								<td>{{ ingredient['Quantity'] }}</td>
 								<td>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="checkbox" v-model="ingredient['IsMainIngredient']" :id="'isMainIngredientCheckbox' + index">
+										<input @change="setMainIngredient(ingredient)" v-model="ingredient['IsMainIngredient']" :aria-label="$t('Main Ingredient')" class="form-check-input" type="checkbox">
 									</div>
 								</td>
 								<td>
@@ -171,7 +171,24 @@
 							type: 'error'
 						});
 					});
+			},
+			setMainIngredient: function (ingredient) {
+				this.$http.put('/api/ingredientAssociation/' + ingredient.id + '/', Object.assign({}, ingredient, {'Article': this.articleData.id}))
+					.then((response) => {
+						this.$notify({
+							text: this.$t('Saved successfully!'),
+							type: 'success'
+						});
+					})
+					.catch((err) => {
+						console.log(err);
+						this.$notify({
+							text: this.$t('Something went wrong... Please check your connection.'),
+							type: 'error'
+						});
+					});
 			}
+
 		}
 	};
 </script>
