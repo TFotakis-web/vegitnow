@@ -275,13 +275,13 @@ class IngredientViewSet(viewsets.ModelViewSet):
 		if 'locale' in request.query_params:
 			locale = int(request.query_params['locale'])
 			for obj in serializer.data:
-				objData = obj
+				# objData = obj
 				if obj['Language'] != locale:
 					translation = IngredientNameTranslation.objects.filter(Ingredient_id=obj['id'], Language_id=locale).first()
 					if not translation:
 						continue
-					objData['Name'] = translation.Name
-				data[objData['id']] = objData
+					obj['Name'] = translation.Name
+				data[obj['id']] = obj
 			return Response(data)
 
 		for obj in serializer.data:
