@@ -219,7 +219,12 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		at = request.data['ArticleTypeId']
 		translations = request.data['Translations']
 		for translation in translations:
-			act = ArticleContentTranslation.objects.get(id=translation['id'])
+			if translation['id'] == -1:
+				act = ArticleContentTranslation(Article_id=kwargs['pk'])
+			else:
+				act = ArticleContentTranslation.objects.filter(id=translation['id']).first()
+				if not act:
+					continue
 			act.Language_id = translation['Language']
 			act.Title = translation['Title']
 			soup = BeautifulSoup(translation['Content'], features='html.parser')
