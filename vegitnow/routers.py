@@ -4,7 +4,7 @@ from articles.viewsets import ArticleTypeViewSet
 from articles.viewsets import ArticleViewSet
 from articles.viewsets import IngredientAssociationViewSet
 from articles.viewsets import IngredientViewSet
-# from articles.viewsets import ArticleContentTranslationViewSet
+from articles.viewsets import ArticleContentTranslationViewSet
 # from articles.viewsets import ArticleTypeNameTranslationViewSet
 # from articles.viewsets import ArticleTypeAssociationViewSet
 # from articles.viewsets import IngredientNameTranslationViewSet
@@ -29,7 +29,7 @@ router.register(r'staticPageTranslation', StaticPageTranslationViewSet)
 router.register(r'newsletterUser', NewsletterUserViewSet)
 router.register(r'createNewsletterUser', CreateNewsletterUserViewSet, basename='createNewsletterUser')
 router.register(r'ingredientAssociation', IngredientAssociationViewSet)
-# router.register(r'articleContentTranslation', ArticleContentTranslationViewSet)
+router.register(r'articleContentTranslation', ArticleContentTranslationViewSet)
 # router.register(r'articleTypeNameTranslation', ArticleTypeNameTranslationViewSet)
 # router.register(r'articleTypeAssociation', ArticleTypeAssociationViewSet)
 # router.register(r'ingredientNameTranslation', IngredientNameTranslationViewSet)
