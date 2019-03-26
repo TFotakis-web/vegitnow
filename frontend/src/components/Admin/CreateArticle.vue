@@ -213,7 +213,7 @@
 		data: function () {
 			return {
 				articleTypes: [],
-				ingredients: [],
+				ingredients: {},
 				selectedIngredient: {},
 				selectedQuantity: 0,
 				data: {
@@ -257,7 +257,7 @@
 				this.$http.get('/api/ingredient/')
 					.then((response) => {
 						this.ingredients = response.data;
-						this.selectedIngredient = this.ingredients[0];
+						this.selectedIngredient = Object.values(this.ingredients)[0];
 						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
