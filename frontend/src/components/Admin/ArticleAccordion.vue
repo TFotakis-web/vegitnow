@@ -204,6 +204,24 @@
 							type: 'error'
 						});
 					});
+			},
+			addTranslation: function () {
+				this.articleData['Translations'].push({
+					AuthorName: '',
+					AuthorProfession: '',
+					AuthorProfilePicture: '',
+					Content: '',
+					DoneEditing: false,
+					Language: 1,
+					OnCarousel: false,
+					ReleaseDateTime: {
+						data: '',
+						time: ''
+					},
+					Thumbnail: '',
+					Title: '',
+					id: -1
+				});
 			}
 		},
 		computed: {
