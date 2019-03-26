@@ -7,8 +7,35 @@ from rest_framework.response import Response
 from rest_framework.status import *
 
 from general.models import Language
-from .models import Article, ArticleContentTranslation, ArticleType, ArticleTypeNameTranslation, ArticleTypeAssociation, Tag, TagNameTranslation, TagAssociation, Ingredient, IngredientNameTranslation, IngredientAssociation, Unit, UnitNameTranslation  # , UnitAssociation
-from .serializers import ArticleSerializer, ArticleContentTranslationSerializer, ArticleTypeSerializer, ArticleTypeNameTranslationSerializer, ArticleTypeAssociationSerializer, TagSerializer, TagNameTranslationSerializer, TagAssociationSerializer, IngredientSerializer, IngredientNameTranslationSerializer, IngredientAssociationSerializer, UnitSerializer, UnitNameTranslationSerializer  # , UnitAssociationSerializer
+from articles.models import Article
+from articles.models import ArticleContentTranslation
+from articles.models import ArticleType
+from articles.models import ArticleTypeNameTranslation
+from articles.models import ArticleTypeAssociation
+from articles.models import Ingredient
+from articles.models import IngredientNameTranslation
+from articles.models import IngredientAssociation
+# from articles.models import Tag
+# from articles.models import TagNameTranslation
+# from articles.models import TagAssociation
+# from articles.models import Unit
+# from articles.models import UnitNameTranslation
+# from articles.models import UnitAssociation
+
+from .serializers import ArticleSerializer
+from .serializers import ArticleContentTranslationSerializer
+from .serializers import ArticleTypeSerializer
+from .serializers import ArticleTypeNameTranslationSerializer
+from .serializers import ArticleTypeAssociationSerializer
+from .serializers import IngredientSerializer
+from .serializers import IngredientNameTranslationSerializer
+from .serializers import IngredientAssociationSerializer
+# from .serializers import TagSerializer
+# from .serializers import TagNameTranslationSerializer
+# from .serializers import TagAssociationSerializer
+# from .serializers import UnitSerializer
+# from .serializers import UnitNameTranslationSerializer
+# from .serializers import UntAssociationSerializer
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
@@ -384,31 +411,31 @@ class ArticleTypeAssociationViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
-class TagViewSet(viewsets.ModelViewSet):
-	queryset = Tag.objects.all()
-	serializer_class = TagSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class TagNameTranslationViewSet(viewsets.ModelViewSet):
-	queryset = TagNameTranslation.objects.all()
-	serializer_class = TagNameTranslationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class TagAssociationViewSet(viewsets.ModelViewSet):
-	queryset = TagAssociation.objects.all()
-	serializer_class = TagAssociationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class UnitViewSet(viewsets.ModelViewSet):
-	queryset = Unit.objects.all()
-	serializer_class = UnitSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
-
-
-class UnitNameTranslationViewSet(viewsets.ModelViewSet):
-	queryset = UnitNameTranslation.objects.all()
-	serializer_class = UnitNameTranslationSerializer
-	permission_classes = (IsAuthenticatedOrReadOnly,)
+# class TagViewSet(viewsets.ModelViewSet):
+# 	queryset = Tag.objects.all()
+# 	serializer_class = TagSerializer
+# 	permission_classes = (IsAuthenticatedOrReadOnly,)
+#
+#
+# class TagNameTranslationViewSet(viewsets.ModelViewSet):
+# 	queryset = TagNameTranslation.objects.all()
+# 	serializer_class = TagNameTranslationSerializer
+# 	permission_classes = (IsAuthenticatedOrReadOnly,)
+#
+#
+# class TagAssociationViewSet(viewsets.ModelViewSet):
+# 	queryset = TagAssociation.objects.all()
+# 	serializer_class = TagAssociationSerializer
+# 	permission_classes = (IsAuthenticatedOrReadOnly,)
+#
+#
+# class UnitViewSet(viewsets.ModelViewSet):
+# 	queryset = Unit.objects.all()
+# 	serializer_class = UnitSerializer
+# 	permission_classes = (IsAuthenticatedOrReadOnly,)
+#
+#
+# class UnitNameTranslationViewSet(viewsets.ModelViewSet):
+# 	queryset = UnitNameTranslation.objects.all()
+# 	serializer_class = UnitNameTranslationSerializer
+# 	permission_classes = (IsAuthenticatedOrReadOnly,)

@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -62,50 +61,6 @@ class ArticleTypeAssociation(models.Model):
 	def __str__(self): return self.Type.Name + ': ' + str(self.Article)
 
 
-class Tag(models.Model):
-	Name = models.CharField(default='', max_length=1024)
-	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
-
-	def __str__(self): return self.Name + ' - ' + str(self.Language)
-
-
-class TagNameTranslation(models.Model):
-	Tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-	Name = models.CharField(default='', max_length=1024)
-	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
-
-	def __str__(self): return self.Tag.Name + ' -> ' + self.Language.Code + ': ' + self.Name
-
-
-class TagAssociation(models.Model):
-	Article = models.ForeignKey(Article, on_delete=models.CASCADE)
-	Tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-
-	def __str__(self): return str(self.Article) + ' - ' + self.Tag.Name
-
-
-class Unit(models.Model):
-	Name = models.CharField(default='', max_length=1024)
-	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
-
-	def __str__(self): return self.Name + ' - ' + str(self.Language)
-
-
-class UnitNameTranslation(models.Model):
-	Unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-	Name = models.CharField(default='', max_length=1024)
-	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
-
-	def __str__(self): return self.Unit.Name + ' -> ' + self.Language.Code + ': ' + self.Name
-
-
-# class UnitAssociation(models.Model):
-# 	Ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-# 	Unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-#
-# 	def __str__(self): return str(self.Ingredient) + ' - ' + self.Unit.Name
-
-
 class Ingredient(models.Model):
 	Name = models.CharField(default='', max_length=1024)
 	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
@@ -155,14 +110,45 @@ class IngredientAssociation(models.Model):
 	def __str__(self): return str(self.Article) + ' - ' + self.Ingredient.Name
 
 
-def homePageArticles():
-	articles = [article.LocalData for article in Article.objects.all()]
-	return articles
-
-
-def recommendedRecipes():
-	pass
-
-
-def recommendedArticles():
-	pass
+# class Tag(models.Model):
+# 	Name = models.CharField(default='', max_length=1024)
+# 	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+#
+# 	def __str__(self): return self.Name + ' - ' + str(self.Language)
+#
+#
+# class TagNameTranslation(models.Model):
+# 	Tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+# 	Name = models.CharField(default='', max_length=1024)
+# 	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+#
+# 	def __str__(self): return self.Tag.Name + ' -> ' + self.Language.Code + ': ' + self.Name
+#
+#
+# class TagAssociation(models.Model):
+# 	Article = models.ForeignKey(Article, on_delete=models.CASCADE)
+# 	Tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+#
+# 	def __str__(self): return str(self.Article) + ' - ' + self.Tag.Name
+#
+#
+# class Unit(models.Model):
+# 	Name = models.CharField(default='', max_length=1024)
+# 	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+#
+# 	def __str__(self): return self.Name + ' - ' + str(self.Language)
+#
+#
+# class UnitNameTranslation(models.Model):
+# 	Unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+# 	Name = models.CharField(default='', max_length=1024)
+# 	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+#
+# 	def __str__(self): return self.Unit.Name + ' -> ' + self.Language.Code + ': ' + self.Name
+#
+#
+# class UnitAssociation(models.Model):
+# 	Ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+# 	Unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+#
+# 	def __str__(self): return str(self.Ingredient) + ' - ' + self.Unit.Name
