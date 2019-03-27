@@ -106,6 +106,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+SUMMERNOTE_THEME = 'lite'
+
+REST_FRAMEWORK = {
+	'DEFAULT_AUTHENTICATION_CLASSES': (
+		'rest_framework.authentication.SessionAuthentication',
+	),
+}
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
@@ -116,10 +126,5 @@ STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, 'frontend/dist/prod/static'),
 ]
 
-SUMMERNOTE_THEME = 'lite'
-
-REST_FRAMEWORK = {
-	'DEFAULT_AUTHENTICATION_CLASSES': (
-		'rest_framework.authentication.SessionAuthentication',
-	),
-}
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
