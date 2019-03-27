@@ -3,7 +3,7 @@
 		<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top d-md-none">
 			<div class="container">
 				<router-link :to="{ name: 'Home' }">
-					<img src="/static/img/VegItNowLogo.svg" alt="Vegitnow Logo" height="40">
+					<img src="/static/app/img/VegItNowLogo.svg" alt="Vegitnow Logo" height="40">
 				</router-link>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@
 				<div class="d-flex w-100 align-items-center">
 					<div class="">
 						<router-link :to="{ name: 'Home' }" class="navbar-brand">
-							<img src="/static/img/VegItNowLogo.svg" alt="Vegitnow Logo" height="40">
+							<img src="/static/app/img/VegItNowLogo.svg" alt="Vegitnow Logo" height="40">
 						</router-link>
 					</div>
 					<div class="flex-grow-1">

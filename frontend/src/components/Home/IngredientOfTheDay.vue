@@ -18,7 +18,7 @@
 							     background-size: cover;
 							     background-repeat: inherit;
 							     background-position: center center;
-							     background-image: url(/static/img/karota.png);">
+							     background-image: url(/static/app/img/karota.png);">
 						</div>
 						<div class="dashedCircle rotating mx-auto"
 						     style="height: 210px; width: 210px; margin-top: -200px;">

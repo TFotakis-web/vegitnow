@@ -23,7 +23,7 @@
 	<!-- Windows  -->
 	<meta name="msapplication-navbutton-color" content="#2d89ef">
 	<meta name="msapplication-TileColor" content="#2d89ef">
-	<meta name="msapplication-config" content="/static/img/browserconfig.xml">
+	<meta name="msapplication-config" content="/static/app/img/browserconfig.xml">
 
 
 	<!-- Pinned Sites  -->
@@ -59,7 +59,7 @@
 	<!-- Social Media -->
 	<meta property="og:title" content="VegItNow">
 	<meta property="og:description" content="All about vegan foods, drinks and lifestyle.">
-	<meta property="og:image" content="https://vegitnow.com/static/img/VegItNowLogoSocial.png">
+	<meta property="og:image" content="https://vegitnow.com/static/app/img/VegItNowLogoSocial.png">
 	<meta property="og:url" content="https://vegitnow.com">
 	<meta name="twitter:card" content="VegItNow">
 
@@ -67,7 +67,7 @@
 	<!-- Schema.org markup for Google+ -->
 	<meta itemprop="name" content="VegItNow">
 	<meta itemprop="description" content="All about vegan foods, drinks and lifestyle.">
-	<meta itemprop="image" content="https://vegitnow.com/static/img/VegItNowLogoSocial.png">
+	<meta itemprop="image" content="https://vegitnow.com/static/app/img/VegItNowLogoSocial.png">
 
 	<!-- Twitter Card data -->
 	<meta name="twitter:card" content="VegItNow">
@@ -76,13 +76,13 @@
 	<meta name="twitter:description" content="All about vegan foods, drinks and lifestyle.">
 	<meta name="twitter:creator" content="@VegItNow">
 	<!-- Twitter summary card with large image must be at least 280x150px -->
-	<meta name="twitter:image:src" content="https://vegitnow.com/static/img/VegItNowLogoSocial.png">
+	<meta name="twitter:image:src" content="https://vegitnow.com/static/app/img/VegItNowLogoSocial.png">
 
 	<!-- Open Graph data -->
 	<meta property="og:title" content="VegItNow"/>
 	<meta property="og:type" content="article"/>
 	<meta property="og:url" content="https://vegitnow.com"/>
-	<meta property="og:image" content="https://vegitnow.com/static/img/VegItNowLogoSocial.png"/>
+	<meta property="og:image" content="https://vegitnow.com/static/app/img/VegItNowLogoSocial.png"/>
 	<meta property="og:description" content="All about vegan foods, drinks and lifestyle."/>
 	<meta property="og:site_name" content="VegItNow"/>
 	<!--<meta property="article:published_time" content="2013-09-17T05:59:00+01:00"/>-->
@@ -95,13 +95,13 @@
 
 	<!-- Link Tags -->
 	<!-- Main Link Tags  -->
-	<link href="/static/img/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
-	<link href="/static/img/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
-	<link href="/static/img/favicon.ico" rel="icon" type="image/ico" sizes="48x48">
-	<link href="/static/img/VegItNowLogoLeafSticker.svg" rel="icon" type="image/svg+xml" sizes="any">
+	<link href="/static/app/img/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+	<link href="/static/app/img/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+	<link href="/static/app/img/favicon.ico" rel="icon" type="image/ico" sizes="48x48">
+	<link href="/static/app/img/VegItNowLogoLeafSticker.svg" rel="icon" type="image/svg+xml" sizes="any">
 
 	<!-- iOS  -->
-	<link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+	<link href="/static/app/img/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
 	<!--<link href="touch-icon-iphone.png" rel="apple-touch-icon">-->
 	<!--<link href="touch-icon-ipad.png" rel="apple-touch-icon" sizes="76x76">-->
 	<!--<link href="touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="120x120">-->
@@ -111,19 +111,19 @@
 	<!--<link href="images/icon-72x72.png" rel="apple-touch-icon" sizes="72x72">-->
 
 	<!-- Pinned Tab  -->
-	<link href="/static/img/safari-pinned-tab.svg" rel="mask-icon" color="#3da313">
+	<link href="/static/app/img/safari-pinned-tab.svg" rel="mask-icon" color="#3da313">
 
 	<!-- Android  -->
-	<link href="/static/img/android-chrome-192x192.png" rel="icon" sizes="192x192">
-	<link href="/static/img/android-chrome-512x512.png" rel="icon" sizes="512x512">
+	<link href="/static/app/img/android-chrome-192x192.png" rel="icon" sizes="192x192">
+	<link href="/static/app/img/android-chrome-512x512.png" rel="icon" sizes="512x512">
 
 	<!-- Others -->
-	<link href="/static/img/favicon.ico" rel="shortcut icon" type="image/ico">
+	<link href="/static/app/img/favicon.ico" rel="shortcut icon" type="image/ico">
 
 	<!-- Manifest.json  -->
 	<!-- Add to home screen for Android and modern mobile browsers -->
-	<!--<link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>static/manifest.json">-->
-	<link href="/static/manifest.json" rel="manifest">
+	<!--<link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>static/app/manifest.json">-->
+	<link href="/static/app/manifest.json" rel="manifest">
 
 
 
@@ -133,19 +133,19 @@
 				<link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
 	<% }}} %>
 
-	<script src="/static/js/jquery/jquery-3.3.1.slim.min.js"></script>
-	<script src="/static/js/popper/popper.min.js"></script>
-	<script src="/static/js/bootstrap/bootstrap.min.js"></script>
-	<script src="/static/js/summernote/summernote-bs4.min.js"></script>
+	<script src="/static/app/js/jquery/jquery-3.3.1.slim.min.js"></script>
+	<script src="/static/app/js/popper/popper.min.js"></script>
+	<script src="/static/app/js/bootstrap/bootstrap.min.js"></script>
+	<script src="/static/app/js/summernote/summernote-bs4.min.js"></script>
 
-	<link href="/static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/css/summernote-bs4.css" rel="stylesheet">
-	<link href="/static/fonts/fontawesome-free-5.5.0-web/css/all.css" rel="stylesheet">
-	<link href="/static/css/AlegreyaSans.css" rel="stylesheet">
-	<link href="/static/css/animate.css" rel="stylesheet">
-	<link href="/static/css/fontello.css" rel="stylesheet">
-	<link href="/static/css/colorPalette.css?version=1.0" rel="stylesheet">
-	<link href="/static/css/style.css?version=1.1" rel="stylesheet">
+	<link href="/static/app/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/app/css/summernote-bs4.css" rel="stylesheet">
+	<link href="/static/app/fonts/fontawesome-free-5.5.0-web/css/all.css" rel="stylesheet">
+	<link href="/static/app/css/AlegreyaSans.css" rel="stylesheet">
+	<link href="/static/app/css/animate.css" rel="stylesheet">
+	<link href="/static/app/css/fontello.css" rel="stylesheet">
+	<link href="/static/app/css/colorPalette.css?version=1.0" rel="stylesheet">
+	<link href="/static/app/css/style.css?version=1.1" rel="stylesheet">
 </head>
 <body>
 <div id="app"></div>

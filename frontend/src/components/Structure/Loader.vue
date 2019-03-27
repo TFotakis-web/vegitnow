@@ -1,7 +1,7 @@
 <template>
 	<div class="d-flex flex-grow-1 text-center">
-		<!--<img src="/static/img/VegItNowLogoLeaf.svg" alt="loader" height="40" class="loaderAnimation" style="margin: auto">-->
-		<!--<object type="image/svg+xml" data="/static/img/VegItNowLogoLeaf.svg" height="40" class="loaderAnimation" style="margin: auto">Your browser does not support SVG</object>-->
+		<!--<img src="/static/app/img/VegItNowLogoLeaf.svg" alt="loader" height="40" class="loaderAnimation" style="margin: auto">-->
+		<!--<object type="image/svg+xml" data="/static/app/img/VegItNowLogoLeaf.svg" height="40" class="loaderAnimation" style="margin: auto">Your browser does not support SVG</object>-->
 		<svg class="loaderAnimation"
 		     style="margin: auto"
 		     width="40"

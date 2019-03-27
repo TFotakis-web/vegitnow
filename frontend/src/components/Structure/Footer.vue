@@ -1,7 +1,7 @@
 <template>
 	<footer class="text-center" style="margin-top: -4em;">
 		<router-link :to="{ name: 'Home' }" class="d-inline-block" style="position: relative; top: 15px; z-index: 1049">
-			<img src="/static/img/VegItNowLogoSticker.svg" alt="Vegitnow Logo" height="40">
+			<img src="/static/app/img/VegItNowLogoSticker.svg" alt="Vegitnow Logo" height="40">
 		</router-link>
 		<div id="Footer" class="bg-white text-center pt-5"
 		     style="

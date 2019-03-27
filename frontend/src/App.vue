@@ -1,10 +1,10 @@
 <template>
 	<div id="app" class="d-flex flex-column" style="min-height: 100vh;">
 		<div v-if="$root.requestsUnsatisfied" class="centered-block">
-			<!--<object type="image/svg+xml" data="/static/img/VegItNowLogoLeaf.svg" height="40" class="loaderAnimation">-->
+			<!--<object type="image/svg+xml" data="/static/app/img/VegItNowLogoLeaf.svg" height="40" class="loaderAnimation">-->
 			<!--Your browser does not support SVG-->
 			<!--</object>-->
-			<!--<img src="/static/img/VegItNowLogoLeaf.svg" alt="loader" height="40" class="loaderAnimation">-->
+			<!--<img src="/static/app/img/VegItNowLogoLeaf.svg" alt="loader" height="40" class="loaderAnimation">-->
 			<svg class="loaderAnimation"
 			     width="40"
 			     height="40"
@@ -55,14 +55,14 @@
 	};
 </script>
 
-<!--<style src="static/css/bootstrap.min.css"></style>-->
-<!--<style src="static/css/summernote-bs4.css"></style>-->
-<!--<style src="static/fonts/fontawesome-free-5.5.0-web/css/all.css"></style>-->
-<!--<style src="static/css/AlegreyaSans.css"></style>-->
-<!--<style src="static/css/animate.css"></style>-->
-<!--<style src="static/css/fontello.css"></style>-->
-<!--<style src="static/css/colorPalette.css"></style>-->
-<!--<style src="static/css/style.css"></style>-->
+<!--<style src="static/app/css/bootstrap.min.css"></style>-->
+<!--<style src="static/app/css/summernote-bs4.css"></style>-->
+<!--<style src="static/app/fonts/fontawesome-free-5.5.0-web/css/all.css"></style>-->
+<!--<style src="static/app/css/AlegreyaSans.css"></style>-->
+<!--<style src="static/app/css/animate.css"></style>-->
+<!--<style src="static/app/css/fontello.css"></style>-->
+<!--<style src="static/app/css/colorPalette.css"></style>-->
+<!--<style src="static/app/css/style.css"></style>-->
 <style scoped>
 	.centered-block {
 		position: absolute;

@@ -8,14 +8,14 @@
 						<div v-if="this.$i18n.locale === 'en'">
 							<h1 class="fgGreen0" style="font-size: 6rem">Join</h1>
 							<h1 class="fgGreen0" style="margin-top: -40px;margin-left: -136px;transform: rotate(-20deg);font-size: 3rem;">our</h1>
-							<img src="/static/img/VegItNowLogoLeaf.svg" alt="logo" style="margin-top: -100px;margin-left: 170px;height: 60px;">
+							<img src="/static/app/img/VegItNowLogoLeaf.svg" alt="logo" style="margin-top: -100px;margin-left: 170px;height: 60px;">
 							<h1 class="fgGreen0" style="margin-top: -50px; font-size: 4rem">Family</h1>
 						</div>
 						<div v-else>
 							<h1 class="fgGreen0" style="font-size: 6rem">Μπες</h1>
 							<h1 class="fgGreen0" style="margin-top: -0.7em;margin-left: -3em;transform: rotate(-15deg);font-size: 3rem;">στην</h1>
 							<h1 class="fgGreen0" style="margin-top: -0.5em;font-size: 2.5rem;">ΟΙΚΟΓΕΝΕΙΑ</h1>
-							<img src="/static/img/VegItNowLogoLeaf.svg" alt="logo" style="margin-top: -175px;margin-right: -205px;height: 60px;">
+							<img src="/static/app/img/VegItNowLogoLeaf.svg" alt="logo" style="margin-top: -175px;margin-right: -205px;height: 60px;">
 							<h1 class="fgGreen0" style="margin-top: -1.3em;margin-right: -4em;transform: rotate(-15deg);font-size: 3rem;">μας</h1>
 						</div>
 						<button @click="onclick()" v-scroll-to="{ el: '#mce-EMAIL' }" class="btn bgGreen2 text-white px-4" style="border-radius: 2rem;">{{ $t('Sign up') }}</button>
