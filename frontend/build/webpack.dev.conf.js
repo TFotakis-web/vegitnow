@@ -49,7 +49,7 @@ module.exports = merge(baseWebpackConfig, {
 	],
 	output: {
 		path: config.dev.assetsRoot,
-		filename: utils.assetsPath('js/[name].[hash].js'),
-		chunkFilename: utils.assetsPath('js/[id].[hash].js')
+		filename: utils.assetsPath('app/js/[name].[hash].js'),
+		chunkFilename: utils.assetsPath('app/js/[id].[hash].js')
 	},
 });
