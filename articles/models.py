@@ -28,7 +28,7 @@ class ArticleContentTranslation(models.Model):
 	Title = models.CharField(default='', blank=True, null=True, max_length=1024)
 	Preview = models.CharField(default='', blank=True, null=True, max_length=150)
 	Content = models.TextField(blank=True)
-	Thumbnail = models.TextField(blank=True)
+	Thumbnail = models.ImageField(blank=True)
 	ReleaseDateTime = models.DateTimeField(default=None, blank=True, null=True)
 	DoneEditing = models.BooleanField(default=False)
 	Dishes = models.IntegerField(default=0)
@@ -36,7 +36,7 @@ class ArticleContentTranslation(models.Model):
 	YoutubeLink = models.CharField(default='', blank=True, null=True, max_length=1024)
 	AuthorName = models.CharField(default='', blank=True, null=True, max_length=1024)
 	AuthorProfession = models.CharField(default='', blank=True, null=True, max_length=1024)
-	AuthorProfilePicture = models.TextField(blank=True)
+	AuthorProfilePicture = models.ImageField(blank=True)
 	OnCarousel = models.BooleanField(default=False)
 
 	@property
