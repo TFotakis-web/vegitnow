@@ -8,3 +8,4 @@ frontend/dist/
 frontend/webpack-stats.json
 *.sqlite3
 migrations/
+media/
