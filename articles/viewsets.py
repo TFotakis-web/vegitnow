@@ -6,36 +6,46 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.status import *
 
-from general.models import Language
 from articles.models import Article
 from articles.models import ArticleContentTranslation
 from articles.models import ArticleType
-from articles.models import ArticleTypeNameTranslation
 from articles.models import ArticleTypeAssociation
+from articles.models import ArticleTypeNameTranslation
 from articles.models import Ingredient
-from articles.models import IngredientNameTranslation
 from articles.models import IngredientAssociation
+from articles.models import IngredientNameTranslation
+from general.models import Language
+from .serializers import ArticleContentTranslationSerializer
+from .serializers import ArticleSerializer
+from .serializers import ArticleTypeAssociationSerializer
+from .serializers import ArticleTypeNameTranslationSerializer
+from .serializers import ArticleTypeSerializer
+from .serializers import IngredientAssociationSerializer
+from .serializers import IngredientNameTranslationSerializer
+from .serializers import IngredientSerializer
+
+
 # from articles.models import Tag
 # from articles.models import TagNameTranslation
 # from articles.models import TagAssociation
 # from articles.models import Unit
 # from articles.models import UnitNameTranslation
 # from articles.models import UnitAssociation
+# from articles.serializers import TagSerializer
+# from articles.serializers import TagNameTranslationSerializer
+# from articles.serializers import TagAssociationSerializer
+# from articles.serializers import UnitSerializer
+# from articles.serializers import UnitNameTranslationSerializer
+# from articles.serializers import UntAssociationSerializer
 
-from .serializers import ArticleSerializer
-from .serializers import ArticleContentTranslationSerializer
-from .serializers import ArticleTypeSerializer
-from .serializers import ArticleTypeNameTranslationSerializer
-from .serializers import ArticleTypeAssociationSerializer
-from .serializers import IngredientSerializer
-from .serializers import IngredientNameTranslationSerializer
-from .serializers import IngredientAssociationSerializer
-# from .serializers import TagSerializer
-# from .serializers import TagNameTranslationSerializer
-# from .serializers import TagAssociationSerializer
-# from .serializers import UnitSerializer
-# from .serializers import UnitNameTranslationSerializer
-# from .serializers import UntAssociationSerializer
+
+def base64toFile(filename, data):
+	import base64
+	from django.core.files.base import ContentFile
+	fileFormat, fileData = data.split(';base64,')
+	ext = fileFormat.split('/')[-1]
+	contentFile = ContentFile(base64.b64decode(fileData), name=filename)
+	return contentFile
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
@@ -65,7 +75,11 @@ class ArticleViewSet(viewsets.ModelViewSet):
 					'Title': translation.Title,
 					'Preview': translation.Preview,
 					'Content': translation.Content,
-					'Thumbnail': translation.Thumbnail,
+					'Thumbnail': {
+						'name': '',
+						'data': '',
+						'url': translation.Thumbnail.url
+					},
 					'ReleaseDateTime': {
 						'date': translation.ReleaseDateTime.strftime('%d/%m/%Y'),
 						'time': translation.ReleaseDateTime.strftime('%H:%M')
@@ -77,7 +91,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 				if data['ArticleTypeId'] == 2:
 					translationData['AuthorName'] = translation.AuthorName
 					translationData['AuthorProfession'] = translation.AuthorProfession
-					translationData['AuthorProfilePicture'] = translation.AuthorProfilePicture
+					translationData['AuthorProfilePicture'] = {'name': '', 'data': '', 'url': translation.AuthorProfilePicture.url},
 				data['Translations'].append(translationData)
 			if data['ArticleTypeId'] == 1:
 				data['Dishes'] = translations.first().Dishes
@@ -101,22 +115,21 @@ class ArticleViewSet(viewsets.ModelViewSet):
 			'Title': translation.Title,
 			'Preview': translation.Preview,
 			'Content': translation.Content,
-			'Thumbnail': translation.Thumbnail,
+			'Thumbnail': translation.Thumbnail.url,
 			'ReleaseDateTime': {
 				'date': translation.ReleaseDateTime.strftime('%d/%m/%Y'),
 				'time': translation.ReleaseDateTime.strftime('%H:%M')
 			},
-			'Dishes': translation.Dishes,
-			'ReadyIn': translation.ReadyIn,
 			'YoutubeLink': translation.YoutubeLink,
-			'AuthorName': translation.AuthorName,
-			'AuthorProfession': translation.AuthorProfession,
-			'AuthorProfilePicture': translation.AuthorProfilePicture,
 			'Language': translation.Language_id,
 			'OnCarousel': translation.OnCarousel,
 			'DoneEditing': translation.DoneEditing
 		}
 		if translation.Article.ArticleType_id == 1:
+			data.update({
+				'Dishes': translation.Dishes,
+				'ReadyIn': translation.ReadyIn,
+			})
 			ingredientList = IngredientAssociation.objects.filter(Article_id=kwargs['pk']).all()
 			data['Ingredients'] = []
 			for ingredient in ingredientList:
@@ -129,6 +142,13 @@ class ArticleViewSet(viewsets.ModelViewSet):
 					if ingredient.Ingredient.Language_id != int(request.query_params['locale']):
 						ingredientData['Name'] = ingredient.Ingredient.ingredientnametranslation_set.filter(**fTranslations).first().Name
 				data['Ingredients'].append(ingredientData)
+
+		if translation.Article.ArticleType_id == 2:
+			data.update({
+				'AuthorName': translation.AuthorName,
+				'AuthorProfession': translation.AuthorProfession,
+				'AuthorProfilePicture': translation.AuthorProfilePicture.url,
+			})
 		return Response(data)
 
 	def list(self, request, *args, **kwargs):
@@ -160,7 +180,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 				'ArticleTypeId': article.ArticleType_id,
 				'Title': translation.Title,
 				'Preview': translation.Preview,
-				'Thumbnail': translation.Thumbnail,
+				'Thumbnail': translation.Thumbnail.url,
 				'Dishes': translation.Dishes,
 				'ReadyIn': translation.ReadyIn,
 				'ReleaseDateTime': translation.ReleaseDateTime
@@ -191,7 +211,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 			act = ArticleContentTranslation(Article=a, Language_id=translation['language'])
 			act.Title = translation['title']
 			act.Content = translation['content']
-			act.Thumbnail = translation['thumbnail']
+			act.Thumbnail = base64toFile(translation['thumbnail']['name'], translation['thumbnail']['data'])
 			dateStr = translation['releaseDateTime']['date'] + '-' + translation['releaseDateTime']['time'] + '-' + 'UTC'
 			act.ReleaseDateTime = datetime.strptime(dateStr, '%d/%m/%Y-%H:%M-%Z')
 			act.DoneEditing = translation['doneEditing']
@@ -205,7 +225,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 			elif at == 2:
 				act.AuthorName = translation['authorName']
 				act.AuthorProfession = translation['authorProfession']
-				act.AuthorProfilePicture = translation['authorProfilePicture']
+				act.AuthorProfilePicture = base64toFile(translation['authorProfilePicture']['name'], translation['authorProfilePicture']['data'])
 			act.OnCarousel = translation['onCarousel']
 			act.save()
 		if at == 1:
@@ -231,7 +251,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
 			rawText = soup.get_text()
 			act.Preview = (rawText[:100] if len(rawText) > 100 else rawText) + '...'
 			act.Content = translation['Content']
-			act.Thumbnail = translation['Thumbnail']
+
+			if 'name' in translation['Thumbnail'] and translation['Thumbnail']['name'] != '':
+				act.Thumbnail = base64toFile(translation['Thumbnail']['name'], translation['Thumbnail']['data'])
 
 			dateStr = translation['ReleaseDateTime']['date'] + '-' + translation['ReleaseDateTime']['time'] + '-' + 'UTC'
 			act.ReleaseDateTime = datetime.strptime(dateStr, '%d/%m/%Y-%H:%M-%Z')
@@ -245,7 +267,8 @@ class ArticleViewSet(viewsets.ModelViewSet):
 			if at == 2:
 				act.AuthorName = translation['AuthorName']
 				act.AuthorProfession = translation['AuthorProfession']
-				act.AuthorProfilePicture = translation['AuthorProfilePicture']
+				if 'name' in translation['AuthorProfilePicture'] and translation['AuthorProfilePicture']['name']:
+					act.AuthorProfilePicture = base64toFile(translation['AuthorProfilePicture']['name'], translation['AuthorProfilePicture']['data'])
 			act.save()
 
 		return Response(status=HTTP_200_OK)
@@ -416,7 +439,6 @@ class ArticleTypeAssociationViewSet(viewsets.ModelViewSet):
 	queryset = ArticleTypeAssociation.objects.all()
 	serializer_class = ArticleTypeAssociationSerializer
 	permission_classes = (IsAuthenticatedOrReadOnly,)
-
 
 # class TagViewSet(viewsets.ModelViewSet):
 # 	queryset = Tag.objects.all()
