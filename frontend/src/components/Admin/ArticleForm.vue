@@ -21,20 +21,22 @@
 				</label>
 
 				<label :id="'AuthorProfilePictureInput' + article.id" class="label col-12">{{ $t('Author Profile Picture') }}:
-					<span class="custom-file">
-						<label class="custom-file-label" :for="'AuthorProfilePicture' + article.id">{{ $t('Choose file') }}</label>
-						<input type="file" class="custom-file-input" :id="'AuthorProfilePicture' + article.id" @change="onFileChange($event, article, 'AuthorProfilePicture')">
-					</span>
+					<!--<span class="custom-file">-->
+						<!--<label class="custom-file-label" :for="'AuthorProfilePicture' + article.id">{{ $t('Choose file') }}</label>-->
+						<!--<input type="file" class="custom-file-input" :id="'AuthorProfilePicture' + article.id" @change="onFileChange($event, article, 'AuthorProfilePicture')">-->
+					<!--</span>-->
+					<ImageInput :obj="article.AuthorProfilePicture"/>
 				</label>
 			</div>
 		</div>
 
 
 		<label :id="'ArticleThumbnailInput' + article.id" class="label col-12">{{ $t('Thumbnail') }}:
-			<span class="custom-file">
-				<label class="custom-file-label" :for="'ArticleThumbnail' + article.id">{{ $t('Choose file') }}</label>
-				<input type="file" class="custom-file-input" :id="'ArticleThumbnail' + article.id" @change="onFileChange($event, article, 'Thumbnail')">
-			</span>
+			<!--<span class="custom-file">-->
+				<!--<label class="custom-file-label" :for="'ArticleThumbnail' + article.id">{{ $t('Choose file') }}</label>-->
+				<!--<input type="file" class="custom-file-input" :id="'ArticleThumbnail' + article.id" @change="onFileChange($event, article, 'Thumbnail')">-->
+			<!--</span>-->
+			<ImageInput :obj="article.Thumbnail"/>
 		</label>
 
 		<label :id="'ArticleContentInput' + article.id" class="col-12">{{ $t('Content') }}:
@@ -66,28 +68,17 @@
 
 <script>
 	import Summernote from '../Various/Summernote';
+	import ImageInput from '../Various/ImageInput';
 
 	export default {
 		name: 'AdminArticleForm',
 		components: {
-			Summernote
+			Summernote,
+			ImageInput
 		},
 		props: [
 			'article'
-		],
-		methods: {
-			onFileChange: function (e, storeDict, key) {
-				let files = e.target.files || e.dataTransfer.files;
-				if (!files.length) return;
-				let file = files[0];
-				let reader = new FileReader();
-
-				reader.onload = (e) => {
-					this.$set(storeDict, key, e.target.result);
-				};
-				reader.readAsDataURL(file);
-			}
-		}
+		]
 	};
 </script>
 
