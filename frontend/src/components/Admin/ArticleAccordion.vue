@@ -209,7 +209,10 @@
 				this.articleData['Translations'].push({
 					AuthorName: '',
 					AuthorProfession: '',
-					AuthorProfilePicture: '',
+					AuthorProfilePicture: {
+						name: '',
+						data: ''
+					},
 					Content: '',
 					DoneEditing: false,
 					Language: 1,
@@ -218,7 +221,10 @@
 						data: '',
 						time: ''
 					},
-					Thumbnail: '',
+					Thumbnail: {
+						name: '',
+						data: ''
+					},
 					Title: '',
 					id: -1
 				});
