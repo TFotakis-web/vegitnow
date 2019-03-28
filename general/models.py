@@ -29,3 +29,6 @@ class StaticPageTranslation(models.Model):
 class NewsletterUser(models.Model):
 	email = models.CharField(default='', max_length=254)
 	SubscribeDateTime = models.DateTimeField(auto_now_add=True, null=True)
+
+	def __str__(self):
+		return self.email
