@@ -26,6 +26,21 @@ new Vue({
 	components: {App},
 	data: function () {
 		return {
+			notifyAction: {
+				error: err => {
+					console.log(err);
+					this.$notify({
+						text: this.$t('Something went wrong... Please check your connection.'),
+						type: 'error'
+					});
+				},
+				success: () => {
+					this.$notify({
+						text: this.$t('Saved successfully!'),
+						type: 'success'
+					});
+				}
+			},
 			languages: {},
 			requestsUnsatisfied: 0
 		};
@@ -37,27 +52,21 @@ new Vue({
 		getLanguages: function () {
 			this.requestsUnsatisfied++;
 			this.$http.get('/api/language/')
-				.then((response) => {
+				.then(response => {
 					this.languages = response.data;
 					this.requestsUnsatisfied--;
 				})
-				.catch((err) => {
-					console.log(err);
-					this.$notify({
-						text: this.$t('Something went wrong... Please check your connection.'),
-						type: 'error'
-					});
-				});
+				.catch(this.$root.notifyAction.error);
 		}
 	}
 });
 
-function getCookie (name) {
-	var cookieValue = null;
+let getCookie = name => {
+	let cookieValue = null;
 	if (document.cookie && document.cookie !== '') {
-		var cookies = document.cookie.split(';');
-		for (var i = 0; i < cookies.length; i++) {
-			var cookie = jQuery.trim(cookies[i]);
+		const cookies = document.cookie.split(';');
+		for (let i = 0; i < cookies.length; i++) {
+			const cookie = jQuery.trim(cookies[i]);
 			// Does this cookie string begin with the name we want?
 			if (cookie.substring(0, name.length + 1) === (name + '=')) {
 				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
@@ -66,7 +75,7 @@ function getCookie (name) {
 		}
 	}
 	return cookieValue;
-}
+};
 
 Vue.http.headers.common['X-CSRFToken'] = getCookie('csrftoken');
 Vue.http.headers.common['locale'] = getCookie('locale');
