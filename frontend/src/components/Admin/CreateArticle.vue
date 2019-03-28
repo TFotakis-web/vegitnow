@@ -243,34 +243,22 @@
 			getArticleTypes: function () {
 				this.requestsUnsatisfied++;
 				this.$http.get('/api/articleType/')
-					.then((response) => {
+					.then(response => {
 						this.articleTypes = response.data;
 						this.data.articleType = this.articleTypes[0].id;
 						this.requestsUnsatisfied--;
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			getIngredients: function () {
 				this.requestsUnsatisfied++;
 				this.$http.get('/api/ingredient/?locale=' + this.$cookie.get('locale'))
-					.then((response) => {
+					.then(response => {
 						this.ingredients = response.data;
 						this.selectedIngredient = this.ingredientsSorted[0];
 						this.requestsUnsatisfied--;
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			addTranslation: function () {
 				this.data.translations.push({
@@ -366,23 +354,13 @@
 
 				this.requestsUnsatisfied++;
 				this.$http.post('/api/article/', data)
-					.then((response) => {
-						console.log(response);
-						this.$notify({
-							text: this.$t('Saved successfully!'),
-							type: 'success'
-						});
+					.then(response => {
+						this.$root.notifyAction.success();
 						// this.initArticleFields();
 						this.$router.push({name: this.data.articleType === 1 ? 'RecipeList' : 'ArticleList'});
 						this.requestsUnsatisfied--;
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			}
 		},
 		computed: {

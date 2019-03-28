@@ -89,32 +89,18 @@
 		methods: {
 			getStaticPages: function () {
 				this.$http.get('/api/staticPage/?locale=' + this.$cookie.get('locale'))
-					.then((response) => {
-						this.staticPages = response.data;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.then(response => { this.staticPages = response.data; })
+					.catch(this.$root.notifyAction.error);
 			},
 			subscribe: function () {
 				this.$http.post('/api/createNewsletterUser/', {email: this.newsletterEmail})
-					.then((response) => {
+					.then(response => {
 						this.$notify({
 							text: this.$t('Subscribed successfully!'),
 							type: 'success'
 						});
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			}
 		},
 		computed: {

@@ -36,17 +36,11 @@
 			getArticles: function () {
 				this.requestsUnsatisfied++;
 				this.$http.get('/api/article/?type=1')
-					.then((response) => {
+					.then(response => {
 						this.recipeList = response.data;
 						this.requestsUnsatisfied--;
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			}
 		}
 	};

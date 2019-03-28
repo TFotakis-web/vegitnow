@@ -79,16 +79,8 @@
 		methods: {
 			getArticles: function () {
 				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&carousel')
-					.then((response) => {
-						this.articleList = response.data;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.then(response => { this.articleList = response.data; })
+					.catch(this.$root.notifyAction.error);
 			}
 		}
 	};

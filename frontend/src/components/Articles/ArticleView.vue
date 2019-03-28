@@ -94,7 +94,7 @@
 			getArticleData: function () {
 				this.requestsUnsatisfied++;
 				this.$http.get('/api/article/' + this.id + '/?locale=' + this.$cookie.get('locale'))
-					.then((response) => {
+					.then(response => {
 						this.article = response.data;
 						this.requestsUnsatisfied--;
 					})

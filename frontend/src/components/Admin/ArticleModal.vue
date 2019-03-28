@@ -40,45 +40,22 @@
 		methods: {
 			getArticleData: function (id) {
 				this.$http.get('/api/article/' + id + '/?edit')
-					.then((response) => {
-						this.article = response.data;
-					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.then(response => { this.article = response.data; })
+					.catch(this.$root.notifyAction.error);
 			},
 			deleteArticle: function (id) {
 				this.$http.delete('/api/article/' + id + '/')
-					.then((response) => {
+					.then(response => {
 						this.$parent.getArticles();
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			saveArticle: function () {
 				this.$http.put('/api/article/' + this.articleId + '/', this.article)
-					.then((response) => {
-						this.$notify({
-							text: this.$t('Saved successfully!'),
-							type: 'success'
-						});
+					.then(response => {
+						this.$root.notifyAction.success();
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			}
 		},
 		watch: {

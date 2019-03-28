@@ -231,17 +231,14 @@
 					};
 					// console.log(csvLine);
 					this.$http.post('/api/ingredient/', data)
-						.then((response) => {
+						.then(response => {
 							this.importCount++;
 							this.done--;
 							if (!this.done) {
 								this.getIngredients();
 							}
 							// console.log(response);
-							this.$notify({
-								text: this.$t('Saved successfully!'),
-								type: 'success'
-							});
+							this.$root.notifyAction.success();
 						})
 						.catch((err) => {
 							this.importErrors++;
@@ -291,21 +288,12 @@
 			},
 			saveNewIngredient: function () {
 				this.$http.post('/api/ingredient/', this.ingredientData)
-					.then((response) => {
+					.then(response => {
 						this.createNew = false;
 						this.getIngredients();
-						this.$notify({
-							text: this.$t('Saved successfully!'),
-							type: 'success'
-						});
+						this.$root.notifyAction.success();
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			cancelNewIngredient: function () {
 				this.createNew = false;
@@ -313,34 +301,22 @@
 			getIngredients: function () {
 				this.requestsUnsatisfied++;
 				this.$http.get('/api/ingredient/')
-					.then((response) => {
+					.then(response => {
 						this.ingredients = Object.values(response.data).sort((a, b) => (a.Name > b.Name) ? 1 : ((b.Name > a.Name) ? -1 : 0));
 						this.requestsUnsatisfied--;
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			removeIngredient: function (id, index) {
 				this.$http.delete('/api/ingredient/' + id + '/')
-					.then((response) => {
+					.then(response => {
 						this.ingredients.splice(index, 1);
 						this.$notify({
 							text: this.$t('Deleted successfully!'),
 							type: 'success'
 						});
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			selectIngredientForPatch: function (ingredient) {
 				this.selectedIngredient = ingredient;
@@ -377,22 +353,13 @@
 			},
 			patchIngredient: function () {
 				this.$http.put('/api/ingredient/' + this.selectedIngredient.id + '/', this.ingredientData)
-					.then((response) => {
+					.then(response => {
 						// this.ingredients.splice(index, 1);
 						this.editIngredient = false;
 						this.getIngredients();
-						this.$notify({
-							text: this.$t('Saved successfully!'),
-							type: 'success'
-						});
+						this.$root.notifyAction.success();
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			cancelPatchIngredient: function () {
 				this.editIngredient = false;

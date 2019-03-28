@@ -35,17 +35,11 @@
 			getArticles: function () {
 				this.requestsUnsatisfied++;
 				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=2')
-					.then((response) => {
+					.then(response => {
 						this.articleList = response.data;
 						this.requestsUnsatisfied--;
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			}
 		}
 	};

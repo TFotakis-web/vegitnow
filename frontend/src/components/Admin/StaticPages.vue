@@ -105,33 +105,21 @@
 			getStaticPages: function () {
 				this.requestsUnsatisfied++;
 				this.$http.get('/api/staticPage/')
-					.then((response) => {
+					.then(response => {
 						this.staticPages = response.data;
 						this.requestsUnsatisfied--;
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			fetchData: function (pageId) {
 				if (this.staticPages[pageId]['fetched']) return;
 				for (const translationId of Object.values(this.staticPages[pageId]['translations'])) {
 					this.$http.get('/api/staticPageTranslation/' + translationId + '/')
-						.then((response) => {
+						.then(response => {
 							this.staticPages[pageId]['data'].push(response.data);
 							this.staticPages[pageId]['fetched'] = true;
 						})
-						.catch((err) => {
-							console.log(err);
-							this.$notify({
-								text: this.$t('Something went wrong... Please check your connection.'),
-								type: 'error'
-							});
-						});
+						.catch(this.$root.notifyAction.error);
 				}
 			},
 			initializedTranslation: function (staticPageId) {
@@ -169,25 +157,16 @@
 					path = '/api/staticPageTranslation/' + page.data[index].id + '/';
 				}
 				this.$http[method](path, page.data[index])
-					.then((response) => {
+					.then(response => {
 						console.log(response);
 						this.getStaticPages();
-						this.$notify({
-							text: this.$t('Saved successfully!'),
-							type: 'success'
-						});
+						this.$root.notifyAction.success();
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			removeTranslation: function (page, index) {
 				this.$http.delete('/api/staticPageTranslation/' + page.data[index].id + '/')
-					.then((response) => {
+					.then(response => {
 						// page.data.splice(index, 1);
 						// if (!page.data.length) delete this.staticPages[page.id];
 						this.getStaticPages();
@@ -196,13 +175,7 @@
 							type: 'success'
 						});
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			}
 		}
 	};

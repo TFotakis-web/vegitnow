@@ -119,18 +119,12 @@
 			getIngredients: function () {
 				// this.requestsUnsatisfied++;
 				this.$http.get('/api/ingredient/?locale=' + this.$cookie.get('locale'))
-					.then((response) => {
+					.then(response => {
 						this.ingredients = response.data;
 						this.selectedIngredient = this.ingredientsSorted[0];
 						// this.requestsUnsatisfied--;
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			addIngredient: function () {
 				const data = {
@@ -140,70 +134,40 @@
 					Ingredient: this.selectedIngredient.id
 				};
 				this.$http.post('/api/ingredientAssociation/', data)
-					.then((response) => {
+					.then(response => {
 						this.articleData['Ingredients'].push(response.data);
-						this.$notify({
-							text: this.$t('Saved successfully!'),
-							type: 'success'
-						});
+						this.$root.notifyAction.success();
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			removeIngredient: function (index) {
 				this.$http.delete('/api/ingredientAssociation/' + this.articleData['Ingredients'][index]['id'] + '/')
-					.then((response) => {
+					.then(response => {
 						this.articleData['Ingredients'].splice(index, 1);
 						this.$notify({
 							text: this.$t('Deleted successfully!'),
 							type: 'success'
 						});
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			setMainIngredient: function (ingredient) {
 				this.$http.put('/api/ingredientAssociation/' + ingredient.id + '/', Object.assign({}, ingredient, {'Article': this.articleData.id}))
-					.then((response) => {
-						this.$notify({
-							text: this.$t('Saved successfully!'),
-							type: 'success'
-						});
+					.then(response => {
+						this.$root.notifyAction.success();
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			removeTranslation: function (index) {
 				this.$http.delete('/api/articleContentTranslation/' + this.articleData['Translations'][index]['id'] + '/')
-					.then((response) => {
+					.then(response => {
 						this.articleData['Translations'].splice(index, 1);
 						this.$notify({
 							text: this.$t('Deleted successfully!'),
 							type: 'success'
 						});
 					})
-					.catch((err) => {
-						console.log(err);
-						this.$notify({
-							text: this.$t('Something went wrong... Please check your connection.'),
-							type: 'error'
-						});
-					});
+					.catch(this.$root.notifyAction.error);
 			},
 			addTranslation: function () {
 				this.articleData['Translations'].push({
