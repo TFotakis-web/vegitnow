@@ -66,14 +66,6 @@
 <script>
 	export default {
 		name: 'NavigationBar',
-		created: function () {
-			let locale = this.$cookie.get('locale');
-			if (locale) {
-				this.$i18n.locale = locale === '1' ? 'en' : 'gr';
-			} else {
-				this.$cookie.set('locale', this.$i18n.locale === 'en' ? 1 : 2);
-			}
-		},
 		methods: {
 			changeLanguage: function () {
 				this.$i18n.locale = this.$i18n.locale === 'en' ? 'gr' : 'en';

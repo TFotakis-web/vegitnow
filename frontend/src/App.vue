@@ -51,6 +51,17 @@
 			NavigationBar,
 			Footer,
 			Loader
+		},
+		created: function () {
+			let locale = this.$cookie.get('locale');
+			if (locale) {
+				this.$i18n.locale = locale === '1' ? 'en' : 'gr';
+			} else {
+				let userLang = navigator.language || navigator.userLanguage;
+				if (userLang && userLang.match('el')) this.$i18n.locale = 'gr';
+				this.$cookie.set('locale', this.$i18n.locale === 'en' ? 1 : 2);
+				this.$router.go();
+			}
 		}
 	};
 </script>
