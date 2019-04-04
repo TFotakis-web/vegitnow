@@ -92,7 +92,8 @@
 			ArticleCard
 		},
 		props: [
-			'currentArticleId'
+			'currentArticleId',
+			'location'
 		],
 		data: function () {
 			return {
@@ -104,7 +105,7 @@
 		},
 		methods: {
 			getArticles: function () {
-				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=2')
+				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=2&' + this.location)
 					.then(response => { this.articleList = response.data; })
 					.catch(this.$root.notifyAction.error);
 			}

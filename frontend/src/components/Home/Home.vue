@@ -3,8 +3,8 @@
 		<Carousel/>
 		<JoinOurFamily/>
 		<IngredientOfTheDay/>
-		<RecommendedRecipes/>
-		<RecommendedArticles/>
+		<RecommendedRecipes location="home"/>
+		<RecommendedArticles location="home"/>
 	</div>
 </template>
 
