@@ -166,6 +166,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		if 'carousel' in request.query_params:
 			fTranslations['OnCarousel'] = True
 
+		if 'home' in request.query_params:
+			fTranslations['OnCarousel'] = False
+
 		articles = Article.objects.filter(**fArticles).all()
 
 		data = []
