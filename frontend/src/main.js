@@ -34,6 +34,14 @@ new Vue({
 						type: 'error'
 					});
 				},
+				errorPermanent: err => {
+					console.log(err);
+					this.$notify({
+						text: this.$t('Something went wrong... Please check your connection.'),
+						type: 'error',
+						duration: -1
+					});
+				},
 				success: () => {
 					this.$notify({
 						text: this.$t('Saved successfully!'),
