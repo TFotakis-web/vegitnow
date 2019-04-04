@@ -215,9 +215,12 @@ class ArticleViewSet(viewsets.ModelViewSet):
 			dateStr = translation['releaseDateTime']['date'] + '-' + translation['releaseDateTime']['time'] + '-' + 'UTC'
 			act.ReleaseDateTime = datetime.strptime(dateStr, '%d/%m/%Y-%H:%M-%Z')
 			act.DoneEditing = translation['doneEditing']
-			soup = BeautifulSoup(translation['content'], features='html.parser')
-			rawText = soup.get_text()
-			act.Preview = (rawText[:100] if len(rawText) > 100 else rawText) + '...'
+			if translation['preview'] == '':
+				soup = BeautifulSoup(translation['content'], features='html.parser')
+				rawText = soup.get_text()
+				act.Preview = (rawText[:100] if len(rawText) > 100 else rawText) + '...'
+			else:
+				act.Preview = translation['preview']
 			if at == 1:
 				act.Dishes = request.data['dishes']
 				act.ReadyIn = request.data['readyIn']
@@ -247,9 +250,12 @@ class ArticleViewSet(viewsets.ModelViewSet):
 					continue
 			act.Language_id = translation['Language']
 			act.Title = translation['Title']
-			soup = BeautifulSoup(translation['Content'], features='html.parser')
-			rawText = soup.get_text()
-			act.Preview = (rawText[:100] if len(rawText) > 100 else rawText) + '...'
+			if translation['Preview'] == '':
+				soup = BeautifulSoup(translation['Content'], features='html.parser')
+				rawText = soup.get_text()
+				act.Preview = (rawText[:100] if len(rawText) > 100 else rawText) + '...'
+			else:
+				act.Preview = translation['Preview']
 			act.Content = translation['Content']
 
 			if 'name' in translation['Thumbnail'] and translation['Thumbnail']['name'] != '':
