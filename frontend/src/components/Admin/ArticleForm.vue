@@ -10,7 +10,11 @@
 			<input type="text" class="form-control" id="ArticleTitle" :placeholder="$t('Title')" v-model="article.Title">
 		</label>
 
-		<div :id="'ArticleAuthorInput' + article.id" v-if="article['ArticleTypeId'] === 2" class="col-12">
+		<label v-if="$parent.articleData['ArticleTypeId'] === 2" :id="'PreviewInput' + article.id" class="label col-12">Preview:
+			<input type="text" class="form-control" id="Preview" placeholder="Preview" v-model="article.Preview">
+		</label>
+
+		<div :id="'ArticleAuthorInput' + article.id" v-if="$parent.articleData['ArticleTypeId'] === 2" class="col-12">
 			<div class="row">
 				<label :id="'AuthorNameInput' + article.id" class="label col-6">Author Name:
 					<input type="text" class="form-control" id="AuthorName" placeholder="Author Name" v-model="article.AuthorName">
