@@ -29,6 +29,13 @@
 				</div>
 
 				<div v-if="data.articleType === 2">
+					<div :id="'PreviewInput' + index" class="form-group row">
+						<label for="Preview" class="col-sm-2 col-form-label">Preview:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Preview" placeholder="Preview" v-model="article.preview">
+						</div>
+					</div>
+
 					<div :id="'ArticleAuthorNameInput' + index" class="form-group row">
 						<label for="AuthorName" class="col-sm-2 col-form-label">Author Name:</label>
 						<div class="col-sm-10">
@@ -265,6 +272,7 @@
 					language: null,
 					title: null,
 					content: '',
+					preview: '',
 					thumbnail: {
 						name: '',
 						data: ''
@@ -360,7 +368,10 @@
 						this.$router.push({name: this.data.articleType === 1 ? 'RecipeList' : 'ArticleList'});
 						this.requestsUnsatisfied--;
 					})
-					.catch(this.$root.notifyAction.error);
+					.catch(err => {
+						this.requestsUnsatisfied--;
+						this.$root.notifyAction.errorPermanent(err);
+					});
 			}
 		},
 		computed: {
