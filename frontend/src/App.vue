@@ -188,4 +188,12 @@
 		-o-animation: rotating 60s linear infinite;
 		animation: rotating 60s linear infinite;
 	}
+
+	.htmlRenderer img{
+		margin: 10px;
+	}
+
+	.htmlRenderer p {
+		line-height: 1.5 !important;
+	}
 </style>

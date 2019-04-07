@@ -38,7 +38,7 @@
 						</div>
 						<div class="col-sm-8" style="border-left: dashed 2px #327317;">
 							<h2 class="fgGreen1 text-center text-sm-left">{{ $t('Execution') }}</h2>
-							<div v-html="article.Content"></div>
+							<div class="htmlRenderer" v-html="article.Content"></div>
 						</div>
 					</div>
 				</div>

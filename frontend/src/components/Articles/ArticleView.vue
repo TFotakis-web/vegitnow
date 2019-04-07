@@ -64,7 +64,7 @@
 			</div>
 			<div id="Instructions" class="mt-4 mb-5 d-flex">
 				<div class="container">
-					<div v-html="article['Content']"></div>
+					<div class="htmlRenderer" v-html="article.Content"></div>
 				</div>
 			</div>
 			<RecommendedArticles :current-article-id="id"/>

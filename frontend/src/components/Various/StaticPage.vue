@@ -1,10 +1,10 @@
 <template>
-	<div class="d-flex flex-grow-1">
+	<div class="d-flex flex-grow-1 mb-5">
 		<Loader v-if="requestsUnsatisfied"/>
 		<div v-if="!requestsUnsatisfied" class="flex-grow-1">
 			<div class="navbar-placeholder"></div>
 			<div class="container">
-				<div v-html="page.Content"></div>
+				<div class="htmlRenderer" v-html="page.Content"></div>
 			</div>
 		</div>
 	</div>
