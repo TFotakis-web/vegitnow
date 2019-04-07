@@ -12,10 +12,9 @@
 					<div class="container">
 						<div class="d-lg-none py-4">
 							<div class="col">
-								<div class="bg-white rounded-circle mx-auto authorProfilePicture" :style="{ 'background-image': 'url(' + article.AuthorProfilePicture + ')' }">
-								</div>
-								<div class="dashedCircle rotating mx-auto"
-								     style="height: 210px; width: 210px; margin-top: -200px; margin-left: -10px;">
+								<div class="dashedCircle rotating mx-auto" style="height: 210px; width: 210px; margin-left: -10px;"></div>
+								<div class="authorProfilePictureCircle">
+									<div class="bg-white rounded-circle mx-auto authorProfilePicture" :style="{ 'background-image': 'url(' + article.AuthorProfilePicture + ')' }"></div>
 								</div>
 							</div>
 							<div class="col text-center">
@@ -115,11 +114,15 @@
 </script>
 
 <style scoped>
-	.authorProfilePicture{
+	.authorProfilePicture {
 		height: 190px;
 		width: 190px;
 		background-size: cover;
 		background-repeat: inherit;
 		background-position: center center;
+	}
+
+	.authorProfilePictureCircle {
+		margin-top: -200px
 	}
 </style>
