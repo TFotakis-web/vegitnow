@@ -38,19 +38,19 @@
 												</div>
 												<div v-if="article.ArticleTypeId === 1" class="container w-75">
 													<div class="row">
-														<div class="col-lg-12">
-<!--														<div class="col-lg-6">-->
+<!--														<div class="col-lg-12">-->
+														<div class="col-lg-6">
 															<h1 class="d-none d-lg-block">{{ $t('Main Ingredients') }}:</h1>
 															<h4 class="d-inline d-lg-none">{{ $t('Main Ingredients') }}:</h4>
 															<p class="d-none d-lg-block font-weight-bold">{{ article.MainIngredients }}</p>
 															<p class="d-inline d-lg-none">{{ article.MainIngredients }}</p>
 														</div>
-<!--														<div class="col-lg-6">-->
-<!--															<h1 class="d-none d-lg-block">{{ $t('Ready in') }}:</h1>-->
-<!--															<h4 class="d-inline d-lg-none">{{ $t('Ready in') }}:</h4>-->
-<!--															<p class="d-none d-lg-block font-weight-bold">{{ article.ReadyIn }}</p>-->
-<!--															<p class="d-inline d-lg-none">{{ article.ReadyIn }}</p>-->
-<!--														</div>-->
+														<div class="col-lg-6">
+															<h1 class="d-none d-lg-block">{{ $t('Ready in') }}:</h1>
+															<h4 class="d-inline d-lg-none">{{ $t('Ready in') }}:</h4>
+															<p class="d-none d-lg-block font-weight-bold">{{ article.ReadyIn }}'</p>
+															<p class="d-inline d-lg-none">{{ article.ReadyIn }}'</p>
+														</div>
 													</div>
 													<router-link :to="{ name: 'RecipeView', params: { id: article.id }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Go to the recipe') }}</router-link>
 												</div>
