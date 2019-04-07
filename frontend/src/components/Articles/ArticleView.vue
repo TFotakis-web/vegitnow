@@ -11,41 +11,17 @@
 				<div class="bgGreen1">
 					<div class="container">
 						<div class="d-lg-none py-4">
-							<div class="col">
+							<div class="col" style="height: 210px">
 								<div class="dashedCircle rotating mx-auto" style="height: 210px; width: 210px; margin-left: -10px;"></div>
 								<div class="authorProfilePictureCircle">
 									<div class="bg-white rounded-circle mx-auto authorProfilePicture" :style="{ 'background-image': 'url(' + article.AuthorProfilePicture + ')' }"></div>
 								</div>
 							</div>
-							<div class="col text-center">
+							<div v-if="article['AuthorName']" class="col text-center">
 								<h2 class="fgGreen1 mt-3">{{ $t('Writes') }}:</h2>
 								<p class="font-weight-bold m-0">{{ article['AuthorName'] }}</p>
-								<hr>
-								<p class="font-weight-bold m-0">
-									{{ article['AuthorProfession'] }}
-									<!--Special Dietologist-->
-									<!--<br>-->
-									<!--Dr. University of Life-->
-								</p>
-							</div>
-						</div>
-						<div class="d-none d-lg-flex row py-4" style="height: 120px">
-							<div class="offset-sm-3 col-sm-5 offset-md-2 col-md-4 " style="border-right: dashed 2px #327317">
-								<div class="row h-100">
-									<div class="col d-table h-100">
-										<div class="d-table-cell align-middle">
-											<h2 class="fgGreen1 text-right m-0">{{ $t('Writes') }}:</h2>
-										</div>
-									</div>
-									<div class="col d-table h-100">
-										<div class="d-table-cell align-middle">
-											<p class="font-weight-bold m-0">{{ article['AuthorName'] }}</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3 d-table h-100">
-								<div class="d-table-cell align-middle">
+								<div v-if="article['AuthorProfession']">
+									<hr>
 									<p class="font-weight-bold m-0">
 										{{ article['AuthorProfession'] }}
 										<!--Special Dietologist-->
@@ -55,10 +31,38 @@
 								</div>
 							</div>
 						</div>
+						<div class="d-none d-lg-flex row py-4" style="height: 120px">
+<!--							<div ">-->
+								<div v-if="article['AuthorName']" class="offset-sm-3 col-sm-5 offset-md-2 col-md-4 ">
+									<div class="row h-100">
+										<div class="col d-table h-100">
+											<div class="d-table-cell align-middle">
+												<h2 class="fgGreen1 text-right m-0">{{ $t('Writes') }}:</h2>
+											</div>
+										</div>
+										<div class="col d-table h-100">
+											<div class="d-table-cell align-middle">
+												<p class="font-weight-bold m-0">{{ article['AuthorName'] }}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div v-if="article['AuthorProfession'] && article['AuthorName']" class="col-sm-3 d-table h-100" style="border-left: dashed 2px #327317">
+									<div class="d-table-cell align-middle">
+										<p class="font-weight-bold m-0">
+											{{ article['AuthorProfession'] }}
+											<!--Special Dietologist-->
+											<!--<br>-->
+											<!--Dr. University of Life-->
+										</p>
+									</div>
+								</div>
+<!--							</div>-->
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="container d-none d-lg-block" style="position: relative; margin-top: -95px;">
+			<div class="container d-none d-lg-block" style="position: relative; margin-top: -95px; height: 210px">
 				<div class="bg-white rounded-circle authorProfilePicture" :style="{ 'background-image': 'url(' + article.AuthorProfilePicture + ')' }"></div>
 				<div class="dashedCircle rotating" style="height: 210px; width: 210px; margin-top: -200px; margin-left: -10px;"></div>
 			</div>
