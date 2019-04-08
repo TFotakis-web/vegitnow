@@ -190,7 +190,17 @@
 	}
 
 	.htmlRenderer img{
-		margin: 10px;
+		margin: 10px !important;
+		max-width: 100% !important;
+		height: auto !important;
+	}
+
+	.htmlRenderer iframe {
+		max-width: 100% !important;
+		position: relative !important;
+		display: block !important;
+		padding: 0 !important;
+		overflow: hidden !important;
 	}
 	/**/
 	/*.htmlRenderer p {*/
