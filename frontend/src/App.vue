@@ -192,8 +192,8 @@
 	.htmlRenderer img{
 		margin: 10px;
 	}
-
-	.htmlRenderer p {
-		line-height: 1.5 !important;
-	}
+	/**/
+	/*.htmlRenderer p {*/
+	/*	line-height: 1.5 !important;*/
+	/*}*/
 </style>
