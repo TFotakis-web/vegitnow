@@ -30,6 +30,7 @@
 					['view', ['fullscreen', 'codeview']],
 					['help', ['help']]
 				],
+				fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '24', '36', '48', '64', '82', '150'],
 				url: {
 					language: '/static/summernote/lang/summernote-en-US.min.js',
 					upload_attachment: '/summernote/upload_attachment/'
@@ -43,6 +44,22 @@
 					},
 					onBlur: function () {
 						vm.$emit('change', $(vm.$el).summernote('code'));
+					},
+					onImageUpload: function (files) {
+						for (const file of files) {
+							let formData = new FormData();
+							formData.append('files', file);
+							vm.$http.post('/summernote/upload_attachment/', formData)
+								.then(response => {
+									$.each(response.data.files, function (index, file) {
+										$(vm.$el).summernote('insertImage', file.url);
+									});
+								})
+								.catch(err => {
+									console.log(err);
+									if (err.body.message) alert(err.body.message);
+								});
+						}
 					}
 				}
 			};
