@@ -47,6 +47,9 @@
 				return {
 					inner: this.$t('Articles')
 				};
+			},
+			meta: function () {
+				return this.$root.headData.defaultMeta();
 			}
 		}
 	};
