@@ -29,6 +29,9 @@
 				return {
 					inner: this.$t('Home')
 				};
+			},
+			meta: function () {
+				return this.$root.headData.defaultMeta();
 			}
 		}
 	};
