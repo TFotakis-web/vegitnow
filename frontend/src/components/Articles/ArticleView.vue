@@ -99,6 +99,7 @@
 				this.$http.get('/api/article/' + this.id + '/?locale=' + this.$cookie.get('locale'))
 					.then(response => {
 						this.article = response.data;
+						this.$emit('updateHead');
 						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
@@ -113,6 +114,11 @@
 		},
 		mounted: function () {
 			this.getArticleData();
+		},
+		head: {
+			title: function () {
+				return this.article.Title ? {inner: this.article.Title} : '';
+			}
 		}
 	};
 </script>
