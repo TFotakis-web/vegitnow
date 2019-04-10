@@ -64,6 +64,9 @@
 				this.$cookie.set('locale', 2);
 				this.$router.go();
 			}
+		},
+		head: function () {
+			return this.$root.headData.defaultHead;
 		}
 	};
 </script>
@@ -189,7 +192,7 @@
 		animation: rotating 60s linear infinite;
 	}
 
-	.htmlRenderer img{
+	.htmlRenderer img {
 		margin: 10px !important;
 		max-width: 100% !important;
 		height: auto !important;
@@ -202,8 +205,4 @@
 		padding: 0 !important;
 		overflow: hidden !important;
 	}
-	/**/
-	/*.htmlRenderer p {*/
-	/*	line-height: 1.5 !important;*/
-	/*}*/
 </style>
