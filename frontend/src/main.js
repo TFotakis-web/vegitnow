@@ -8,12 +8,13 @@ import {i18n} from './plugins/i18n';
 import Notifications from 'vue-notification';
 import VueCookie from 'vue-cookie';
 import VueScrollTo from 'vue-scrollto';
-// var VueCookie = Vue.require('vue-cookie');
+import VueHead from 'vue-head';
 
 Vue.use(VueResource);
 Vue.use(Notifications);
 Vue.use(VueCookie);
 Vue.use(VueScrollTo);
+Vue.use(VueHead);
 
 Vue.config.productionTip = false;
 

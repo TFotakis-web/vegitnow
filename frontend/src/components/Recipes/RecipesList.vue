@@ -41,6 +41,13 @@
 					})
 					.catch(this.$root.notifyAction.error);
 			}
+		},
+		head: {
+			title: function () {
+				return {
+					inner: this.$t('Recipes')
+				};
+			}
 		}
 	};
 </script>
