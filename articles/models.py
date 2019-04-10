@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -109,6 +110,25 @@ class IngredientAssociation(models.Model):
 
 	def __str__(self): return str(self.Article) + ' - ' + self.Ingredient.Name
 
+
+# class TmpImages(models.Model):
+# 	image = models.ImageField()
+#
+# 	def __str__(self):
+# 		return str(self.image)
+
+
+# @receiver(post_delete, sender=TmpImages)
+def auto_delete_file_on_model_delete(sender, field, instance, **kwargs):
+	instance[field].delete(False)
+
+
+# @receiver(pre_save, sender=TmpImages)
+def auto_delete_on_file_change(sender, instance, **kwargs):
+	if not instance.pk:
+		return False
+	old_file = sender.objects.get(pk=instance.pk).image
+	old_file.delete(False)
 
 # class Tag(models.Model):
 # 	Name = models.CharField(default='', max_length=1024)
