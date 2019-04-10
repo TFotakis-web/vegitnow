@@ -26,6 +26,7 @@ new Vue({
 	template: '<App/>',
 	components: {App},
 	data: function () {
+		let vm = this;
 		return {
 			notifyAction: {
 				error: err => {
@@ -48,6 +49,44 @@ new Vue({
 						text: this.$t('Saved successfully!'),
 						type: 'success'
 					});
+				}
+			},
+			headData: {
+				defaultMetaDict: {
+					GeneralDescription: {name: 'description', content: 'All about vegan foods, drinks and lifestyle.', id: 'metaDescription'},
+					GeneralKeywords: {name: 'keywords', content: 'Vegan, food, drink, lifestyle, nutrition', id: 'metaKeywords'},
+					GooglePlusName: {itemprop: 'name', content: 'VegItNow', id: 'metaGooglePlusName'},
+					GooglePlusDescription: {itemprop: 'description', content: 'All about vegan foods, drinks and lifestyle.', id: 'metaGooglePlusDescription'},
+					GooglePlusImage: {itemprop: 'image', content: 'https://vegitnow.com/static/app/img/VegItNowLogoSocial.png', id: 'metaGooglePlusImage'},
+					TwitterCard: {name: 'twitter:card', content: 'summary', id: 'metaTwitterCard'},
+					TwitterSite: {name: 'twitter:site', content: '@VegItNow', id: 'metaTwitterSite'},
+					TwitterTitle: {name: 'twitter:title', content: 'VegItNow', id: 'metaTwitterTitle'},
+					TwitterDescription: {name: 'twitter:description', content: 'All about vegan foods, drinks and lifestyle.', id: 'metaTwitterDescription'},
+					TwitterCreator: {name: 'twitter:creator', content: '@VegItNow', id: 'metaTwitterCreator'},
+					TwitterImage: {name: 'twitter:image:src', content: 'https://vegitnow.com/static/app/img/VegItNowLogoSocial.png', id: 'metaTwitterImage'},
+					OpenGraphTitle: {property: 'og:title', content: 'VegItNow Tzanis', id: 'metaOpenGraphTitle'},
+					OpenGraphType: {property: 'og:type', content: 'article', id: 'metaOpenGraphType'},
+					OpenGraphUrl: {property: 'og:url', content: 'https://vegitnow.com', id: 'metaOpenGraphUrl'},
+					OpenGraphImage: {property: 'og:image', content: 'https://vegitnow.com/static/app/img/VegItNowLogoSocial.png', id: 'metaOpenGraphImage'},
+					OpenGraphDescription: {property: 'og:description', content: 'All about vegan foods, drinks and lifestyle.', id: 'metaOpenGraphDescription'},
+					OpenGraphSiteName: {property: 'og:site_name', content: 'VegItNow', id: 'metaOpenGraphSiteName'},
+					OpenGraphPublishedTime: {property: 'article:published_time', content: '', id: 'metaOpenGraphPublishedTime'},
+					OpenGraphModifiedTime: {property: 'article:modified_time', content: '', id: 'metaOpenGraphModifiedTime'},
+					OpenGraphSection: {property: 'article:section', content: '', id: 'metaOpenGraphSection'},
+					OpenGraphTag: {property: 'article:tag', content: '', id: 'metaOpenGraphTag'},
+					OpenGraphAdmins: {property: 'fb:admins', content: '', id: 'metaOpenGraphAdmins'}
+				},
+				defaultMeta: () => Object.values(vm.$root.headData.defaultMetaDict),
+				defaultHead: {
+					title: '',
+					meta: function () { return vm.$root.headData.defaultMeta(); }
+				},
+				updateMeta: function (dict) {
+					let res = JSON.parse(JSON.stringify(vm.$root.headData.defaultMetaDict));
+					for (const key in dict) {
+						res[key].content = dict[key];
+					}
+					return Object.values(res);
 				}
 			},
 			languages: {},
