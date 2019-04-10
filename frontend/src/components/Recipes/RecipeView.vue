@@ -115,6 +115,33 @@
 		head: {
 			title: function () {
 				return this.article.Title ? {inner: this.article.Title} : '';
+			},
+			meta: function () {
+				return this.$root.headData.updateMeta({
+					GeneralDescription: this.article.Preview,
+					// GeneralKeywords: '',
+					GooglePlusName: this.article.Title,
+					GooglePlusDescription: this.article.Preview,
+					GooglePlusImage: location.origin + this.article.Thumbnail,
+					// TwitterCard: '',
+					// TwitterSite: '',
+					TwitterTitle: this.article.Title,
+					TwitterDescription: this.article.Preview,
+					TwitterCreator: this.article.AuthorName || '',
+					TwitterImage: location.origin + this.article.Thumbnail,
+					OpenGraphTitle: this.article.Title,
+					OpenGraphType: 'article',
+					OpenGraphUrl: location.href,
+					OpenGraphImage: location.origin + this.article.Thumbnail,
+					OpenGraphDescription: this.article.Preview
+					// ,
+					// OpenGraphSiteName: '',
+					// OpenGraphPublishedTime: '',
+					// OpenGraphModifiedTime: '',
+					// OpenGraphSection: '',
+					// OpenGraphTag: '',
+					// OpenGraphAdmins: ''
+				});
 			}
 		}
 	};
