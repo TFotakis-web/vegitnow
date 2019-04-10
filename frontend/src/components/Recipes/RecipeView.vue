@@ -72,7 +72,7 @@
 
 <script>
 	import RecommendedRecipes from './RecommendedRecipes';
-	import NutritionStats from '../Various/NutritionStats';
+	import NutritionStats from '../Structure/NutritionStats';
 	import Loader from '../Structure/Loader';
 
 	export default {

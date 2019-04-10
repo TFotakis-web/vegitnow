@@ -85,7 +85,7 @@
 </template>
 
 <script>
-	import Summernote from '../Various/Summernote';
+	import Summernote from '../Structure/Summernote';
 
 	export default {
 		name: 'AdminStaticPages',

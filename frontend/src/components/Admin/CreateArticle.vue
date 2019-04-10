@@ -210,9 +210,9 @@
 </template>
 
 <script>
-	import Summernote from '../Various/Summernote';
+	import Summernote from '../Structure/Summernote';
 	import Loader from '../Structure/Loader';
-	import ImageInput from '../Various/ImageInput';
+	import ImageInput from '../Structure/ImageInput';
 
 	export default {
 		name: 'CreateArticle',

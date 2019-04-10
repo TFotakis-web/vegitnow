@@ -34,7 +34,7 @@
 </template>
 
 <script>
-	import NutritionStats from '../Various/NutritionStats';
+	import NutritionStats from '../Structure/NutritionStats';
 
 	export default {
 		name: 'IngredientOfTheDay',

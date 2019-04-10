@@ -71,8 +71,8 @@
 </template>
 
 <script>
-	import Summernote from '../Various/Summernote';
-	import ImageInput from '../Various/ImageInput';
+	import Summernote from '../Structure/Summernote';
+	import ImageInput from '../Structure/ImageInput';
 
 	export default {
 		name: 'AdminArticleForm',
