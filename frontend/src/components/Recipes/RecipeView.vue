@@ -98,6 +98,7 @@
 				this.$http.get('/api/article/' + this.id + '/?locale=' + this.$cookie.get('locale'))
 					.then(response => {
 						this.article = response.data;
+						this.$emit('updateHead');
 						this.requestsUnsatisfied--;
 					})
 					.catch(this.$root.notifyAction.error);
@@ -109,6 +110,11 @@
 				return this.article.Ingredients.filter(function (ingredient) {
 					return ingredient.IsMainIngredient;
 				});
+			}
+		},
+		head: {
+			title: function () {
+				return this.article.Title ? {inner: this.article.Title} : '';
 			}
 		}
 	};
