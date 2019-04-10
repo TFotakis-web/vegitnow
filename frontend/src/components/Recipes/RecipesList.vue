@@ -47,6 +47,9 @@
 				return {
 					inner: this.$t('Recipes')
 				};
+			},
+			meta: function () {
+				return this.$root.headData.defaultMeta();
 			}
 		}
 	};
