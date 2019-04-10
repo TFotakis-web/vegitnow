@@ -34,6 +34,7 @@
 				this.$http.get('/api/staticPage/' + this.id + '/?locale=' + this.$cookie.get('locale'))
 					.then(response => {
 						this.page = response.data;
+						this.$emit('updateHead');
 						this.requestsUnsatisfied--;
 					})
 					.catch((err) => {
@@ -44,6 +45,11 @@
 						});
 						this.$router.push({name: 'Home'});
 					});
+			}
+		},
+		head: {
+			title: function () {
+				return this.page.Name ? {inner: this.page.Name} : '';
 			}
 		}
 	};
