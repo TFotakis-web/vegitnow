@@ -15,7 +15,14 @@
 
 <script>
 	export default {
-		name: 'Administration'
+		name: 'Administration',
+		head: {
+			title: function () {
+				return {
+					inner: this.$t('Administration')
+				};
+			}
+		}
 	};
 </script>
 
