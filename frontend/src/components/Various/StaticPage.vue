@@ -50,6 +50,36 @@
 		head: {
 			title: function () {
 				return this.page.Name ? {inner: this.page.Name} : '';
+			},
+			meta: function () {
+				var el = document.createElement('html');
+				el.innerHTML = this.page.Content || '';
+				let description = el.textContent.substr(0, 150) + '...';
+				return this.$root.headData.updateMeta({
+					GeneralDescription: description,
+					// GeneralKeywords: '',
+					GooglePlusName: this.page.Name,
+					GooglePlusDescription: description,
+					// GooglePlusImage: '',
+					// TwitterCard: '',
+					// TwitterSite: '',
+					TwitterTitle: this.page.Name,
+					TwitterDescription: description,
+					// TwitterCreator: '',
+					// TwitterImage: '',
+					OpenGraphTitle: this.page.Name,
+					OpenGraphType: 'article',
+					OpenGraphUrl: location.href,
+					// OpenGraphImage: '',
+					OpenGraphDescription: description
+					// ,
+					// OpenGraphSiteName: '',
+					// OpenGraphPublishedTime: '',
+					// OpenGraphModifiedTime: '',
+					// OpenGraphSection: '',
+					// OpenGraphTag: '',
+					// OpenGraphAdmins: ''
+				});
 			}
 		}
 	};
