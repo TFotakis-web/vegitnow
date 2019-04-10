@@ -21,6 +21,9 @@
 				return {
 					inner: this.$t('Administration')
 				};
+			},
+			meta: function () {
+				return this.$root.headData.defaultMeta();
 			}
 		}
 	};
