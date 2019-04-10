@@ -23,6 +23,13 @@
 			IngredientOfTheDay,
 			RecommendedRecipes,
 			RecommendedArticles
+		},
+		head: {
+			title: function () {
+				return {
+					inner: this.$t('Home')
+				};
+			}
 		}
 	};
 </script>
