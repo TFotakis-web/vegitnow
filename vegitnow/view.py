@@ -3,7 +3,7 @@ from django.shortcuts import render
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from settings import BASE_DIR, CRAWLER_AGENTS
+from vegitnow.settings import BASE_DIR, CRAWLER_AGENTS
 
 
 def isCrawler(userAgent=''):
