@@ -126,3 +126,5 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CRAWLER_AGENTS = ['facebook', 'facebot', 'linkedin', 'skype', 'twitter', 'curl', 'postman']
