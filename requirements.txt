@@ -1,3 +1,4 @@
+selenium
 beautifulsoup4
 django
 django-summernote
