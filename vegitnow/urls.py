@@ -6,7 +6,7 @@ from django.urls import path, re_path, include
 
 from vegitnow import settings
 from .routers import router
-from .view import indexView
+from .views import indexView
 
 urlpatterns = [
 	path('s6AptmegHaGM3Ry5vdlr/database/', admin.site.urls),
