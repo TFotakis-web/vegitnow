@@ -3,7 +3,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -105,7 +104,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 SUMMERNOTE_THEME = 'lite'
 
 REST_FRAMEWORK = {
@@ -113,7 +111,6 @@ REST_FRAMEWORK = {
 		'rest_framework.authentication.SessionAuthentication',
 	),
 }
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -128,3 +125,42 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRAWLER_AGENTS = ['google', 'bing', 'facebook', 'facebot', 'linkedin', 'skype', 'twitter', 'curl', 'postman']
+
+
+LOGGING = {
+	'version': 1,
+	'disable_existing_loggers': False,
+	'formatters': {
+		'verbose': {
+			'format': '- {levelname}\n{asctime} | pid:{process:d} | {funcName}:{lineno}\n{pathname}\n{message}\n\n',
+			'style': '{',
+			'datefmt': "%Y/%m/%d %H:%M:%S"
+		},
+		'simple': {
+			'format': '{message}',
+			'style': '{',
+		},
+	},
+	'handlers': {
+		'file': {
+			'level': 'WARN',
+			# 'class': 'logging.FileHandler',
+			'filename': 'logs/debug.log',
+			'formatter': 'verbose',
+			'class': 'logging.handlers.TimedRotatingFileHandler',
+			'when': 'midnight',
+			'interval': 1,
+		},
+		'console': {
+			'class': 'logging.StreamHandler',
+			'formatter': 'simple'
+		},
+	},
+	'loggers': {
+		'django': {
+			'handlers': ['console', 'file'],
+			'level': 'INFO',
+			'propagate': True,
+		},
+	},
+}
