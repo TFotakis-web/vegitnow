@@ -1,6 +1,8 @@
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import sys
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -10,7 +12,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*ac)nrg^-3gqike65sre8vt(bgl)mnqhl*0cn+d_uge4-yy653'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = (sys.argv[1] == 'runserver')
 
 ALLOWED_HOSTS = ['*']
 
