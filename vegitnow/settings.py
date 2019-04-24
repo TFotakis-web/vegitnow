@@ -12,8 +12,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*ac)nrg^-3gqike65sre8vt(bgl)mnqhl*0cn+d_uge4-yy653'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = (sys.argv[1] == 'runserver')
+try:
+	DEBUG = (sys.argv[1] == 'runserver')
+except:
+	DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -128,7 +130,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRAWLER_AGENTS = ['google', 'bing', 'facebook', 'facebot', 'linkedin', 'skype', 'twitter', 'curl', 'postman']
-
 
 LOGGING = {
 	'version': 1,
