@@ -1,12 +1,11 @@
 import json
-import time
 
-import requests
+# import requests
 from bs4 import BeautifulSoup
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from vegitnow.settings import BASE_DIR, CRAWLER_AGENTS
+from vegitnow.settings import CRAWLER_AGENTS
 
 
 # def prerenderSelenium(request):
@@ -109,9 +108,14 @@ def prerenderDjango(request):
 			# 'metaOpenGraphAdmins': {'content': ''}
 		}
 	elif url[0] == 'staticPage':
-		uri = request.scheme + '://' + request.get_host() + '/api' + request.path + '/?locale=2'
-		response = json.loads(requests.get(uri).text)
+		# uri = request.scheme + '://' + request.get_host() + '/api' + request.path + '/?locale=2'
+		# response = json.loads(requests.get(uri).text)
+		# preview = BeautifulSoup(response['Content'], 'html.parser').text
+
+		from general.viewsets import StaticPageViewSet
+		response = StaticPageViewSet.as_view({'get': 'retrieve'})(request, pk=url[1]).render().data
 		preview = BeautifulSoup(response['Content'], 'html.parser').text
+
 		preview = (preview[:150] if len(preview) > 150 else preview) + '...'
 		elementAttributes = {
 			'metaTitle': {'content': response['Name']},
@@ -191,8 +195,12 @@ def prerenderDjango(request):
 			# 'metaOpenGraphAdmins': {'content': ''}
 		}
 	elif (url[0] == 'articles' or url[0] == 'recipes') and len(url) == 2:
-		uri = request.scheme + '://' + request.get_host() + '/api/article/' + url[1] + '/?locale=2'
-		response = json.loads(requests.get(uri).text)
+		# uri = request.scheme + '://' + request.get_host() + '/api/article/' + url[1] + '/?locale=2'
+		# response = json.loads(requests.get(uri).text)
+
+		from articles.viewsets import ArticleViewSet
+		response = ArticleViewSet.as_view({'get': 'retrieve'})(request, pk=url[1]).render().data
+
 		imageUrl = request.scheme + '://' + request.get_host() + response['Thumbnail']
 		elementAttributes = {
 			'metaTitle': {'content': response['Title']},
