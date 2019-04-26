@@ -129,7 +129,17 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CRAWLER_AGENTS = ['google', 'bing', 'facebook', 'facebot', 'linkedin', 'skype', 'twitter', 'curl', 'postman']
+CRAWLER_AGENTS = [
+	'google',
+	'bing',
+	'facebook',
+	'facebot',
+	'linkedin',
+	'skype',
+	'twitter',
+	'curl',
+	'postman'
+]
 
 LOGGING = {
 	'version': 1,
@@ -149,7 +159,7 @@ LOGGING = {
 		'file': {
 			'level': 'WARN',
 			# 'class': 'logging.FileHandler',
-			'filename': 'logs/debug.log',
+			'filename': BASE_DIR + '/logs/debug.log',
 			'formatter': 'verbose',
 			'class': 'logging.handlers.TimedRotatingFileHandler',
 			'when': 'midnight',

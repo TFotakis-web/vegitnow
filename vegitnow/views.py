@@ -65,11 +65,14 @@ def patchHTML(request, elementAttributes):
 	for elementId in elementAttributes.keys():
 		if elementId == 'metaTitle':
 			element = head.select_one('#' + elementId)
-			element.string = elementAttributes[elementId]['content'] + ' | ' + element.string
+			if element:
+				element.string = elementAttributes[elementId]['content'] + ' | ' + element.string
 			continue
 		for attribute in elementAttributes[elementId].keys():
 			value = elementAttributes[elementId][attribute]
-			head.select_one('#' + elementId).attrs[attribute] = value
+			element = head.select_one('#' + elementId)
+			if element:
+				element.attrs[attribute] = value
 	html = str(soup)
 	return html
 
@@ -214,9 +217,6 @@ def prerenderDjango(request):
 			# 'metaOpenGraphTag': {'content': ''},
 			# 'metaOpenGraphAdmins': {'content': ''}
 		}
-		pass
-	elif url[0] == 'recipes' and len(url) == 2:
-		pass
 	return patchHTML(request, elementAttributes)
 
 
