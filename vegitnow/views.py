@@ -57,9 +57,11 @@ from vegitnow.settings import BASE_DIR, CRAWLER_AGENTS
 
 
 def patchHTML(request, elementAttributes):
-	url = request.scheme + '://' + request.META['HTTP_HOST'] + request.META['PATH_INFO']
-	src = requests.get(url)
-	soup = BeautifulSoup(src.text, features='html.parser')
+	# url = request.scheme + '://' + request.META['HTTP_HOST'] + request.META['PATH_INFO']
+	# src = requests.get(url)
+	# soup = BeautifulSoup(src.text, features='html.parser')
+	src = render(request=request, template_name="index.html").content
+	soup = BeautifulSoup(src, features='html.parser')
 	head = soup.head
 
 	for elementId in elementAttributes.keys():
