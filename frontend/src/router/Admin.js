@@ -6,7 +6,8 @@ import IngredientList from '../components/Admin/IngredientList';
 import MainAdministration from '../components/Admin/MainAdministration';
 import StaticPages from '../components/Admin/StaticPages';
 
-const basePath = '/s6AptmegHaGM3Ry5vdlr/';
+const basePath = 's6AptmegHaGM3Ry5vdlr/';
+export { basePath as adminBasePath };
 
 export default [
 	{
@@ -15,38 +16,38 @@ export default [
 		component: MainAdministration,
 		children: [
 			{
-				path: basePath + 'database/',
+				path: 'database/',
 				name: 'DatabaseAdministration',
 				pathToRegexpOptions: {strict: true}
 				// component: MainAdministration
 			},
 			{
-				path: basePath + 'admin/',
+				path: 'admin/',
 				name: 'Administration',
 				component: Administration,
 				children: [
 					{
-						path: basePath + 'admin/createArticle/',
+						path: 'createArticle/',
 						name: 'CreateArticle',
 						component: CreateArticle
 					},
 					{
-						path: basePath + 'admin/articles/',
+						path: 'articles/',
 						name: 'ArticleList',
 						component: ArticleList
 					},
 					{
-						path: basePath + 'admin/recipes/',
+						path: 'recipes/',
 						name: 'RecipeList',
 						component: RecipeList
 					},
 					{
-						path: basePath + 'admin/ingredients/',
+						path: 'ingredients/',
 						name: 'IngredientList',
 						component: IngredientList
 					},
 					{
-						path: basePath + 'admin/staticPages/',
+						path: 'staticPages/',
 						name: 'StaticPages',
 						component: StaticPages
 					}

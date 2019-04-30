@@ -1,36 +1,49 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import VueAnalytics from 'vue-analytics';
-import Home from '../components/Home/Home';
-
-// import Communication from '../components/Various/Communication';
-// import WhoWeAre from '../components/Various/WhoWeAre';
-// import Shop from '../components/Various/Shop';
-
-import AdminUrls from './Admin';
-import ArticleUrls from './Articles';
-import RecipeUrls from './Recipes';
-import StaticPage from '../components/Various/StaticPage';
+import VueCookies from 'vue-cookie';
+import {i18n} from '../plugins/i18n';
+import {adminBasePath} from './Admin';
 
 Vue.use(Router);
 
-// Todo: Add page dependent title, meta and property tags functionality
 let routes = [
 	{
-		path: '/',
+		path: '',
 		name: 'Home',
-		component: Home
+		component: require('../components/Home/Home').default
 	},
 	{
-		path: '/staticPage/:id/',
+		path: 'staticPage/:id/',
 		name: 'StaticPage',
-		component: StaticPage
+		component: require('../components/Various/StaticPage').default
 	}
 ];
 
-routes = routes.concat(AdminUrls);
-routes = routes.concat(ArticleUrls);
-routes = routes.concat(RecipeUrls);
+routes = routes.concat(require('./Admin').default);
+routes = routes.concat(require('./Articles').default);
+routes = routes.concat(require('./Recipes').default);
+
+let redirectFunc = function () {
+	let locale = VueCookies.get('locale');
+	if (locale) {
+		i18n.locale = locale === '1' ? 'en' : 'gr';
+	} else {
+		VueCookies.set('locale', i18n.locale === 'en' ? 1 : 2);
+	}
+	return i18n.locale + location.pathname;
+};
+
+let redirects = [
+	{ path: '/recipes*', redirect: redirectFunc },
+	{ path: '/articles*', redirect: redirectFunc },
+	{ path: '/staticPage*', redirect: redirectFunc },
+	{ path: '/' + adminBasePath + '*', redirect: redirectFunc }
+];
+
+routes = redirects.concat([
+	{ path: '', redirect: redirectFunc },
+	{ path: '/:lang', component: require('../components/Structure/App').default, children: routes }
+]);
 
 const router = new Router({
 	mode: 'history',
@@ -44,7 +57,7 @@ const router = new Router({
 });
 export default router;
 
-Vue.use(VueAnalytics, {
+Vue.use(require('vue-analytics').default, {
 	id: 'UA-136306065-1',
 	router
 });

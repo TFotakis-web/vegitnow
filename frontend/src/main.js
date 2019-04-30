@@ -1,7 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
-import App from './App';
+// import App from './App';
 import router from './router';
 import VueResource from 'vue-resource';
 import {i18n} from './plugins/i18n';
@@ -23,8 +23,10 @@ new Vue({
 	el: '#app',
 	router,
 	i18n,
-	template: '<App/>',
-	components: {App},
+	// template: '<App/>',
+	// components: {App},
+	template: '<router-view/>',
+	// components: {App},
 	data: function () {
 		let vm = this;
 		return {

@@ -1,7 +1,7 @@
 import RecipesList from '../components/Recipes/RecipesList';
 import RecipeView from '../components/Recipes/RecipeView';
 
-const basePath = '/recipes/';
+const basePath = 'recipes/';
 
 export default [
 	{

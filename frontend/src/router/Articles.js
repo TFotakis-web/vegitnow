@@ -1,7 +1,7 @@
 import ArticlesList from '../components/Articles/ArticlesList';
 import ArticleView from '../components/Articles/ArticleView';
 
-const basePath = '/articles/';
+const basePath = 'articles/';
 
 export default [
 	{
