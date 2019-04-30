@@ -101,6 +101,7 @@
 						this.article = response.data;
 						this.$emit('updateHead');
 						this.requestsUnsatisfied--;
+						this.$router.push('?title=' + this.article.Title.replace(/ /g, '_'));
 					})
 					.catch((err) => {
 						console.log(err);
