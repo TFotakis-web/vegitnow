@@ -86,12 +86,16 @@ def prerenderDjango(request):
 		locale = 1 if url[0] == 'en' else 2
 		url = url[1:]
 
-	from django.http import HttpRequest
-	newrequest = HttpRequest()
-	newrequest.method = 'GET'
-	newrequest.META = request.META
-	newrequest.GET['locale'] = locale
-	request = newrequest
+	if not request.GET._mutable:
+		request.GET._mutable = True
+	request.GET['locale'] = locale
+
+	# from django.http import HttpRequest
+	# newrequest = HttpRequest()
+	# newrequest.method = 'GET'
+	# newrequest.META = request.META
+	# newrequest.GET['locale'] = locale
+	# request = newrequest
 
 	if url[0] == '':
 		elementAttributes = {
