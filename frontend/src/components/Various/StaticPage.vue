@@ -36,6 +36,7 @@
 						this.page = response.data;
 						this.$emit('updateHead');
 						this.requestsUnsatisfied--;
+						this.$router.push('?title=' + this.page.Name.replace(/ /g, '_'));
 					})
 					.catch((err) => {
 						console.log(err);
