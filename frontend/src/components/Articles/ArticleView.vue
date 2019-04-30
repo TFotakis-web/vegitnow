@@ -163,4 +163,13 @@
 	.authorProfilePictureCircle {
 		margin-top: -200px
 	}
+
+	.dashedCircle {
+		height: 400px;
+		width: 400px;
+		border-radius: 50%;
+		border: dashed #2d6c13;
+		pointer-events: none;
+		overflow: hidden;
+	}
 </style>
