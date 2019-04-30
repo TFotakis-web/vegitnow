@@ -81,6 +81,18 @@ def patchHTML(request, elementAttributes):
 def prerenderDjango(request):
 	elementAttributes = {}
 	url = request.path.split('/')[1:]
+	locale = 2
+	if url[0] in ['en', 'gr']:
+		locale = 1 if url[0] == 'en' else 2
+		url = url[1:]
+
+	from django.http import HttpRequest
+	newrequest = HttpRequest()
+	newrequest.method = 'GET'
+	newrequest.META = request.META
+	newrequest.GET['locale'] = locale
+	request = newrequest
+
 	if url[0] == '':
 		elementAttributes = {
 			'metaTitle': {'content': 'Αρχική'},
