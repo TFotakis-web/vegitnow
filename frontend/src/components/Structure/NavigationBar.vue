@@ -2,7 +2,7 @@
 	<div id="navigationBar">
 		<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top d-md-none">
 			<div class="container">
-				<router-link :to="{ name: 'Home' }">
+				<router-link :to="{ name: 'Home' }" data-toggle="collapse" data-target=".navbar-collapse.show">
 					<img src="/static/app/img/VegItNowLogo.svg" alt="Vegitnow Logo" height="40">
 				</router-link>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,13 +11,13 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<router-link :to="{ name: 'RecipesList' }" class="nav-link font-weight-bold">{{ $t('Recipes') }}</router-link>
+							<router-link :to="{ name: 'RecipesList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Recipes') }}</router-link>
 						</li>
 						<li class="nav-item">
-							<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold">{{ $t('Articles') }}</router-link>
+							<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Articles') }}</router-link>
 						</li>
 						<li class="nav-item">
-							<a @click="changeLanguage()" class="nav-link">
+							<a @click="changeLanguage()" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
 								<div class="locale-btn">
 									<span>{{ this.$i18n.locale === 'en' ? 'GR' : 'EN' }}</span>
 								</div>
@@ -32,24 +32,24 @@
 			<div class="container">
 				<div class="d-flex w-100 align-items-center">
 					<div class="">
-						<router-link :to="{ name: 'Home' }" class="navbar-brand">
+						<router-link :to="{ name: 'Home' }" class="navbar-brand" data-toggle="collapse" data-target=".navbar-collapse.show">
 							<img src="/static/app/img/VegItNowLogo.svg" alt="Vegitnow Logo" height="40">
 						</router-link>
 					</div>
 					<div class="flex-grow-1">
 						<ul class="navbar-nav w-100 justify-content-center">
 							<li class="nav-item">
-								<router-link :to="{ name: 'RecipesList' }" class="nav-link font-weight-bold">{{ $t('Recipes') }}</router-link>
+								<router-link :to="{ name: 'RecipesList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Recipes') }}</router-link>
 							</li>
 							<li class="nav-item">
-								<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold">{{ $t('Articles') }}</router-link>
+								<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Articles') }}</router-link>
 							</li>
 						</ul>
 					</div>
 					<div class="">
 						<ul class="navbar-nav justify-content-end" style="position: relative; top: 2rem;">
 							<li class="nav-item">
-								<a @click="changeLanguage()" class="nav-link">
+								<a @click="changeLanguage()" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
 									<div class="locale-btn">
 										<span>{{ this.$i18n.locale === 'en' ? 'GR' : 'EN' }}</span>
 									</div>
