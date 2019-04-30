@@ -7,6 +7,10 @@
 						<button @click="fetchData(key)" class="btn btn-link" data-toggle="collapse" :data-target="'#collapse' + key" aria-expanded="false" :aria-controls="'collapse' + key">
 							{{ page.Name }}
 						</button>
+						<router-link :to="{ name: 'StaticPage', params: { id: page.id } }" class="align-middle float-right btn btn-sm btn-info text-white mr-1">
+							<i class="fas fa-eye"></i>
+							{{ $t('View') }}
+						</router-link>
 					</h5>
 				</div>
 
