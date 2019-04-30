@@ -163,7 +163,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		fTranslations = {}
 		fIngredients = {}
 		if 'locale' in request.query_params:
-			if not request.user.is_superuser:
+			if (not request.user.is_superuser) or 'admin' not in request.query_params:
 				fTranslations['Language_id'] = int(request.query_params['locale'])
 				fIngredients['Language_id'] = int(request.query_params['locale'])
 
