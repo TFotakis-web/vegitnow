@@ -35,7 +35,7 @@
 		methods: {
 			getArticles: function () {
 				this.requestsUnsatisfied++;
-				this.$http.get('/api/article/?type=1')
+				this.$http.get('/api/article/?type=1&location=admin')
 					.then(response => {
 						this.recipeList = response.data;
 						this.requestsUnsatisfied--;
