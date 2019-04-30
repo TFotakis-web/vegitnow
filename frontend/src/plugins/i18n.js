@@ -6,7 +6,7 @@ import gr from '../translations/gr.json';
 Vue.use(VueI18n);
 
 export const i18n = new VueI18n({
-	locale: 'en',
+	locale: 'gr',
 	fallbackLocale: 'en',
 	messages: {
 		en,
