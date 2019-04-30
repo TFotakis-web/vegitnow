@@ -70,7 +70,13 @@
 			changeLanguage: function () {
 				this.$i18n.locale = this.$i18n.locale === 'en' ? 'gr' : 'en';
 				this.$cookie.set('locale', this.$i18n.locale === 'en' ? 1 : 2);
-				this.$router.go();
+				let path = this.$route.fullPath;
+				if (this.$route.params.lang === 'gr') {
+					path = path.replace('/gr/', '/en/');
+				} else {
+					path = path.replace('/en/', '/gr/');
+				}
+				this.$router.push({'path': path});
 			}
 		}
 	};
