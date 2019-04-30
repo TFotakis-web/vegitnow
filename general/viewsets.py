@@ -28,6 +28,8 @@ class StaticPageViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 	def retrieve(self, request, *args, **kwargs):
+		if not kwargs['pk'].isdigit():
+			return Response(status=HTTP_400_BAD_REQUEST)
 		staticPage = StaticPage.objects.get(id=kwargs['pk'])
 		f = {}
 		if 'locale' in request.query_params:
@@ -81,6 +83,8 @@ class StaticPageTranslationViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 	def retrieve(self, request, *args, **kwargs):
+		if not kwargs['pk'].isdigit():
+			return Response(status=HTTP_400_BAD_REQUEST)
 		f = {'id': kwargs['pk']}
 		if not request.user.is_superuser:
 			f['Private'] = False
