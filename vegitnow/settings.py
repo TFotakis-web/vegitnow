@@ -130,7 +130,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRAWLER_AGENTS = [
-	'google',
+	# 'google',
 	'bing',
 	'facebook',
 	'facebot',
@@ -138,7 +138,8 @@ CRAWLER_AGENTS = [
 	'skype',
 	'twitter',
 	'curl',
-	'postman'
+	'postman',
+	'siege',
 ]
 
 LOGGING = {
