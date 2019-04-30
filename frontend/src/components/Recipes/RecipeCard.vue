@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<div class="row py-4">
-			<router-link :to="{ name: 'RecipeView', params: { id: recipe.id }, query : { title: recipe.Title.replace(/ /g, '_') } }" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Go to the recipe') }}</router-link>
+			<router-link :to="{ name: 'RecipeView', params: { id: recipe.id }, query : { title: this.$root.toGreeklish(recipe.Title).replace(/ /g, '-') } }" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Go to the recipe') }}</router-link>
 		</div>
 	</div>
 </template>

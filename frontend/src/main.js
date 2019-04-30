@@ -9,6 +9,7 @@ import Notifications from 'vue-notification';
 import VueCookie from 'vue-cookie';
 import VueScrollTo from 'vue-scrollto';
 import VueHead from 'vue-head';
+import {toGreeklish} from 'greek-utils';
 
 Vue.use(VueResource);
 Vue.use(Notifications);
@@ -107,7 +108,8 @@ new Vue({
 					this.requestsUnsatisfied--;
 				})
 				.catch(this.$root.notifyAction.error);
-		}
+		},
+		toGreeklish
 	}
 });
 

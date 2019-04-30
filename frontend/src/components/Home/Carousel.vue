@@ -52,11 +52,11 @@
 															<p class="d-inline d-lg-none">{{ article.ReadyIn }}'</p>
 														</div>
 													</div>
-													<router-link :to="{ name: 'RecipeView', params: { id: article.id }, query : { title: article.Title.replace(/ /g, '_') }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Go to the recipe') }}</router-link>
+													<router-link :to="{ name: 'RecipeView', params: { id: article.id }, query : { title: $root.toGreeklish(article.Title).replace(/ /g, '-') }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Go to the recipe') }}</router-link>
 												</div>
 												<div v-if="article.ArticleTypeId === 2" class="container w-75">
 													<p>{{ article.Preview }}</p>
-													<router-link :to="{ name: 'ArticleView', params: { id: article.id }, query : { title: article.Title.replace(/ /g, '_') }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Read more') }}</router-link>
+													<router-link :to="{ name: 'ArticleView', params: { id: article.id }, query : { title: $root.toGreeklish(article.Title).replace(/ /g, '-') }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Read more') }}</router-link>
 												</div>
 											</div>
 										</div>

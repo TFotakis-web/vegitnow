@@ -32,11 +32,11 @@
 		</div>
 
 		<div class="d-flex flex-grow-1" v-if="!$root.requestsUnsatisfied">
-			<NavigationBar></NavigationBar>
+			<NavigationBar/>
 			<notifications class="m-1" position="top center"/>
 			<router-view :key="$route.fullPath"/>
 		</div>
-		<Footer v-if="!$root.requestsUnsatisfied"/>
+		<Footer v-if="!$root.requestsUnsatisfied" :key="$route.fullPath"/>
 	</div>
 </template>
 

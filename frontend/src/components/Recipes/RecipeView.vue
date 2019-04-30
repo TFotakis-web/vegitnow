@@ -100,7 +100,7 @@
 						this.article = response.data;
 						this.$emit('updateHead');
 						this.requestsUnsatisfied--;
-						this.$router.push('?title=' + this.article.Title.replace(/ /g, '_'));
+						this.$router.push('?title=' + this.$root.toGreeklish(this.article.Title).replace(/ /g, '-'));
 					})
 					.catch(this.$root.notifyAction.error);
 			}
