@@ -54,7 +54,11 @@ class ArticleViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 	def retrieve(self, request, *args, **kwargs):
-		article = Article.objects.get(id=kwargs['pk'])
+		if not kwargs['pk'].isdigit():
+			return Response(status=HTTP_400_BAD_REQUEST)
+		article = Article.objects.filter(id=kwargs['pk']).first()
+		if not article:
+			return Response(status=HTTP_404_NOT_FOUND)
 		fTranslations = {}
 		if 'locale' in request.query_params:
 			fTranslations['Language_id'] = int(request.query_params['locale'])
@@ -426,6 +430,8 @@ class IngredientAssociationViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
 	def retrieve(self, request, *args, **kwargs):
+		if not kwargs['pk'].isdigit():
+			return Response(status=HTTP_400_BAD_REQUEST)
 		queryset = IngredientAssociation.objects.filter(Article_id=kwargs['pk']).order_by('-IsMainIngredient')
 		serializer = self.get_serializer(queryset, many=True)
 		data = serializer.data
