@@ -200,33 +200,33 @@ def prerenderDjango(request):
 
 		from articles.viewsets import ArticleViewSet
 		response = ArticleViewSet.as_view({'get': 'retrieve'})(request, pk=url[1]).render().data
-
-		imageUrl = request.scheme + '://' + request.get_host() + response['Thumbnail']
-		elementAttributes = {
-			'metaTitle': {'content': response['Title']},
-			'metaDescription': {'content': response['Preview']},
-			# 'metaKeywords': {'content': ''},
-			'metaGooglePlusName': {'content': response['Title']},
-			'metaGooglePlusDescription': {'content': response['Preview']},
-			'metaGooglePlusImage': {'content': imageUrl},
-			# 'metaTwitterCard': {'content': ''},
-			# 'metaTwitterSite': {'content': ''},
-			'metaTwitterTitle': {'content': response['Title']},
-			'metaTwitterDescription': {'content': response['Preview']},
-			# 'metaTwitterCreator': {'content': ''},
-			'metaTwitterImage': {'content': imageUrl},
-			'metaOpenGraphTitle': {'content': response['Title']},
-			# 'metaOpenGraphType': {'content': 'article'},
-			'metaOpenGraphUrl': {'content': request.get_raw_uri()},
-			'metaOpenGraphImage': {'content': imageUrl},
-			'metaOpenGraphDescription': {'content': response['Preview']},
-			# 'metaOpenGraphSiteName': {'content': ''},
-			# 'metaOpenGraphPublishedTime': {'content': ''},
-			# 'metaOpenGraphModifiedTime': {'content': ''},
-			# 'metaOpenGraphSection': {'content': ''},
-			# 'metaOpenGraphTag': {'content': ''},
-			# 'metaOpenGraphAdmins': {'content': ''}
-		}
+		if response:
+			imageUrl = request.scheme + '://' + request.get_host() + response['Thumbnail']
+			elementAttributes = {
+				'metaTitle': {'content': response['Title']},
+				'metaDescription': {'content': response['Preview']},
+				# 'metaKeywords': {'content': ''},
+				'metaGooglePlusName': {'content': response['Title']},
+				'metaGooglePlusDescription': {'content': response['Preview']},
+				'metaGooglePlusImage': {'content': imageUrl},
+				# 'metaTwitterCard': {'content': ''},
+				# 'metaTwitterSite': {'content': ''},
+				'metaTwitterTitle': {'content': response['Title']},
+				'metaTwitterDescription': {'content': response['Preview']},
+				# 'metaTwitterCreator': {'content': ''},
+				'metaTwitterImage': {'content': imageUrl},
+				'metaOpenGraphTitle': {'content': response['Title']},
+				# 'metaOpenGraphType': {'content': 'article'},
+				'metaOpenGraphUrl': {'content': request.get_raw_uri()},
+				'metaOpenGraphImage': {'content': imageUrl},
+				'metaOpenGraphDescription': {'content': response['Preview']},
+				# 'metaOpenGraphSiteName': {'content': ''},
+				# 'metaOpenGraphPublishedTime': {'content': ''},
+				# 'metaOpenGraphModifiedTime': {'content': ''},
+				# 'metaOpenGraphSection': {'content': ''},
+				# 'metaOpenGraphTag': {'content': ''},
+				# 'metaOpenGraphAdmins': {'content': ''}
+			}
 	return patchHTML(request, elementAttributes)
 
 
