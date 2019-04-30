@@ -33,17 +33,17 @@
 
 		<div class="d-flex flex-grow-1" v-if="!$root.requestsUnsatisfied">
 			<NavigationBar></NavigationBar>
-			<router-view :key="$route.fullPath"/>
 			<notifications class="m-1" position="top center"/>
+			<router-view :key="$route.fullPath"/>
 		</div>
 		<Footer v-if="!$root.requestsUnsatisfied"/>
 	</div>
 </template>
 
 <script>
-	import NavigationBar from './components/Structure/NavigationBar.vue';
-	import Footer from './components/Structure/Footer.vue';
-	import Loader from './components/Structure/Loader';
+	import NavigationBar from './NavigationBar.vue';
+	import Footer from './Footer.vue';
+	import Loader from './Loader';
 
 	export default {
 		name: 'app',
@@ -53,17 +53,17 @@
 			Loader
 		},
 		created: function () {
-			let locale = this.$cookie.get('locale');
-			if (locale) {
-				this.$i18n.locale = locale === '1' ? 'en' : 'gr';
-			} else {
-				// let userLang = navigator.language || navigator.userLanguage;
-				// if (userLang && userLang.match('el')) this.$i18n.locale = 'gr';
-				// this.$cookie.set('locale', this.$i18n.locale === 'en' ? 1 : 2);
-				this.$i18n.locale = 'gr';
-				this.$cookie.set('locale', 2);
-				this.$router.go();
+			let lang = this.$route.params.lang;
+			if (!lang) return;
+			if (Object.keys(this.$i18n.messages).includes(lang)) {
+				this.$i18n.locale = lang;
+				this.$cookie.set('locale', this.$i18n.locale === 'en' ? 1 : 2);
+				return;
 			}
+			this.$router.push({path: '/' + this.$i18n.locale + '/'});
+			// let userLang = navigator.language || navigator.userLanguage;
+			// if (userLang && userLang.match('el')) this.$i18n.locale = 'gr';
+			// this.$cookie.set('locale', this.$i18n.locale === 'en' ? 1 : 2);
 		},
 		head: function () {
 			return this.$root.headData.defaultHead;
