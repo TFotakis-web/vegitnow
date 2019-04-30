@@ -55,7 +55,7 @@
 						<div class="container-fluid">
 							<div class="row" style="font-size: 0.7rem">
 								<div v-for="(column, index) in columnedStaticPages" :key="index" class="col-md-6">
-									<router-link class="text-dark d-block" :to="{ name: 'StaticPage', params: { id: page.id }}" :key="page.id" v-for="page in column">{{ page['Name'] }}</router-link>
+									<router-link class="text-dark d-block" :to="{ name: 'StaticPage', params: { id: page.id }, query : { title: page.Name.replace(/ /g, '_') } }" :key="page.id" v-for="page in column">{{ page['Name'] }}</router-link>
 								</div>
 							</div>
 						</div>
