@@ -80,16 +80,24 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="bgGreen3" style="clip-path: polygon(5% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%, 2% 0%)">
+			<div v-if="location === 'home'">
+				<Ads AdType="HOME_ARTICLES"/>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 	import ArticleCard from './ArticleCard';
+	import Ads from '../Structure/Ads/HomePage';
 
 	export default {
 		name: 'RecommendedArticles',
 		components: {
-			ArticleCard
+			ArticleCard,
+			Ads
 		},
 		props: [
 			'currentArticleId',
