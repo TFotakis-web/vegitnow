@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Language, StaticPageTranslation, StaticPage, NewsletterUser
+from .models import Language, StaticPageTranslation, StaticPage, NewsletterUser, Ad, AdTranslation
 
 
 class LanguageSerializer(serializers.ModelSerializer):
@@ -24,4 +24,16 @@ class StaticPageTranslationSerializer(serializers.ModelSerializer):
 class NewsletterUserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = NewsletterUser
+		fields = '__all__'
+
+
+class AdSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Ad
+		fields = '__all__'
+
+
+class AdTranslationSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = AdTranslation
 		fields = '__all__'
