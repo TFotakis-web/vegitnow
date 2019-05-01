@@ -1,5 +1,5 @@
 <template>
-	<div id="JoinOurFamily" class="bgGreen3 join-our-family-container">
+	<div id="JoinOurFamily" class="bgGreen3 join-our-family-container py-5">
 		<div class="d-table h-100 mx-auto outerBox">
 			<div class="d-table-cell align-middle position-relative">
 				<div class="dashedCircle rotating"></div>
@@ -25,12 +25,18 @@
 
 			</div>
 		</div>
+		<Ads AdType="HOME_JOIN_OUR_FAMILY"/>
 	</div>
 </template>
 
 <script>
+	import Ads from '../Structure/Ads/HomePage';
+
 	export default {
 		name: 'JoinOurFamily',
+		components: {
+			Ads
+		},
 		methods: {
 			onclick: function () {
 				$('#mce-EMAIL').focus();
@@ -202,7 +208,7 @@
 	}
 
 	.join-our-family-container {
-		height: 70vh;
+		/*height: 70vh;*/
 		clip-path: polygon(2% 0%, 98% 0%, 98.5% 20%, 97% 60%, 97% 85%, 98% 100%, 2% 100%, 3% 60%, 1.5% 20%);
 	}
 </style>
