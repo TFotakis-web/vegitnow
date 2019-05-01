@@ -1,17 +1,6 @@
-import ArticlesList from '../components/Articles/ArticlesList';
-import ArticleView from '../components/Articles/ArticleView';
-
 const basePath = 'articles/';
 
 export default [
-	{
-		path: basePath,
-		name: 'ArticlesList',
-		component: ArticlesList
-	},
-	{
-		path: basePath + ':id/',
-		name: 'ArticleView',
-		component: ArticleView
-	}
+	{ path: basePath, name: 'ArticlesList', component: require('../components/Articles/ArticlesList').default },
+	{ path: basePath + ':id/', name: 'ArticleView', component: require('../components/Articles/ArticleView').default }
 ];
