@@ -7,16 +7,8 @@ import {adminBasePath} from './Admin';
 Vue.use(Router);
 
 let routes = [
-	{
-		path: '',
-		name: 'Home',
-		component: require('../components/Home/Home').default
-	},
-	{
-		path: 'staticPage/:id/',
-		name: 'StaticPage',
-		component: require('../components/Various/StaticPage').default
-	}
+	{ path: '', name: 'Home', component: require('../components/Home/Home').default },
+	{ path: 'staticPage/:id/', name: 'StaticPage', component: require('../components/Various/StaticPage').default }
 ];
 
 routes = routes.concat(require('./Admin').default);
