@@ -1,11 +1,3 @@
-import CreateArticle from '../components/Admin/CreateArticle';
-import Administration from '../components/Admin/Administration';
-import ArticleList from '../components/Admin/ArticleList';
-import RecipeList from '../components/Admin/RecipeList';
-import IngredientList from '../components/Admin/IngredientList';
-import MainAdministration from '../components/Admin/MainAdministration';
-import StaticPages from '../components/Admin/StaticPages';
-
 const basePath = 's6AptmegHaGM3Ry5vdlr/';
 export { basePath as adminBasePath };
 
@@ -13,44 +5,20 @@ export default [
 	{
 		path: basePath,
 		name: 'MainAdministration',
-		component: MainAdministration,
+		component: require('../components/Admin/MainAdministration').default,
 		children: [
-			{
-				path: 'database/',
-				name: 'DatabaseAdministration',
-				pathToRegexpOptions: {strict: true}
-				// component: MainAdministration
-			},
+			{ path: 'database/', name: 'DatabaseAdministration', pathToRegexpOptions: {strict: true} },
 			{
 				path: 'admin/',
 				name: 'Administration',
-				component: Administration,
+				component: require('../components/Admin/Administration').default,
 				children: [
-					{
-						path: 'createArticle/',
-						name: 'CreateArticle',
-						component: CreateArticle
-					},
-					{
-						path: 'articles/',
-						name: 'ArticleList',
-						component: ArticleList
-					},
-					{
-						path: 'recipes/',
-						name: 'RecipeList',
-						component: RecipeList
-					},
-					{
-						path: 'ingredients/',
-						name: 'IngredientList',
-						component: IngredientList
-					},
-					{
-						path: 'staticPages/',
-						name: 'StaticPages',
-						component: StaticPages
-					}
+					{ path: 'createArticle/', name: 'CreateArticle', component: require('../components/Admin/CreateArticle').default },
+					{ path: 'articles/', name: 'ArticleList', component: require('../components/Admin/ArticleList').default },
+					{ path: 'recipes/', name: 'RecipeList', component: require('../components/Admin/RecipeList').default },
+					{ path: 'ingredients/', name: 'IngredientList', component: require('../components/Admin/IngredientList').default },
+					{ path: 'staticPages/', name: 'StaticPages', component: require('../components/Admin/StaticPages').default },
+					{ path: 'ads/', name: 'Ads', component: require('../components/Admin/Ads').default }
 				]
 			}
 		]
