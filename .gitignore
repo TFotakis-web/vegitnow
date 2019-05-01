@@ -10,6 +10,7 @@ frontend/webpack-stats.json
 migrations/
 /media/
 /static/
+logs
 *.log*
 *.crt
 *.key
