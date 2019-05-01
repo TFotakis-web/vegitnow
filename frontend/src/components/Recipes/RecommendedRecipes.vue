@@ -122,16 +122,23 @@
 				</div>
 			</div>
 		</div>
+		<div class="bgGreen4" style="clip-path: polygon(5% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%, 2% 0%)">
+			<div v-if="location === 'home'">
+				<Ads AdType="HOME_RECIPES"/>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 	import RecipeCard from './RecipeCard';
+	import Ads from '../Structure/Ads/HomePage';
 
 	export default {
 		name: 'RecommendedRecipes',
 		components: {
-			RecipeCard
+			RecipeCard,
+			Ads
 		},
 		props: [
 			'currentRecipeId',
