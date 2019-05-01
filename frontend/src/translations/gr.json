@@ -103,5 +103,15 @@
 	"Close": "Κλείσιμο",
 	"There is a new version of this app. Please refresh the page.": "Υπάρχει μία νέα έκδοση της εφαρμογής αυτής. Παρακαλούμε ανανεώστε την σελίδα.",
 	"Home": "Αρχική",
-	"View": "Προεπισκόπιση"
+	"View": "Προεπισκόπιση",
+	"Ads": "Διαφημίσεις",
+	"Add a new Ad": "Προσθέστε μία νέα Διαφήμιση",
+	"Name": "Όνομα",
+	"Type": "Τύπος",
+	"Target Clicks": "Clicks Στόχου",
+	"Current Clicks": "Τωρινά Clicks",
+	"Remove Date": "Ημερομηνία Διαγραφής",
+	"Remove Time": "Ώρα Διαγραφής",
+	"Image": "Εικόνα",
+	"Link": "Link"
 }

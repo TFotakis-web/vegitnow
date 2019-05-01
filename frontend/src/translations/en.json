@@ -103,5 +103,15 @@
 	"Close": "Close",
 	"There is a new version of this app. Please refresh the page.": "There is a new version of this app. Please refresh the page.",
 	"Home": "Home",
-	"View": "View"
+	"View": "View",
+	"Ads": "Ads",
+	"Add a new Ad": "Add a new Ad",
+	"Name": "Name",
+	"Type": "Type",
+	"Target Clicks": "Target Clicks",
+	"Current Clicks": "Current Clicks",
+	"Remove Date": "Remove Date",
+	"Remove Time": "Remove Time",
+	"Image": "Image",
+	"Link": "Link"
 }
