@@ -9,6 +9,7 @@
 				<router-link :to="{ name: 'RecipeList' }" class="col">{{ $t('Recipes') }}</router-link>
 				<router-link :to="{ name: 'IngredientList' }" class="col">{{ $t('Ingredients') }}</router-link>
 				<router-link :to="{ name: 'StaticPages' }" class="col">{{ $t('Static Pages') }}</router-link>
+				<router-link :to="{ name: 'Ads' }" class="col">{{ $t('Ads') }}</router-link>
 			</div>
 			<div class="row">
 				<hr>
