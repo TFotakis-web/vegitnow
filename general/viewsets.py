@@ -236,7 +236,8 @@ class AdViewSet(viewsets.ModelViewSet):
 			if 'locale' in request.query_params:
 				f['Language_id'] = int(request.query_params['locale'])
 			for ad in ads:
-				if (not request.user.is_superuser) and not ad.Active:
+				if not ad.Active:
+				# if (not request.user.is_superuser) and not ad.Active:
 					continue
 				translation = ad.adtranslation_set.filter(**f).first()
 				if not translation:
