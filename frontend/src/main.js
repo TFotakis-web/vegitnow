@@ -93,6 +93,12 @@ new Vue({
 				}
 			},
 			languages: {},
+			adTypes: {
+				HOME_JOIN_OUR_FAMILY: 'Home: Join Our Family',
+				HOME_ARTICLES: 'Home: Articles',
+				HOME_RECIPES: 'Home: Recipes',
+				INSIDE_POST: 'Inside: Post'
+			},
 			requestsUnsatisfied: 0
 		};
 	},
