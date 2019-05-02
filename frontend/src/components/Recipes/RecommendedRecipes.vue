@@ -30,10 +30,19 @@
 						<div v-for="(recipesPart, index) in tripleRecipes" class="carousel-item" :class="{ 'active': index === 0 }">
 							<div class="container">
 								<div class="row">
-									<RecipeCard v-for="(recipe, index2) in recipesPart" :key="'tripleRecipeCard' + recipe.id" :recipe="recipe" :isMiddle="index2 === 1"></RecipeCard>
-									<!--{% include 'Shared/recipeCard.html' %}-->
-									<!--{% include 'Shared/recipeCard.html' with isMiddle=True %}-->
-									<!--{% include 'Shared/recipeCard.html' %}-->
+									<template v-if="noAdCards">
+										<RecipeCard v-for="recipe in recipesPart" :key="'tripleRecipeCard' + recipe.id" :recipe="recipe"/>
+									</template>
+									<template v-else>
+										<template v-for="recipe in recipesPart">
+											<template v-if="recipe.hasOwnProperty('article')">
+												<RecipeCard :recipe="recipe['article']" :key="'triple-recipe' + recipe['article'].id"/>
+											</template>
+											<template v-else>
+												<AdCard :ad="recipe['ad']" listType="recipes" :key="'triple-ad' + recipe['ad'].id + '-' + index"/>
+											</template>
+										</template>
+									</template>
 								</div>
 							</div>
 						</div>
@@ -72,9 +81,19 @@
 						<div v-for="(recipesPart, index) in dualRecipes" class="carousel-item" :class="{ 'active': index === 0 }">
 							<div class="container">
 								<div class="row">
-									<RecipeCard v-for="recipe in recipesPart" :key="'dualRecipeCard' + recipe.id" :recipe="recipe"></RecipeCard>
-									<!--{% include 'Shared/recipeCard.html' %}-->
-									<!--{% include 'Shared/recipeCard.html' %}-->
+									<template v-if="noAdCards">
+										<RecipeCard v-for="recipe in recipesPart" :key="'dualRecipeCard' + recipe.id" :recipe="recipe"/>
+									</template>
+									<template v-else>
+										<template v-for="recipe in recipesPart">
+											<template v-if="recipe.hasOwnProperty('article')">
+												<RecipeCard :recipe="recipe['article']" :key="'dual-recipe' + recipe['article'].id"/>
+											</template>
+											<template v-else>
+												<AdCard :ad="recipe['ad']" listType="recipes" :key="'dual-ad' + recipe['ad'].id + '-' + index"/>
+											</template>
+										</template>
+									</template>
 								</div>
 							</div>
 						</div>
@@ -113,8 +132,17 @@
 						<div v-for="(recipe, index) in recipes" class="carousel-item" :class="{ 'active': index === 0 }">
 							<div class="container">
 								<div class="row">
-									<RecipeCard :recipe="recipe"></RecipeCard>
-									<!--{% include 'Shared/recipeCard.html' %}-->
+									<template v-if="noAdCards">
+										<RecipeCard :recipe="recipe" :key="'single-recipe' + recipe.id"/>
+									</template>
+									<template v-else>
+										<template v-if="recipe.hasOwnProperty('article')">
+											<RecipeCard :recipe="recipe['article']" :key="'single-recipe' + recipe['article'].id"/>
+										</template>
+										<template v-else>
+											<AdCard :ad="recipe['ad']" listType="recipes" :key="'single-ad' + recipe['ad'].id + '-' + index"/>
+										</template>
+									</template>
 								</div>
 							</div>
 						</div>
@@ -122,10 +150,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="bgGreen4" style="clip-path: polygon(5% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%, 2% 0%)">
-			<div v-if="location === 'home'">
-				<Ads AdType="HOME_RECIPES"/>
-			</div>
+		<div v-if="location === 'home'" class="bgGreen4" style="clip-path: polygon(5% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%, 2% 0%)">
+			<Ads AdType="HOME_RECIPES"/>
 		</div>
 	</div>
 </template>
@@ -133,39 +159,58 @@
 <script>
 	import RecipeCard from './RecipeCard';
 	import Ads from '../Structure/Ads/HomePage';
+	import AdCard from '../Structure/Ads/AdCard';
 
 	export default {
 		name: 'RecommendedRecipes',
 		components: {
 			RecipeCard,
-			Ads
+			Ads,
+			AdCard
 		},
-		props: [
-			'currentRecipeId',
-			'location'
-		],
+		props: {
+			currentRecipeId: String,
+			location: String,
+			noAdCards: Boolean
+		},
 		data: function () {
 			return {
-				recipeList: []
+				recipeList: [],
+				ads: []
 			};
 		},
 		mounted: function () {
 			this.getArticles();
+			this.getAds();
 		},
 		methods: {
 			getArticles: function () {
 				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=1&' + this.location)
 					.then(response => { this.recipeList = response.data; })
 					.catch(this.$root.notifyAction.error);
+			},
+			getAds: function () {
+				if (this.noAdCards) return;
+				this.requestsUnsatisfied++;
+				this.$http.get('/api/vegitnowad/?locale=' + this.$cookie.get('locale') + '&type=INSIDE_POST')
+					.then(response => {
+						this.ads = response.data;
+						this.requestsUnsatisfied--;
+					})
+					.catch(err => {
+						this.requestsUnsatisfied--;
+						this.$root.notifyAction.error(err);
+					});
 			}
 		},
 		computed: {
 			recipes: function () {
 				if (!this.currentRecipeId) return this.recipeList;
 				let id = parseInt(this.currentRecipeId);
-				return this.recipeList.filter(function (obj) {
+				let filteredRecipes = this.recipeList.filter(function (obj) {
 					return obj.id !== id;
 				});
+				return this.$root.combineArticlesWithAds(filteredRecipes, this.ads);
 			},
 			tripleRecipes: function () {
 				let arr = [];
