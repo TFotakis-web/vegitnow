@@ -30,9 +30,19 @@
 						<div v-for="(articlesPart, index) in dualArticles" class="carousel-item" :class="{ 'active': index === 0 }">
 							<div class="container">
 								<div class="row">
-									<ArticleCard v-for="(article, index2) in articlesPart" :key="'dualArticleCard' + article.id" :article="article" :isLeft="index2 === 0"></ArticleCard>
-									<!--{% include 'Shared/articleCard.html' with isLeft=True %}-->
-									<!--{% include 'Shared/articleCard.html' %}-->
+									<template v-if="noAdCards">
+										<ArticleCard v-for="(article, index2) in articlesPart" :key="'dualArticleCard' + article.id" :article="article" :isLeft="index2 === 0"/>
+									</template>
+									<template v-else>
+										<template v-for="article in articlesPart">
+											<template v-if="article.hasOwnProperty('article')">
+												<ArticleCard :article="article['article']" :key="'dual-article' + article['article'].id"/>
+											</template>
+											<template v-else>
+												<AdCard :ad="article['ad']" listType="articles" :key="'dual-ad' + article['ad'].id + '-' + index"/>
+											</template>
+										</template>
+									</template>
 								</div>
 							</div>
 						</div>
@@ -71,8 +81,17 @@
 						<div v-for="(article, index) in articles" class="carousel-item" :class="{ 'active': index === 0 }">
 							<div class="container">
 								<div class="row">
-									<ArticleCard :article="article"></ArticleCard>
-									<!--{% include 'Shared/articleCard.html' %}-->
+									<template v-if="noAdCards">
+										<ArticleCard :article="article"/>
+									</template>
+									<template v-else>
+										<template v-if="article.hasOwnProperty('article')">
+											<ArticleCard :article="article['article']" :key="'single-article' + article['article'].id"/>
+										</template>
+										<template v-else>
+											<AdCard :ad="article['ad']" listType="articles" :key="'single-ad' + article['ad'].id + '-' + index"/>
+										</template>
+									</template>
 								</div>
 							</div>
 						</div>
@@ -81,10 +100,8 @@
 			</div>
 		</div>
 
-		<div class="bgGreen3" style="clip-path: polygon(5% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%, 2% 0%)">
-			<div v-if="location === 'home'">
-				<Ads AdType="HOME_ARTICLES"/>
-			</div>
+		<div v-if="location === 'home'" class="bgGreen3" style="clip-path: polygon(5% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%, 2% 0%)">
+			<Ads AdType="HOME_ARTICLES"/>
 		</div>
 	</div>
 </template>
@@ -92,39 +109,58 @@
 <script>
 	import ArticleCard from './ArticleCard';
 	import Ads from '../Structure/Ads/HomePage';
+	import AdCard from '../Structure/Ads/AdCard';
 
 	export default {
 		name: 'RecommendedArticles',
 		components: {
 			ArticleCard,
-			Ads
+			Ads,
+			AdCard
 		},
-		props: [
-			'currentArticleId',
-			'location'
-		],
+		props: {
+			currentArticleId: String,
+			location: String,
+			noAdCards: Boolean
+		},
 		data: function () {
 			return {
-				articleList: []
+				articleList: [],
+				ads: []
 			};
 		},
 		mounted: function () {
 			this.getArticles();
+			this.getAds();
 		},
 		methods: {
 			getArticles: function () {
 				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=2&' + this.location)
 					.then(response => { this.articleList = response.data; })
 					.catch(this.$root.notifyAction.error);
+			},
+			getAds: function () {
+				if (this.noAdCards) return;
+				this.requestsUnsatisfied++;
+				this.$http.get('/api/vegitnowad/?locale=' + this.$cookie.get('locale') + '&type=INSIDE_POST')
+					.then(response => {
+						this.ads = response.data;
+						this.requestsUnsatisfied--;
+					})
+					.catch(err => {
+						this.requestsUnsatisfied--;
+						this.$root.notifyAction.error(err);
+					});
 			}
 		},
 		computed: {
 			articles: function () {
 				if (!this.currentArticleId) return this.articleList;
 				let id = parseInt(this.currentArticleId);
-				return this.articleList.filter(function (obj) {
+				let filteredArticles = this.articleList.filter(function (obj) {
 					return obj.id !== id;
 				});
+				return this.$root.combineArticlesWithAds(filteredArticles, this.ads);
 			},
 			dualArticles: function () {
 				var arr = [];
