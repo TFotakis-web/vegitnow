@@ -192,6 +192,7 @@
 				this.$http[method](path, ad)
 					.then(response => {
 						this.$root.notifyAction.success();
+						this.getAds();
 					})
 					.catch(this.$root.notifyAction.error);
 			},
