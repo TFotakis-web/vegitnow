@@ -1,11 +1,18 @@
 <template>
-	<div class="d-flex flex-grow-1">
+	<div class="d-flex flex-grow-1 mb-5">
 		<Loader v-if="requestsUnsatisfied"/>
 		<div v-if="!requestsUnsatisfied" class="flex-grow-1">
 			<div class="navbar-placeholder"></div>
 			<div class="container">
 				<div class="row">
-					<ArticleCard v-for="article in articleList" :key="article.id" :article="article"></ArticleCard>
+					<template v-for="(item, index) in items">
+						<template v-if="item.hasOwnProperty('article')">
+							<ArticleCard :article="item['article']" :key="'article' + item['article'].id"/>
+						</template>
+						<template v-if="item.hasOwnProperty('ad')">
+							<AdCard :ad="item['ad']" :key="'ad' + item['ad']['id'] + '-' + index"/>
+						</template>
+					</template>
 				</div>
 			</div>
 		</div>
@@ -15,21 +22,25 @@
 <script>
 	import ArticleCard from './ArticleCard';
 	import Loader from '../Structure/Loader';
+	import AdCard from '../Structure/Ads/AdCard';
 
 	export default {
 		name: 'ArticlesList',
 		components: {
 			ArticleCard,
-			Loader
+			Loader,
+			AdCard
 		},
 		data: function () {
 			return {
 				articleList: [],
+				ads: [],
 				requestsUnsatisfied: 0
 			};
 		},
 		mounted: function () {
 			this.getArticles();
+			this.getAds();
 		},
 		methods: {
 			getArticles: function () {
@@ -40,6 +51,23 @@
 						this.requestsUnsatisfied--;
 					})
 					.catch(this.$root.notifyAction.error);
+			},
+			getAds: function () {
+				this.requestsUnsatisfied++;
+				this.$http.get('/api/vegitnowad/?locale=' + this.$cookie.get('locale') + '&type=INSIDE_POST')
+					.then(response => {
+						this.ads = response.data;
+						this.requestsUnsatisfied--;
+					})
+					.catch(err => {
+						this.requestsUnsatisfied--;
+						this.$root.notifyAction.error(err);
+					});
+			}
+		},
+		computed: {
+			items: function () {
+				return this.$root.combineArticlesWithAds(this.articleList, this.ads);
 			}
 		},
 		head: {
