@@ -1,18 +1,21 @@
 <template>
-	<div v-if="ads.length" class="container py-5">
+	<div v-if="ads.length" class="container pb-5">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 col-lg-6" v-for="ad in ads" :key="ad.id">
-				<a :href="ad.Link" @mousedown="countUp(ad.id)" target="_blank" rel="noopener" class="d-inline-block">
-					<img :src="ad.Image" :alt="ad.Image" class="img-fluid">
-				</a>
+				<AdImg :ad="ad"/>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import AdImg from './AdImg';
+
 	export default {
 		name: 'HomePage',
+		components: {
+			AdImg
+		},
 		props: {
 			AdType: {
 				type: String,
@@ -31,9 +34,6 @@
 						this.ads = response.data;
 					})
 					.catch(this.$root.notifyAction.error);
-			},
-			countUp: function (id) {
-				this.$http.get('/api/vegitnowad/?id=' + id);
 			}
 		},
 		mounted: function () {
