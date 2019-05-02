@@ -115,7 +115,25 @@ new Vue({
 				})
 				.catch(this.$root.notifyAction.error);
 		},
-		toGreeklish
+		toGreeklish,
+		combineArticlesWithAds: function (articleList, ads) {
+			const probability = 1;
+			const insertEveryNArticles = 1;
+
+			let arr = [];
+			let adIndex = 0;
+			let articleIndex = 0;
+			for (const article of articleList) {
+				arr.push({ article: article });
+				articleIndex++;
+				// if (ads.length) {
+				if (articleIndex % insertEveryNArticles === 0 && Math.random() <= probability && ads.length) {
+					arr.push({ ad: ads[adIndex] });
+					adIndex = (adIndex + 1) % ads.length;
+				}
+			}
+			return arr;
+		}
 	}
 });
 
