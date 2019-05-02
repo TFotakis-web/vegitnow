@@ -84,7 +84,7 @@
 		},
 		data: function () {
 			return {
-				id: this.$route.params['id'],
+				id: this.$route.params['id'].toString(),
 				article: {},
 				requestsUnsatisfied: 0
 			};
