@@ -117,8 +117,8 @@ new Vue({
 		},
 		toGreeklish,
 		combineArticlesWithAds: function (articleList, ads) {
-			const probability = 1;
-			const insertEveryNArticles = 1;
+			const probability = 0.5;
+			const insertEveryNArticles = 3;
 
 			let arr = [];
 			let adIndex = 0;
