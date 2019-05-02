@@ -1,4 +1,5 @@
 from datetime import datetime
+from random import shuffle
 
 from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
@@ -247,6 +248,7 @@ class AdViewSet(viewsets.ModelViewSet):
 					'Image': translation.Image.url,
 					'Link': translation.Link,
 				})
+			shuffle(resp)
 		return Response(resp)
 
 	def create(self, request, *args, **kwargs):
