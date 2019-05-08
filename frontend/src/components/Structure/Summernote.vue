@@ -35,6 +35,19 @@
 					language: '/static/summernote/lang/summernote-en-US.min.js',
 					upload_attachment: '/summernote/upload_attachment/'
 				},
+				popover: {
+					image: [
+						['custom', ['imageAttributes']],
+						['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+						['float', ['floatLeft', 'floatRight', 'floatNone']],
+						['remove', ['removeMedia']]
+					]
+				},
+				imageAttributes: {
+					icon: '<i class="note-icon-pencil"/>',
+					removeEmpty: false, // true = remove attributes | false = leave empty if present
+					disableUpload: false // true = don't display Upload Options | Display Upload Options
+				},
 				callbacks: {
 					onInit: function () {
 						$(vm.$el).summernote('code', vm.model);
