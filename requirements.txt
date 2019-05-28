@@ -1,4 +1,4 @@
-selenium
+#selenium
 beautifulsoup4
 django
 django-summernote
@@ -6,5 +6,5 @@ django-webpack-loader
 djangorestframework
 django_extensions
 pillow
-pygraphviz
-pydotplus
+#pygraphviz
+#pydotplus

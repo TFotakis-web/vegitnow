@@ -252,7 +252,7 @@ def isCrawler(userAgent=''):
 
 
 def indexView(request):
-	if not isCrawler(request.META['HTTP_USER_AGENT']):
+	if 'HTTP_USER_AGENT' in request.META and not isCrawler(request.META['HTTP_USER_AGENT']):
 		return render(request=request, template_name="index.html")
 	# html = prerenderSelenium(request)
 	html = prerenderDjango(request)
