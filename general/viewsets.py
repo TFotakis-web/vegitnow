@@ -47,7 +47,7 @@ class StaticPageViewSet(viewsets.ModelViewSet):
 		if 'locale' in request.query_params:
 			f['Language_id'] = int(request.query_params['locale'])
 		if not request.user.is_superuser:
-			f['Listed'] = True
+			# f['Listed'] = True
 			f['Private'] = False
 		translation = staticPage.staticpagetranslation_set.filter(**f).first()
 		if translation:
