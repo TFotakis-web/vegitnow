@@ -5,7 +5,7 @@
 			<div class="navbar-placeholder"></div>
 			<div class="container">
 				<div class="row">
-					<template v-for="(item, index) in items">
+					<template v-for="(item, index) in pageItems">
 						<template v-if="item.hasOwnProperty('article')">
 							<RecipeCard :recipe="item['article']" :key="'article' + item['article'].id"/>
 						</template>
@@ -14,6 +14,7 @@
 						</template>
 					</template>
 				</div>
+				<Pagination :items="items" :itemsPerPage="9"/>
 			</div>
 		</div>
 	</div>
@@ -23,64 +24,69 @@
 	import RecipeCard from './RecipeCard';
 	import Loader from '../Structure/Loader';
 	import AdCard from '../Structure/Ads/AdCard';
+	import Pagination from '../Structure/Pagination';
 
 	export default {
-	name: 'RecipesList',
-	components: {
-		RecipeCard,
-		Loader,
-		AdCard
-	},
-	data: function () {
-		return {
-			recipeList: [],
-			ads: [],
-			requestsUnsatisfied: 0
-		};
-	},
-	mounted: function () {
-		this.getRecipes();
-		this.getAds();
-	},
-	methods: {
-		getRecipes: function () {
-			this.requestsUnsatisfied++;
-			this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=1')
-				.then(response => {
-					this.recipeList = response.data;
-					this.requestsUnsatisfied--;
-				})
-				.catch(this.$root.notifyAction.error);
+		name: 'RecipesList',
+		components: {
+			RecipeCard,
+			Loader,
+			AdCard,
+			Pagination
 		},
-		getAds: function () {
-			this.requestsUnsatisfied++;
-			this.$http.get('/api/vegitnowad/?locale=' + this.$cookie.get('locale') + '&type=INSIDE_POST')
-				.then(response => {
-					this.ads = response.data;
-					this.requestsUnsatisfied--;
-				})
-				.catch(err => {
-					this.requestsUnsatisfied--;
-					this.$root.notifyAction.error(err);
-				});
-		}
-	},
-	computed: {
-		items: function () {
-			return this.$root.combineArticlesWithAds(this.recipeList, this.ads);
-		}
-	},
-	head: {
-		title: function () {
+		data: function () {
 			return {
-				inner: this.$t('Recipes')
+				recipeList: [],
+				ads: [],
+				requestsUnsatisfied: 0,
+				items: [],
+				pageItems: []
 			};
 		},
-		meta: function () {
-			return this.$root.headData.defaultMeta();
+		mounted: function () {
+			this.getRecipes();
+			this.getAds();
+		},
+		methods: {
+			getRecipes: function () {
+				this.requestsUnsatisfied++;
+				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=1')
+					.then(response => {
+						this.recipeList = response.data;
+						this.requestsUnsatisfied--;
+					})
+					.catch(this.$root.notifyAction.error);
+			},
+			getAds: function () {
+				this.requestsUnsatisfied++;
+				this.$http.get('/api/vegitnowad/?locale=' + this.$cookie.get('locale') + '&type=INSIDE_POST')
+					.then(response => {
+						this.ads = response.data;
+						this.requestsUnsatisfied--;
+					})
+					.catch(err => {
+						this.requestsUnsatisfied--;
+						this.$root.notifyAction.error(err);
+					});
+			}
+		},
+		watch: {
+			requestsUnsatisfied: function () {
+				if (this.requestsUnsatisfied) return;
+				this.items = this.$root.combineArticlesWithAds(this.recipeList, this.ads);
+			}
+		},
+		head: {
+			title: function () {
+				return {
+					inner: this.$t('Recipes')
+				};
+			},
+			meta: function () {
+				return this.$root.headData.defaultMeta();
+			}
 		}
-	}
-};
+	};
 </script>
 
 <style scoped>
