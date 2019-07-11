@@ -34,7 +34,7 @@
 		<div class="d-flex flex-grow-1" v-if="!$root.requestsUnsatisfied">
 			<NavigationBar/>
 			<notifications class="m-1" position="top center"/>
-			<router-view :key="$route.fullPath"/>
+			<router-view :key="$route.path"/>
 		</div>
 		<Footer v-if="!$root.requestsUnsatisfied" :key="$route.fullPath"/>
 	</div>
