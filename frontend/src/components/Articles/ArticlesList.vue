@@ -5,7 +5,7 @@
 			<div class="navbar-placeholder"></div>
 			<div class="container">
 				<div class="row">
-					<template v-for="(item, index) in items">
+					<template v-for="(item, index) in pageItems">
 						<template v-if="item.hasOwnProperty('article')">
 							<ArticleCard :article="item['article']" :key="'article' + item['article'].id"/>
 						</template>
@@ -14,6 +14,7 @@
 						</template>
 					</template>
 				</div>
+				<Pagination :items="items" :itemsPerPage="6"/>
 			</div>
 		</div>
 	</div>
@@ -23,19 +24,23 @@
 	import ArticleCard from './ArticleCard';
 	import Loader from '../Structure/Loader';
 	import AdCard from '../Structure/Ads/AdCard';
+	import Pagination from '../Structure/Pagination';
 
 	export default {
 		name: 'ArticlesList',
 		components: {
 			ArticleCard,
 			Loader,
-			AdCard
+			AdCard,
+			Pagination
 		},
 		data: function () {
 			return {
 				articleList: [],
 				ads: [],
-				requestsUnsatisfied: 0
+				requestsUnsatisfied: 0,
+				items: [],
+				pageItems: []
 			};
 		},
 		mounted: function () {
@@ -65,9 +70,10 @@
 					});
 			}
 		},
-		computed: {
-			items: function () {
-				return this.$root.combineArticlesWithAds(this.articleList, this.ads);
+		watch: {
+			requestsUnsatisfied: function () {
+				if (this.requestsUnsatisfied) return;
+				this.items = this.$root.combineArticlesWithAds(this.articleList, this.ads);
 			}
 		},
 		head: {
