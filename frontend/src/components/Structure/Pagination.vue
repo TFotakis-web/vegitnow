@@ -55,10 +55,11 @@
 				this.$router.replace({query: {page: pageNum + 1}});
 				this.$parent.pageItems = this.items.slice(this.page * this.itemsPerPage, (this.page + 1) * this.itemsPerPage);
 				let startingPage = this.page - Math.floor(this.pagesInRow / 2);
+				if (startingPage > this.pagesLen - this.pagesInRow) {
+					startingPage = this.pagesLen - this.pagesInRow;
+				}
 				if (startingPage < 0) {
 					startingPage = 0;
-				} else if (startingPage > this.pagesLen - this.pagesInRow) {
-					startingPage = this.pagesLen - this.pagesInRow;
 				}
 				this.pagesGroup = [];
 				for (let i = startingPage; i < startingPage + this.pagesInRow && i < this.pagesLen; i++) {
