@@ -1,7 +1,7 @@
 <template>
 	<div class="row mb-3">
 		<div class="col-sm-9 col-lg-10 text-center text-sm-left">
-			<a class="mx-3 ml-sm-0 mr-sm-3" style="cursor: pointer" v-for="i in pagesGroup" @click="setPage(i - 1)" v-bind:class="{'fgGreen0 font-weight-bold': i - 1 === page, 'text-dark': i - 1 !== page}">{{ i }}</a>
+			<a href="#" class="mx-3 ml-sm-0 mr-sm-3" v-for="i in pagesGroup" @click="setPage(i - 1)" v-bind:class="{'fgGreen0 font-weight-bold': i - 1 === page, 'text-dark': i - 1 !== page}">{{ i }}</a>
 			<hr class="fgGreen1 mt-0" style="border-top: 2px dashed;">
 		</div>
 		<div class="col-sm-3 col-lg-2 text-center text-sm-right">
