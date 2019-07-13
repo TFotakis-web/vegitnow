@@ -3,7 +3,10 @@
 // In the production build, this file is replaced with an actual service worker
 // file that will precache your site's local assets.
 // See https://github.com/facebookincubator/create-react-app/issues/2272#issuecomment-302832432
-//
+
+(function () {
+	if (!navigator.serviceWorker) return;
+
 // self.addEventListener('install', () => self.skipWaiting());
 //
 // self.addEventListener('activate', () => {
@@ -16,15 +19,14 @@
 // 	});
 // });
 
-if (navigator.serviceWorker) {
-	navigator.serviceWorker.register('static/app/js/service-worker.js')
+	navigator.serviceWorker.register('/static/app/js/service-worker.js')
 		.then(registration => {
 			console.log('Service Worker successfully registered.');
 			registration.onupdatefound = () => {
 				const installingWorker = registration.installing;
 				installingWorker.onstatechange = () => {
-					if (installingWorker.state === 'installed' && navigator.serviceWorker.controller){
-						if (window.confirm('There is a new version of this app. Please refresh the page.')){
+					if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+						if (window.confirm('There is a new version of this app. Please refresh the page.')) {
 							location.reload();
 						}
 					}
@@ -32,4 +34,4 @@ if (navigator.serviceWorker) {
 			}
 		})
 		.catch(err => console.error('Service Worker registration failed.', err));
-}
+})();
