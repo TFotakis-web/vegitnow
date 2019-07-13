@@ -34,8 +34,8 @@ module.exports = merge(baseWebpackConfig, {
 			filename: 'index.html',
 			template: 'src/index.html',
 			inject: true,
-			serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
-				'./service-worker-dev.js'), 'utf-8')}</script>`
+			serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname, './service-worker-prod.js'), 'utf-8')}</script>`
+			// serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname, './service-worker-dev.js'), 'utf-8')}</script>`
 		}),
 		new FriendlyErrorsPlugin(),
 		// copy custom static assets
