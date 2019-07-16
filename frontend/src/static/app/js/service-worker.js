@@ -92,27 +92,11 @@ self.addEventListener('fetch', event => {
 	const requestURL = new URL(event.request.url);
 	if (self.location.origin !== requestURL.origin) return;
 	else if (/^\/__webpack_hmr/.test(requestURL.pathname)) return;
+	else if (/^\/s6AptmegHaGM3Ry5vdlr\/database\//.test(requestURL.pathname)) return;
 	else if (/^\/static\//.test(requestURL.pathname)) cacheFirst(event, staticCacheName);
 	else if (/^\/media\//.test(requestURL.pathname)) cacheFirst(event, mediaCacheName);
 	else if (/^\/api\//.test(requestURL.pathname)) networkFirst(event, apiCacheName);
 	else {
-		// event.respondWith(
-		// 	caches.match('/')
-		// 		.then(function (response) {
-		// 			return response ||
-		// 				fetch(new Request('/'))
-		// 					.then(function (response) {
-		// 							if (!response || response.status !== 200 || response.type !== 'basic') return response;
-		// 							let responseClone = response.clone();
-		// 							caches.open(staticCacheName)
-		// 								.then(function (cache) {
-		// 									cache.put('/', responseClone);
-		// 								});
-		// 							return response;
-		// 						}
-		// 					);
-		// 		})
-		// );
 		let requestRoot = new Request('/');
 		let cacheToUse = staticCacheName;
 		event.respondWith(
