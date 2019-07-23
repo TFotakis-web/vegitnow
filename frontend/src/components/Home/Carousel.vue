@@ -48,8 +48,8 @@
 														<div class="col-lg-6">
 															<h1 class="d-none d-lg-block">{{ $t('Ready in') }}:</h1>
 															<h4 class="d-inline d-lg-none">{{ $t('Ready in') }}:</h4>
-															<p class="d-none d-lg-block font-weight-bold">{{ article.ReadyIn }}'</p>
-															<p class="d-inline d-lg-none">{{ article.ReadyIn }}'</p>
+															<p class="d-none d-lg-block font-weight-bold">{{ article.Cooking }}'</p>
+															<p class="d-inline d-lg-none">{{ article.Cooking }}'</p>
 														</div>
 													</div>
 													<router-link :to="{ name: 'RecipeView', params: { id: article.id }, query : { title: $root.toGreeklish(article.Title).replace(/ /g, '-') }}" class="btn bgGreen0 text-white text-uppercase px-4 font-weight-bold mt-5" style="border-radius: 2rem;">{{ $t('Go to the recipe') }}</router-link>
