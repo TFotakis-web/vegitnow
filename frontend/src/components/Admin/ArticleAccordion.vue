@@ -33,12 +33,20 @@
 					<input type="text" class="form-control" id="YoutubeLink" placeholder="YouTube Link" v-model="articleData['YoutubeLink']">
 				</label>
 
-				<label id="DishesInput" class="label col-sm-6">{{ $t('Dishes') }}:
-					<input type="number" class="form-control" id="Dishes" :placeholder="$t('Dishes')" v-model="articleData['Dishes']">
+				<label id="ReadyInInput" class="label col-sm-3">{{ $t('Cooking') }}:
+					<input type="number" class="form-control" id="ReadyIn" :placeholder="$t('Min')" v-model="articleData['Cooking']">
 				</label>
 
-				<label id="ReadyInInput" class="label col-sm-6">{{ $t('Ready in') }} (minutes):
-					<input type="number" class="form-control" id="ReadyIn" :placeholder="$t('Ready in')" v-model="articleData['ReadyIn']">
+				<label id="PreparationInput" class="label col-sm-3">{{ $t('Preparation') }}:
+					<input type="number" class="form-control" id="Preparation" :placeholder="$t('Min')" v-model="articleData['Preparation']">
+				</label>
+
+				<label id="WaitingInput" class="label col-sm-3">{{ $t('Waiting') }}:
+					<input type="number" class="form-control" id="Waiting" :placeholder="$t('Min')" v-model="articleData['Waiting']">
+				</label>
+
+				<label id="DishesInput" class="label col-sm-3">{{ $t('Dishes') }}:
+					<input type="number" class="form-control" id="Dishes" :placeholder="$t('Dishes')" v-model="articleData['Dishes']">
 				</label>
 			</div>
 
