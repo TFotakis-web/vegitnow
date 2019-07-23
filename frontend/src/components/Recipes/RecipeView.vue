@@ -10,20 +10,34 @@
 				</div>
 				<div class="bgGreen1" style="">
 					<div class="container">
-						<div class="row text-center py-4">
-							<div class="col-sm-4">
+						<div class="row text-center text-sm-left py-4">
+							<div class="col-sm-3">
 								<h2 class="fgGreen1">{{ $t('Ready in') }}:</h2>
-								<p class="font-weight-bold mb-sm-0">{{ article.ReadyIn }} {{ $t('Min') }}</p>
-							</div>
-							<div class="col-sm-4" style="border-left: dashed 2px #327317; border-right: dashed 2px #327317">
-								<h2 class="fgGreen1">{{ $t('Main Ingredients') }}:</h2>
-								<p class="font-weight-bold mb-sm-0">
-									<span v-for="(ingredient, index) in articleMainIngredients">{{ ingredient.Name }}<span v-if="index !== articleMainIngredients.length - 1"> - </span></span>
+								<p class="font-weight-bold mb-sm-0 d-inline-block">
+									<img class="float-left mr-2" src="/static/app/img/icons/clock.svg?v1.0" alt="clock" style="height: 3rem"/>
+									<span class="float-right text-left">{{ $t('Cooking') }}: {{ article.Cooking }}'<br>{{ $t('Preparation') }}: {{ article.Preparation }}'</span>
 								</p>
 							</div>
-							<div class="col-sm-4">
+							<div class="col-sm-3" style="border-left: dashed 2px #327317;">
+								<h2 class="fgGreen1">{{ $t('Waiting') }}:</h2>
+								<p class="font-weight-bold mb-sm-0 d-inline-block">
+									<img class="mr-2" src="/static/app/img/icons/clock.svg?v1.0" alt="clock" style="height: 3rem"/>
+									<span class="text-left">{{ article.Waiting }}'</span>
+								</p>
+							</div>
+							<div class="col-sm-3" style="border-left: dashed 2px #327317; border-right: dashed 2px #327317">
+								<h2 class="fgGreen1">{{ $t('Main Ingredients') }}:</h2>
+								<p class="font-weight-bold mb-sm-0 d-inline-block">
+									<img class="float-left mr-2" src="/static/app/img/icons/ingredients.svg?v1.0" alt="ingredients" style="height: 3rem"/>
+									<span class="text-left"><template v-for="(ingredient, index) in articleMainIngredients">{{ ingredient.Name }}<template v-if="index !== articleMainIngredients.length - 1"> - </template></template></span>
+								</p>
+							</div>
+							<div class="col-sm-3">
 								<h2 class="fgGreen1">{{ $t('Dishes') }}:</h2>
-								<p class="font-weight-bold mb-0">{{ article.Dishes }}</p>
+								<p class="font-weight-bold mb-sm-0 d-inline-block">
+									<img class="mr-2" src="/static/app/img/icons/portions.svg?v1.0" alt="portions" style="height: 3rem"/>
+									<span class="text-left">{{ article.Dishes }}</span>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -56,12 +70,12 @@
 						</div>
 					</div>
 					<!--<div class="row mt-3">-->
-						<!--<div class="col-sm-4 text-sm-right ">-->
-							<!--<h2 class="fgGreen1 w-100">{{ $t('Nutrition facts') }}</h2>-->
-						<!--</div>-->
-						<!--<div class="col-sm-8 align-left float-left text-left">-->
-							<!--<NutritionStats></NutritionStats>-->
-						<!--</div>-->
+					<!--<div class="col-sm-4 text-sm-right ">-->
+					<!--<h2 class="fgGreen1 w-100">{{ $t('Nutrition facts') }}</h2>-->
+					<!--</div>-->
+					<!--<div class="col-sm-8 align-left float-left text-left">-->
+					<!--<NutritionStats></NutritionStats>-->
+					<!--</div>-->
 					<!--</div>-->
 				</div>
 			</div>
