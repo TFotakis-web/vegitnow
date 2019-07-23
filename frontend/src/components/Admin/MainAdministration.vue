@@ -6,7 +6,7 @@
 				<!--<h1 class="text-center">Main Administration</h1>-->
 				<router-link :to="{ name: 'Administration' }" class="col text-right">{{ $t('Administration') }}</router-link>
 <!--				<router-link :to="{ name: 'DatabaseAdministration' }" class="col" target="_blank">{{ $t('Database') }}</router-link>-->
-				<a href="s6AptmegHaGM3Ry5vdlr/database/" class="col">{{ $t('Database') }}</a>
+				<a href="/s6AptmegHaGM3Ry5vdlr/database/" class="col">{{ $t('Database') }}</a>
 			</div>
 		</div>
 		<hr>
