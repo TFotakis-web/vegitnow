@@ -7,7 +7,7 @@
 				<h5 class="fgGreen1">{{ $t('Main Ingredients') }}:</h5>
 				<p style="font-size: 0.8em;">{{ recipe.MainIngredients }}</p>
 				<h5 class="fgGreen1 d-inline">{{ $t('Ready in') }}:</h5>
-				<span style="font-size: 0.8em;">{{ recipe.ReadyIn }}'</span>
+				<span style="font-size: 0.8em;">{{ recipe.Cooking }}'</span>
 			</div>
 			<div class="col-6 d-table">
 				<div class="d-table-cell align-middle">
