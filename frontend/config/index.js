@@ -57,6 +57,20 @@ module.exports = {
 					protocol: 'http:',
 					port: 8000
 				}
+			},
+			'/s6AptmegHaGM3Ry5vdlr/database/': {
+				target: {
+					host: "localhost",
+					protocol: 'http:',
+					port: 8000
+				}
+			},
+			'/static/admin/': {
+				target: {
+					host: "localhost",
+					protocol: 'http:',
+					port: 8000
+				}
 			}
 		},
 		// CSS Sourcemaps off by default because relative paths are "buggy"
