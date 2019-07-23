@@ -196,4 +196,8 @@
 		padding: 0 !important;
 		overflow: hidden !important;
 	}
+
+	.htmlRenderer p[style*="text-align: center" i] iframe {
+		margin: auto !important;
+	}
 </style>
