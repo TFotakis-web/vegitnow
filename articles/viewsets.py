@@ -99,7 +99,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
 				data['Translations'].append(translationData)
 			if data['ArticleTypeId'] == 1:
 				data['Dishes'] = translations.first().Dishes
-				data['ReadyIn'] = translations.first().ReadyIn
+				data['Cooking'] = translations.first().Cooking
+				data['Preparation'] = translations.first().Preparation
+				data['Waiting'] = translations.first().Waiting
 				data['YoutubeLink'] = translations.first().YoutubeLink
 				data['Ingredients'] = []
 				ingredientList = IngredientAssociation.objects.filter(Article_id=kwargs['pk']).all()
@@ -132,7 +134,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		if translation.Article.ArticleType_id == 1:
 			data.update({
 				'Dishes': translation.Dishes,
-				'ReadyIn': translation.ReadyIn,
+				'Cooking': translation.Cooking,
+				'Preparation': translation.Preparation,
+				'Waiting': translation.Waiting,
 			})
 			ingredientList = IngredientAssociation.objects.filter(Article_id=kwargs['pk']).all()
 			data['Ingredients'] = []
@@ -189,7 +193,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
 				'Preview': translation.Preview,
 				'Thumbnail': translation.Thumbnail.url,
 				'Dishes': translation.Dishes,
-				'ReadyIn': translation.ReadyIn,
+				'Cooking': translation.Cooking,
+				'Preparation': translation.Preparation,
+				'Waiting': translation.Waiting,
 				'ReleaseDateTime': translation.ReleaseDateTime
 			}
 
@@ -230,7 +236,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
 				act.Preview = translation['preview']
 			if at == 1:
 				act.Dishes = request.data['dishes']
-				act.ReadyIn = request.data['readyIn']
+				act.Cooking = request.data['Cooking']
+				act.Preparation = request.data['Preparation']
+				act.Waiting = request.data['Waiting']
 				act.YoutubeLink = request.data['youtubeLink']
 			elif at == 2:
 				act.AuthorName = translation['authorName']
@@ -275,7 +283,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
 
 			if at == 1:
 				act.Dishes = request.data['Dishes']
-				act.ReadyIn = request.data['ReadyIn']
+				act.Cooking = request.data['Cooking']
+				act.Preparation = request.data['Preparation']
+				act.Waiting = request.data['Waiting']
 				act.YoutubeLink = request.data['YoutubeLink']
 			if at == 2:
 				act.AuthorName = translation['AuthorName']
