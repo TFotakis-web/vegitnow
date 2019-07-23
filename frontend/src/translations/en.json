@@ -113,5 +113,8 @@
 	"Remove Date": "Remove Date",
 	"Remove Time": "Remove Time",
 	"Image": "Image",
-	"Link": "Link"
+	"Link": "Link",
+	"Waiting": "Waiting",
+	"Cooking": "Cooking",
+	"Preparation": "Preparation"
 }

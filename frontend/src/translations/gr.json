@@ -113,5 +113,8 @@
 	"Remove Date": "Ημερομηνία Διαγραφής",
 	"Remove Time": "Ώρα Διαγραφής",
 	"Image": "Εικόνα",
-	"Link": "Link"
+	"Link": "Link",
+	"Waiting": "Αναμονή",
+	"Cooking": "Μαγείρεμα",
+	"Preparation": "Προετοιμασία"
 }
