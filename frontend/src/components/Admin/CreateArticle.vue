@@ -149,11 +149,33 @@
 				</div>
 
 				<div id="ReadyInInput" class="form-group row">
-					<label for="ReadyIn" class="col-sm-2 col-form-label">{{ $t('Ready in') }} (minutes):</label>
+					<label for="ReadyIn" class="col-sm-2 col-form-label">{{ $t('Cooking') }}:</label>
 					<div class="col-sm-10">
 						<div class="row">
 							<div class="col">
-								<input type="number" class="form-control mb-3" id="ReadyIn" :placeholder="$t('Ready in')" v-model="readyIn">
+								<input type="number" class="form-control mb-3" id="ReadyIn" :placeholder="$t('Min')" v-model="cooking">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="PreparationInput" class="form-group row">
+					<label for="Preparation" class="col-sm-2 col-form-label">{{ $t('Preparation') }}:</label>
+					<div class="col-sm-10">
+						<div class="row">
+							<div class="col">
+								<input type="number" class="form-control mb-3" id="Preparation" :placeholder="$t('Min')" v-model="preparation">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="WaitingInput" class="form-group row">
+					<label for="Waiting" class="col-sm-2 col-form-label">{{ $t('Waiting')}}:</label>
+					<div class="col-sm-10">
+						<div class="row">
+							<div class="col">
+								<input type="number" class="form-control mb-3" id="Waiting" :placeholder="$t('Min')" v-model="waiting">
 							</div>
 						</div>
 					</div>
@@ -233,8 +255,10 @@
 				},
 				image: null,
 				selectedIngredients: [],
-				dishes: 0,
-				readyIn: 0,
+				dishes: null,
+				cooking: null,
+				preparation: null,
+				waiting: null,
 				youtubeLink: '',
 				authorName: '',
 				authorProfession: '',
@@ -309,8 +333,10 @@
 				this.$set(this.data, 'translations', []);
 				this.image = null;
 				this.selectedIngredients = [];
-				this.dishes = 0;
-				this.readyIn = 0;
+				this.dishes = null;
+				this.cooking = null;
+				this.preparation = null;
+				this.waiting = null;
 				this.youtubeLink = '';
 				this.authorName = '';
 				this.authorProfession = '';
@@ -356,7 +382,9 @@
 						});
 					});
 					data.dishes = this.dishes;
-					data.readyIn = this.readyIn;
+					data.cooking = this.cooking;
+					data.preparation = this.preparation;
+					data.waiting = this.waiting;
 					data.youtubeLink = this.youtubeLink;
 				}
 
