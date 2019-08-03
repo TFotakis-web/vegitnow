@@ -32,32 +32,32 @@
 							</div>
 						</div>
 						<div class="d-none d-lg-flex row py-4" style="height: 120px">
-<!--							<div ">-->
-								<div v-if="article['AuthorName']" class="offset-sm-3 col-sm-5 offset-md-2 col-md-4 ">
-									<div class="row h-100">
-										<div class="col d-table h-100">
-											<div class="d-table-cell align-middle">
-												<h2 class="fgGreen1 text-right m-0">{{ $t('Writes') }}:</h2>
-											</div>
+							<!--							<div ">-->
+							<div v-if="article['AuthorName']" class="offset-sm-3 col-sm-5 offset-md-2 col-md-4 ">
+								<div class="row h-100">
+									<div class="col d-table h-100">
+										<div class="d-table-cell align-middle">
+											<h2 class="fgGreen1 text-right m-0">{{ $t('Writes') }}:</h2>
 										</div>
-										<div class="col d-table h-100">
-											<div class="d-table-cell align-middle">
-												<p class="font-weight-bold m-0">{{ article['AuthorName'] }}</p>
-											</div>
+									</div>
+									<div class="col d-table h-100">
+										<div class="d-table-cell align-middle">
+											<p class="font-weight-bold m-0">{{ article['AuthorName'] }}</p>
 										</div>
 									</div>
 								</div>
-								<div v-if="article['AuthorProfession'] && article['AuthorName']" class="col-sm-3 d-table h-100" style="border-left: dashed 2px #327317">
-									<div class="d-table-cell align-middle">
-										<p class="font-weight-bold m-0">
-											{{ article['AuthorProfession'] }}
-											<!--Special Dietologist-->
-											<!--<br>-->
-											<!--Dr. University of Life-->
-										</p>
-									</div>
+							</div>
+							<div v-if="article['AuthorProfession'] && article['AuthorName']" class="col-sm-3 d-table h-100" style="border-left: dashed 2px #327317">
+								<div class="d-table-cell align-middle">
+									<p class="font-weight-bold m-0">
+										{{ article['AuthorProfession'] }}
+										<!--Special Dietologist-->
+										<!--<br>-->
+										<!--Dr. University of Life-->
+									</p>
 								</div>
-<!--							</div>-->
+							</div>
+							<!--							</div>-->
 						</div>
 					</div>
 				</div>
@@ -66,10 +66,13 @@
 				<div class="bg-white rounded-circle authorProfilePicture" :style="{ 'background-image': 'url(' + article.AuthorProfilePicture + ')' }"></div>
 				<div class="dashedCircle rotating" style="height: 210px; width: 210px; margin-top: -200px; margin-left: -10px;"></div>
 			</div>
-			<div id="Instructions" class="mt-4 mb-5 d-flex">
+			<div id="ArticleContent" class="mt-4 d-flex">
 				<div class="container">
 					<div class="htmlRenderer" v-html="article.Content"></div>
 				</div>
+			</div>
+			<div class="container mt-3 mb-5 text-center">
+				<span v-if="article.ReleaseDateTime"><i>{{ $t('Published on') }}: {{ article.ReleaseDateTime.date }}</i></span>
 			</div>
 			<RecommendedArticles :current-article-id="id"/>
 		</div>
