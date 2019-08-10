@@ -1,8 +1,7 @@
 <template>
 	<div class="d-flex flex-grow-1 mb-5">
 		<Loader v-if="requestsUnsatisfied"/>
-		<div v-if="!requestsUnsatisfied" class="flex-grow-1">
-			<div class="navbar-placeholder"></div>
+		<div v-if="!requestsUnsatisfied" class="flex-grow-1 mt-3">
 			<div class="container">
 				<div class="row">
 					<template v-for="(item, index) in pageItems">
