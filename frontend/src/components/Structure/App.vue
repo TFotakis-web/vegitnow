@@ -34,7 +34,7 @@
 		<div class="d-flex flex-grow-1" v-if="!$root.requestsUnsatisfied">
 			<NavigationBar/>
 			<notifications class="m-1" position="top center"/>
-			<router-view :key="$route.path"/>
+			<router-view :key="$route.path" class="navbar-placeholder"/>
 		</div>
 		<Footer v-if="!$root.requestsUnsatisfied" :key="$route.fullPath"/>
 	</div>
@@ -116,6 +116,262 @@
 </style>
 
 <style>
+	.bgGreen0 {
+		background-color: #2d6c13;
+	}
+
+	.bgGreenTrans0 {
+		background-color: rgba(44, 107, 18, 0.75);
+	}
+
+	.bgGreen1 {
+		background-color: #b6e4a2;
+	}
+
+	.bgGreen2 {
+		background-color: #3da313;
+	}
+
+	.bgGreen3 {
+		background-color: #d4f4c6;
+	}
+
+	.bgGreen4 {
+		background-color: #e9f9e3;
+	}
+
+	.fgGreen0 {
+		color: #316e17 !important;
+	}
+
+	.fgGreen1 {
+		color: #327317 !important;
+	}
+
+	.fgGreen1-as-bg {
+		background: #327317 !important;
+	}
+
+	.fgGray0 {
+		color: #282828 !important;
+	}
+
+	.fgGray1 {
+		color: #434343 !important;
+	}
+
+	body {
+		background-color: #fafafa;
+	}
+
+	.dropdown-menu {
+		font-size: 0.8rem;
+	}
+
+	.bg-light-gray {
+		background-color: #fafafa;
+	}
+
+	.navbar-toggler {
+		border: 0;
+	}
+
+	.full-screen-img {
+		height: 100vh;
+		background-repeat: inherit;
+		background-position: center center;
+		background-size: cover;
+	}
+
+	.full-box-img {
+		background-repeat: inherit;
+		background-position: center center;
+		background-size: cover;
+	}
+
+	.carousel-blur {
+		-webkit-filter: blur(50px);
+		-moz-filter: blur(50px);
+		-o-filter: blur(50px);
+		-ms-filter: blur(50px);
+		filter: blur(50px);
+	}
+
+	@media (min-width: 767px) {
+		.navbar-placeholder {
+			margin-top: 72px !important;
+		}
+	}
+
+	.navbar-placeholder {
+		/*height: 100px;*/
+		/*background: #fafafa;*/
+		/*margin-bottom: 20px;*/
+		margin-top: 56px;
+	}
+
+	@media (min-width: 767px) {
+		.h-100-minus-navbar {
+			height: calc(100vh - 72px) !important;
+		}
+	}
+
+	.h-100-minus-navbar {
+		height: calc(100vh - 56px);
+	}
+
+	.hr-red {
+		border-top: 1px solid #3da313;
+	}
+
+	.hr-black {
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	.hr-white {
+		border-top: 1px solid white;
+	}
+
+	.bg-dark {
+		background-color: #212121;
+		color: white;
+	}
+
+	.btn-circle {
+		height: 45px;
+		width: 45px;
+		border: 1px solid rgba(0, 0, 0, 0.4);
+		border-radius: 100%;
+	}
+
+	@media (max-width: 576px) {
+		.border-top-sm {
+			border-top: 1px solid rgba(0, 0, 0, 0.125);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.border-top-md {
+			border-top: 1px solid rgba(0, 0, 0, 0.125);
+		}
+	}
+
+	@media (max-width: 992px) {
+		.border-top-lg {
+			border-top: 1px solid rgba(0, 0, 0, 0.125);
+		}
+	}
+
+	.navbar-social {
+		transition: .5s;
+	}
+
+	.navbar-social:hover {
+		color: #3da313 !important;
+	}
+
+	.dropdown-menu {
+		background-color: #3da313;
+		color: white !important;
+	}
+
+	.dropdown-menu a {
+		color: white;
+	}
+
+	.navbar-item-vertical-offset {
+		position: static;
+	}
+
+	@media (min-width: 768px) {
+		.navbar-item-vertical-offset {
+			position: absolute;
+			top: 25px;
+		}
+	}
+
+	.flex-basis-fix {
+		flex-basis: 0;
+	}
+
+	@media (min-width: 768px) {
+		.flex-basis-fix {
+			flex-basis: auto;
+		}
+	}
+
+	.vegShop-btn {
+		display: inline-block;
+		width: 100px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background-color: #3da313;
+		clip-path: polygon(0% 58%, 15% 1%, 21% 0%, 28% 9%, 49% 1%, 80% 3%, 85% 1%, 100% 44%, 91% 100%, 85% 95%, 79% 97%, 19% 93%, 16% 98%, 11% 98%);
+	}
+
+	.vegShop-btn span {
+		margin: auto;
+		font-weight: bold;
+		color: white;
+	}
+
+	.locale-btn {
+		cursor: pointer;
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background-color: #3da313;
+		clip-path: polygon(0% 46%, 12% 13%, 10% 1%, 31% 0%, 58% 2%, 77% 1%, 93% 10%, 100% 33%, 97% 65%, 84% 92%, 74% 100%, 45% 100%, 34% 97%, 22% 100%, 9% 92%);
+	}
+
+	.locale-btn span {
+		margin: auto;
+		font-weight: bold;
+		color: white;
+	}
+
+	@font-face {
+		font-family: 'AC-ScriptCondenced_unicode';
+		src: url('../../static/app/fonts/AC-ScriptCondenced_unicode.ttf') format('truetype')
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'AC-ScriptCondenced_unicode', sans-serif;
+		/*letter-spacing: 0.1em;*/
+	}
+
+	p {
+		font-family: 'AlegreyaSans', sans-serif;
+	}
+
+	.sans {
+		font-family: 'AC-ScriptCondenced_unicode', sans-serif;
+		/*letter-spacing: 0.1em;*/
+	}
+
+	.btn {
+		font-family: 'AlegreyaSans', sans-serif;
+		font-weight: bold;
+	}
+
+	.btn-shadow {
+		-webkit-box-shadow: 0 2px 0 0 rgba(45, 108, 19, 1), 0 4px 0 0 rgba(255, 255, 255, 1);
+		-moz-box-shadow: 0 2px 0 0 rgba(45, 108, 19, 1), 0 4px 0 0 rgba(255, 255, 255, 1);
+		box-shadow: 0 2px 0 0 rgba(45, 108, 19, 1), 0 4px 0 0 rgba(255, 255, 255, 1);
+	}
+
+	.animateClass {
+		clip-path: polygon(20% 0%, 0% 0%, 0% 50%, 0% 80%, 0% 100%, 50% 100%, 80% 100%, 100% 100%, 100% 50%, 100% 0%, 80% 0%, 50% 0%);
+		transition: -webkit-clip-path 0.2s;
+	}
+
+	.animateClass:hover {
+		clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+	}
+
 	.fade-enter-active {
 		animation: fadeIn 1s ease-out;
 	}
@@ -199,5 +455,43 @@
 
 	.htmlRenderer p[style*="text-align: center" i] iframe {
 		margin: auto !important;
+	}
+
+
+	.v-icon-clock {
+		mask: url(/static/app/img/icons/clock.svg?v1.0);
+	}
+
+	.v-icon-ingredients {
+		mask: url(/static/app/img/icons/ingredients.svg?v1.0);
+	}
+
+	.v-icon-portions {
+		mask: url(/static/app/img/icons/portions.svg?v1.0);
+	}
+
+	.v-icon {
+		display: inline-block;
+		width: 2rem;
+		height: 2rem;
+		mask-size: cover;
+	}
+
+	.box-clip-path1 {
+		clip-path: polygon(2% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%);
+	}
+
+	.box-clip-path2 {
+		clip-path: polygon(0% 10%, 2% 5%, 17% 2%, 30% 3%, 47% 0%, 78% 1%, 97% 5%, 100% 11%, 100% 100%, 0% 100%, 0% 10%);
+	}
+
+	.router-link-active {
+		color: #495057;
+		background-color: #fff;
+		border-color: #dee2e6 #dee2e6 #fff !important;
+	}
+
+	.bg-blur{
+		backdrop-filter: blur(4px);
 	}
 </style>
