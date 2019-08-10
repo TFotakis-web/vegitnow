@@ -2,7 +2,7 @@
 	<div id="recipeView" class="d-flex flex-grow-1">
 		<Loader v-if="requestsUnsatisfied"/>
 		<div v-if="!requestsUnsatisfied" class="flex-grow-1">
-			<div id="RecipeImageAndStats" class="d-flex flex-column" style="height: 100vh;clip-path: polygon(2% 0%, 98% 0%, 97% 20%, 98% 70%, 96% 90%, 97.5% 95%, 98% 100%, 2% 100%, 3% 95%, 2% 80%, 2% 70%, 3% 20%);">
+			<div id="RecipeImageAndStats" class="d-flex flex-column box-clip-path1 h-100-minus-navbar">
 				<div class="full-box-img flex-grow-1 d-flex flex-column justify-content-end" :style="{ 'background-image': 'url(' + article.Thumbnail + ')' }">
 					<div class="container">
 						<h1 class="text-white w-100 text-center text-lg-left mb-4" style="text-shadow: black 0 0 20px;">{{ article.Title }}</h1>
@@ -14,28 +14,28 @@
 							<div class="col-sm-3">
 								<h2 class="fgGreen1">{{ $t('Ready in') }}:</h2>
 								<p class="font-weight-bold mb-sm-0 d-inline-block">
-									<img class="float-left mr-2" src="/static/app/img/icons/clock.svg?v1.0" alt="clock" style="height: 3rem"/>
+									<span class="float-left mr-2 v-icon v-icon-clock fgGreen1-as-bg" style="height: 3rem; width: 3rem;"></span>
 									<span class="float-right text-left">{{ $t('Cooking') }}: {{ article.Cooking }}'<br>{{ $t('Preparation') }}: {{ article.Preparation }}'</span>
 								</p>
 							</div>
 							<div class="col-sm-3" style="border-left: dashed 2px #327317;">
 								<h2 class="fgGreen1">{{ $t('Waiting') }}:</h2>
 								<p class="font-weight-bold mb-sm-0 d-inline-block">
-									<img class="mr-2" src="/static/app/img/icons/clock.svg?v1.0" alt="clock" style="height: 3rem"/>
+									<span class="mr-2 v-icon v-icon-clock fgGreen1-as-bg" style="height: 3rem; width: 3rem;"></span>
 									<span class="text-left">{{ article.Waiting }}'</span>
 								</p>
 							</div>
 							<div class="col-sm-3" style="border-left: dashed 2px #327317; border-right: dashed 2px #327317">
 								<h2 class="fgGreen1">{{ $t('Main Ingredients') }}:</h2>
 								<p class="font-weight-bold mb-sm-0 d-inline-block">
-									<img class="float-left mr-2" src="/static/app/img/icons/ingredients.svg?v1.0" alt="ingredients" style="height: 3rem"/>
+									<span class="float-left mr-2 v-icon v-icon-ingredients fgGreen1-as-bg" style="height: 3rem; width: 3rem;"></span>
 									<span class="text-left"><template v-for="(ingredient, index) in articleMainIngredients">{{ ingredient.Name }}<template v-if="index !== articleMainIngredients.length - 1"> - </template></template></span>
 								</p>
 							</div>
 							<div class="col-sm-3">
 								<h2 class="fgGreen1">{{ $t('Dishes') }}:</h2>
 								<p class="font-weight-bold mb-sm-0 d-inline-block">
-									<img class="mr-2" src="/static/app/img/icons/portions.svg?v1.0" alt="portions" style="height: 3rem"/>
+									<span class="mr-2 v-icon v-icon-portions fgGreen1-as-bg" style="height: 3rem; width: 4.5rem;"></span>
 									<span class="text-left">{{ article.Dishes }}</span>
 								</p>
 							</div>
