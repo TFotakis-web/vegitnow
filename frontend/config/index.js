@@ -71,6 +71,13 @@ module.exports = {
 					protocol: 'http:',
 					port: 8000
 				}
+			},
+			'/static/rest_framework/': {
+				target: {
+					host: "localhost",
+					protocol: 'http:',
+					port: 8000
+				}
 			}
 		},
 		// CSS Sourcemaps off by default because relative paths are "buggy"
