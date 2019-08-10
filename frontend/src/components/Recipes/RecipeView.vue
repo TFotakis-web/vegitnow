@@ -22,7 +22,10 @@
 								<h2 class="fgGreen1">{{ $t('Waiting') }}:</h2>
 								<p class="font-weight-bold mb-sm-0 d-inline-block">
 									<span class="mr-2 v-icon v-icon-clock fgGreen1-as-bg" style="height: 3rem; width: 3rem;"></span>
-									<span class="text-left">{{ article.Waiting }}'</span>
+									<span class="text-left">
+										<span v-if="Math.floor(article.Waiting / 60)">{{ Math.floor(article.Waiting / 60) }}h</span>
+										<span>{{ article.Waiting % 60 }}'</span>
+									</span>
 								</p>
 							</div>
 							<div class="col-sm-3" style="border-left: dashed 2px #327317; border-right: dashed 2px #327317">
