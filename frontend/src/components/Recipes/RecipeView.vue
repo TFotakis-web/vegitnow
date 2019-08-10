@@ -23,8 +23,8 @@
 								<p class="font-weight-bold mb-sm-0 d-inline-block">
 									<span class="mr-2 v-icon v-icon-clock fgGreen1-as-bg" style="height: 3rem; width: 3rem;"></span>
 									<span class="text-left">
-										<span v-if="Math.floor(article.Waiting / 60)">{{ Math.floor(article.Waiting / 60) }}h</span>
-										<span>{{ article.Waiting % 60 }}'</span>
+										<span v-if="Math.floor(article.Waiting / 60)">{{ Math.floor(article.Waiting / 60) }}{{ $t("h")}}</span>
+										<span v-if="Math.floor(article.Waiting / 60) === 0 || article.Waiting % 60">{{ article.Waiting % 60 }}'</span>
 									</span>
 								</p>
 							</div>
