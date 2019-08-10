@@ -1,12 +1,12 @@
 <template>
 	<div id="carousel" v-if="articleList.length" style="position: relative;">
 		<a class="btn btn-circle bgGreen2 text-white" href="#carouselControls" role="button" data-slide="prev"
-		   style=" font-size: 1.5rem; font-family: 'AC-ScriptCondenced_unicode', sans-serif; position: absolute; top: 50%; left: 1%; z-index: 1029;">
+		   style=" font-size: 1.5rem; font-family: 'AC-ScriptCondenced_unicode', sans-serif; position: absolute; top: 50vh; left: 1%; z-index: 1029; margin-top: -22.5px">
 			<span aria-hidden="true"><</span>
 			<span class="sr-only">Previous</span>
 		</a>
 		<a class="btn btn-circle bgGreen2 text-white" href="#carouselControls" role="button" data-slide="next"
-		   style=" font-size: 1.5rem; font-family: 'AC-ScriptCondenced_unicode', sans-serif; position: absolute; top: 50%; right: 1%; z-index: 1029;">
+		   style=" font-size: 1.5rem; font-family: 'AC-ScriptCondenced_unicode', sans-serif; position: absolute; top: 50vh; right: 1%; z-index: 1029; margin-top: -22.5px">
 			<span aria-hidden="true">></span>
 			<span class="sr-only">Next</span>
 		</a>
