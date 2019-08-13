@@ -265,7 +265,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 					continue
 			act.Language_id = translation['Language']
 			act.Title = translation['Title']
-			if translation['Preview'] == '':
+			if 'Preview' not in translation or ('Preview' in translation and translation['Preview'] == ''):
 				soup = BeautifulSoup(translation['Content'], features='html.parser')
 				rawText = soup.get_text()
 				act.Preview = (rawText[:100] if len(rawText) > 100 else rawText) + '...'
