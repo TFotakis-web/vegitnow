@@ -130,7 +130,7 @@ class StaticPageTranslationViewSet(viewsets.ModelViewSet):
 		spt = StaticPageTranslation(
 			StaticPage_id=staticPageId,
 			Language_id=request.data['Language'],
-			Name=request.data['Name'],
+			Name=request.data['Name'].strip(),
 			Content=request.data['Content'],
 			Listed=request.data['Listed'],
 			Private=request.data['Private']
@@ -148,7 +148,7 @@ class StaticPageTranslationViewSet(viewsets.ModelViewSet):
 			return Response(status=HTTP_404_NOT_FOUND)
 		spt.update(
 			Language_id=request.data['Language'],
-			Name=request.data['Name'],
+			Name=request.data['Name'].strip(),
 			Content=request.data['Content'],
 			Listed=request.data['Listed'],
 			Private=request.data['Private']
@@ -253,7 +253,7 @@ class AdViewSet(viewsets.ModelViewSet):
 
 	def create(self, request, *args, **kwargs):
 		ad = Ad(
-			Name=request.data['Name'],
+			Name=request.data['Name'].strip(),
 			AdType=request.data['AdType'],
 			TargetClicks=request.data['TargetClicks'],
 			ReleaseDateTime=datetime.strptime(request.data['ReleaseDateTime']['date'] + '-' + request.data['ReleaseDateTime']['time'] + '-' + 'UTC', '%d/%m/%Y-%H:%M-%Z'),
@@ -275,7 +275,7 @@ class AdViewSet(viewsets.ModelViewSet):
 			ad = Ad.objects.get(id=kwargs['pk'])
 		except:
 			return Response(status=HTTP_404_NOT_FOUND)
-		ad.Name = request.data['Name']
+		ad.Name = request.data['Name'].strip()
 		ad.AdType = request.data['AdType']
 		ad.TargetClicks = request.data['TargetClicks']
 		ad.ReleaseDateTime = datetime.strptime(request.data['ReleaseDateTime']['date'] + '-' + request.data['ReleaseDateTime']['time'] + '-' + 'UTC', '%d/%m/%Y-%H:%M-%Z')
