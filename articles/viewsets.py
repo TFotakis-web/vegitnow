@@ -236,9 +236,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
 				act.Preview = translation['preview']
 			if at == 1:
 				act.Dishes = request.data['dishes']
-				act.Cooking = request.data['Cooking']
-				act.Preparation = request.data['Preparation']
-				act.Waiting = request.data['Waiting']
+				act.Cooking = request.data['cooking']
+				act.Preparation = request.data['preparation']
+				act.Waiting = request.data['waiting']
 				act.YoutubeLink = request.data['youtubeLink']
 			elif at == 2:
 				act.AuthorName = translation['authorName']
