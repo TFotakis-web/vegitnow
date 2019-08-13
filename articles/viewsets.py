@@ -222,7 +222,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 		ata.save()
 		for translation in translations:
 			act = ArticleContentTranslation(Article=a, Language_id=translation['language'])
-			act.Title = translation['title']
+			act.Title = translation['title'].strip()
 			act.Content = translation['content']
 			act.Thumbnail = base64toFile(translation['thumbnail']['name'], translation['thumbnail']['data'])
 			dateStr = translation['releaseDateTime']['date'] + '-' + translation['releaseDateTime']['time'] + '-' + 'UTC'
@@ -264,7 +264,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 				if not act:
 					continue
 			act.Language_id = translation['Language']
-			act.Title = translation['Title']
+			act.Title = translation['Title'].strip()
 			if 'Preview' not in translation or ('Preview' in translation and translation['Preview'] == ''):
 				soup = BeautifulSoup(translation['Content'], features='html.parser')
 				rawText = soup.get_text()
