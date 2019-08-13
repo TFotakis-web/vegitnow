@@ -8,7 +8,7 @@ timestamp += (today.getMonth() < 8 ? '0' : '') + (today.getMonth() + 1).toString
 timestamp += today.getDate().toString();
 
 const staticCacheName = 'static-' + timestamp;
-const mediaCacheName = 'media-20190713';
+const mediaCacheName = 'media-20190813';
 const apiCacheName = 'api-' + timestamp;
 const cacheWhitelist = [staticCacheName, mediaCacheName, apiCacheName];
 
