@@ -39,7 +39,7 @@ class NewsletterUser(models.Model):
 class AdTranslation(models.Model):
 	Ad = models.ForeignKey('Ad', blank=True, null=True, on_delete=models.CASCADE)
 	Language = models.ForeignKey(Language, on_delete=models.DO_NOTHING)
-	Image = models.ImageField(blank=True)
+	Image = models.ImageField(blank=True, upload_to='vegitnowads')
 	Link = models.CharField(default='', max_length=2048)
 
 	def __str__(self): return self.Ad.Name + ': ' + self.Language.Code
