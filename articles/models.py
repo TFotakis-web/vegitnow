@@ -1,9 +1,8 @@
 from datetime import datetime
-
 from django.contrib.auth.models import User
 from django.db import models
-
 from general.models import Language
+from froala_editor.fields import FroalaField
 
 
 class ArticleType(models.Model):
@@ -28,7 +27,7 @@ class ArticleContentTranslation(models.Model):
 	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
 	Title = models.CharField(default='', blank=True, null=True, max_length=1024)
 	Preview = models.CharField(default='', blank=True, null=True, max_length=150)
-	Content = models.TextField(blank=True)
+	Content = FroalaField(blank=True)
 	Thumbnail = models.ImageField(blank=True, upload_to='articles')
 	ReleaseDateTime = models.DateTimeField(default=None, blank=True, null=True)
 	DoneEditing = models.BooleanField(default=False)
