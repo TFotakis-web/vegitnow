@@ -11,11 +11,15 @@ import VueScrollTo from 'vue-scrollto';
 import VueHead from 'vue-head';
 import {toGreeklish} from 'greek-utils';
 
+// Import and use Vue Froala lib.
+import VueFroala from 'vue-froala-wysiwyg';
+
 Vue.use(VueResource);
 Vue.use(Notifications);
 Vue.use(VueCookie);
 Vue.use(VueScrollTo);
 Vue.use(VueHead);
+Vue.use(VueFroala);
 
 Vue.config.productionTip = false;
 
