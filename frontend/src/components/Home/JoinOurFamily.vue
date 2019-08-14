@@ -47,25 +47,6 @@
 </script>
 
 <style scoped>
-	/*@media (min-width: 375px) {*/
-	/*	.outerBox {*/
-	/*		zoom: 50% !important;*/
-	/*	}*/
-	/*}*/
-	/**/
-	/*@media (min-width: 565px) {*/
-	/*	.outerBox {*/
-	/*		zoom: 100% !important;*/
-	/*	}*/
-	/*}*/
-
-	/*.outerBox {*/
-	/*	max-width: 200px;*/
-	/*max-width: calc(400px / 1.5);*/
-	/*max-width: 400px;*/
-	/*zoom: 45%;*/
-	/*}*/
-
 	.transparentLeaf {
 		width: 30vw;
 		max-width: 200px;
@@ -84,7 +65,7 @@
 		max-height: 400px;
 		max-width: 400px;
 		border-radius: 50%;
-		border: dashed #2d6c13;
+		border: dashed var(--v-green0);
 		pointer-events: none;
 		overflow: hidden;
 		position: relative;
