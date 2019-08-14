@@ -27,7 +27,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="h-50" style="border-top: dashed 2px #3da313;">
+											<div class="h-50" style="border-top: dashed 2px var(--v-green2);">
 												<div v-if="article.ArticleTypeId === 1" class="container w-75">
 													<div class="row text-center">
 														<div class="col-lg-6 carousel-border-right">
@@ -95,15 +95,15 @@
 </script>
 
 <style scoped>
-	@media (min-width: 576px) {
+	@media (min-width: var(--breakpoint-sm)) {
 		.carousel-title {
 			font-size: 4rem;
 		}
 	}
 
-	@media (min-width: 992px) {
+	@media (min-width: var(--breakpoint-lg)) {
 		.carousel-border-right {
-			border-right: dashed 2px #3da313;
+			border-right: dashed 2px var(--v-green2);
 		}
 	}
 </style>
