@@ -47,7 +47,7 @@
 									</div>
 								</div>
 							</div>
-							<div v-if="article['AuthorProfession'] && article['AuthorName']" class="col-sm-3 d-table h-100" style="border-left: dashed 2px #327317">
+							<div v-if="article['AuthorProfession'] && article['AuthorName']" class="col-sm-3 d-table h-100" style="border-left: dashed 2px var(--v-green6)">
 								<div class="d-table-cell align-middle">
 									<p class="font-weight-bold m-0">
 										{{ article['AuthorProfession'] }}
@@ -171,7 +171,7 @@
 		height: 400px;
 		width: 400px;
 		border-radius: 50%;
-		border: dashed #2d6c13;
+		border: dashed var(--v-green0);
 		pointer-events: none;
 		overflow: hidden;
 	}
