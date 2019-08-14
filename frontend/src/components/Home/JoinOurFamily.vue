@@ -23,6 +23,7 @@
 					</div>
 				</div>
 
+				<img src="/static/app/img/VegItNowLogoLeaf.svg" alt="logo" class="transparentLeaf">
 			</div>
 		</div>
 		<Ads AdType="HOME_JOIN_OUR_FAMILY"/>
@@ -65,6 +66,18 @@
 	/*zoom: 45%;*/
 	/*}*/
 
+	.transparentLeaf {
+		width: 30vw;
+		max-width: 200px;
+		opacity: 0.15;
+		position: absolute;
+		top: 0;
+		left: -18%;
+		-webkit-transform: rotate(-10deg);
+		transform: rotate(-10deg);
+		z-index: 1;
+	}
+
 	.dashedCircle {
 		height: 70vw;
 		width: 70vw;
@@ -74,6 +87,8 @@
 		border: dashed #2d6c13;
 		pointer-events: none;
 		overflow: hidden;
+		position: relative;
+		z-index: 2
 	}
 
 	.FamilyCircle {
