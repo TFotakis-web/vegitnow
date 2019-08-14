@@ -33,7 +33,7 @@
 
 <style scoped>
 	.recipe-card-bordered {
-		border-left: dashed 2px #327317;
-		border-right: dashed 2px #327317;
+		border-left: dashed 2px var(--v-green6);
+		border-right: dashed 2px var(--v-green6);
 	}
 </style>
