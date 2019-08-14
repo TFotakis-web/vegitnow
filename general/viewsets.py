@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from random import shuffle
 
@@ -5,7 +6,6 @@ from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.status import *
-from rest_framework.viewsets import GenericViewSet
 
 from articles.viewsets import base64toFile
 from general.models import Ad, AdTranslation
@@ -18,6 +18,7 @@ from general.serializers import LanguageSerializer
 from general.serializers import NewsletterUserSerializer
 from general.serializers import StaticPageSerializer
 from general.serializers import StaticPageTranslationSerializer
+from vegitnow.settings import MEDIA_ROOT, MEDIA_URL
 
 
 class LanguageViewSet(viewsets.ModelViewSet):
@@ -179,7 +180,7 @@ class NewsletterUserViewSet(viewsets.ModelViewSet):
 	permission_classes = (IsAdminUser,)
 
 
-class CreateNewsletterUserViewSet(mixins.CreateModelMixin, GenericViewSet):
+class CreateNewsletterUserViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 	serializer_class = NewsletterUserSerializer
 
 
@@ -303,3 +304,30 @@ class AdViewSet(viewsets.ModelViewSet):
 			return super().destroy(request)
 		AdTranslation.objects.filter(id=request.query_params['translationId']).delete()
 		return Response(status=HTTP_200_OK)
+
+
+class MediaViewSet(viewsets.GenericViewSet):
+	permission_classes = (IsAdminUser,)
+
+	def list(self, request, *args, **kwargs):
+		files = []
+		# r=root, d=directories, f = files
+		for r, d, f in os.walk(MEDIA_ROOT):
+			for file in f:
+				path = str(os.path.join(r, file))
+				url = MEDIA_URL + path.split(MEDIA_ROOT + '/')[-1]
+				files.append({
+					'url': url,
+					'name': file,
+					'tag': r.split('/')[-1]
+				})
+		return Response(files)
+
+	def destroy(self, request, *args, **kwargs):
+		file = request.POST['src']
+		filepath = os.path.join(MEDIA_ROOT, file.split(MEDIA_URL)[-1])
+		os.remove(filepath)
+		return Response(status=HTTP_200_OK)
+
+	def get_queryset(self):
+		return None
