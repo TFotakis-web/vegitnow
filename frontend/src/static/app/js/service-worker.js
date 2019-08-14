@@ -94,6 +94,7 @@ self.addEventListener('fetch', event => {
 	else if (/^\/__webpack_hmr/.test(requestURL.pathname)) return;
 	else if (/^\/s6AptmegHaGM3Ry5vdlr\/database\//.test(requestURL.pathname)) return;
 	else if (/^\/summernote\//.test(requestURL.pathname)) return;
+	else if (/^\/froala_editor\//.test(requestURL.pathname)) return;
 	else if (/^\/static\//.test(requestURL.pathname)) cacheFirst(event, staticCacheName);
 	else if (/^\/media\//.test(requestURL.pathname)) cacheFirst(event, mediaCacheName);
 	else if (/^\/api\//.test(requestURL.pathname)) networkFirst(event, apiCacheName);
