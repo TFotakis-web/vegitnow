@@ -11,6 +11,7 @@ from general.viewsets import NewsletterUserViewSet
 from general.viewsets import StaticPageTranslationViewSet
 from general.viewsets import StaticPageViewSet
 from general.viewsets import AdViewSet
+from general.viewsets import MediaViewSet
 
 router = routers.DefaultRouter()
 
@@ -25,3 +26,4 @@ router.register(r'createNewsletterUser', CreateNewsletterUserViewSet, basename='
 router.register(r'ingredientAssociation', IngredientAssociationViewSet)
 router.register(r'articleContentTranslation', ArticleContentTranslationViewSet)
 router.register(r'vegitnowad', AdViewSet)
+router.register(r'media', MediaViewSet, basename='media')
