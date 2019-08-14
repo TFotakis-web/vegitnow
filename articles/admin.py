@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django_summernote.admin import SummernoteModelAdmin
+# from django_summernote.admin import SummernoteModelAdmin
 
 from articles.models import Article
 from articles.models import ArticleContentTranslation
@@ -18,20 +18,26 @@ from articles.models import IngredientNameTranslation
 # from articles.models import UnitNameTranslation
 # from articles.models import UnitAssociation
 
-
 # Apply summernote to all TextField in model.
-class SummernoteAdmin(SummernoteModelAdmin):
-	summernote_fields = '__all__'
+# class SummernoteAdmin(SummernoteModelAdmin):
+# 	summernote_fields = '__all__'
+
+class GeneralAdmin(admin.ModelAdmin):
+	class Media:
+		js = (
+			'general/js/js.cookie.min.js',
+		)
 
 
-admin.site.register(Article, SummernoteAdmin)
-admin.site.register(ArticleContentTranslation, SummernoteAdmin)
-admin.site.register(ArticleType, SummernoteAdmin)
-admin.site.register(ArticleTypeNameTranslation, SummernoteAdmin)
-admin.site.register(ArticleTypeAssociation, SummernoteAdmin)
-admin.site.register(Ingredient, SummernoteAdmin)
-admin.site.register(IngredientNameTranslation, SummernoteAdmin)
-admin.site.register(IngredientAssociation, SummernoteAdmin)
+admin.site.register(Article)
+admin.site.register(ArticleContentTranslation, GeneralAdmin)
+admin.site.register(ArticleType)
+admin.site.register(ArticleTypeNameTranslation)
+admin.site.register(ArticleTypeAssociation)
+admin.site.register(Ingredient)
+admin.site.register(IngredientNameTranslation)
+admin.site.register(IngredientAssociation)
+
 # admin.site.register(Tag, SummernoteAdmin)
 # admin.site.register(TagNameTranslation, SummernoteAdmin)
 # admin.site.register(TagAssociation, SummernoteAdmin)
