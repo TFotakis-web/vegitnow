@@ -10,17 +10,17 @@
 				</div>
 				<div class="bgGreen1" style="">
 					<div class="container">
-						<div class="row text-center text-sm-left py-4">
-							<div class="col-sm-3">
+						<div class="row text-center text-md-left py-4">
+							<div class="col-sm-6 col-md-3">
 								<h2 class="fgGreen1">{{ $t('Ready in') }}:</h2>
-								<p class="font-weight-bold mb-sm-0 d-inline-block">
+								<p class="mb-sm-0 d-inline-block">
 									<span class="float-left mr-2 v-icon v-icon-clock fgGreen1-as-bg" style="height: 3rem; width: 3rem;"></span>
 									<span class="float-right text-left">{{ $t('Cooking') }}: {{ article.Cooking }}'<br>{{ $t('Preparation') }}: {{ article.Preparation }}'</span>
 								</p>
 							</div>
-							<div class="col-sm-3" style="border-left: dashed 2px #327317;">
+							<div class="col-sm-6 col-md-3 v-border-left-md">
 								<h2 class="fgGreen1">{{ $t('Waiting') }}:</h2>
-								<p class="font-weight-bold mb-sm-0 d-inline-block">
+								<p class="mb-sm-0 d-inline-block">
 									<span class="mr-2 v-icon v-icon-clock fgGreen1-as-bg" style="height: 3rem; width: 3rem;"></span>
 									<span class="text-left">
 										<span v-if="Math.floor(article.Waiting / 60)">{{ Math.floor(article.Waiting / 60) }}{{ $t("h")}}</span>
@@ -28,16 +28,16 @@
 									</span>
 								</p>
 							</div>
-							<div class="col-sm-3" style="border-left: dashed 2px #327317; border-right: dashed 2px #327317">
+							<div class="col-sm-6 col-md-3 v-border-left-md">
 								<h2 class="fgGreen1">{{ $t('Main Ingredients') }}:</h2>
-								<p class="font-weight-bold mb-sm-0 d-inline-block">
+								<p class="mb-sm-0 d-inline-block">
 									<span class="float-left mr-2 v-icon v-icon-ingredients fgGreen1-as-bg" style="height: 3rem; width: 3rem;"></span>
 									<span class="text-left"><template v-for="(ingredient, index) in articleMainIngredients">{{ ingredient.Name }}<template v-if="index !== articleMainIngredients.length - 1"> - </template></template></span>
 								</p>
 							</div>
-							<div class="col-sm-3">
+							<div class="col-sm-6 col-md-3 v-border-left-md">
 								<h2 class="fgGreen1">{{ $t('Dishes') }}:</h2>
-								<p class="font-weight-bold mb-sm-0 d-inline-block">
+								<p class="mb-sm-0 d-inline-block">
 									<span class="mr-2 v-icon v-icon-portions fgGreen1-as-bg" style="height: 3rem; width: 4.5rem;"></span>
 									<span class="text-left">{{ article.Dishes }}</span>
 								</p>
@@ -49,25 +49,31 @@
 			<div id="Instructions">
 				<div class="container">
 					<div class="row py-5">
-						<div class="col-sm-4 text-center">
+						<div class="col-md-4 text-md-center">
 							<h2 class="fgGreen1">{{ $t('Ingredients') }}</h2>
 							<p v-for="ingredient in article.Ingredients">{{ ingredient.Quantity }}gr {{ ingredient.Name }}</p>
 						</div>
-						<div class="col-sm-8" style="border-left: dashed 2px #327317;">
+						<div class="col-md-8 v-border-left-md">
 							<h2 class="fgGreen1 text-center text-sm-left">{{ $t('Execution') }}</h2>
 							<div class="htmlRenderer" v-html="article.Content"></div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id="VideoAndNutrition" v-if="article.YoutubeLink !== ''" class="bgGreen1" style="clip-path: polygon(2% 0%, 98% 0%, 98.5% 20%, 97% 60%, 97% 85%, 98% 100%, 2% 100%, 3% 60%, 1.5% 20%);">
-				<div class="container py-5 text-center">
-					<div class="row" v-if="article.YoutubeLink !== ''">
-						<div class="col-sm-4 text-sm-right">
-							<h2 class="fgGreen1 w-100" style="border-bottom: dashed 2px #327317;">{{ $t('Execution from us') }}</h2>
+			<div id="VideoAndNutrition" v-if="article.YoutubeLink !== ''" class="bgGreen1 box-clip-path3" style="border-top: 7rem solid var(--v-gray2);">
+				<div class="container pb-5 text-center">
+					<div class="row position-relative" v-if="article.YoutubeLink !== ''">
+						<div class="col-md-4 position-relative bgGreen1">
+							<span class="v-icon v-icon-pot bgGreen3 pot-position d-block"></span>
 						</div>
-						<div class="col-sm-8">
-							<div class="embed-responsive embed-responsive-16by9">
+					</div>
+					<div class="row position-relative" v-if="article.YoutubeLink !== ''">
+						<div class="col-md-4 position-relative bgGreen1 pr-0">
+							<span class="v-icon v-icon-video bgGreen3 d-block mx-auto mb-3" style="height: 4.45rem; width: 5.25rem; margin-top: -2.2rem"></span>
+							<h2 class="fgGreen1 w-100" style="border-bottom: dashed 2px var(--v-green6);">{{ $t('Execution from us') }}</h2>
+						</div>
+						<div class="col-md-8 pl-0">
+							<div class="embed-responsive embed-responsive-16by9 video-position">
 								<iframe class="embed-responsive-item" :src="article.YoutubeLink" allowfullscreen></iframe>
 							</div>
 						</div>
@@ -166,5 +172,42 @@
 </script>
 
 <style scoped>
+	@media (min-width: var(--breakpoint-md)) {
+		.video-position {
+			margin-top: -4rem;
+		}
+	}
 
+	.pot-position {
+		height: 8rem;
+		width: 12rem;
+		position: absolute;
+		top: -6.4rem;
+		left: 50%;
+		display: block;
+		transform: translateX(-50%);
+	}
+
+
+	@media (min-width: var(--breakpoint-md)) {
+		.v-border-left-md {
+			border-left: dashed 2px var(--v-green6)
+		}
+
+		.v-border-right-md {
+			border-right: dashed 2px var(--v-green6)
+		}
+
+		.v-border-bottom-md-0 {
+			border-bottom: none !important;
+		}
+
+		.v-border-top-md-0 {
+			border-top: none !important;
+		}
+	}
+
+	.v-border-bottom {
+		border-bottom: dashed 2px var(--v-green6)
+	}
 </style>
