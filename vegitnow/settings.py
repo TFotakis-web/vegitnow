@@ -30,6 +30,7 @@ INSTALLED_APPS = [
 	'django.contrib.staticfiles',
 	'django_extensions',
 	'django_summernote',
+	'froala_editor',
 	'rest_framework',
 	'general',
 	'articles',
@@ -111,6 +112,26 @@ USE_TZ = True
 
 SUMMERNOTE_THEME = 'lite'
 
+FROALA_EDITOR_OPTIONS = {
+	'imageManagerLoadURL': '/api/media/',
+	'imageManagerDeleteURL': '/api/media/0/',
+	'imageManagerDeleteMethod': 'DELETE',
+	'imageManagerDeleteParams': {'param': 'value'},
+	'requestHeaders': {
+		'X-CSRFToken': 'csrftokenplaceholder'
+	},
+	'toolbarButtons': [
+		'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript',
+		'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle',
+		'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL',
+		'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo',
+		'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR',
+		'selectAll', 'clearFormatting', '|', 'print', 'help', 'html', '|', 'undo', 'redo'
+	]
+}
+FROALA_UPLOAD_PATH = 'froala_editor'
+FROALA_JS_COOKIE = True
+
 REST_FRAMEWORK = {
 	'DEFAULT_AUTHENTICATION_CLASSES': (
 		'rest_framework.authentication.SessionAuthentication',
@@ -124,6 +145,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, 'frontend/dist/static'),
+	os.path.join(BASE_DIR, 'general/static'),
 ]
 
 MEDIA_URL = '/media/'
