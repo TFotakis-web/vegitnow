@@ -30,6 +30,6 @@
 
 <style scoped>
 	.article-card-bordered {
-		border-right: dashed 2px #327317;
+		border-right: dashed 2px var(--v-green6);
 	}
 </style>
