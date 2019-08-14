@@ -83,5 +83,24 @@
 </script>
 
 <style scoped>
+	.locale-btn {
+		cursor: pointer;
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background-color: var(--v-green2);
+		clip-path: polygon(0% 46%, 12% 13%, 10% 1%, 31% 0%, 58% 2%, 77% 1%, 93% 10%, 100% 33%, 97% 65%, 84% 92%, 74% 100%, 45% 100%, 34% 97%, 22% 100%, 9% 92%);
+	}
 
+	.locale-btn span {
+		margin: auto;
+		font-weight: bold;
+		color: white;
+	}
+
+	.navbar-toggler {
+		border: 0;
+	}
 </style>
