@@ -12,7 +12,7 @@
 							<div id="mc_embed_signup_scroll">
 								<div class="mc-field-group">
 									<!--<label for="mce-EMAIL">Email Address </label>-->
-									<input v-model="newsletterEmail" type="email" value="" name="EMAIL" class="form-control mb-1 required email" id="mce-EMAIL" style="border-bottom: solid #2d6c13 2px;border-top: 0; border-left: 0; border-right: 0;" :placeholder="$t('Insert your email') + '...'" aria-label="Newsletter Email">
+									<input v-model="newsletterEmail" type="email" value="" name="EMAIL" class="form-control mb-1 required email" id="mce-EMAIL" style="border-bottom: solid var(--v-green0) 2px;border-top: 0; border-left: 0; border-right: 0;" :placeholder="$t('Insert your email') + '...'" aria-label="Newsletter Email">
 								</div>
 								<div id="mce-responses" class="clear">
 									<div class="response" id="mce-error-response" style="display:none"></div>
@@ -36,7 +36,7 @@
 
 					<!--<form @submit="subscribe" action="#" class="form-group">-->
 					<!--<input v-model="newsletterEmail" class="form-control mb-1" type="email" :placeholder="$t('Insert your email') + '...'" aria-label="email"-->
-					<!--style="border-bottom: solid #2d6c13 2px;border-top: 0; border-left: 0; border-right: 0;">-->
+					<!--style="border-bottom: solid var(--v-green0) 2px;border-top: 0; border-left: 0; border-right: 0;">-->
 					<!--<button class="btn bgGreen0 text-white form-control" style="box-shadow: none" type="submit">-->
 					<!--<i class="icon-mail"></i> {{ $t('Subscribe') }}-->
 					<!--</button>-->
