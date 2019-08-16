@@ -172,7 +172,7 @@
 </script>
 
 <style scoped>
-	@media (min-width: var(--breakpoint-md)) {
+	@media (min-width: 768px) {
 		.video-position {
 			margin-top: -4rem;
 		}
@@ -189,7 +189,7 @@
 	}
 
 
-	@media (min-width: var(--breakpoint-md)) {
+	@media (min-width: 768px) {
 		.v-border-left-md {
 			border-left: dashed 2px var(--v-green6)
 		}

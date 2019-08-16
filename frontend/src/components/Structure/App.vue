@@ -108,7 +108,7 @@
 		}
 	}
 
-	@media (min-width: var(--breakpoint-md)) {
+	@media (min-width: 768px) {
 		.navbar-placeholder {
 			margin-top: 72px !important;
 		}
@@ -209,7 +209,7 @@
 		font-family: 'AC-ScriptCondenced_unicode', sans-serif;
 	}
 
-	@media (min-width: var(--breakpoint-md)) {
+	@media (min-width: 768px) {
 		.h-100-minus-navbar {
 			height: calc(100vh - 72px) !important;
 		}

@@ -95,13 +95,13 @@
 </script>
 
 <style scoped>
-	@media (min-width: var(--breakpoint-sm)) {
+	@media (min-width: 576px) {
 		.carousel-title {
 			font-size: 4rem;
 		}
 	}
 
-	@media (min-width: var(--breakpoint-lg)) {
+	@media (min-width: 992px) {
 		.carousel-border-right {
 			border-right: dashed 2px var(--v-green2);
 		}
