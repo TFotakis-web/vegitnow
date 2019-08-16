@@ -1,23 +1,34 @@
 <template>
-	<div class="col-12 col-lg-6 col-xl-4 mb-3">
-		<div class="row" :class="{ 'recipe-card-bordered': isMiddle }">
-			<div class="col-6">
-				<h4>{{ recipe.Title }}</h4>
-				<hr class="fgGreen1" style="border-top: dashed 2px;">
-				<h5 class="fgGreen1">{{ $t('Main Ingredients') }}:</h5>
-				<p style="font-size: 0.8em;">{{ recipe.MainIngredients }}</p>
-				<h5 class="fgGreen1 d-inline">{{ $t('Ready in') }}:</h5>
-				<span style="font-size: 0.8em;">{{ recipe.Cooking + recipe.Preparation }}'</span>
-			</div>
-			<div class="col-6 d-table">
-				<div class="d-table-cell align-middle">
-					<div class="full-screen-img" style="height: 160px;" :style="{ 'background-image': 'url(' + recipe.Thumbnail + ')' }"></div>
+	<div class="col-12 col-md-6 col-xl-4 py-2" :class="{ 'recipe-card-bordered': isMiddle }">
+		<router-link class="v-link-no-underline v-underline-card-title" :to="routerUrl" style="color: inherit; ">
+			<div class="card border-0 bg-transparent">
+				<div class="card-body position-relative">
+					<div class="full-screen-img position-absolute mt-3" style="height: 160px; width:160px; right: 0; z-index:1" :style="{ 'background-image': 'url(' + recipe.Thumbnail + ')' }"></div>
+					<div style="position: relative; z-index: 2">
+						<h3 class="v-card-title v-card-title-shadow">{{ recipe.Title }}</h3>
+						<span class="v-icon v-icon-card-line fgGreen1-as-bg position-relative d-block mb-3" style="height: 1.5rem; width: 18rem; z-index: 10"></span>
+						<span class="v-icon v-icon-ingredients fgGreen1-as-bg mr-2 float-left"></span>
+						<h5 class="fgGreen1 m-0">{{ $t('Main Ingredients') }}:</h5>
+						<p style="font-size: 0.7em;">{{ recipe.MainIngredients }}</p>
+
+						<table style="height: 2rem">
+							<tbody>
+							<tr>
+								<td class="align-middle">
+									<span class="v-icon v-icon-clock fgGreen1-as-bg mr-2 float-left"></span>
+								</td>
+								<td class="align-middle">
+									<h5 class="fgGreen1 d-inline">{{ $t('Ready in') }}:</h5>
+									<span style="font-size: 0.7em;">{{ recipe.Cooking + recipe.Preparation }}'</span>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row py-4">
-			<router-link :to="{ name: 'RecipeView', params: { id: recipe.id }, query : { title: this.$root.toGreeklish(recipe.Title).replace(/ /g, '-') } }" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Go to the recipe') }}</router-link>
-		</div>
+		</router-link>
 	</div>
 </template>
 
@@ -27,7 +38,20 @@
 		props: [
 			'recipe',
 			'isMiddle'
-		]
+		],
+		data: function () {
+			return {
+				routerUrl: {
+					name: 'RecipeView',
+					params: {
+						id: this.recipe.id
+					},
+					query: {
+						title: this.$root.toGreeklish(this.recipe.Title).replace(/ /g, '-')
+					}
+				}
+			};
+		}
 	};
 </script>
 
