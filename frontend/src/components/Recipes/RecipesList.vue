@@ -1,9 +1,9 @@
 <template>
-	<div class="d-flex flex-grow-1 mb-5">
+	<div id="recipesList" class="d-flex flex-grow-1 mb-5">
 		<Loader v-if="requestsUnsatisfied"/>
 		<div v-if="!requestsUnsatisfied" class="flex-grow-1 mt-3">
 			<div class="container">
-				<div class="row">
+				<div class="row mb-3">
 					<template v-for="(item, index) in pageItems">
 						<template v-if="item.hasOwnProperty('article')">
 							<RecipeCard :recipe="item['article']" :key="'article' + item['article'].id"/>
@@ -89,4 +89,7 @@
 </script>
 
 <style scoped>
+	#recipesList {
+		--card-title-shadow: var(--v-gray2);
+	}
 </style>
