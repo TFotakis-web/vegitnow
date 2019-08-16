@@ -339,6 +339,10 @@
 		mask: url(/static/app/img/icons/video.svg?v1.0);
 	}
 
+	.v-icon-card-line {
+		mask: url(/static/app/img/icons/card-line.svg?v1.0);
+	}
+
 	.v-icon {
 		display: inline-block;
 		width: 2rem;
