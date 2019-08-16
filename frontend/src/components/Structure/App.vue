@@ -138,6 +138,7 @@
 		--v-gray0: #282828;
 		--v-gray1: #434343;
 		--v-gray2: #fafafa;
+		--card-title-shadow: #fff;
 	}
 
 	.bgGreen0 {
@@ -366,5 +367,20 @@
 		color: #495057;
 		background-color: #fff;
 		border-color: #dee2e6 #dee2e6 #fff !important;
+	}
+
+	.v-link-no-underline, .v-link-no-underline:hover {
+		text-decoration: none;
+	}
+
+	.v-underline-card-title:hover .v-card-title {
+		text-decoration: underline;
+	}
+
+	.v-card-title-shadow {
+		text-shadow: -1px -1px .5rem var(--card-title-shadow),
+		1px -1px .5rem var(--card-title-shadow),
+		-1px 1px .5rem var(--card-title-shadow),
+		1px 1px .5rem var(--card-title-shadow);
 	}
 </style>
