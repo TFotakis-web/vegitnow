@@ -1,20 +1,17 @@
 <template>
-	<div class="col-12 col-lg-6 mb-3" :class="{'article-card-bordered': isLeft }">
-		<div class="row">
-			<div class="col-6">
-				<h4>{{ article.Title }}</h4>
-				<hr class="fgGreen1" style="border-top: dashed 2px;">
-				<p style="font-size: 0.8em;">{{ article.Preview }}</p>
-			</div>
-			<div class="col-6 d-table">
-				<div class="d-table-cell align-middle">
-					<div class="full-screen-img" style="height: 160px;" :style="{ 'background-image': 'url(' + article.Thumbnail + ')' }"></div>
+	<div class="col-12 col-md-6 mb-3" :class="{'article-card-bordered': isLeft }">
+		<router-link class="v-link-no-underline v-underline-card-title" :to="routerUrl" style="color: inherit; ">
+			<div class="card border-0 bg-transparent">
+				<div class="card-body position-relative">
+					<div class="full-screen-img position-absolute mt-3" style="height: 160px; width:160px; right: 0; z-index:1" :style="{ 'background-image': 'url(' + article.Thumbnail + ')' }"></div>
+					<div style="position: relative; z-index: 2">
+						<h3 class="v-card-title v-card-title-shadow">{{ article.Title }}</h3>
+						<span class="v-icon v-icon-card-line fgGreen1-as-bg position-relative d-block mb-3" style="height: 1.5rem; width: 18rem; z-index: 10"></span>
+						<p class="col-8" style="font-size: 0.8em;">{{ article.Preview }}</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row py-4">
-			<router-link :to="{ name: 'ArticleView', params: { id: article.id }, query : { title: this.$root.toGreeklish(article.Title).replace(/ /g, '-') } }" class="btn px-4 bgGreen0 text-white text-uppercase font-weight-bold mx-auto" style="border-radius: 2rem;">{{ $t('Read more') }}</router-link>
-		</div>
+		</router-link>
 	</div>
 </template>
 
@@ -24,7 +21,18 @@
 		props: [
 			'article',
 			'isLeft'
-		]
+		],
+		data: function () {
+			return {
+				routerUrl: {
+					name: 'ArticleView',
+					params: {id: this.article.id},
+					query: {
+						title: this.$root.toGreeklish(this.article.Title).replace(/ /g, '-')
+					}
+				}
+			};
+		}
 	};
 </script>
 
