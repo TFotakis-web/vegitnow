@@ -53,11 +53,7 @@
 					<div :id="'AuthorProfilePictureInput' + index" class="form-group row">
 						<label class="col-sm-2 col-form-label">{{ $t('Author Profile Picture') }}:</label>
 						<div class="col-sm-10">
-							<!--<div class="custom-file">-->
-							<!--<label class="custom-file-label" :for="'AuthorProfilePicture' + index">{{ $t('Choose file') }}</label>-->
-							<!--<input type="file" class="custom-file-input" :id="'AuthorProfilePicture' + index" @change="onFileChange($event, article, 'authorProfilePicture')">-->
 							<ImageInput :obj="article.authorProfilePicture"/>
-							<!--</div>-->
 						</div>
 					</div>
 				</div>
@@ -65,11 +61,7 @@
 				<div :id="'ArticleThumbnailInput' + index" class="form-group row">
 					<label class="col-sm-2 col-form-label">{{ $t('Thumbnail') }}:</label>
 					<div class="col-sm-10">
-						<!--<div class="custom-file">-->
-						<!--<label class="custom-file-label" :for="'ArticleThumbnail' + index">{{ $t('Choose file') }}</label>-->
-						<!--<input type="file" class="custom-file-input" :id="'ArticleThumbnail' + index" @change="onFileChange($event, article, 'thumbnail')">-->
 						<ImageInput :obj="article.thumbnail"/>
-						<!--</div>-->
 					</div>
 				</div>
 
@@ -78,7 +70,7 @@
 						<label>{{ $t('Content') }}:</label>
 					</div>
 					<div class="col-sm-10">
-						<Summernote height="400" :model="article.content" v-on:change="value => { article.content = value }"></Summernote>
+						<froala :tag="'textarea'" :config="$root.froalaConfig" v-model="article.content"/>
 					</div>
 				</div>
 
@@ -232,14 +224,12 @@
 </template>
 
 <script>
-	import Summernote from '../Structure/Summernote';
 	import Loader from '../Structure/Loader';
 	import ImageInput from '../Structure/ImageInput';
 
 	export default {
 		name: 'CreateArticle',
 		components: {
-			Summernote,
 			Loader,
 			ImageInput
 		},
