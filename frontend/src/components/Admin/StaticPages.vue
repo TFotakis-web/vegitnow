@@ -52,7 +52,8 @@
 											</div>
 										</div>
 
-										<Summernote :id="'ContentInput' + key + '-' + index" height="400" :model="translation.Content" v-on:change="value => { translation.Content = value }"/>
+<!--										<Summernote :id="'ContentInput' + key + '-' + index" height="400" :model="translation.Content" v-on:change="value => { translation.Content = value }"/>-->
+										<froala :id="'ContentInput' + key + '-' + index" :tag="'textarea'" :config="$root.froalaConfig" v-model="translation.Content"/>
 
 										<div :id="'ListedInput' + key + '-' + index" class="form-check row">
 											<div class="col">
@@ -89,13 +90,8 @@
 </template>
 
 <script>
-	import Summernote from '../Structure/Summernote';
-
 	export default {
 		name: 'AdminStaticPages',
-		components: {
-			Summernote
-		},
 		data: function () {
 			return {
 				staticPages: {},
