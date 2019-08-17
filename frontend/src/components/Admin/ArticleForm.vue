@@ -25,27 +25,19 @@
 				</label>
 
 				<label :id="'AuthorProfilePictureInput' + article.id" class="label col-12">{{ $t('Author Profile Picture') }}:
-					<!--<span class="custom-file">-->
-						<!--<label class="custom-file-label" :for="'AuthorProfilePicture' + article.id">{{ $t('Choose file') }}</label>-->
-						<!--<input type="file" class="custom-file-input" :id="'AuthorProfilePicture' + article.id" @change="onFileChange($event, article, 'AuthorProfilePicture')">-->
-					<!--</span>-->
 					<ImageInput :obj="article.AuthorProfilePicture"/>
 				</label>
 			</div>
 		</div>
 
-
 		<label :id="'ArticleThumbnailInput' + article.id" class="label col-12">{{ $t('Thumbnail') }}:
-			<!--<span class="custom-file">-->
-				<!--<label class="custom-file-label" :for="'ArticleThumbnail' + article.id">{{ $t('Choose file') }}</label>-->
-				<!--<input type="file" class="custom-file-input" :id="'ArticleThumbnail' + article.id" @change="onFileChange($event, article, 'Thumbnail')">-->
-			<!--</span>-->
 			<ImageInput :obj="article.Thumbnail"/>
 		</label>
 
-		<label :id="'ArticleContentInput' + article.id" class="col-12">{{ $t('Content') }}:
-			<Summernote height="400" :model="article.Content" v-on:change="value => { article['Content'] = value }"/>
-		</label>
+		<label :id="'ArticleContentInput' + article.id" class="col-12">{{ $t('Content') }}:</label>
+		<div class="col-12">
+			<froala :tag="'textarea'" :config="Object.assign({}, $root.froalaConfig, {zIndex: 9990})" v-model="article['Content']"/>
+		</div>
 
 		<div :id="'ArticleReleaseDateTimeInput' + article.id" class="col-12">
 			<div class="row">
@@ -71,13 +63,11 @@
 </template>
 
 <script>
-	import Summernote from '../Structure/Summernote';
 	import ImageInput from '../Structure/ImageInput';
 
 	export default {
 		name: 'AdminArticleForm',
 		components: {
-			Summernote,
 			ImageInput
 		},
 		props: [
