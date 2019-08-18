@@ -228,7 +228,7 @@
 	import Loader from '../Structure/Loader';
 	import ImageInput from '../Structure/ImageInput';
 	import Summernote from '../Structure/Summernote';
-	import TipTap from '../Structure/TipTap';
+	// import TipTap from '../Structure/TipTap';
 
 	export default {
 		name: 'CreateArticle',
