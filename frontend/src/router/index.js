@@ -7,8 +7,8 @@ import {adminBasePath} from './Admin';
 Vue.use(Router);
 
 let routes = [
-	{ path: '', name: 'Home', component: require('../components/Home/Home').default },
-	{ path: 'staticPage/:id/', name: 'StaticPage', component: require('../components/Various/StaticPage').default }
+	{path: '', name: 'Home', component: require('../components/Home/Home').default},
+	{path: 'staticPage/:id/', name: 'StaticPage', component: require('../components/Various/StaticPage').default}
 ];
 
 routes = routes.concat(require('./Admin').default);
@@ -26,15 +26,15 @@ let redirectFunc = function () {
 };
 
 let redirects = [
-	{ path: '/recipes*', redirect: redirectFunc },
-	{ path: '/articles*', redirect: redirectFunc },
-	{ path: '/staticPage*', redirect: redirectFunc },
-	{ path: '/' + adminBasePath + '*', redirect: redirectFunc }
+	{path: '/recipes*', redirect: redirectFunc},
+	{path: '/articles*', redirect: redirectFunc},
+	{path: '/staticPage*', redirect: redirectFunc},
+	{path: '/' + adminBasePath + '*', redirect: redirectFunc}
 ];
 
 routes = redirects.concat([
-	{ path: '', redirect: redirectFunc },
-	{ path: '/:lang', component: require('../components/Structure/App').default, children: routes }
+	{path: '', redirect: redirectFunc},
+	{path: '/:lang', component: require('../components/Structure/App').default, children: routes}
 ]);
 
 const router = new Router({
@@ -45,7 +45,8 @@ const router = new Router({
 			return savedPosition;
 		}
 		return {x: 0, y: 0};
-	}
+	},
+	linkActiveClass: 'active'
 });
 export default router;
 
