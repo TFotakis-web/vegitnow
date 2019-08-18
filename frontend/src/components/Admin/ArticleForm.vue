@@ -36,7 +36,8 @@
 
 		<label :id="'ArticleContentInput' + article.id" class="col-12">{{ $t('Content') }}:</label>
 		<div class="col-12">
-			<froala :tag="'textarea'" :config="Object.assign({}, $root.froalaConfig, {zIndex: 9990})" v-model="article['Content']"/>
+			<Summernote height="400" :model="article.Content" v-on:change="value => { article['Content'] = value }"/>
+			<!-- <TipTap :value="article['Content']" v-on:input="value => { article['Content'] = value }"/>-->
 		</div>
 
 		<div :id="'ArticleReleaseDateTimeInput' + article.id" class="col-12">
@@ -64,11 +65,15 @@
 
 <script>
 	import ImageInput from '../Structure/ImageInput';
+	// import TipTap from '../Structure/TipTap';
+	import Summernote from '../Structure/Summernote';
 
 	export default {
 		name: 'AdminArticleForm',
 		components: {
-			ImageInput
+			ImageInput,
+			Summernote
+			// TipTap
 		},
 		props: [
 			'article'
