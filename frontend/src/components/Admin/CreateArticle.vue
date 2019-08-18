@@ -13,8 +13,8 @@
 
 			<form id="ArticleTranslations" class="pb-3" v-for="(article, index) in data.translations">
 				<div :id="'ArticleLanguageInput' + index" class="form-group row">
-					<label for="ArticleLanguage" class="col-sm-2 col-form-label">{{ $t('Select Language') }}:</label>
-					<div class="col-sm-10">
+					<label for="ArticleLanguage" class="col-md-2 col-form-label">{{ $t('Select Language') }}:</label>
+					<div class="col-md-10">
 						<select class="custom-select" id="ArticleLanguage" v-model="article.language">
 							<option v-for="language in $root.languages" :value="language.id">{{ language.Name }}</option>
 						</select>
@@ -22,61 +22,62 @@
 				</div>
 
 				<div :id="'ArticleTitleInput' + index" class="form-group row">
-					<label for="ArticleTitle" class="col-sm-2 col-form-label">{{ $t('Title') }}:</label>
-					<div class="col-sm-10">
+					<label for="ArticleTitle" class="col-md-2 col-form-label">{{ $t('Title') }}:</label>
+					<div class="col-md-10">
 						<input type="text" class="form-control" id="ArticleTitle" :placeholder="$t('Title')" v-model="article.title">
 					</div>
 				</div>
 
 				<div v-if="data.articleType === 2">
 					<div :id="'PreviewInput' + index" class="form-group row">
-						<label for="Preview" class="col-sm-2 col-form-label">Preview:</label>
-						<div class="col-sm-10">
+						<label for="Preview" class="col-md-2 col-form-label">Preview:</label>
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="Preview" placeholder="Preview" v-model="article.preview">
 						</div>
 					</div>
 
 					<div :id="'ArticleAuthorNameInput' + index" class="form-group row">
-						<label for="AuthorName" class="col-sm-2 col-form-label">Author Name:</label>
-						<div class="col-sm-10">
+						<label for="AuthorName" class="col-md-2 col-form-label">Author Name:</label>
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="AuthorName" placeholder="Author Name" v-model="article.authorName">
 						</div>
 					</div>
 
 					<div :id="'ArticleAuthorProfessionInput' + index" class="form-group row">
-						<label for="AuthorProfession" class="col-sm-2 col-form-label">Author Profession:</label>
-						<div class="col-sm-10">
+						<label for="AuthorProfession" class="col-md-2 col-form-label">Author Profession:</label>
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="AuthorProfession" placeholder="Author Profession" v-model="article.authorProfession">
 						</div>
 					</div>
 
 					<div :id="'AuthorProfilePictureInput' + index" class="form-group row">
-						<label class="col-sm-2 col-form-label">{{ $t('Author Profile Picture') }}:</label>
-						<div class="col-sm-10">
+						<label class="col-md-2 col-form-label">{{ $t('Author Profile Picture') }}:</label>
+						<div class="col-md-10">
 							<ImageInput :obj="article.authorProfilePicture"/>
 						</div>
 					</div>
 				</div>
 
 				<div :id="'ArticleThumbnailInput' + index" class="form-group row">
-					<label class="col-sm-2 col-form-label">{{ $t('Thumbnail') }}:</label>
-					<div class="col-sm-10">
+					<label class="col-md-2 col-form-label">{{ $t('Thumbnail') }}:</label>
+					<div class="col-md-10">
 						<ImageInput :obj="article.thumbnail"/>
 					</div>
 				</div>
 
 				<div :id="'ArticleContentInput' + index" class="form-group row">
-					<div class="col-sm-2">
+					<div class="col-md-2">
 						<label>{{ $t('Content') }}:</label>
 					</div>
-					<div class="col-sm-10">
-						<froala :tag="'textarea'" :config="$root.froalaConfig" v-model="article.content"/>
+					<div class="col-md-10">
+						<Summernote :id="'ContentInput' + key + '-' + index" height="400" :model="translation.Content" v-on:change="value => { translation.Content = value }"/>
+						<!-- <TipTap :value="article.content" v-on:input="value => { article.content = value }"/>-->
 					</div>
 				</div>
 
 				<div :id="'ArticleReleaseDateTimeInput' + index" class="form-group row">
-					<label for="ArticleReleaseDate" class="col-sm-2 col-form-label">{{ $t('Release Date') }}:</label>
-					<div class="col-sm-10">
+					<label for="ArticleReleaseDate" class="col-md-2 col-form-label">{{ $t('Release Date') }}:</label>
+					<div class="col-md-10">
 						<div class="row">
 							<div class="col">
 								<input type="text" class="form-control mb-3" id="ArticleReleaseDate" :placeholder="$t('Date') + ' (dd/mm/yyyy)'" v-model="article.releaseDateTime.date">
@@ -119,8 +120,8 @@
 				<hr class="my-5">
 
 				<div id="YoutubeLinkInput" class="form-group row">
-					<label for="YoutubeLink" class="col-sm-2 col-form-label">Youtube Link:</label>
-					<div class="col-sm-10">
+					<label for="YoutubeLink" class="col-md-2 col-form-label">Youtube Link:</label>
+					<div class="col-md-10">
 						<div class="row">
 							<div class="col">
 								<input type="text" class="form-control mb-3" id="YoutubeLink" placeholder="YouTube Link" v-model="youtubeLink">
@@ -130,8 +131,8 @@
 				</div>
 
 				<div id="DishesInput" class="form-group row">
-					<label for="Dishes" class="col-sm-2 col-form-label">{{ $t('Dishes') }}:</label>
-					<div class="col-sm-10">
+					<label for="Dishes" class="col-md-2 col-form-label">{{ $t('Dishes') }}:</label>
+					<div class="col-md-10">
 						<div class="row">
 							<div class="col">
 								<input type="number" class="form-control mb-3" id="Dishes" :placeholder="$t('Dishes')" v-model="dishes">
@@ -141,8 +142,8 @@
 				</div>
 
 				<div id="ReadyInInput" class="form-group row">
-					<label for="ReadyIn" class="col-sm-2 col-form-label">{{ $t('Cooking') }}:</label>
-					<div class="col-sm-10">
+					<label for="ReadyIn" class="col-md-2 col-form-label">{{ $t('Cooking') }}:</label>
+					<div class="col-md-10">
 						<div class="row">
 							<div class="col">
 								<input type="number" class="form-control mb-3" id="ReadyIn" :placeholder="$t('Min')" v-model="cooking">
@@ -152,8 +153,8 @@
 				</div>
 
 				<div id="PreparationInput" class="form-group row">
-					<label for="Preparation" class="col-sm-2 col-form-label">{{ $t('Preparation') }}:</label>
-					<div class="col-sm-10">
+					<label for="Preparation" class="col-md-2 col-form-label">{{ $t('Preparation') }}:</label>
+					<div class="col-md-10">
 						<div class="row">
 							<div class="col">
 								<input type="number" class="form-control mb-3" id="Preparation" :placeholder="$t('Min')" v-model="preparation">
@@ -163,8 +164,8 @@
 				</div>
 
 				<div id="WaitingInput" class="form-group row">
-					<label for="Waiting" class="col-sm-2 col-form-label">{{ $t('Waiting')}}:</label>
-					<div class="col-sm-10">
+					<label for="Waiting" class="col-md-2 col-form-label">{{ $t('Waiting')}}:</label>
+					<div class="col-md-10">
 						<div class="row">
 							<div class="col">
 								<input type="number" class="form-control mb-3" id="Waiting" :placeholder="$t('Min')" v-model="waiting">
@@ -175,8 +176,8 @@
 
 				<fieldset id="IngredientsInput" class="form-group">
 					<div class="row">
-						<label class="col-form-label col-sm-2 pt-0">{{ $t('Ingredients') }}:</label>
-						<div class="col-sm-10">
+						<label class="col-form-label col-md-2 pt-0">{{ $t('Ingredients') }}:</label>
+						<div class="col-md-10">
 							<table class="table text-center" v-if="ingredients.length!==0">
 								<thead>
 								<tr>
@@ -226,12 +227,16 @@
 <script>
 	import Loader from '../Structure/Loader';
 	import ImageInput from '../Structure/ImageInput';
+	import Summernote from '../Structure/Summernote';
+	import TipTap from '../Structure/TipTap';
 
 	export default {
 		name: 'CreateArticle',
 		components: {
 			Loader,
-			ImageInput
+			ImageInput,
+			Summernote
+			// TipTap
 		},
 		data: function () {
 			return {
