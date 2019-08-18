@@ -1,7 +1,4 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
-// import App from './App';
 import router from './router';
 import VueResource from 'vue-resource';
 import {i18n} from './plugins/i18n';
@@ -11,15 +8,11 @@ import VueScrollTo from 'vue-scrollto';
 import VueHead from 'vue-head';
 import {toGreeklish} from 'greek-utils';
 
-// Import and use Vue Froala lib.
-import VueFroala from 'vue-froala-wysiwyg';
-
 Vue.use(VueResource);
 Vue.use(Notifications);
 Vue.use(VueCookie);
 Vue.use(VueScrollTo);
 Vue.use(VueHead);
-Vue.use(VueFroala);
 
 Vue.config.productionTip = false;
 
@@ -28,10 +21,7 @@ new Vue({
 	el: '#app',
 	router,
 	i18n,
-	// template: '<App/>',
-	// components: {App},
 	template: '<router-view/>',
-	// components: {App},
 	data: function () {
 		let vm = this;
 		return {
@@ -103,22 +93,7 @@ new Vue({
 				HOME_RECIPES: 'Home: Recipes',
 				INSIDE_POST: 'Inside: Post'
 			},
-			requestsUnsatisfied: 0,
-			froalaConfig: {
-				language: this.$i18n.locale === 'en' ? '' : 'el',
-				height: 400,
-				// zIndex: 9990,
-				// toolbarInline: true,
-				toolbarSticky: false,
-				toolbarButtons: [
-					'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript',
-					'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle',
-					'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL',
-					'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo',
-					'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR',
-					'selectAll', 'clearFormatting', '|', 'print', 'help', 'html', '|', 'undo', 'redo'
-				]
-			}
+			requestsUnsatisfied: 0
 		};
 	},
 	mounted: function () {
@@ -145,7 +120,6 @@ new Vue({
 			for (const article of articleList) {
 				arr.push({ article: article });
 				articleIndex++;
-				// if (ads.length) {
 				if (articleIndex % insertEveryNArticles === 0 && Math.random() <= probability && ads.length) {
 					arr.push({ ad: ads[adIndex] });
 					adIndex = (adIndex + 1) % ads.length;
@@ -158,13 +132,3 @@ new Vue({
 
 Vue.http.headers.common['X-CSRFToken'] = VueCookie.get('csrftoken');
 Vue.http.headers.common['locale'] = VueCookie.get('locale');
-
-// Require Froala Editor js file.
-require('../node_modules/froala-editor/js/froala_editor.pkgd.min.js');
-require('../node_modules/froala-editor/js/plugins.pkgd.min');
-require('../node_modules/froala-editor/js/languages/el.js');
-
-// Require Froala Editor css files.
-require('../node_modules/froala-editor/css/froala_editor.pkgd.min.css');
-require('../node_modules/froala-editor/css/plugins.pkgd.min.css');
-require('../node_modules/froala-editor/css/froala_style.min.css');
