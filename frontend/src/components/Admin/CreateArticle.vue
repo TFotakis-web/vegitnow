@@ -70,7 +70,7 @@
 						<label>{{ $t('Content') }}:</label>
 					</div>
 					<div class="col-md-10">
-						<Summernote :id="'ContentInput' + key + '-' + index" height="400" :model="translation.Content" v-on:change="value => { translation.Content = value }"/>
+						<Summernote height="400" :model="article.content" v-on:change="value => { article.content = value }"></Summernote>
 						<!-- <TipTap :value="article.content" v-on:input="value => { article.content = value }"/>-->
 					</div>
 				</div>
