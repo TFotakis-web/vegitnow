@@ -363,12 +363,6 @@
 		clip-path: polygon(2% 0%, 98% 0%, 98.5% 20%, 97% 60%, 97% 85%, 98% 100%, 2% 100%, 3% 60%, 1.5% 20%);
 	}
 
-	.router-link-active {
-		color: #495057;
-		background-color: #fff;
-		border-color: #dee2e6 #dee2e6 #fff !important;
-	}
-
 	.v-link-no-underline, .v-link-no-underline:hover {
 		text-decoration: none;
 	}
