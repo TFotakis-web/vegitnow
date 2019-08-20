@@ -33,7 +33,7 @@
 	"Fat": "Fat",
 	"Sat. Fat": "Sat. Fat",
 	"Salt": "Salt",
-	"Reference intake of an average adult": "Reference intake of an average adult",
+	"Reference intake of an average adult per serving": "Reference intake of an average adult per serving",
 	"Writes": "Writes",
 	"Create Article": "Create Article",
 	"Create a new": "Create a new",
@@ -118,5 +118,6 @@
 	"Cooking": "Cooking",
 	"Preparation": "Preparation",
 	"Published on": "Published on",
-	"h": "h"
+	"h": "h",
+	"Share this recipe": "Share this recipe"
 }
