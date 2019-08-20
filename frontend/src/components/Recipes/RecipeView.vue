@@ -84,7 +84,7 @@
 							<h2 class="fgGreen1 w-100 v-border-bottom v-border-bottom-md-0">{{ $t('Nutrition facts') }}:</h2>
 						</div>
 						<div class="col-md-4 col-lg-5 align-left float-left text-left">
-							<NutritionStats :ingredient-list="article.Ingredients"/>
+							<NutritionStats :ingredient-list="article.Ingredients" :dishes="article.Dishes"/>
 						</div>
 					</div>
 				</div>
