@@ -6,8 +6,13 @@
 				<strong class="fgGreen1">{{ calories }}</strong>
 				<p class="sans fgGreen0 m-0">{{ caloriesPerc }}%*</p>
 			</div>
-			<div class="d-flex nutritionStats-box-clip-path">
+			<div class="d-flex nutritionStats-box-clip-path p-3">
 				<div class="p-3 bgGreen4 text-center pl-5">
+					<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Protein') }}</h6>
+					<strong class="fgGreen1">{{ proteins }}g</strong>
+					<p class="sans fgGreen0 m-0">{{ proteinsPerc }}%*</p>
+				</div>
+				<div class="p-3 bgGreen4 text-center">
 					<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Carbohydrate') }}</h6>
 					<strong class="fgGreen1">{{ carbohydrate }}g</strong>
 					<p class="sans fgGreen0 m-0">{{ carbohydratePerc }}%*</p>
@@ -17,17 +22,11 @@
 					<strong class="fgGreen1">{{ fat }}g</strong>
 					<p class="sans fgGreen0 m-0">{{ fatPerc }}%*</p>
 				</div>
-				<div class="p-3 bgGreen4 text-center">
-					<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Sat. Fat') }}</h6>
-					<strong class="fgGreen1">{{ satFat }}g</strong>
-					<p class="sans fgGreen0 m-0">{{ satFatPerc }}%*</p>
-				</div>
-				<div class="p-3 bgGreen4 text-center"
-				     style="border-top-right-radius: 2px; border-bottom-right-radius: 2px;">
-					<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Salt') }}</h6>
-					<strong class="fgGreen1">{{ salt }}mg</strong>
-					<p class="sans fgGreen0 m-0">{{ saltPerc }}%*</p>
-				</div>
+<!--				<div class="p-3 bgGreen4 text-center">-->
+<!--					<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Salt') }}</h6>-->
+<!--					<strong class="fgGreen1">{{ salt }}mg</strong>-->
+<!--					<p class="sans fgGreen0 m-0">{{ saltPerc }}%*</p>-->
+<!--				</div>-->
 			</div>
 		</div>
 		<p class="text-dark text-center text-lg-left">* {{ $t('Reference intake of an average adult') }} (8400kJ/2000kcal)</p>
@@ -52,12 +51,12 @@
 				calories: 0,
 				carbohydrate: 0,
 				fat: 0,
-				satFat: 0,
+				proteins: 0,
 				salt: 0,
 				caloriesPerc: 0,
 				carbohydratePerc: 0,
 				fatPerc: 0,
-				satFatPerc: 0,
+				proteinsPerc: 0,
 				saltPerc: 0,
 				requestsUnsatisfied: 0
 			};
@@ -84,27 +83,27 @@
 				if (newValue) return;
 				for (const ingredient of this.ingredientList) {
 					this.calories += ingredient.Calories * ingredient.Quantity / 100 / this.dishes;
+					this.proteins += ingredient.Protein * ingredient.Quantity / 100 / this.dishes;
 					this.carbohydrate += ingredient.CarbonHydrates * ingredient.Quantity / 100 / this.dishes;
 					this.fat += ingredient.Fats * ingredient.Quantity / 100 / this.dishes;
-					this.satFat += ingredient.SaturatedFats * ingredient.Quantity / 100 / this.dishes;
 					this.salt += ingredient.Sodium * ingredient.Quantity / 100 / this.dishes;
 				}
 				this.calories = Math.round(this.calories * 10) / 10;
+				this.proteins = Math.round(this.proteins * 10) / 10;
 				this.carbohydrate = Math.round(this.carbohydrate * 10) / 10;
 				this.fat = Math.round(this.fat * 10) / 10;
-				this.satFat = Math.round(this.satFat * 10) / 10;
 				this.salt = Math.round(this.salt * 10) / 10;
 
 				this.caloriesPerc = this.calories / 2000 * 100;
+				this.proteinsPerc = this.proteins / 50 * 100;
 				this.carbohydratePerc = this.carbohydrate / 260 * 100;
 				this.fatPerc = this.fat / 70 * 100;
-				this.satFatPerc = this.satFat / 20 * 100;
 				this.saltPerc = this.salt / 6000 * 100;
 
 				this.caloriesPerc = Math.round(this.caloriesPerc * 10) / 10;
+				this.proteinsPerc = Math.round(this.proteinsPerc * 10) / 10;
 				this.carbohydratePerc = Math.round(this.carbohydratePerc * 10) / 10;
 				this.fatPerc = Math.round(this.fatPerc * 10) / 10;
-				this.satFatPerc = Math.round(this.satFatPerc * 10) / 10;
 				this.saltPerc = Math.round(this.saltPerc * 10) / 10;
 			}
 		}
