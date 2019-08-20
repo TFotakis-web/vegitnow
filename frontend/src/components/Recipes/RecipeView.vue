@@ -60,7 +60,8 @@
 					</div>
 				</div>
 			</div>
-			<div id="VideoAndNutrition" v-if="article.YoutubeLink !== ''" class="bgGreen1 box-clip-path3" style="border-top: 7rem solid var(--v-gray2);">
+			<div id="VideoAndNutrition" class="bgGreen1 box-clip-path3" style="border-top: 7rem solid var(--v-gray2);">
+<!--			<div id="VideoAndNutrition" v-if="article.YoutubeLink !== ''" class="bgGreen1 box-clip-path3" style="border-top: 7rem solid var(&#45;&#45;v-gray2);">-->
 				<div class="container pb-5 text-center">
 					<div class="row position-relative" v-if="article.YoutubeLink !== ''">
 						<div class="col-md-4 position-relative bgGreen1">
@@ -78,14 +79,14 @@
 							</div>
 						</div>
 					</div>
-					<!--<div class="row mt-3">-->
-					<!--<div class="col-sm-4 text-sm-right ">-->
-					<!--<h2 class="fgGreen1 w-100">{{ $t('Nutrition facts') }}</h2>-->
-					<!--</div>-->
-					<!--<div class="col-sm-8 align-left float-left text-left">-->
-					<!--<NutritionStats></NutritionStats>-->
-					<!--</div>-->
-					<!--</div>-->
+					<div class="row mt-5">
+						<div class="col-md-4 text-md-right my-auto">
+							<h2 class="fgGreen1 w-100 v-border-bottom v-border-bottom-md-0">{{ $t('Nutrition facts') }}:</h2>
+						</div>
+						<div class="col-md-4 col-lg-5 align-left float-left text-left">
+							<NutritionStats :ingredient-list="article.Ingredients"/>
+						</div>
+					</div>
 				</div>
 			</div>
 			<RecommendedRecipes :current-recipe-id="id"/>
