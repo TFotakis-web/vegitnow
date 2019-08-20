@@ -142,6 +142,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 			data['Ingredients'] = []
 			for ingredient in ingredientList:
 				ingredientData = {
+					'id': ingredient.Ingredient.id,
 					'Name': ingredient.Ingredient.Name,
 					'Quantity': ingredient.Quantity,
 					'IsMainIngredient': ingredient.IsMainIngredient
@@ -352,6 +353,7 @@ class IngredientViewSet(viewsets.ModelViewSet):
 			Protein=request.data['Protein'],
 			CarbonHydrates=request.data['CarbonHydrates'],
 			Fats=request.data['Fats'],
+			SaturatedFats=request.data['Fats'],
 			VitaminA=request.data['VitaminA'],
 			CarotinB=request.data['CarotinB'],
 			VitaminC=request.data['VitaminC'],
@@ -390,6 +392,7 @@ class IngredientViewSet(viewsets.ModelViewSet):
 			Protein=request.data['Protein'],
 			CarbonHydrates=request.data['CarbonHydrates'],
 			Fats=request.data['Fats'],
+			SaturatedFats=request.data['Fats'],
 			VitaminA=request.data['VitaminA'],
 			CarotinB=request.data['CarotinB'],
 			VitaminC=request.data['VitaminC'],
