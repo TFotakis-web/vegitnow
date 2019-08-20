@@ -8,7 +8,7 @@
 						<h1 class="text-white w-100 text-center text-lg-left mb-4" style="text-shadow: black 0 0 20px;">{{ article.Title }}</h1>
 					</div>
 				</div>
-				<div class="bgGreen1" style="">
+				<div class="bgGreen1">
 					<div class="container">
 						<div class="row text-center text-md-left py-4">
 							<div class="col-sm-6 col-md-3">
@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<div id="VideoAndNutrition" class="bgGreen1 box-clip-path3" style="border-top: 7rem solid var(--v-gray2);">
-<!--			<div id="VideoAndNutrition" v-if="article.YoutubeLink !== ''" class="bgGreen1 box-clip-path3" style="border-top: 7rem solid var(&#45;&#45;v-gray2);">-->
+				<!--			<div id="VideoAndNutrition" v-if="article.YoutubeLink !== ''" class="bgGreen1 box-clip-path3" style="border-top: 7rem solid var(&#45;&#45;v-gray2);">-->
 				<div class="container pb-5 text-center">
 					<div class="row position-relative" v-if="article.YoutubeLink !== ''">
 						<div class="col-md-4 position-relative bgGreen1">
@@ -85,6 +85,25 @@
 						</div>
 						<div class="col-md-7 col-lg-5 align-left float-left text-left">
 							<NutritionStats :ingredient-list="article.Ingredients" :dishes="article.Dishes"/>
+						</div>
+						<div class="col-lg-3 v-border-left-lg my-lg-auto mt-5">
+							<h2 class="fgGreen1 v-border-bottom v-border-bottom-lg-0">{{ $t('Share this recipe') }}</h2>
+							<social-sharing :url="$router.fullPath" :title="article.Title" hashtags="VegItNow" twitter-user="vegitnow" inline-template>
+								<div class="fgGreen1 v-network-tags">
+									<network network="facebook">
+										<i class="icon-facebook"></i>
+									</network>
+									<network network="twitter">
+										<i class="icon-twitter"></i>
+									</network>
+									<network network="pinterest">
+										<i class="icon-pinterest"></i>
+									</network>
+									<network network="email">
+										<i class="icon-mail"></i>
+									</network>
+								</div>
+							</social-sharing>
 						</div>
 					</div>
 				</div>
@@ -208,7 +227,36 @@
 		}
 	}
 
+	@media (min-width: 992px) {
+		.v-border-left-lg {
+			border-left: dashed 2px var(--v-green6)
+		}
+
+		.v-border-right-lg {
+			border-right: dashed 2px var(--v-green6)
+		}
+
+		.v-border-bottom-lg-0 {
+			border-bottom: none !important;
+		}
+
+		.v-border-top-lg-0 {
+			border-top: none !important;
+		}
+	}
+
 	.v-border-bottom {
 		border-bottom: dashed 2px var(--v-green6)
+	}
+</style>
+
+<style>
+	.v-network-tags > span {
+		font-size: 2rem;
+		cursor: pointer
+	}
+
+	.v-network-tags > span:hover {
+		color: var(--v-green2);
 	}
 </style>
