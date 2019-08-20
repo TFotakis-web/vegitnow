@@ -70,6 +70,7 @@ class Ingredient(models.Model):
 	Protein = models.FloatField(default=0)
 	CarbonHydrates = models.FloatField(default=0)
 	Fats = models.FloatField(default=0)
+	SaturatedFats = models.FloatField(default=0)
 	VitaminA = models.FloatField(default=0)
 	CarotinB = models.FloatField(default=0)
 	VitaminC = models.FloatField(default=0)
