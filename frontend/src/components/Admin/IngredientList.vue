@@ -37,7 +37,8 @@
 							<th scope="col">{{ $t('Calories') }} (kcal)</th>
 							<th scope="col">{{ $t('Protein') }} (gr)</th>
 							<th scope="col">{{ $t('Carbon Hydrates') }} (gr)</th>
-							<th scope="col">{{ $t('Fats') }} (gr)</th>
+							<th scope="col">{{ $t('Fat') }} (gr)</th>
+							<th scope="col">{{ $t('Sat. Fat') }} (gr)</th>
 							<th scope="col">{{ $t('Vitamin A') }} (IU)</th>
 							<th scope="col">{{ $t('Carotin B') }} (mcg)</th>
 							<th scope="col">{{ $t('Vitamin C') }} (mg)</th>
@@ -79,6 +80,7 @@
 							<td><input type="number" class="form-control mb-3" id="ingredientDataProtein" v-model="ingredientData.Protein"></td>
 							<td><input type="number" class="form-control mb-3" id="ingredientDataCarbonHydrates" v-model="ingredientData.CarbonHydrates"></td>
 							<td><input type="number" class="form-control mb-3" id="ingredientDataFats" v-model="ingredientData.Fats"></td>
+							<td><input type="number" class="form-control mb-3" id="ingredientDataSaturatedFats" v-model="ingredientData.SaturatedFats"></td>
 							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminA" v-model="ingredientData.VitaminA"></td>
 							<td><input type="number" class="form-control mb-3" id="ingredientDataCarotinB" v-model="ingredientData.CarotinB"></td>
 							<td><input type="number" class="form-control mb-3" id="ingredientDataVitaminC" v-model="ingredientData.VitaminC"></td>
@@ -114,6 +116,7 @@
 							<td>{{ ingredient.Protein }}</td>
 							<td>{{ ingredient.CarbonHydrates }}</td>
 							<td>{{ ingredient.Fats }}</td>
+							<td>{{ ingredient.SaturatedFats }}</td>
 							<td>{{ ingredient.VitaminA }}</td>
 							<td>{{ ingredient.CarotinB }}</td>
 							<td>{{ ingredient.VitaminC }}</td>
@@ -207,27 +210,28 @@
 						Protein: csvLine[3],
 						CarbonHydrates: csvLine[4],
 						Fats: csvLine[5],
-						VitaminA: csvLine[6],
-						CarotinB: csvLine[7],
-						VitaminC: csvLine[8],
-						VitaminD: csvLine[9],
-						VitaminE: csvLine[10],
-						VitaminK: csvLine[11],
-						VitaminB3: csvLine[12],
-						VitaminB6: csvLine[13],
-						VitaminB12: csvLine[14],
-						VitaminB9: csvLine[15],
-						Choline: csvLine[16],
-						Calcium: csvLine[17],
-						Iron: csvLine[18],
-						Magnesium: csvLine[19],
-						Phosphorus: csvLine[20],
-						Potassium: csvLine[21],
-						Sodium: csvLine[22],
-						Zinc: csvLine[23],
-						Selenium: csvLine[24],
-						Manganese: csvLine[25],
-						Water: csvLine[26]
+						SaturatedFats: csvLine[6],
+						VitaminA: csvLine[7],
+						CarotinB: csvLine[8],
+						VitaminC: csvLine[9],
+						VitaminD: csvLine[10],
+						VitaminE: csvLine[11],
+						VitaminK: csvLine[12],
+						VitaminB3: csvLine[13],
+						VitaminB6: csvLine[14],
+						VitaminB12: csvLine[15],
+						VitaminB9: csvLine[16],
+						Choline: csvLine[17],
+						Calcium: csvLine[18],
+						Iron: csvLine[19],
+						Magnesium: csvLine[20],
+						Phosphorus: csvLine[21],
+						Potassium: csvLine[22],
+						Sodium: csvLine[23],
+						Zinc: csvLine[24],
+						Selenium: csvLine[25],
+						Manganese: csvLine[26],
+						Water: csvLine[27]
 					};
 					// console.log(csvLine);
 					this.$http.post('/api/ingredient/', data)
@@ -262,6 +266,7 @@
 					Protein: 0,
 					CarbonHydrates: 0,
 					Fats: 0,
+					SaturatedFats: 0,
 					VitaminA: 0,
 					CarotinB: 0,
 					VitaminC: 0,
@@ -327,6 +332,7 @@
 					Protein: ingredient.Protein,
 					CarbonHydrates: ingredient.CarbonHydrates,
 					Fats: ingredient.Fats,
+					SaturatedFats: ingredient.SaturatedFats,
 					VitaminA: ingredient.VitaminA,
 					CarotinB: ingredient.CarotinB,
 					VitaminC: ingredient.VitaminC,
