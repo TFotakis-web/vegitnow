@@ -21,7 +21,8 @@
 		"vue-notification": "^1.3.16",
 		"vue-resource": "^1.5.1",
 		"vue-router": "^3.0.1",
-		"vue-scrollto": "^2.14.0"
+		"vue-scrollto": "^2.14.0",
+		"vue-social-sharing": "^2.4.6"
 	},
 	"devDependencies": {
 		"@kazupon/vue-i18n-loader": "^0.3.0",
