@@ -29,7 +29,7 @@
 <!--				</div>-->
 			</div>
 		</div>
-		<p class="text-dark text-center text-lg-left">* {{ $t('Reference intake of an average adult') }} (8400kJ/2000kcal)</p>
+		<p class="text-dark text-center text-lg-left">* {{ $t('Reference intake of an average adult per serving') }} (8400kJ/2000kcal)</p>
 	</div>
 </template>
 
