@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="d-flex justify-content-center justify-content-lg-start" style="font-size: 0.8em; border-radius: 2px">
+		<div class="d-flex justify-content-center justify-content-lg-start">
 			<div class="p-4 bg-white text-center calories-box-clip-path" style="margin-right: -3rem; position: relative; z-index: 1">
 				<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Energy') }}</h6>
 				<strong class="fgGreen1">{{ calories }}</strong>
@@ -30,7 +30,7 @@
 				</div>
 			</div>
 		</div>
-		<p class="text-dark text-center text-lg-left" style="font-size: 0.8em;">* {{ $t('Reference intake of an average adult') }} (8400kJ/2000kcal)</p>
+		<p class="text-dark text-center text-lg-left">* {{ $t('Reference intake of an average adult') }} (8400kJ/2000kcal)</p>
 	</div>
 </template>
 
