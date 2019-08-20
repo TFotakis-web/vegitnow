@@ -88,7 +88,7 @@
 						</div>
 						<div class="col-lg-3 v-border-left-lg my-lg-auto mt-5">
 							<h2 class="fgGreen1 v-border-bottom v-border-bottom-lg-0">{{ $t('Share this recipe') }}</h2>
-							<social-sharing :url="$router.fullPath" :title="article.Title" hashtags="VegItNow" twitter-user="vegitnow" inline-template>
+							<social-sharing :key="$router.fullPath" :url="$router.fullPath" :title="article.Title" hashtags="VegItNow" twitter-user="vegitnow" inline-template>
 								<div class="fgGreen1 v-network-tags">
 									<network network="facebook">
 										<i class="icon-facebook"></i>
