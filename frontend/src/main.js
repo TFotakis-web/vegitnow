@@ -8,6 +8,10 @@ import VueScrollTo from 'vue-scrollto';
 import VueHead from 'vue-head';
 import {toGreeklish} from 'greek-utils';
 
+var SocialSharing = require('vue-social-sharing');
+
+Vue.use(SocialSharing);
+
 Vue.use(VueResource);
 Vue.use(Notifications);
 Vue.use(VueCookie);
@@ -76,7 +80,9 @@ new Vue({
 				defaultMeta: () => Object.values(vm.$root.headData.defaultMetaDict),
 				defaultHead: {
 					title: '',
-					meta: function () { return vm.$root.headData.defaultMeta(); }
+					meta: function () {
+						return vm.$root.headData.defaultMeta();
+					}
 				},
 				updateMeta: function (dict) {
 					let res = JSON.parse(JSON.stringify(vm.$root.headData.defaultMetaDict));
@@ -118,10 +124,10 @@ new Vue({
 			let adIndex = 0;
 			let articleIndex = 0;
 			for (const article of articleList) {
-				arr.push({ article: article });
+				arr.push({article: article});
 				articleIndex++;
 				if (articleIndex % insertEveryNArticles === 0 && Math.random() <= probability && ads.length) {
-					arr.push({ ad: ads[adIndex] });
+					arr.push({ad: ads[adIndex]});
 					adIndex = (adIndex + 1) % ads.length;
 				}
 			}
