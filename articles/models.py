@@ -65,6 +65,7 @@ class ArticleTypeAssociation(models.Model):
 class Ingredient(models.Model):
 	Name = models.CharField(default='', max_length=1024)
 	Language = models.ForeignKey(Language, on_delete=models.CASCADE)
+	Thumbnail = models.ImageField(blank=True, default='', upload_to='ingredients')
 	Calories = models.FloatField(default=0)
 	Protein = models.FloatField(default=0)
 	CarbonHydrates = models.FloatField(default=0)
