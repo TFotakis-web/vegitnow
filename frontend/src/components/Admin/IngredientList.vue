@@ -34,6 +34,7 @@
 							<th scope="col">#</th>
 							<th scope="col">{{ $t('English') }}</th>
 							<th scope="col">{{ $t('Greek') }}</th>
+							<th scope="col">{{ $t('Thumbnail') }}</th>
 							<th scope="col">{{ $t('Calories') }} (kcal)</th>
 							<th scope="col">{{ $t('Protein') }} (gr)</th>
 							<th scope="col">{{ $t('Carbon Hydrates') }} (gr)</th>
@@ -76,6 +77,7 @@
 							<td></td>
 							<td><input type="text" class="form-control mb-3" id="ingredientDataEnglish" v-model="ingredientData.English"></td>
 							<td><input type="text" class="form-control mb-3" id="ingredientDataGreek" v-model="ingredientData.Greek"></td>
+							<td><ImageInput :obj="ingredientData.Thumbnail"/></td>
 							<td><input type="number" class="form-control mb-3" id="ingredientDataCalories" v-model="ingredientData.Calories"></td>
 							<td><input type="number" class="form-control mb-3" id="ingredientDataProtein" v-model="ingredientData.Protein"></td>
 							<td><input type="number" class="form-control mb-3" id="ingredientDataCarbonHydrates" v-model="ingredientData.CarbonHydrates"></td>
@@ -149,11 +151,13 @@
 
 <script>
 	import Loader from '../Structure/Loader';
+	import ImageInput from '../Structure/ImageInput';
 
 	export default {
 		name: 'AdminIngredientList',
 		components: {
-			Loader
+			Loader,
+			ImageInput
 		},
 		data: function () {
 			return {
@@ -262,6 +266,7 @@
 				this.ingredientData = {
 					Greek: '',
 					English: '',
+					Thumbnail: {},
 					Calories: 0,
 					Protein: 0,
 					CarbonHydrates: 0,
@@ -328,6 +333,7 @@
 				this.ingredientData = {
 					English: ingredient.Name || '',
 					Greek: ingredient.translations[2] || '',
+					Thumbnail: {},
 					Calories: ingredient.Calories,
 					Protein: ingredient.Protein,
 					CarbonHydrates: ingredient.CarbonHydrates,
