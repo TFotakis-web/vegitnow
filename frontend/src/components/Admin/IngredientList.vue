@@ -114,6 +114,7 @@
 							<td>{{ (index + 1) }}</td>
 							<td>{{ ingredient.Name }}</td>
 							<td>{{ ingredient.translations[2] }}</td>
+							<td><a :href="ingredient.Thumbnail" target="_blank"><i class="fas fa-image"></i></a></td>
 							<td>{{ ingredient.Calories }}</td>
 							<td>{{ ingredient.Protein }}</td>
 							<td>{{ ingredient.CarbonHydrates }}</td>
