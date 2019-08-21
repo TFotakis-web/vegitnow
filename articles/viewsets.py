@@ -376,6 +376,8 @@ class IngredientViewSet(viewsets.ModelViewSet):
 			Manganese=request.data['Manganese'],
 			Water=request.data['Water'],
 		)
+		if 'name' in request.data['Thumbnail'] and request.data['Thumbnail']['name'] != '':
+			ingredient.Thumbnail = base64toFile(request.data['Thumbnail']['name'], request.data['Thumbnail']['data'])
 		ingredient.save()
 		ingredientTranslation = IngredientNameTranslation(
 			Ingredient=ingredient,
@@ -386,35 +388,37 @@ class IngredientViewSet(viewsets.ModelViewSet):
 		return Response(status=HTTP_201_CREATED)
 
 	def update(self, request, *args, **kwargs):
-		Ingredient.objects.filter(id=kwargs['pk']).update(
-			Name=request.data['English'],
-			Calories=request.data['Calories'],
-			Protein=request.data['Protein'],
-			CarbonHydrates=request.data['CarbonHydrates'],
-			Fats=request.data['Fats'],
-			SaturatedFats=request.data['SaturatedFats'],
-			VitaminA=request.data['VitaminA'],
-			CarotinB=request.data['CarotinB'],
-			VitaminC=request.data['VitaminC'],
-			VitaminD=request.data['VitaminD'],
-			VitaminE=request.data['VitaminE'],
-			VitaminK=request.data['VitaminK'],
-			VitaminB3=request.data['VitaminB3'],
-			VitaminB6=request.data['VitaminB6'],
-			VitaminB12=request.data['VitaminB12'],
-			VitaminB9=request.data['VitaminB9'],
-			Choline=request.data['Choline'],
-			Calcium=request.data['Calcium'],
-			Iron=request.data['Iron'],
-			Magnesium=request.data['Magnesium'],
-			Phosphorus=request.data['Phosphorus'],
-			Potassium=request.data['Potassium'],
-			Sodium=request.data['Sodium'],
-			Zinc=request.data['Zinc'],
-			Selenium=request.data['Selenium'],
-			Manganese=request.data['Manganese'],
-			Water=request.data['Water'],
-		)
+		ingredient = Ingredient.objects.get(id=kwargs['pk'])
+		ingredient.Name = request.data['English']
+		ingredient.Calories = request.data['Calories']
+		ingredient.Protein = request.data['Protein']
+		ingredient.CarbonHydrates = request.data['CarbonHydrates']
+		ingredient.Fats = request.data['Fats']
+		ingredient.SaturatedFats = request.data['SaturatedFats']
+		ingredient.VitaminA = request.data['VitaminA']
+		ingredient.CarotinB = request.data['CarotinB']
+		ingredient.VitaminC = request.data['VitaminC']
+		ingredient.VitaminD = request.data['VitaminD']
+		ingredient.VitaminE = request.data['VitaminE']
+		ingredient.VitaminK = request.data['VitaminK']
+		ingredient.VitaminB3 = request.data['VitaminB3']
+		ingredient.VitaminB6 = request.data['VitaminB6']
+		ingredient.VitaminB12 = request.data['VitaminB12']
+		ingredient.VitaminB9 = request.data['VitaminB9']
+		ingredient.Choline = request.data['Choline']
+		ingredient.Calcium = request.data['Calcium']
+		ingredient.Iron = request.data['Iron']
+		ingredient.Magnesium = request.data['Magnesium']
+		ingredient.Phosphorus = request.data['Phosphorus']
+		ingredient.Potassium = request.data['Potassium']
+		ingredient.Sodium = request.data['Sodium']
+		ingredient.Zinc = request.data['Zinc']
+		ingredient.Selenium = request.data['Selenium']
+		ingredient.Manganese = request.data['Manganese']
+		ingredient.Water = request.data['Water']
+		if 'name' in request.data['Thumbnail'] and request.data['Thumbnail']['name'] != '':
+			ingredient.Thumbnail = base64toFile(request.data['Thumbnail']['name'], request.data['Thumbnail']['data'])
+		ingredient.save()
 		IngredientNameTranslation.objects.filter(Ingredient_id=kwargs['pk']).update(Name=request.data['Greek'])
 		return Response(status=HTTP_206_PARTIAL_CONTENT)
 
