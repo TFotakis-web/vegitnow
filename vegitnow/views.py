@@ -276,10 +276,10 @@ def prerenderDjango(request):
 		if response:
 			imageUrl = request.scheme + '://' + request.get_host() + response['Thumbnail']
 			preview = \
-				'Ενέργεια: ' + response.Calories + 'cal | ' + \
-				'Πρωτεΐνη: ' + response.Protein + 'g | ' + \
-				'Υδατάνθρακας: ' + response.CarbonHydrates + 'g | ' + \
-				'Λίπη: ' + response.Fats + 'g'
+				'Ενέργεια: ' + str(response['Calories']) + 'cal | ' + \
+				'Πρωτεΐνη: ' + str(response['Protein']) + 'g | ' + \
+				'Υδατάνθρακας: ' + str(response['CarbonHydrates']) + 'g | ' + \
+				'Λίπη: ' + str(response['Fats']) + 'g'
 			elementAttributes = {
 				'metaTitle': {'content': response['Name']},
 				'metaDescription': {'content': preview},
