@@ -39,7 +39,8 @@
 				ads: [],
 				requestsUnsatisfied: 0,
 				items: [],
-				pageItems: []
+				pageItems: [],
+				routeQuery: this.$route.query
 			};
 		},
 		mounted: function () {
@@ -76,6 +77,11 @@
 			requestsUnsatisfied: function () {
 				if (this.requestsUnsatisfied) return;
 				this.items = this.$root.combineArticlesWithAds(this.recipeList, this.ads);
+			},
+			$route: function (to, from) {
+				if (JSON.stringify(to.query) === JSON.stringify(from.query))
+					return;
+				this.getRecipes();
 			}
 		},
 		head: {
