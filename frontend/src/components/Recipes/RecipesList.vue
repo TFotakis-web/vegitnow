@@ -49,7 +49,10 @@
 		methods: {
 			getRecipes: function () {
 				this.requestsUnsatisfied++;
-				this.$http.get('/api/article/?locale=' + this.$cookie.get('locale') + '&type=1')
+				let requestUrl = '/api/article/?locale=' + this.$cookie.get('locale') + '&type=1';
+				if ('ingredients' in this.$route.query)
+					requestUrl += '&ingredients=' + this.$route.query['ingredients'];
+				this.$http.get(requestUrl)
 					.then(response => {
 						this.recipeList = response.data;
 						this.requestsUnsatisfied--;
