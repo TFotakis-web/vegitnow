@@ -11,13 +11,13 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<router-link :to="{ name: 'RecipesList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Recipes') }}</router-link>
+							<router-link :to="{ name: 'RecipesList', query: { page: 1 } }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Recipes') }}</router-link>
 						</li>
 						<li class="nav-item">
-							<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Articles') }}</router-link>
+							<router-link :to="{ name: 'ArticlesList', query: { page: 1 } }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Articles') }}</router-link>
 						</li>
 						<li class="nav-item">
-							<router-link :to="{ name: 'IngredientsList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Ingredients') }}</router-link>
+							<router-link :to="{ name: 'IngredientsList', query: { page: 1 } }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Ingredients') }}</router-link>
 						</li>
 						<li class="nav-item">
 							<a @click="changeLanguage()" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
@@ -42,13 +42,13 @@
 					<div class="flex-grow-1">
 						<ul class="navbar-nav w-100 justify-content-center">
 							<li class="nav-item">
-								<router-link :to="{ name: 'RecipesList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Recipes') }}</router-link>
+								<router-link :to="{ name: 'RecipesList', query: { page: 1 } }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Recipes') }}</router-link>
 							</li>
 							<li class="nav-item">
-								<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Articles') }}</router-link>
+								<router-link :to="{ name: 'ArticlesList', query: { page: 1 } }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Articles') }}</router-link>
 							</li>
 							<li class="nav-item">
-								<router-link :to="{ name: 'IngredientsList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Ingredients') }}</router-link>
+								<router-link :to="{ name: 'IngredientsList', query: { page: 1 } }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Ingredients') }}</router-link>
 							</li>
 						</ul>
 					</div>
