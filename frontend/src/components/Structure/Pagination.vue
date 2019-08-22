@@ -52,7 +52,9 @@
 					pageNum = 0;
 				}
 				this.page = pageNum;
-				this.$router.replace({query: {page: pageNum + 1}});
+				let queryDict = Object.assign({}, this.$route.query);
+				queryDict.page = pageNum + 1;
+				this.$router.replace({query: queryDict});
 				this.$parent.pageItems = this.items.slice(this.page * this.itemsPerPage, (this.page + 1) * this.itemsPerPage);
 				let startingPage = this.page - Math.floor(this.pagesInRow / 2);
 				if (startingPage > this.pagesLen - this.pagesInRow) {
