@@ -11,10 +11,12 @@
 				<div class="bgGreen1">
 					<div class="container">
 						<div class="d-lg-none py-4">
-							<div class="col" style="height: 210px">
-								<div class="dashedCircle rotating mx-auto" style="height: 210px; width: 210px; margin-left: -10px;"></div>
-								<div class="authorProfilePictureCircle">
-									<div class="bg-white rounded-circle mx-auto authorProfilePicture" :style="{ 'background-image': 'url(' + article.AuthorProfilePicture + ')' }"></div>
+							<div class="col">
+								<div class="author-thumbnail mx-auto">
+									<div class="dashedCircle v-border rotating"></div>
+									<div class="authorProfilePictureCircle">
+										<div class="bg-white rounded-circle mx-auto authorProfilePicture" :style="{ 'background-image': 'url(' + article.AuthorProfilePicture + ')' }"></div>
+									</div>
 								</div>
 							</div>
 							<div v-if="article['AuthorName']" class="col text-center">
@@ -64,7 +66,7 @@
 			</div>
 			<div class="container d-none d-lg-block" style="position: relative; margin-top: -95px; height: 210px">
 				<div class="bg-white rounded-circle authorProfilePicture" :style="{ 'background-image': 'url(' + article.AuthorProfilePicture + ')' }"></div>
-				<div class="dashedCircle rotating" style="height: 210px; width: 210px; margin-top: -200px; margin-left: -10px;"></div>
+				<div class="dashedCircle v-border rotating" style="height: 210px; width: 210px; margin-top: -200px; margin-left: -10px;"></div>
 			</div>
 			<div id="ArticleContent" class="mt-4 d-flex">
 				<div class="container">
@@ -155,24 +157,33 @@
 </script>
 
 <style scoped>
+	#articleView {
+		--v-dashed-circle-size: 210px;
+		--v-dashed-circle-padding: 10px;
+	}
+
 	.authorProfilePicture {
-		height: 190px;
-		width: 190px;
+		height: calc(var(--v-dashed-circle-size) - 2 * var(--v-dashed-circle-padding));
+		width: calc(var(--v-dashed-circle-size) - 2 * var(--v-dashed-circle-padding));
 		background-size: cover;
 		background-repeat: inherit;
 		background-position: center center;
 	}
 
 	.authorProfilePictureCircle {
-		margin-top: -200px
+		margin-top: calc(var(--v-dashed-circle-padding) - var(--v-dashed-circle-size))
 	}
 
 	.dashedCircle {
-		height: 400px;
-		width: 400px;
+		height: var(--v-dashed-circle-size);
+		width: var(--v-dashed-circle-size);
 		border-radius: 50%;
-		border: dashed var(--v-green0);
 		pointer-events: none;
 		overflow: hidden;
+	}
+
+	.author-thumbnail {
+		height: var(--v-dashed-circle-size);
+		width: var(--v-dashed-circle-size);
 	}
 </style>
