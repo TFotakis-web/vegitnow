@@ -181,6 +181,10 @@ class ArticleViewSet(viewsets.ModelViewSet):
 
 		articles = Article.objects.filter(**fArticles).all()
 
+		if 'ingredients' in request.query_params:
+			ingredientsList = [int(el) for el in request.query_params['ingredients'].split(',')]
+			articles = articles.filter(ingredientassociation__Ingredient__in=ingredientsList)
+
 		data = []
 		for article in articles:
 			translation = article.articlecontenttranslation_set.filter(**fTranslations).first()
