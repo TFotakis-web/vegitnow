@@ -35,15 +35,15 @@
 							<div class="container">
 								<div class="row">
 									<template v-if="noAdCards">
-										<RecipeCard v-for="recipe in recipesPart" :key="'tripleRecipeCard' + recipe.id" :recipe="recipe"/>
+										<RecipeCard v-for="(recipe, index2) in recipesPart" :key="'tripleRecipeCard' + recipe.id" :recipe="recipe" :class="{ 'v-border-left v-border-right': index2 === 1}"/>
 									</template>
 									<template v-else>
-										<template v-for="recipe in recipesPart">
+										<template v-for="(recipe, index2) in recipesPart">
 											<template v-if="recipe.hasOwnProperty('article')">
-												<RecipeCard :recipe="recipe['article']" :key="'triple-recipe' + recipe['article'].id"/>
+												<RecipeCard :recipe="recipe['article']" :key="'triple-recipe' + recipe['article'].id" :class="{ 'v-border-left v-border-right': index2 === 1}"/>
 											</template>
 											<template v-else>
-												<AdCard :ad="recipe['ad']" listType="recipes" :key="'triple-ad' + recipe['ad'].id + '-' + index"/>
+												<AdCard :ad="recipe['ad']" listType="recipes" :key="'triple-ad' + recipe['ad'].id + '-' + index" :class="{ 'v-border-left v-border-right': index2 === 1}"/>
 											</template>
 										</template>
 									</template>
@@ -91,15 +91,15 @@
 							<div class="container">
 								<div class="row">
 									<template v-if="noAdCards">
-										<RecipeCard v-for="recipe in recipesPart" :key="'dualRecipeCard' + recipe.id" :recipe="recipe"/>
+										<RecipeCard v-for="(recipe, index2) in recipesPart" :key="'dualRecipeCard' + recipe.id" :recipe="recipe" :class="{ 'v-border-left': index2 === 1}"/>
 									</template>
 									<template v-else>
-										<template v-for="recipe in recipesPart">
+										<template v-for="(recipe, index2) in recipesPart">
 											<template v-if="recipe.hasOwnProperty('article')">
-												<RecipeCard :recipe="recipe['article']" :key="'dual-recipe' + recipe['article'].id"/>
+												<RecipeCard :recipe="recipe['article']" :key="'dual-recipe' + recipe['article'].id" :class="{ 'v-border-left': index2 === 1}"/>
 											</template>
 											<template v-else>
-												<AdCard :ad="recipe['ad']" listType="recipes" :key="'dual-ad' + recipe['ad'].id + '-' + index"/>
+												<AdCard :ad="recipe['ad']" listType="recipes" :key="'dual-ad' + recipe['ad'].id + '-' + index" :class="{ 'v-border-left': index2 === 1}"/>
 											</template>
 										</template>
 									</template>
