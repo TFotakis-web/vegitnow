@@ -1,5 +1,6 @@
-from bs4 import BeautifulSoup
 from datetime import datetime
+
+from bs4 import BeautifulSoup
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -326,10 +327,11 @@ class IngredientViewSet(viewsets.ModelViewSet):
 		f = {}
 		if 'locale' in request.query_params:
 			f['Language_id'] = int(request.query_params['locale'])
-			translation = ingredient.ingredientnametranslation_set.filter(**f).first()
-			if not translation:
-				return Response(status=HTTP_404_NOT_FOUND)
-			ingredient.Name = translation.Name
+			if ingredient.Language_id != f['Language_id']:
+				translation = ingredient.ingredientnametranslation_set.filter(**f).first()
+				if not translation:
+					return Response(status=HTTP_404_NOT_FOUND)
+				ingredient.Name = translation.Name
 		return Response(IngredientSerializer(ingredient).data)
 
 	def list(self, request, *args, **kwargs):
