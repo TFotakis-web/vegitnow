@@ -319,6 +319,19 @@ class IngredientViewSet(viewsets.ModelViewSet):
 	serializer_class = IngredientSerializer
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 
+	def retrieve(self, request, *args, **kwargs):
+		if not kwargs['pk'].isdigit():
+			return Response(status=HTTP_400_BAD_REQUEST)
+		ingredient = Ingredient.objects.get(id=kwargs['pk'])
+		f = {}
+		if 'locale' in request.query_params:
+			f['Language_id'] = int(request.query_params['locale'])
+			translation = ingredient.ingredientnametranslation_set.filter(**f).first()
+			if not translation:
+				return Response(status=HTTP_404_NOT_FOUND)
+			ingredient.Name = translation.Name
+		return Response(IngredientSerializer(ingredient).data)
+
 	def list(self, request, *args, **kwargs):
 		queryset = Ingredient.objects.all()
 		serializer = self.get_serializer(queryset, many=True)
