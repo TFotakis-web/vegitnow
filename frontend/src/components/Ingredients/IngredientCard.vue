@@ -39,7 +39,7 @@
 					name: 'IngredientView',
 					params: {id: this.ingredient.id},
 					query: {
-						title: this.$root.toGreeklish(this.ingredient.Name).replace(/ /g, '-')
+						title: this.$root.toGreeklish(this.ingredient.Name.trim()).replace(/ /g, '-')
 					}
 				},
 			};
