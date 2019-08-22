@@ -274,7 +274,9 @@ def prerenderDjango(request):
 		from articles.viewsets import IngredientViewSet
 		response = IngredientViewSet.as_view({'get': 'retrieve'})(request, pk=url[1]).render().data
 		if response:
-			imageUrl = request.scheme + '://' + request.get_host() + response['Thumbnail']
+			imageUrl = ''
+			if response['Thumbnail']:
+				imageUrl = request.scheme + '://' + request.get_host() + response['Thumbnail']
 			preview = \
 				'Ενέργεια: ' + str(response['Calories']) + 'cal | ' + \
 				'Πρωτεΐνη: ' + str(response['Protein']) + 'g | ' + \
