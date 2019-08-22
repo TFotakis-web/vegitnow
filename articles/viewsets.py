@@ -183,7 +183,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 
 		if 'ingredients' in request.query_params:
 			ingredientsList = [int(el) for el in request.query_params['ingredients'].split(',')]
-			articles = articles.filter(ingredientassociation__Ingredient__in=ingredientsList)
+			articles = articles.filter(ingredientassociation__Ingredient__in=ingredientsList).distinct()
 
 		data = []
 		for article in articles:
