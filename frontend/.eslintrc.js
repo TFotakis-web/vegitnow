@@ -28,7 +28,8 @@ module.exports = {
 		'no-tabs': 'off',
 		'semi': ['error', "always"],
 		'no-useless-return': 'off',
-		'no-unused-vars': 'warn'
+		'no-unused-vars': 'warn',
+		'comma-dangle': 'off'
 	},
 	globals: {
 		'$': true,
