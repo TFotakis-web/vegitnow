@@ -111,7 +111,7 @@ def prerenderDjango(request):
 			# 'metaTwitterImage': {'content': ''},
 			'metaOpenGraphTitle': {'content': 'Αρχική'},
 			# 'metaOpenGraphType': {'content': 'article'},
-			# 'metaOpenGraphUrl': {'content': ''},
+			'metaOpenGraphUrl': {'content': request.get_raw_uri()},
 			# 'metaOpenGraphImage': {'content': ''},
 			# 'metaOpenGraphDescription': {'content': ''},
 			# 'metaOpenGraphSiteName': {'content': ''},
@@ -172,7 +172,7 @@ def prerenderDjango(request):
 			# 'metaTwitterImage': {'content': ''},
 			'metaOpenGraphTitle': {'content': 'Άρθρα'},
 			# 'metaOpenGraphType': {'content': 'article'},
-			# 'metaOpenGraphUrl': {'content': ''},
+			'metaOpenGraphUrl': {'content': request.get_raw_uri()}
 			# 'metaOpenGraphImage': {'content': ''},
 			# 'metaOpenGraphDescription': {'content': ''},
 			# 'metaOpenGraphSiteName': {'content': ''},
@@ -198,7 +198,7 @@ def prerenderDjango(request):
 			# 'metaTwitterImage': {'content': ''},
 			'metaOpenGraphTitle': {'content': 'Συνταγές'},
 			# 'metaOpenGraphType': {'content': 'article'},
-			# 'metaOpenGraphUrl': {'content': ''},
+			'metaOpenGraphUrl': {'content': request.get_raw_uri()}
 			# 'metaOpenGraphImage': {'content': ''},
 			# 'metaOpenGraphDescription': {'content': ''},
 			# 'metaOpenGraphSiteName': {'content': ''},
@@ -224,7 +224,7 @@ def prerenderDjango(request):
 			# 'metaTwitterImage': {'content': ''},
 			'metaOpenGraphTitle': {'content': 'Συστατικά'},
 			# 'metaOpenGraphType': {'content': 'article'},
-			# 'metaOpenGraphUrl': {'content': ''},
+			'metaOpenGraphUrl': {'content': request.get_raw_uri()}
 			# 'metaOpenGraphImage': {'content': ''},
 			# 'metaOpenGraphDescription': {'content': ''},
 			# 'metaOpenGraphSiteName': {'content': ''},
