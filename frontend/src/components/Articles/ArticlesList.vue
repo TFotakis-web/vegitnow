@@ -82,7 +82,30 @@
 				};
 			},
 			meta: function () {
-				return this.$root.headData.defaultMeta();
+				return this.$root.headData.updateMeta({
+					// GeneralDescription: '',
+					// GeneralKeywords: '',
+					GooglePlusName: this.$t('Articles'),
+					// GooglePlusDescription: '',
+					// GooglePlusImage: '',
+					// TwitterCard: '',
+					// TwitterSite: '',
+					TwitterTitle: this.$t('Articles'),
+					// TwitterDescription: '',
+					// TwitterCreator: '',
+					// TwitterImage: '',
+					OpenGraphTitle: this.$t('Articles'),
+					OpenGraphType: 'article',
+					OpenGraphUrl: location.href,
+					// OpenGraphImage: '',
+					// OpenGraphDescription: '',
+					// OpenGraphSiteName: '',
+					// OpenGraphPublishedTime: '',
+					// OpenGraphModifiedTime: '',
+					// OpenGraphSection: '',
+					// OpenGraphTag: '',
+					// OpenGraphAdmins: ''
+				});
 			}
 		}
 	};
