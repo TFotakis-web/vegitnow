@@ -8,9 +8,9 @@
 						<NutritionStats :ingredient-list="[Object.assign({}, ingredient, {Quantity: 100})]" calories_bg="calories-dark"/>
 					</div>
 					<div class="d-inline-block ingredient-thumbnail">
-						<div class="dashedCircle rotating"></div>
+						<div class="dashedCircle v-border rotating"></div>
 						<div class="ingredientThumbnailCircle">
-							<div class="bg-white rounded-circle ingredientThumbnail mx-auto" :style="{ 'background-image': 'url(' + ingredient.Thumbnail + ')' }"></div>
+							<div class="bg-white rounded-circle ingredient-img mx-auto" :style="{ 'background-image': 'url(' + ingredient.Thumbnail + ')' }"></div>
 						</div>
 					</div>
 				</div>
@@ -53,7 +53,7 @@
 		--v-dashed-circle-padding: 10px;
 	}
 
-	.ingredientThumbnail {
+	.ingredient-img {
 		height: calc(var(--v-dashed-circle-size) - 2 * var(--v-dashed-circle-padding));
 		width: calc(var(--v-dashed-circle-size) - 2 * var(--v-dashed-circle-padding));
 		background-size: cover;
@@ -69,7 +69,6 @@
 		height: var(--v-dashed-circle-size);
 		width: var(--v-dashed-circle-size);
 		border-radius: 50%;
-		border: dashed var(--v-green0);
 		pointer-events: none;
 		overflow: hidden;
 	}
