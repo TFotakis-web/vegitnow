@@ -1,5 +1,5 @@
 <template>
-	<div class="col-12 col-md-6 mb-3" :class="{'article-card-bordered': isLeft }">
+	<div class="col-12 col-md-6 mb-3">
 		<router-link class="v-link-no-underline v-underline-card-title" :to="routerUrl" style="color: inherit; ">
 			<div class="card border-0 bg-transparent">
 				<div class="card-body position-relative">
@@ -20,7 +20,6 @@
 		name: 'ArticleCard',
 		props: [
 			'article',
-			'isLeft'
 		],
 		data: function () {
 			return {
@@ -37,7 +36,5 @@
 </script>
 
 <style scoped>
-	.article-card-bordered {
-		border-right: dashed 2px var(--v-green6);
-	}
+
 </style>
