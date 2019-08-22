@@ -3,7 +3,7 @@
 		<Loader v-if="requestsUnsatisfied"/>
 		<div v-if="!requestsUnsatisfied" class="flex-grow-1 mt-3">
 			<div class="container">
-				<div class="row mb-5">
+				<div class="row">
 					<IngredientCard class="mx-auto mb-3" :ingredient="item" :key="'ingredient' + item.id" v-for="item in pageItems"/>
 				</div>
 				<Pagination :items="ingredients" :itemsPerPage="6"/>
