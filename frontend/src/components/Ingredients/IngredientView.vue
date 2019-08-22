@@ -17,7 +17,7 @@
 							</div>
 						</div>
 						<div class="col-4 mt-auto mb-3">
-							<router-link :to="{ name: 'RecipesList', query: { ingredients: ingredient.id } }" class="btn px-4 bgGreen0 text-white text-uppercase mx-auto" style="border-radius: 2rem;">
+							<router-link :to="{ name: 'RecipesList', query: { page:1, ingredients: ingredient.id } }" class="btn px-4 bgGreen0 text-white text-uppercase mx-auto" style="border-radius: 2rem;">
 								{{ $t('Related recipes') }}
 							</router-link>
 						</div>
@@ -37,7 +37,7 @@
 							<h1 class="fgGreen0">{{ ingredient.Name }}</h1>
 							<NutritionStats class="pt-3" :ingredient-list="[Object.assign({}, ingredient, {Quantity: 100})]" calories_bg="calories-dark"/>
 
-							<router-link :to="{ name: 'RecipesList', query: { ingredients: ingredient.id } }" class="btn px-4 bgGreen0 text-white text-uppercase mx-auto mb-3" style="border-radius: 2rem;">
+							<router-link :to="{ name: 'RecipesList', query: { page:1, ingredients: ingredient.id } }" class="btn px-4 bgGreen0 text-white text-uppercase mx-auto mb-3" style="border-radius: 2rem;">
 								{{ $t('Related recipes') }}
 							</router-link>
 						</div>
