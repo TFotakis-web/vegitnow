@@ -24,7 +24,7 @@
 				<span class="sr-only">Next</span>
 			</a>
 			<h1 class="text-center" style="position: relative;top: -0.5em;margin-bottom: -1.2em;z-index: 1;">
-				<router-link :to="{ name: 'ArticlesList' }" class="fgGreen0 bg-transparent">
+				<router-link :to="{ name: 'ArticlesList', query: { page: 1 } }" class="fgGreen0 bg-transparent">
 					{{ $t('Articles') }}
 				</router-link>
 			</h1>
@@ -79,7 +79,7 @@
 				<span class="sr-only">Next</span>
 			</a>
 			<h1 class="text-center fgGreen0" style="position: relative;top: -0.5em;margin-bottom: -1.2em;z-index: 1;">
-				<router-link :to="{ name: 'ArticlesList' }" class="fgGreen0 bg-transparent">
+				<router-link :to="{ name: 'ArticlesList', query: { page: 1 } }" class="fgGreen0 bg-transparent">
 					{{ $t('Articles') }}
 				</router-link>
 			</h1>
