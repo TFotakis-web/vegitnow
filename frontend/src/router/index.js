@@ -14,6 +14,7 @@ let routes = [
 routes = routes.concat(require('./Admin').default);
 routes = routes.concat(require('./Articles').default);
 routes = routes.concat(require('./Recipes').default);
+routes = routes.concat(require('./Ingredients').default);
 
 let redirectFunc = function () {
 	let locale = VueCookies.get('locale');
@@ -28,6 +29,7 @@ let redirectFunc = function () {
 let redirects = [
 	{path: '/recipes*', redirect: redirectFunc},
 	{path: '/articles*', redirect: redirectFunc},
+	{path: '/ingredients*', redirect: redirectFunc},
 	{path: '/staticPage*', redirect: redirectFunc},
 	{path: '/' + adminBasePath + '*', redirect: redirectFunc}
 ];
