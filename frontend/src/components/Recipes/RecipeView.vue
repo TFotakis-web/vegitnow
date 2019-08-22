@@ -32,7 +32,7 @@
 								<h2 class="fgGreen1">{{ $t('Main Ingredients') }}:</h2>
 								<p class="mb-sm-0 d-inline-block">
 									<span class="float-left mr-2 v-icon v-icon-ingredients fgGreen1-as-bg" style="height: 3rem; width: 3rem;"></span>
-									<span class="text-left"><template v-for="(ingredient, index) in articleMainIngredients">{{ ingredient.Name }}<template v-if="index !== articleMainIngredients.length - 1"> - </template></template></span>
+									<span class="text-left"><template v-for="(ingredient, index) in articleMainIngredients">{{ ingredient.Name.trim() }}<template v-if="index !== articleMainIngredients.length - 1"> - </template></template></span>
 								</p>
 							</div>
 							<div class="col-sm-6 col-md-3 v-border-left-md">
@@ -53,8 +53,8 @@
 							<h2 class="fgGreen1">{{ $t('Ingredients') }}</h2>
 							<p v-for="ingredient in article.Ingredients">
 								<span>{{ ingredient.Quantity }}gr </span>
-								<router-link class="fgGreen1" :to="{ name: 'IngredientView', params: { id: ingredient.id }, query: { title: $root.toGreeklish(ingredient.Name).replace(/ /g, '-') } }">
-									{{ ingredient.Name }}
+								<router-link class="fgGreen1" :to="{ name: 'IngredientView', params: { id: ingredient.id }, query: { title: $root.toGreeklish(ingredient.Name.trim()).replace(/ /g, '-') } }">
+									{{ ingredient.Name.trim() }}
 								</router-link>
 							</p>
 						</div>
