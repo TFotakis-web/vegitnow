@@ -378,6 +378,10 @@
 		1px 1px .5rem var(--card-title-shadow);
 	}
 
+	.v-border {
+		border: dashed 2px var(--v-green6)
+	}
+
 	.v-border-top {
 		border-top: dashed 2px var(--v-green6)
 	}
@@ -415,6 +419,10 @@
 	}
 
 	@media (min-width: 576px) {
+		.v-border-sm {
+			border: dashed 2px var(--v-green6)
+		}
+
 		.v-border-top-sm {
 			border-top: dashed 2px var(--v-green6)
 		}
@@ -453,6 +461,10 @@
 	}
 
 	@media (min-width: 768px) {
+		.v-border-md {
+			border: dashed 2px var(--v-green6)
+		}
+
 		.v-border-top-md {
 			border-top: dashed 2px var(--v-green6)
 		}
@@ -491,6 +503,10 @@
 	}
 
 	@media (min-width: 992px) {
+		.v-border-lg {
+			border: dashed 2px var(--v-green6)
+		}
+
 		.v-border-top-lg {
 			border-top: dashed 2px var(--v-green6)
 		}
@@ -529,6 +545,10 @@
 	}
 
 	@media (min-width: 1200px) {
+		.v-border-xl {
+			border: dashed 2px var(--v-green6)
+		}
+
 		.v-border-top-xl {
 			border-top: dashed 2px var(--v-green6)
 		}
