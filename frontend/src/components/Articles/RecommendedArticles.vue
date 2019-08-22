@@ -35,15 +35,15 @@
 							<div class="container">
 								<div class="row">
 									<template v-if="noAdCards">
-										<ArticleCard v-for="(article, index2) in articlesPart" :key="'dualArticleCard' + article.id" :article="article" :isLeft="index2 === 0"/>
+										<ArticleCard v-for="(article, index2) in articlesPart" :key="'dualArticleCard' + article.id" :article="article" :class="{ 'v-border-left': index2 === 1}"/>
 									</template>
 									<template v-else>
-										<template v-for="article in articlesPart">
+										<template v-for="(article, index2) in articlesPart">
 											<template v-if="article.hasOwnProperty('article')">
-												<ArticleCard :article="article['article']" :key="'dual-article' + article['article'].id"/>
+												<ArticleCard :article="article['article']" :key="'dual-article' + article['article'].id" :class="{ 'v-border-left': index2 === 1}"/>
 											</template>
 											<template v-else>
-												<AdCard :ad="article['ad']" listType="articles" :key="'dual-ad' + article['ad'].id + '-' + index"/>
+												<AdCard :ad="article['ad']" listType="articles" :key="'dual-ad' + article['ad'].id + '-' + index" :class="{ 'v-border-left': index2 === 1}"/>
 											</template>
 										</template>
 									</template>
