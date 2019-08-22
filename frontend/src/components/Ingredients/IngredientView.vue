@@ -16,8 +16,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-4">
-
+						<div class="col-4 mt-auto mb-3">
+							<router-link :to="{ name: 'RecipesList', query: { ingredients: ingredient.id } }" class="btn px-4 bgGreen0 text-white text-uppercase mx-auto" style="border-radius: 2rem;">
+								{{ $t('Related recipes') }}
+							</router-link>
 						</div>
 					</div>
 					<div class="row">
@@ -34,6 +36,10 @@
 						<div class="col text-center">
 							<h1 class="fgGreen0">{{ ingredient.Name }}</h1>
 							<NutritionStats class="pt-3" :ingredient-list="[Object.assign({}, ingredient, {Quantity: 100})]" calories_bg="calories-dark"/>
+
+							<router-link :to="{ name: 'RecipesList', query: { ingredients: ingredient.id } }" class="btn px-4 bgGreen0 text-white text-uppercase mx-auto mb-3" style="border-radius: 2rem;">
+								{{ $t('Related recipes') }}
+							</router-link>
 						</div>
 					</div>
 					<div class="row ingredient-thumbnail-bottom-margin">
@@ -46,244 +52,247 @@
 					</div>
 				</div>
 			</div>
-			<div class="container pt-5">
+			<div class="container pt-5 mb-5">
 				<div class="row">
-					<div class="col-6 mb-3">
-						<h2 class="fgGreen1 ml-5 w-100" style="margin-bottom: -1rem">{{ $t('Vitamins') }}</h2>
-						<div class="bg-white px-5 pb-5" style="width: max-content">
-							<table class="v-table">
-								<thead>
-								<tr>
-									<th></th>
-									<th>{{ $t('Per') }} 100gr</th>
-									<th>{{ $t('RDI') }} %</th>
-									<th></th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td class="pl-0">{{ $t('Vitamin A') }}</td>
-									<td>{{ ingredient.VitaminA }}IU</td>
-									<td>{{ ingredient.VitaminAPerc }}%</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminAPerc + '%'}" :aria-valuenow="ingredient.VitaminAPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Carotin B') }}</td>
-									<td>{{ ingredient.CarotinB }}mcg</td>
-									<td>{{ ingredient.CarotinBPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.CarotinBPerc + '%'}" :aria-valuenow="ingredient.CarotinBPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Vitamin C') }}</td>
-									<td>{{ ingredient.VitaminC }}mg</td>
-									<td>{{ ingredient.VitaminCPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminCPerc + '%'}" :aria-valuenow="ingredient.VitaminCPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Vitamin D') }}</td>
-									<td>{{ ingredient.VitaminD }}mg</td>
-									<td>{{ ingredient.VitaminDPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminDPerc + '%'}" :aria-valuenow="ingredient.VitaminDPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Vitamin E') }}</td>
-									<td>{{ ingredient.VitaminE }}mg</td>
-									<td>{{ ingredient.VitaminEPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminEPerc + '%'}" :aria-valuenow="ingredient.VitaminEPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Vitamin K') }}</td>
-									<td>{{ ingredient.VitaminK }}mcg</td>
-									<td>{{ ingredient.VitaminKPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminKPerc + '%'}" :aria-valuenow="ingredient.VitaminKPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Vitamin B3') }}</td>
-									<td>{{ ingredient.VitaminB3 }}mg</td>
-									<td>{{ ingredient.VitaminB3Perc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminB3Perc + '%'}" :aria-valuenow="ingredient.VitaminB3Perc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Vitamin B6') }}</td>
-									<td>{{ ingredient.VitaminB6 }}mg</td>
-									<td>{{ ingredient.VitaminB6Perc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminB6Perc + '%'}" :aria-valuenow="ingredient.VitaminB6Perc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Vitamin B12') }}</td>
-									<td>{{ ingredient.VitaminB12 }}mg</td>
-									<td>{{ ingredient.VitaminB12Perc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminB12Perc + '%'}" :aria-valuenow="ingredient.VitaminB12Perc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Vitamin B9') }}</td>
-									<td>{{ ingredient.VitaminB9 }}mcg</td>
-									<td>{{ ingredient.VitaminB9Perc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminB9Perc + '%'}" :aria-valuenow="ingredient.VitaminB9Perc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Choline') }}</td>
-									<td>{{ ingredient.Choline }}mg</td>
-									<td>{{ ingredient.CholinePerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.CholinePerc + '%'}" :aria-valuenow="ingredient.CholinePerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								</tbody>
-							</table>
+					<div class="col-lg-6 mb-3">
+						<div class="mx-auto mr-lg-0 ml-lg-auto" style="width: max-content;">
+							<h2 class="fgGreen1 ml-5 w-100" style="margin-bottom: -1rem">{{ $t('Vitamins') }}</h2>
+							<div class="bg-white px-4 pb-4" style="width: max-content">
+								<table class="v-table">
+									<thead>
+									<tr>
+										<th></th>
+										<th>{{ $t('Per') }} 100gr</th>
+										<th class="text-center" colspan="2">{{ $t('RDI') }} %</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td class="pl-0">{{ $t('Vitamin A') }}</td>
+										<td>{{ ingredient.VitaminA }}IU</td>
+										<td class="pl-0 text-right">{{ ingredient.VitaminAPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminAPerc + '%'}" :aria-valuenow="ingredient.VitaminAPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Carotin B') }}</td>
+										<td>{{ ingredient.CarotinB }}mcg</td>
+										<td class="pl-0 text-right">{{ ingredient.CarotinBPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.CarotinBPerc + '%'}" :aria-valuenow="ingredient.CarotinBPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Vitamin C') }}</td>
+										<td>{{ ingredient.VitaminC }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.VitaminCPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminCPerc + '%'}" :aria-valuenow="ingredient.VitaminCPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Vitamin D') }}</td>
+										<td>{{ ingredient.VitaminD }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.VitaminDPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminDPerc + '%'}" :aria-valuenow="ingredient.VitaminDPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Vitamin E') }}</td>
+										<td>{{ ingredient.VitaminE }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.VitaminEPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminEPerc + '%'}" :aria-valuenow="ingredient.VitaminEPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Vitamin K') }}</td>
+										<td>{{ ingredient.VitaminK }}mcg</td>
+										<td class="pl-0 text-right">{{ ingredient.VitaminKPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminKPerc + '%'}" :aria-valuenow="ingredient.VitaminKPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Vitamin B3') }}</td>
+										<td>{{ ingredient.VitaminB3 }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.VitaminB3Perc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminB3Perc + '%'}" :aria-valuenow="ingredient.VitaminB3Perc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Vitamin B6') }}</td>
+										<td>{{ ingredient.VitaminB6 }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.VitaminB6Perc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminB6Perc + '%'}" :aria-valuenow="ingredient.VitaminB6Perc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Vitamin B12') }}</td>
+										<td>{{ ingredient.VitaminB12 }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.VitaminB12Perc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminB12Perc + '%'}" :aria-valuenow="ingredient.VitaminB12Perc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Vitamin B9') }}</td>
+										<td>{{ ingredient.VitaminB9 }}mcg</td>
+										<td class="pl-0 text-right">{{ ingredient.VitaminB9Perc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.VitaminB9Perc + '%'}" :aria-valuenow="ingredient.VitaminB9Perc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Choline') }}</td>
+										<td>{{ ingredient.Choline }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.CholinePerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.CholinePerc + '%'}" :aria-valuenow="ingredient.CholinePerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-					<div class="col-6 mb-3">
-						<h2 class="fgGreen1 ml-5  w-100" style="margin-bottom: -1rem">{{ $t('Minerals') }}</h2>
-						<div class="bg-white px-5 pb-5" style="width: max-content">
-							<table class="v-table">
-								<thead>
-								<tr>
-									<th></th>
-									<th>{{ $t('Per') }} 100gr</th>
-									<th>{{ $t('RDI') }} %</th>
-									<th></th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td class="pl-0">{{ $t('Calcium') }}</td>
-									<td>{{ ingredient.Calcium }}mg</td>
-									<td>{{ ingredient.CalciumPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.CalciumPerc + '%'}" :aria-valuenow="ingredient.CalciumPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Iron') }}</td>
-									<td>{{ ingredient.Iron }}mg</td>
-									<td>{{ ingredient.IronPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.IronPerc + '%'}" :aria-valuenow="ingredient.IronPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Magnesium') }}</td>
-									<td>{{ ingredient.Magnesium }}mg</td>
-									<td>{{ ingredient.MagnesiumPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.MagnesiumPerc + '%'}" :aria-valuenow="ingredient.MagnesiumPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Phosphorus') }}</td>
-									<td>{{ ingredient.Phosphorus }}mg</td>
-									<td>{{ ingredient.PhosphorusPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.PhosphorusPerc + '%'}" :aria-valuenow="ingredient.PhosphorusPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Potassium') }}</td>
-									<td>{{ ingredient.Potassium }}mg</td>
-									<td>{{ ingredient.PotassiumPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.PotassiumPerc + '%'}" :aria-valuenow="ingredient.PotassiumPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Sodium') }}</td>
-									<td>{{ ingredient.Sodium }}mg</td>
-									<td>{{ ingredient.SodiumPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.SodiumPerc + '%'}" :aria-valuenow="ingredient.SodiumPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Zinc') }}</td>
-									<td>{{ ingredient.Zinc }}mg</td>
-									<td>{{ ingredient.ZincPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.ZincPerc + '%'}" :aria-valuenow="ingredient.ZincPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Selenium') }}</td>
-									<td>{{ ingredient.Selenium }}mcg</td>
-									<td>{{ ingredient.SeleniumPerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.SeleniumPerc + '%'}" :aria-valuenow="ingredient.SeleniumPerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="pl-0">{{ $t('Manganese') }}</td>
-									<td>{{ ingredient.Manganese }}mg</td>
-									<td>{{ ingredient.ManganesePerc }}</td>
-									<td class="pr-0">
-										<div class="progress" style="width: 10rem">
-											<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.ManganesePerc + '%'}" :aria-valuenow="ingredient.ManganesePerc" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</td>
-								</tr>
-								</tbody>
-							</table>
+					<div class="col-lg-6 mb-3">
+						<div class="mx-auto ml-lg-0 mr-lg-auto" style="width: max-content;">
+							<h2 class="fgGreen1 ml-5 w-100" style="margin-bottom: -1rem">{{ $t('Minerals') }}</h2>
+							<div class="bg-white px-4 pb-4" style="width: max-content">
+								<table class="v-table">
+									<thead>
+									<tr>
+										<th></th>
+										<th>{{ $t('Per') }} 100gr</th>
+										<th class="text-center" colspan="2">{{ $t('RDI') }} %</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td class="pl-0">{{ $t('Calcium') }}</td>
+										<td>{{ ingredient.Calcium }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.CalciumPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.CalciumPerc + '%'}" :aria-valuenow="ingredient.CalciumPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Iron') }}</td>
+										<td>{{ ingredient.Iron }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.IronPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.IronPerc + '%'}" :aria-valuenow="ingredient.IronPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Magnesium') }}</td>
+										<td>{{ ingredient.Magnesium }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.MagnesiumPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.MagnesiumPerc + '%'}" :aria-valuenow="ingredient.MagnesiumPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Phosphorus') }}</td>
+										<td>{{ ingredient.Phosphorus }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.PhosphorusPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.PhosphorusPerc + '%'}" :aria-valuenow="ingredient.PhosphorusPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Potassium') }}</td>
+										<td>{{ ingredient.Potassium }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.PotassiumPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.PotassiumPerc + '%'}" :aria-valuenow="ingredient.PotassiumPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Sodium') }}</td>
+										<td>{{ ingredient.Sodium }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.SodiumPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.SodiumPerc + '%'}" :aria-valuenow="ingredient.SodiumPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Zinc') }}</td>
+										<td>{{ ingredient.Zinc }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.ZincPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.ZincPerc + '%'}" :aria-valuenow="ingredient.ZincPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Selenium') }}</td>
+										<td>{{ ingredient.Selenium }}mcg</td>
+										<td class="pl-0 text-right">{{ ingredient.SeleniumPerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.SeleniumPerc + '%'}" :aria-valuenow="ingredient.SeleniumPerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="pl-0">{{ $t('Manganese') }}</td>
+										<td>{{ ingredient.Manganese }}mg</td>
+										<td class="pl-0 text-right">{{ ingredient.ManganesePerc }}%</td>
+										<td class="px-0">
+											<div class="progress">
+												<div class="progress-bar bgGreen1" role="progressbar" :style="{ width: ingredient.ManganesePerc + '%'}" :aria-valuenow="ingredient.ManganesePerc" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<RecommendedRecipes :current-recipe-id="id" :ingredientsIncluded="[ingredient.id]" :title="$t('Recipes with') + ' ' + ingredient.Name + '!'"/>
 		</div>
 	</div>
 </template>
@@ -291,12 +300,14 @@
 <script>
 	import Loader from '../Structure/Loader';
 	import NutritionStats from '../Structure/NutritionStats';
+	import RecommendedRecipes from '../Recipes/RecommendedRecipes';
 
 	export default {
 		name: 'IngredientView',
 		components: {
 			Loader,
-			NutritionStats
+			NutritionStats,
+			RecommendedRecipes
 		},
 		data: function () {
 			return {
@@ -318,6 +329,7 @@
 							this.$root.$t('Protein') + ': ' + this.ingredient.Protein + 'g | ' +
 							this.$root.$t('Carbohydrate') + ': ' + this.ingredient.CarbonHydrates + 'g | ' +
 							this.$root.$t('Fat') + ': ' + this.ingredient.Fats + 'g';
+
 						this.ingredient.VitaminAPerc = this.ingredient.VitaminA;
 						this.ingredient.CarotinBPerc = this.ingredient.CarotinB;
 						this.ingredient.VitaminCPerc = this.ingredient.VitaminC;
@@ -338,13 +350,15 @@
 						this.ingredient.ZincPerc = this.ingredient.Zinc;
 						this.ingredient.SeleniumPerc = this.ingredient.Selenium;
 						this.ingredient.ManganesePerc = this.ingredient.Manganese;
+
+						this.$router.push('?title=' + this.$root.toGreeklish(this.ingredient.Name).replace(/ /g, '-'));
+
 						this.$emit('updateHead');
 						this.requestsUnsatisfied--;
 					})
 					.catch(this.$root.notifyAction.error);
 				return;
 			}
-
 		},
 		head: {
 			title: function () {
@@ -381,6 +395,10 @@
 </script>
 
 <style scoped>
+	.progress {
+		width: 7rem;
+	}
+
 	#ingredientView {
 		--v-dashed-circle-size: 250px;
 		--v-dashed-circle-padding: 10px;
