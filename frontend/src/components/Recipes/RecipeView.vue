@@ -49,12 +49,17 @@
 			<div id="Instructions">
 				<div class="container">
 					<div class="row py-5">
-						<div class="col-md-4 text-md-center">
+						<div class="col-md-4 text-center text-md-left">
 							<h2 class="fgGreen1">{{ $t('Ingredients') }}</h2>
-							<p v-for="ingredient in article.Ingredients">{{ ingredient.Quantity }}gr {{ ingredient.Name }}</p>
+							<p v-for="ingredient in article.Ingredients">
+								<span>{{ ingredient.Quantity }}gr </span>
+								<router-link class="fgGreen1" :to="{ name: 'IngredientView', params: { id: ingredient.id }, query: { title: $root.toGreeklish(ingredient.Name).replace(/ /g, '-') } }">
+									{{ ingredient.Name }}
+								</router-link>
+							</p>
 						</div>
 						<div class="col-md-8 v-border-left-md">
-							<h2 class="fgGreen1 text-center text-sm-left">{{ $t('Execution') }}</h2>
+							<h2 class="fgGreen1 text-center text-md-left">{{ $t('Execution') }}</h2>
 							<div class="htmlRenderer" v-html="article.Content"></div>
 						</div>
 					</div>
