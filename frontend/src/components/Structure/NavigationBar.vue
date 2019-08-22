@@ -17,6 +17,9 @@
 							<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Articles') }}</router-link>
 						</li>
 						<li class="nav-item">
+							<router-link :to="{ name: 'IngredientsList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Ingredients') }}</router-link>
+						</li>
+						<li class="nav-item">
 							<a @click="changeLanguage()" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
 								<div class="locale-btn">
 									<span>{{ this.$i18n.locale === 'en' ? 'GR' : 'EN' }}</span>
@@ -43,6 +46,9 @@
 							</li>
 							<li class="nav-item">
 								<router-link :to="{ name: 'ArticlesList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Articles') }}</router-link>
+							</li>
+							<li class="nav-item">
+								<router-link :to="{ name: 'IngredientsList' }" class="nav-link font-weight-bold" data-toggle="collapse" data-target=".navbar-collapse.show">{{ $t('Ingredients') }}</router-link>
 							</li>
 						</ul>
 					</div>
