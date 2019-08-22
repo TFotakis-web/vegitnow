@@ -30,10 +30,11 @@ module.exports = {
 		'no-useless-return': 'off',
 		'no-unused-vars': 'warn',
 		'comma-dangle': 'off',
-		'curly': 'off'
+		'curly': 'off',
+		'padded-blocks': 'off'
 	},
 	globals: {
 		'$': true,
-        'jQuery': true
+		'jQuery': true
 	}
 };
