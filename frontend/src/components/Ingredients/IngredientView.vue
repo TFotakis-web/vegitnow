@@ -330,6 +330,7 @@
 							this.$root.$t('Carbohydrate') + ': ' + this.ingredient.CarbonHydrates + 'g | ' +
 							this.$root.$t('Fat') + ': ' + this.ingredient.Fats + 'g';
 
+						this.ingredient.Name = this.ingredient.Name.trim();
 						this.ingredient.VitaminAPerc = this.ingredient.VitaminA;
 						this.ingredient.CarotinBPerc = this.ingredient.CarotinB;
 						this.ingredient.VitaminCPerc = this.ingredient.VitaminC;
