@@ -331,26 +331,26 @@
 							this.$root.$t('Fat') + ': ' + this.ingredient.Fats + 'g';
 
 						this.ingredient.Name = this.ingredient.Name.trim();
-						this.ingredient.VitaminAPerc = this.ingredient.VitaminA;
-						this.ingredient.CarotinBPerc = this.ingredient.CarotinB;
-						this.ingredient.VitaminCPerc = this.ingredient.VitaminC;
-						this.ingredient.VitaminDPerc = this.ingredient.VitaminD;
-						this.ingredient.VitaminEPerc = this.ingredient.VitaminE;
-						this.ingredient.VitaminKPerc = this.ingredient.VitaminK;
-						this.ingredient.VitaminB3Perc = this.ingredient.VitaminB3;
-						this.ingredient.VitaminB6Perc = this.ingredient.VitaminB6;
-						this.ingredient.VitaminB12Perc = this.ingredient.VitaminB12;
-						this.ingredient.VitaminB9Perc = this.ingredient.VitaminB9;
-						this.ingredient.CholinePerc = this.ingredient.Choline;
-						this.ingredient.CalciumPerc = this.ingredient.Calcium;
-						this.ingredient.IronPerc = this.ingredient.Iron;
-						this.ingredient.MagnesiumPerc = this.ingredient.Magnesium;
-						this.ingredient.PhosphorusPerc = this.ingredient.Phosphorus;
-						this.ingredient.PotassiumPerc = this.ingredient.Potassium;
-						this.ingredient.SodiumPerc = this.ingredient.Sodium;
-						this.ingredient.ZincPerc = this.ingredient.Zinc;
-						this.ingredient.SeleniumPerc = this.ingredient.Selenium;
-						this.ingredient.ManganesePerc = this.ingredient.Manganese;
+						this.ingredient.VitaminAPerc = 0 * Math.round(this.ingredient.VitaminA / 1 * 1000) / 10;
+						this.ingredient.CarotinBPerc = 0 * Math.round(this.ingredient.CarotinB / 1 * 1000) / 10;
+						this.ingredient.VitaminCPerc = Math.round(this.ingredient.VitaminC / 60 * 1000) / 10;
+						this.ingredient.VitaminDPerc = 0 * Math.round(this.ingredient.VitaminD / 1 * 1000) / 10;
+						this.ingredient.VitaminEPerc = 0 * Math.round(this.ingredient.VitaminE / 1 * 1000) / 10;
+						this.ingredient.VitaminKPerc = Math.round(this.ingredient.VitaminK / 80 * 1000) / 10;
+						this.ingredient.VitaminB3Perc = Math.round(this.ingredient.VitaminB3 / 20 * 1000) / 10;
+						this.ingredient.VitaminB6Perc = Math.round(this.ingredient.VitaminB6 / 2 * 1000) / 10;
+						this.ingredient.VitaminB12Perc = Math.round(this.ingredient.VitaminB12 / 0.006 * 1000) / 10;
+						this.ingredient.VitaminB9Perc = 0 * Math.round(this.ingredient.VitaminB9 / 1 * 1000) / 10;
+						this.ingredient.CholinePerc = Math.round(this.ingredient.Choline / 550 * 1000) / 10;
+						this.ingredient.CalciumPerc = Math.round(this.ingredient.Calcium / 1000 * 1000) / 10;
+						this.ingredient.IronPerc = Math.round(this.ingredient.Iron / 18 * 1000) / 10;
+						this.ingredient.MagnesiumPerc = Math.round(this.ingredient.Magnesium / 400 * 1000) / 10;
+						this.ingredient.PhosphorusPerc = Math.round(this.ingredient.Phosphorus / 1000 * 1000) / 10;
+						this.ingredient.PotassiumPerc = Math.round(this.ingredient.Potassium / 4700 * 1000) / 10;
+						this.ingredient.SodiumPerc = Math.round(this.ingredient.Sodium / 1500 * 1000) / 10;
+						this.ingredient.ZincPerc = Math.round(this.ingredient.Zinc / 15 * 1000) / 10;
+						this.ingredient.SeleniumPerc = Math.round(this.ingredient.Selenium / 70 * 1000) / 10;
+						this.ingredient.ManganesePerc = Math.round(this.ingredient.Manganese / 2 * 1000) / 10;
 
 						this.$router.push('?title=' + this.$root.toGreeklish(this.ingredient.Name).replace(/ /g, '-'));
 
