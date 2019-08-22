@@ -29,7 +29,8 @@ module.exports = {
 		'semi': ['error', "always"],
 		'no-useless-return': 'off',
 		'no-unused-vars': 'warn',
-		'comma-dangle': 'off'
+		'comma-dangle': 'off',
+		'curly': 'off'
 	},
 	globals: {
 		'$': true,
