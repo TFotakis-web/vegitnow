@@ -84,7 +84,7 @@
 							<h2 class="fgGreen1 w-100 v-border-bottom v-border-bottom-md-0">{{ $t('Nutrition facts') }}:</h2>
 						</div>
 						<div class="col-md-7 col-lg-5 align-left float-left text-left">
-							<NutritionStats :ingredient-list="article.Ingredients" :dishes="article.Dishes"/>
+							<NutritionStats class="text-center text-md-left" :ingredient-list="article.Ingredients" :dishes="article.Dishes"/>
 						</div>
 						<div class="col-lg-3 v-border-left-lg my-lg-auto mt-5">
 							<h2 class="fgGreen1 v-border-bottom v-border-bottom-lg-0">{{ $t('Share this recipe') }}</h2>
@@ -206,47 +206,6 @@
 		left: 50%;
 		display: block;
 		transform: translateX(-50%);
-	}
-
-
-	@media (min-width: 768px) {
-		.v-border-left-md {
-			border-left: dashed 2px var(--v-green6)
-		}
-
-		.v-border-right-md {
-			border-right: dashed 2px var(--v-green6)
-		}
-
-		.v-border-bottom-md-0 {
-			border-bottom: none !important;
-		}
-
-		.v-border-top-md-0 {
-			border-top: none !important;
-		}
-	}
-
-	@media (min-width: 992px) {
-		.v-border-left-lg {
-			border-left: dashed 2px var(--v-green6)
-		}
-
-		.v-border-right-lg {
-			border-right: dashed 2px var(--v-green6)
-		}
-
-		.v-border-bottom-lg-0 {
-			border-bottom: none !important;
-		}
-
-		.v-border-top-lg-0 {
-			border-top: none !important;
-		}
-	}
-
-	.v-border-bottom {
-		border-bottom: dashed 2px var(--v-green6)
 	}
 </style>
 
