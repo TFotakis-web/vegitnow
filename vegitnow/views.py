@@ -1,5 +1,3 @@
-import json
-
 # import requests
 from bs4 import BeautifulSoup
 from django.http import HttpResponse
@@ -210,6 +208,32 @@ def prerenderDjango(request):
 			# 'metaOpenGraphTag': {'content': ''},
 			# 'metaOpenGraphAdmins': {'content': ''}
 		}
+	elif url[0] == 'ingredients' and len(url) == 1:
+		elementAttributes = {
+			'metaTitle': {'content': 'Συστατικά'},
+			# 'metaDescription': {'content': ''},
+			# 'metaKeywords': {'content': ''},
+			'metaGooglePlusName': {'content': 'Συστατικά'},
+			# 'metaGooglePlusDescription': {'content': ''},
+			# 'metaGooglePlusImage': {'content': ''},
+			# 'metaTwitterCard': {'content': ''},
+			# 'metaTwitterSite': {'content': ''},
+			'metaTwitterTitle': {'content': 'Συστατικά'},
+			# 'metaTwitterDescription': {'content': ''},
+			# 'metaTwitterCreator': {'content': ''},
+			# 'metaTwitterImage': {'content': ''},
+			'metaOpenGraphTitle': {'content': 'Συστατικά'},
+			# 'metaOpenGraphType': {'content': 'article'},
+			# 'metaOpenGraphUrl': {'content': ''},
+			# 'metaOpenGraphImage': {'content': ''},
+			# 'metaOpenGraphDescription': {'content': ''},
+			# 'metaOpenGraphSiteName': {'content': ''},
+			# 'metaOpenGraphPublishedTime': {'content': ''},
+			# 'metaOpenGraphModifiedTime': {'content': ''},
+			# 'metaOpenGraphSection': {'content': ''},
+			# 'metaOpenGraphTag': {'content': ''},
+			# 'metaOpenGraphAdmins': {'content': ''}
+		}
 	elif (url[0] == 'articles' or url[0] == 'recipes') and len(url) == 2:
 		# uri = request.scheme + '://' + request.get_host() + '/api/article/' + url[1] + '/?locale=2'
 		# response = json.loads(requests.get(uri).text)
@@ -236,6 +260,44 @@ def prerenderDjango(request):
 				'metaOpenGraphUrl': {'content': request.get_raw_uri()},
 				'metaOpenGraphImage': {'content': imageUrl},
 				'metaOpenGraphDescription': {'content': response['Preview']},
+				# 'metaOpenGraphSiteName': {'content': ''},
+				# 'metaOpenGraphPublishedTime': {'content': ''},
+				# 'metaOpenGraphModifiedTime': {'content': ''},
+				# 'metaOpenGraphSection': {'content': ''},
+				# 'metaOpenGraphTag': {'content': ''},
+				# 'metaOpenGraphAdmins': {'content': ''}
+			}
+	elif url[0] == 'ingredients' and len(url) == 2:
+		# uri = request.scheme + '://' + request.get_host() + '/api/article/' + url[1] + '/?locale=2'
+		# response = json.loads(requests.get(uri).text)
+
+		from articles.viewsets import IngredientViewSet
+		response = IngredientViewSet.as_view({'get': 'retrieve'})(request, pk=url[1]).render().data
+		if response:
+			imageUrl = request.scheme + '://' + request.get_host() + response['Thumbnail']
+			preview = \
+				'Ενέργεια: ' + response.Calories + 'cal | ' + \
+				'Πρωτεΐνη: ' + response.Protein + 'g | ' + \
+				'Υδατάνθρακας: ' + response.CarbonHydrates + 'g | ' + \
+				'Λίπη: ' + response.Fats + 'g'
+			elementAttributes = {
+				'metaTitle': {'content': response['Name']},
+				'metaDescription': {'content': preview},
+				# 'metaKeywords': {'content': ''},
+				'metaGooglePlusName': {'content': response['Name']},
+				'metaGooglePlusDescription': {'content': preview},
+				'metaGooglePlusImage': {'content': imageUrl},
+				# 'metaTwitterCard': {'content': ''},
+				# 'metaTwitterSite': {'content': ''},
+				'metaTwitterTitle': {'content': response['Name']},
+				'metaTwitterDescription': {'content': preview},
+				# 'metaTwitterCreator': {'content': ''},
+				'metaTwitterImage': {'content': imageUrl},
+				'metaOpenGraphTitle': {'content': response['Name']},
+				# 'metaOpenGraphType': {'content': 'article'},
+				'metaOpenGraphUrl': {'content': request.get_raw_uri()},
+				'metaOpenGraphImage': {'content': imageUrl},
+				'metaOpenGraphDescription': {'content': preview},
 				# 'metaOpenGraphSiteName': {'content': ''},
 				# 'metaOpenGraphPublishedTime': {'content': ''},
 				# 'metaOpenGraphModifiedTime': {'content': ''},
