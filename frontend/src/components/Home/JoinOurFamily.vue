@@ -2,7 +2,7 @@
 	<div id="JoinOurFamily" class="bgGreen3 join-our-family-container py-5">
 		<div class="d-table h-100 mx-auto outerBox">
 			<div class="d-table-cell align-middle position-relative">
-				<div class="dashedCircle rotating"></div>
+				<div class="dashedCircle v-border rotating"></div>
 
 				<div class="FamilyCircle d-table">
 					<div class="d-table-cell align-middle">
@@ -65,7 +65,6 @@
 		max-height: 400px;
 		max-width: 400px;
 		border-radius: 50%;
-		border: dashed var(--v-green0);
 		pointer-events: none;
 		overflow: hidden;
 		position: relative;
