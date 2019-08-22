@@ -1,35 +1,46 @@
 <template>
 	<div>
-		<div class="d-flex justify-content-center justify-content-lg-start">
-			<div class="p-4 bg-white text-center calories-box-clip-path" style="margin-right: -3rem; position: relative; z-index: 1">
-				<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Energy') }}</h6>
-				<strong class="fgGreen1">{{ calories }}</strong>
-				<p class="sans fgGreen0 m-0">{{ caloriesPerc }}%*</p>
-			</div>
-			<div class="d-flex nutritionStats-box-clip-path p-3">
-				<div class="p-3 bgGreen4 text-center pl-5">
-					<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Protein') }}</h6>
-					<strong class="fgGreen1">{{ proteins }}g</strong>
-					<p class="sans fgGreen0 m-0">{{ proteinsPerc }}%*</p>
+	<table class="text-center d-inline-block" style="width: min-content">
+		<tr>
+			<td>
+				<div class="calories-box-clip-path p-3" :class="calories_bg" style="position: relative; z-index: 2;">
+					<h6 class="text-capitalize m-0 sans">{{ $t('Energy') }}</h6>
+					<strong>{{ calories }}</strong>
+					<p class="sans m-0">{{ caloriesPerc }}%*</p>
 				</div>
-				<div class="p-3 bgGreen4 text-center">
-					<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Carbohydrate') }}</h6>
-					<strong class="fgGreen1">{{ carbohydrate }}g</strong>
-					<p class="sans fgGreen0 m-0">{{ carbohydratePerc }}%*</p>
+			</td>
+			<td>
+				<div class="nutritionStats-box-clip-path bgGreen4" style="margin-left: -3rem; position: relative; z-index: 1;">
+					<table class="table table-borderless m-0">
+						<tbody>
+						<tr>
+							<td class="pl-5">
+								<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Protein') }}</h6>
+								<strong class="fgGreen1">{{ proteins }}g</strong>
+								<p class="sans fgGreen0 m-0">{{ proteinsPerc }}%*</p>
+							</td>
+							<td>
+								<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Carbohydrate') }}</h6>
+								<strong class="fgGreen1">{{ carbohydrate }}g</strong>
+								<p class="sans fgGreen0 m-0">{{ carbohydratePerc }}%*</p>
+							</td>
+							<td class="pr-5">
+								<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Fat') }}</h6>
+								<strong class="fgGreen1">{{ fat }}g</strong>
+								<p class="sans fgGreen0 m-0">{{ fatPerc }}%*</p>
+							</td>
+						</tr>
+						</tbody>
+					</table>
 				</div>
-				<div class="p-3 bgGreen4 text-center">
-					<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Fat') }}</h6>
-					<strong class="fgGreen1">{{ fat }}g</strong>
-					<p class="sans fgGreen0 m-0">{{ fatPerc }}%*</p>
-				</div>
-<!--				<div class="p-3 bgGreen4 text-center">-->
-<!--					<h6 class="text-capitalize m-0 sans fgGreen1">{{ $t('Salt') }}</h6>-->
-<!--					<strong class="fgGreen1">{{ salt }}mg</strong>-->
-<!--					<p class="sans fgGreen0 m-0">{{ saltPerc }}%*</p>-->
-<!--				</div>-->
-			</div>
-		</div>
-		<p class="text-dark text-center text-lg-left">* {{ $t('Reference intake of an average adult per serving') }} (8400kJ/2000kcal)</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<p class="text-dark text-center m-0" style="font-size: 0.7em;">* {{ $t('Reference intake of an average adult per serving') }} (8400kJ/2000kcal)</p>
+			</td>
+		</tr>
+	</table>
 	</div>
 </template>
 
@@ -44,6 +55,10 @@
 			dishes: {
 				type: Number,
 				default: 1
+			},
+			calories_bg: {
+				type: String,
+				default: 'calories-light'
 			}
 		},
 		data: function () {
@@ -125,5 +140,33 @@
 		mask-repeat: no-repeat;
 		mask-size: 100%;
 		mask-position: center;
+	}
+
+	.calories-light {
+		background: white;
+	}
+
+	.calories-light h6, strong {
+		color: var(--v-green6);
+	}
+
+	.calories-light p {
+		color: var(--v-green5);
+	}
+
+	.calories-dark {
+		background: var(--v-green0);
+	}
+
+	.calories-dark > h6 {
+		color: white !important;
+	}
+
+	.calories-dark > strong {
+		color: white !important;
+	}
+
+	.calories-dark > p {
+		color: white !important;
 	}
 </style>
