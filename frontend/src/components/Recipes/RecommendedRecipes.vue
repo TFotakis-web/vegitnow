@@ -24,7 +24,7 @@
 				<span class="sr-only">Next</span>
 			</a>
 			<h1 class="text-center" style="position: relative;top: -0.5em;margin-bottom: -1.2em;z-index: 1;">
-				<router-link :to="{ name: 'RecipesList', query: { ingredients: ingredientsIncluded.join() } }" class="fgGreen0 bg-transparent">
+				<router-link :to="routerUrl" class="fgGreen0 bg-transparent">
 					{{ title }}
 				</router-link>
 			</h1>
@@ -80,7 +80,7 @@
 			</a>
 
 			<h1 class="text-center" style="position: relative;top: -0.5em;margin-bottom: -1.2em;z-index: 1;">
-				<router-link :to="{ name: 'RecipesList' }" class="fgGreen0 bg-transparent">
+				<router-link :to="routerUrl" class="fgGreen0 bg-transparent">
 					{{ title }}
 				</router-link>
 			</h1>
@@ -135,7 +135,7 @@
 				<span class="sr-only">Next</span>
 			</a>
 			<h1 class="text-center" style="position: relative;top: -0.5em;margin-bottom: -1.2em;z-index: 1;">
-				<router-link :to="{ name: 'RecipesList' }" class="fgGreen0 bg-transparent">
+				<router-link :to="routerUrl" class="fgGreen0 bg-transparent">
 					{{ title }}
 				</router-link>
 			</h1>
@@ -271,6 +271,12 @@
 					arr.push(tmp);
 				}
 				return arr;
+			},
+			routerUrl: function () {
+				let routerUrl = {name: 'RecipesList', query: {page: 1}};
+				if (this.ingredientsIncluded.length)
+					routerUrl.query.ingredients = this.ingredientsIncluded.join();
+				return routerUrl;
 			}
 		}
 	};
