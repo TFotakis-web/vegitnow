@@ -114,7 +114,7 @@
 							text: this.$t('Something went wrong... Please check your connection.'),
 							type: 'error'
 						});
-						this.$router.push({name: 'ArticlesList'});
+						this.$router.push({ name: 'ArticlesList', query: { page: 1 } });
 					});
 			}
 		},
