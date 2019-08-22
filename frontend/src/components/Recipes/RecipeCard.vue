@@ -1,5 +1,5 @@
 <template>
-	<div class="col-12 col-md-6 col-xl-4 py-2" :class="{ 'recipe-card-bordered': isMiddle }">
+	<div class="col-12 col-md-6 col-xl-4 py-2">
 		<router-link class="v-link-no-underline v-underline-card-title" :to="routerUrl" style="color: inherit; ">
 			<div class="card border-0 bg-transparent">
 				<div class="card-body position-relative">
@@ -37,7 +37,6 @@
 		name: 'RecipeCard',
 		props: [
 			'recipe',
-			'isMiddle'
 		],
 		data: function () {
 			return {
@@ -56,8 +55,5 @@
 </script>
 
 <style scoped>
-	.recipe-card-bordered {
-		border-left: dashed 2px var(--v-green6);
-		border-right: dashed 2px var(--v-green6);
-	}
+
 </style>
