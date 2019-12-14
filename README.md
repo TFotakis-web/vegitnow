@@ -1,4 +1,4 @@
-# Wais
+# VegItNow
 
 Deploy
 ```bash
